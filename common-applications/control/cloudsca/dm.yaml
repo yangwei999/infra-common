@@ -15,7 +15,7 @@ spec:
         app: sca-dm
     spec:
       imagePullSecrets:
-        - name: sca-sec
+        - name: huawei-swr-image-pull-secret
       containers:
       - name: sca-dm
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/sca-datamanager:335b5599b83f08c67ee2430323bc43e69c6c4a61
