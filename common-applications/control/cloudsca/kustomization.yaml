@@ -30,3 +30,5 @@ images:
   newTag: 335b5599b83f08c67ee2430323bc43e69c6c4a61
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/sca-datamanager
   newTag: 335b5599b83f08c67ee2430323bc43e69c6c4a61
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/sca-gateway
+  newTag: 335b5599b83f08c67ee2430323bc43e69c6c4a61
