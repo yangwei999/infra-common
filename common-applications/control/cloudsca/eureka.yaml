@@ -32,10 +32,10 @@ spec:
         app: eureka
     spec:
       imagePullSecrets:
-        - name: sca-sec
+        - name: huawei-swr-image-pull-secret
       containers:
         - name: eureka
-          image: swr.ap-southeast-1.myhuaweicloud.com/opensourceway/sca-eureka:2da74f4f19e420bdc7233954881e632c1c57eae0
+          image: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/sca-eureka:2da74f4f19e420bdc7233954881e632c1c57eae0
           ports:
             - containerPort: 9000
           env:
