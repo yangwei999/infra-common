@@ -10,15 +10,3 @@ commonAnnotations:
 namespace: jenkins
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-images:
-- name: swr.ap-southeast-1.myhuaweicloud.com/opensourceway/content_moderation
-  newName: swr.ap-southeast-1.myhuaweicloud.com/opensourceway/content_moderation
-  newTag: "1615875017"
-- name: swr.ap-southeast-1.myhuaweicloud.com/opensourceway/website_sync
-  newName: swr.ap-southeast-1.myhuaweicloud.com/opensourceway/website_sync
-  newTag: ce0d455a6417ea8aee9117d6e7251f05d8093934
-- name: swr.cn-north-4.myhuaweicloud.com/om/om-data
-  newName: swr.cn-north-4.myhuaweicloud.com/om/om-data
-  newTag: c8e6a74b1a84f9df2ae1ee1fb5b92f10dfa07b1a
-- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/mindspore/website_sync
-  newTag: f55c16c3ff80bf3aaf543d1d56e2b38bee639886
