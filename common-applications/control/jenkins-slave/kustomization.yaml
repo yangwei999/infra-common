@@ -5,8 +5,8 @@ resources:
 - web-sync-slaves.yaml
 - license-check-slave.yaml
 commonAnnotations:
+  email: tommylikehu@gmail.com
   owner: tommylike
-  email: "tommylikehu@gmail.com"
 namespace: jenkins
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
@@ -20,3 +20,5 @@ images:
 - name: swr.cn-north-4.myhuaweicloud.com/om/om-data
   newName: swr.cn-north-4.myhuaweicloud.com/om/om-data
   newTag: c8e6a74b1a84f9df2ae1ee1fb5b92f10dfa07b1a
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/mindspore/website_sync
+  newTag: f55c16c3ff80bf3aaf543d1d56e2b38bee639886
