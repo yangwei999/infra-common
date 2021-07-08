@@ -3,6 +3,7 @@ resources:
 - dm.yaml
 - eureka.yaml
 - gateway.yaml
+- api-gateway.yaml
 - ingress.yaml
 - sca-namespace.yaml
 - secrets.yaml
