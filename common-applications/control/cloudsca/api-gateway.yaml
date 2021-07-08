@@ -15,7 +15,7 @@ spec:
         app: sca-api-gateway
     spec:
       imagePullSecrets:
-        - name: sca-sec
+        - name: huawei-swr-image-pull-secret
       containers:
       - name: sca-api-gateway
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/sca-api-gateway:aade5285865d3ba2efe4ad156e56074409ae21a7
