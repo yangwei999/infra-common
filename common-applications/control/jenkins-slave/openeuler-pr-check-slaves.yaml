@@ -35,7 +35,7 @@ spec:
     spec:
       initContainers:
         - name: slave-init
-          image: swr.cn-north-1.myhuaweicloud.com/mindspore/jenkins-slave-tools:0.0.1
+          image: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/jenkins-slave-tools:0.0.1
           volumeMounts:
             - mountPath: /home/jenkins/share-config
               name: jenkins-share-config
@@ -49,7 +49,7 @@ spec:
             - name: JENKINS_USER_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: osinfra-jenkins
+                  name: osinfra-jenkins-check
                   key: jenkins-slave-token
             - name: JENKINS_AGENT_WORKDIR
               value: /home/jenkins/agent-working-dir
@@ -64,7 +64,7 @@ spec:
           args: ["$(JENKINS_URL)", "$(JENKINS_USER_NAME)", "$(JENKINS_USER_PASSWORD)", "$(JENKINS_NODE_NAME)", "$(EXECUTOR_NUMBERS)", "$(JENKINS_AGENT_WORKDIR)", "$(NODE_LABELS)", "$(JENKINS_SHARE_FOLDER)"]
       containers:
         - name: jenkins-slave
-          image: swr.ap-southeast-1.myhuaweicloud.com/opensourceway/content_moderation:0.0.1
+          image: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/content_moderation:1615875017
           imagePullPolicy: "IfNotPresent"
           volumeMounts:
             - mountPath: /home/jenkins/agent-working-dir
@@ -101,22 +101,22 @@ spec:
             - name: ACCOUNT_USERNAME
               valueFrom:
                 secretKeyRef:
-                  name: osinfra-jenkins
+                  name: osinfra-jenkins-check
                   key: account_username
             - name: REGION
               valueFrom:
                 secretKeyRef:
-                  name: osinfra-jenkins
+                  name: osinfra-jenkins-check
                   key: region
             - name: IAM_USERNAME
               valueFrom:
                 secretKeyRef:
-                  name: osinfra-jenkins
+                  name: osinfra-jenkins-check
                   key: iam_username
             - name: IAM_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: osinfra-jenkins
+                  name: osinfra-jenkins-check
                   key: iam_password
       volumes:
         - name: jenkins-share-config

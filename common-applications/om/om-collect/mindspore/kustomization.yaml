@@ -5,7 +5,6 @@ resources:
   - website-ascend
   - gitee
   - download
-  - maillist
   - namespace.yaml
   - collect-data
   - gitee-event
@@ -16,4 +15,10 @@ resources:
   - polymerization
   - polymerization-download
   - polymerization-download-ip
+  - account_org
+  - github-star
+  - huawei_swr
+commonAnnotations:
+  owner: zhongjun
+  email: "jun.zhongjun2@gmail.com"
 namespace: mindspore-om

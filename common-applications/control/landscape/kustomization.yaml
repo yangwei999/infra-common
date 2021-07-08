@@ -5,13 +5,12 @@ resources:
 - ingress.yaml
 commonLabels:
   app: landscape
+  owner: tommylikehu
+commonAnnotations:
+  email: tommylikehu@gmail.com
 namespace: landscape
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
-- name: swr.ap-southeast-1.myhuaweicloud.com/opensourceway/landscape
-  newName: swr.ap-southeast-1.myhuaweicloud.com/opensourceway/landscape
-  newTag: 241c85778c7da1f33131bbde793e9c44fee12bbd
-- name: swr.ap-southeast-1.myhuaweicloud.com/opensourceway/openeuler-website-backend
-  newName: swr.ap-southeast-1.myhuaweicloud.com/opensourceway/landscape
-  newTag: eff89e6a11450c61638b8f0637809d438ee541a7
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/landscape
+  newTag: 7353c78b5ec0362fe88ee95e5e8f732bba57abb6

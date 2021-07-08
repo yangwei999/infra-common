@@ -9,8 +9,6 @@ resources:
   - namespace.yaml
   - gitee-star
   - collect-data
-  - gitee-incubator
-  - gitee-competition
   - gitee-event
   - report-email
   - meetings
@@ -21,4 +19,8 @@ resources:
   - polymerization
   - polymerization-download
   - polymerization-download-ip
+  - account_org
+commonAnnotations:
+  owner: zhongjun
+  email: "jun.zhongjun2@gmail.com"
 namespace: openeuler-om
