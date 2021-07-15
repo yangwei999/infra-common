@@ -10,3 +10,6 @@ commonAnnotations:
 namespace: jenkins
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+images:
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/mindspore/website_sync
+  newTag: 0dd0b18f2660eac807141aaecb140098a2e79d3c
