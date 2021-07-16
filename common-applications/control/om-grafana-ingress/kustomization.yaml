@@ -3,6 +3,7 @@ resources:
   - namespace.yaml
   - service.yaml
   - secrets.yaml
+  - oauth-proxy.yaml
 commonLabels:
   app: control-om-grafana
 commonAnnotations:
