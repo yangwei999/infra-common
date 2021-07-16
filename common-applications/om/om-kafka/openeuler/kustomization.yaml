@@ -3,6 +3,7 @@ resources:
   - obs-status-summary
   - statewall-ci-ac
   - namespace.yaml
+  - statewall_dist_build_time
 commonAnnotations:
   owner: zhongjun
   email: "jun.zhongjun2@gmail.com"
