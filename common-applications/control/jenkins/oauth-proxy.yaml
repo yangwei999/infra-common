@@ -25,6 +25,11 @@ spec:
             - --cookie-expire=6h0m0s
             - --set-xauthrequest=true
             - --skip-auth-regex=^/job/
+            - --skip-auth-regex=^/queue/
+            - --skip-auth-regex=^/view/
+            - --skip-auth-regex=^/static/
+            - --skip-auth-regex=^/adjuncts/
+            - --skip-auth-regex=^/images/
           env:
             - name: OAUTH2_PROXY_CLIENT_ID
               valueFrom:
