@@ -24,6 +24,7 @@ spec:
             - --http-address=0.0.0.0:4180
             - --cookie-expire=6h0m0s
             - --set-xauthrequest=true
+            - --reverse-proxy=true
             - --skip-auth-regex=^/job/
             - --skip-auth-regex=^/queue/
             - --skip-auth-regex=^/view/
