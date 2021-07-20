@@ -34,6 +34,7 @@ spec:
             - --skip-auth-regex=^/images/
             # for webhook to be triggered
             - --skip-auth-regex=^/gitee-project/
+            - --custom-sign-in-logo=https://openeulerinfrastructure.obs.cn-north-4.myhuaweicloud.com/img/gardener-large.png
           env:
             - name: OAUTH2_PROXY_CLIENT_ID
               valueFrom:
@@ -50,7 +51,7 @@ spec:
                 secretKeyRef:
                   key: cookie_secret
                   name: osinfra-jenkins
-          image: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/oauth2-proxy:226aef6138ef75975ecf9e2d6db5a21db26a1bcb
+          image: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/oauth2-proxy:4b64a9c04a247dd5da3ff664d9d497c902324c3a
           imagePullPolicy: Always
           name: oauth2-proxy
           ports:
