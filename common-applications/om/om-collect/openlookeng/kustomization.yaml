@@ -13,6 +13,7 @@ resources:
   - meetings
   - polymerization
   - polymerization-download
+  - tryme
 commonAnnotations:
   owner: zhongjun
   email: "jun.zhongjun2@gmail.com"
