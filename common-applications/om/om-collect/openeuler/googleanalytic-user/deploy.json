@@ -1,0 +1,32 @@
+[
+  {
+    "op": "remove",
+    "path": "/spec/template/spec/containers/0/volumeMounts"
+  },
+  {
+    "op": "add",
+    "path": "/spec/template/spec/containers/0/volumeMounts",
+    "value": [
+      {
+        "mountPath": "/var/lib/om/config.ini",
+        "subPath": "credentials_cfg",
+        "name": "om-collect-secrets-volume"
+      },
+      {
+        "mountPath": "/var/lib/om/openeuler_key.json",
+        "subPath": "key_json",
+        "name": "om-collect-secrets-volume"
+      },
+      {
+        "mountPath": "/var/lib/om/request_body.json",
+        "subPath": "request_body_json",
+        "name": "om-collect-secrets-volume"
+      }
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/spec/template/spec/volumes/0/secret/secretName",
+    "value": "git-commit-om-secrets"
+  }
+]
