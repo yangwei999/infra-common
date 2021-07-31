@@ -19,6 +19,7 @@ resources:
   - polymerization-download
   - polymerization-download-ip
   - account_org
+  - googleanalytic-user
 commonAnnotations:
   owner: zhongjun
   email: "jun.zhongjun2@gmail.com"
