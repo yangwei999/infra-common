@@ -6600,6 +6600,7 @@ spec:
           - --webhook-ca-secret=cert-manager-webhook-ca
           - --webhook-serving-secret=cert-manager-webhook-tls
           - --webhook-dns-names=cert-manager-webhook,cert-manager-webhook.cert-manager,cert-manager-webhook.cert-manager.svc
+          - --acme-http01-solver-image=swr.cn-north-4.myhuaweicloud.com/opensourceway/cert-manager-acmesolver:v0.14.2
           ports:
           - containerPort: 9402
             protocol: TCP
