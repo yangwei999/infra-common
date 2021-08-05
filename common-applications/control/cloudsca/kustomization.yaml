@@ -25,4 +25,4 @@ images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/sca-datamanager
   newTag: 4b8d20cb2b61bb125259762db6a0b27f49b9184a
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/sca-web
-  newTag: 8c74105c18407b758be3c67074c49ee361b2d315
+  newTag: 50c79ec0a38205242cc35ee12e0fe37c44ac688f
