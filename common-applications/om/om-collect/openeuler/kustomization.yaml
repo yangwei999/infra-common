@@ -20,6 +20,7 @@ resources:
   - polymerization-download-ip
   - account_org
   - googleanalytic-user
+  - gitee-issue
 commonAnnotations:
   owner: zhongjun
   email: "jun.zhongjun2@gmail.com"
