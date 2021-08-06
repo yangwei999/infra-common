@@ -13,12 +13,12 @@
         "name": "om-collect-secrets-volume"
       },
       {
-        "mountPath": "/var/lib/om/openeuler_key.json",
+        "mountPath": "/var/lib/om/openeuler_googleanalytic_openeuler_key.json",
         "subPath": "openeuler_key_json",
         "name": "om-collect-secrets-volume"
       },
       {
-        "mountPath": "/var/lib/om/request_body.json",
+        "mountPath": "/var/lib/om/openeuler_googleanalytic_request_body.json",
         "subPath": "request_body_json",
         "name": "om-collect-secrets-volume"
       }
