@@ -13,13 +13,8 @@
         "name": "om-collect-secrets-volume"
       },
       {
-        "mountPath": "/var/lib/om/users",
-        "subPath": "users",
-        "name": "om-collect-secrets-volume"
-      },
-      {
-        "mountPath": "/var/lib/om/projects.json",
-        "subPath": "git_projects_json",
+        "mountPath": "/var/lib/om/openeuler_project.json",
+        "subPath": "openeuler_project_json",
         "name": "om-collect-secrets-volume"
       }
     ]
