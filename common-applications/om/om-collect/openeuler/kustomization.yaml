@@ -21,7 +21,7 @@ resources:
   - account_org
   - googleanalytic-user
   - gitee-issue
-  - git-commit
+  - git_commit
 commonAnnotations:
   owner: zhongjun
   email: "jun.zhongjun2@gmail.com"
