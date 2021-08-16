@@ -13,7 +13,7 @@
         "name": "om-collect-secrets-volume"
       },
       {
-        "mountPath": "/var/lib/om/projects.json",
+        "mountPath": "/var/lib/om/kunpeng_projects.json",
         "subPath": "git_projects_json",
         "name": "om-collect-secrets-volume"
       }
