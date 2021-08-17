@@ -18,6 +18,7 @@ resources:
   - account_org
   - github-star
   - huawei_swr
+  - git_commit
 commonAnnotations:
   owner: zhongjun
   email: "jun.zhongjun2@gmail.com"
