@@ -1,0 +1,74 @@
+# Deployment
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sca-api-gateway
+  namespace: sca
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sca-api-gateway
+  template:
+    metadata:
+      labels:
+        app: sca-api-gateway
+    spec:
+      imagePullSecrets:
+        - name: huawei-swr-image-pull-secret
+      containers:
+      - name: sca-api-gateway
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/sca-api-gateway:aade5285865d3ba2efe4ad156e56074409ae21a7
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: app-port
+          containerPort: 8020
+        env:
+          - name: MY_POD_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+          - name: SERVICE_NAME
+            value: sca-api-gateway
+          - name: EUREKA_SERVER
+            value: "http://eureka-0.eureka:9000/eureka, http://eureka-1.eureka:9000/eureka"
+          - name: APP_ENV
+            value: prod
+          - name: PACKAGE_VERSION
+            value: 1.0-SNAPSHOT
+          - name: MAX_HEAP_MEM
+            value: 3072m
+          - name: INIT_HEAP_MEM
+            value: 512m
+          - name: CMS_IOF
+            value: "75"
+          - name: INIT_KEY
+            valueFrom:
+              secretKeyRef:
+                name: sca-secret
+                key: app-init-key
+        resources:
+          requests:
+            cpu: 200m
+            memory: 1024Mi
+          limits:
+            cpu: 1000m
+            memory: 2G
+---
+# Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: sca-api-gateway
+  namespace: sca
+  labels:
+    app: sca-api-gateway
+spec:
+  type: ClusterIP
+  ports:
+    - port: 8020
+      name: api-gateway-app
+      protocol: TCP
+      targetPort: 8020
+  selector:
+    app: sca-api-gateway

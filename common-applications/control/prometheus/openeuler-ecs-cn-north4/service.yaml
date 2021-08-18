@@ -1,0 +1,21 @@
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: openeuler-prometheus-ecs-internal
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 9090
+---
+kind: Endpoints
+apiVersion: v1
+metadata:
+  name: openeuler-prometheus-ecs-internal
+subsets:
+  - addresses:
+      # These machines below are ecs in openeuler cn-north4.
+      - ip: 172.16.1.40
+    ports:
+      - port: 9090

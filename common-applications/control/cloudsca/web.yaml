@@ -15,10 +15,10 @@ spec:
         app: sca-web
     spec:
       imagePullSecrets:
-        - name: sca-sec
+        - name: huawei-swr-image-pull-secret
       containers:
       - name: sca-web
-        image: swr.ap-southeast-1.myhuaweicloud.com/opensourceway/sca-web:6a082c8dc57e59acb2e8d7b6b1b37d916559ec3c
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/sca-web:6a082c8dc57e59acb2e8d7b6b1b37d916559ec3c
         imagePullPolicy: IfNotPresent
         ports:
         - name: app-port
