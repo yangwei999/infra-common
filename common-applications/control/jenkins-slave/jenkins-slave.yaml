@@ -35,7 +35,7 @@ spec:
     spec:
       initContainers:
         - name: slave-init
-          image: swr.cn-north-1.myhuaweicloud.com/mindspore/jenkins-slave-tools:0.0.1
+          image: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/jenkins-slave-tools-x86:v0.0.1.20210729
           volumeMounts:
             - mountPath: /home/jenkins/share-config
               name: jenkins-share-config
@@ -64,7 +64,7 @@ spec:
           args: ["$(JENKINS_URL)", "$(JENKINS_USER_NAME)", "$(JENKINS_USER_PASSWORD)", "$(JENKINS_NODE_NAME)", "$(EXECUTOR_NUMBERS)", "$(JENKINS_AGENT_WORKDIR)", "$(NODE_LABELS)", "$(JENKINS_SHARE_FOLDER)"]
       containers:
         - name: jenkins-slave
-          image: swr.cn-north-4.myhuaweicloud.com/om/om-data:0.0.1
+          image: swr.cn-north-4.myhuaweicloud.com/om/om-data:c8e6a74b1a84f9df2ae1ee1fb5b92f10dfa07b1a
           imagePullPolicy: "IfNotPresent"
           volumeMounts:
             - mountPath: /home/jenkins/agent-working-dir

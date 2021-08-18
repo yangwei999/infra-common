@@ -7,8 +7,6 @@ resources:
   - git_commit
   - github_pr_issue
   - blue_zone_user
+  - white_git
   - namespace.yaml
-commonAnnotations:
-  owner: zhongjun
-  email: "jun.zhongjun2@gmail.com"
 namespace: kunpeng-om

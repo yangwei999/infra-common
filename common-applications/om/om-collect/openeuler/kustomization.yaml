@@ -11,7 +11,6 @@ resources:
   - collect-data
   - gitee-event
   - report-email
-  - meetings
   - cla
   - website-repo
   - website-ru-repo
@@ -20,6 +19,9 @@ resources:
   - polymerization-download
   - polymerization-download-ip
   - account_org
+  - googleanalytic-user
+  - gitee-issue
+  - git_commit
 commonAnnotations:
   owner: zhongjun
   email: "jun.zhongjun2@gmail.com"

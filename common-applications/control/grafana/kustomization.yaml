@@ -1,8 +1,8 @@
 resources:
   - ../../../common-services/grafana
   - ingress.yaml
-  - purge-cache.yaml
-  - purge-secret.yaml
+  - secret.yaml
+  - oauth-proxy.yaml
 commonLabels:
   app: control-grafana
 commonAnnotations:
