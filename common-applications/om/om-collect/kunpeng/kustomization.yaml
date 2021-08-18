@@ -6,6 +6,8 @@ resources:
   - openlab
   - git_commit
   - namespace.yaml
+  - github_pr_issue
+  - blue_zone_user
 commonAnnotations:
   owner: zhongjun
   email: "jun.zhongjun2@gmail.com"
