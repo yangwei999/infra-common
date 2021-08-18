@@ -5,6 +5,8 @@ resources:
   - website
   - openlab
   - git_commit
+  - github_pr_issue
+  - blue_zone_user
   - white_git
   - namespace.yaml
 namespace: kunpeng-om
