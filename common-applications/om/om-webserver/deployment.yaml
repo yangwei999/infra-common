@@ -22,6 +22,9 @@ spec:
         - containerPort: 8888
           name: om-webserver
         volumeMounts:
+        - mountPath: /var/lib/om-webserver/blueZone.properties
+          subPath: blueZone_properties
+          name: om-webserver-secrets-volume
         - mountPath: /var/lib/om-webserver/openEuler.properties  
           subPath: openEuler_properties
           name: om-webserver-secrets-volume
