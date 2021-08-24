@@ -28,12 +28,12 @@ spec:
             - name: OAUTH2_PROXY_CLIENT_ID
               valueFrom:
                 secretKeyRef:
-                  key: client_id
+                  key: client_id2
                   name: sca-secret
             - name: OAUTH2_PROXY_CLIENT_SECRET
               valueFrom:
                 secretKeyRef:
-                  key: client_secret
+                  key: client_secret2
                   name: sca-secret
             - name: OAUTH2_PROXY_COOKIE_SECRET
               valueFrom:
