@@ -9,6 +9,7 @@ resources:
 - secrets.yaml
 - web.yaml
 - oauth-proxy.yaml
+- oauth-proxy2.yaml
 commonLabels:
   server: infrastructure-sca
 commonAnnotations:
