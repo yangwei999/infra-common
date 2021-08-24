@@ -5,6 +5,7 @@ resources:
   - website
   - openlab
   - git_commit
+  - git_commit_all
   - github_pr_issue
   - blue_zone_user
   - white_git
