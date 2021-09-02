@@ -22,6 +22,7 @@ resources:
   - googleanalytic-user
   - gitee-issue
   - git_commit
+  - up-download-ratio
 commonAnnotations:
   owner: zhongjun
   email: "jun.zhongjun2@gmail.com"
