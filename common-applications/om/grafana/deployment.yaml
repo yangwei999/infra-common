@@ -17,4 +17,7 @@ spec:
             memory: 5120Mi
         env:
         - name: GF_PANELS_DISABLE_SANITIZE_HTML
-          value: TRUE
+          valueFrom:
+            secretKeyRef:
+              name: grafana-secrets
+              key: san_html
