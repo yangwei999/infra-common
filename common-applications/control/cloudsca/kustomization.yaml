@@ -1,0 +1,28 @@
+resources:
+- analysis.yaml
+- dm.yaml
+- eureka.yaml
+- gateway.yaml
+- api-gateway.yaml
+- ingress.yaml
+- sca-namespace.yaml
+- secrets.yaml
+- web.yaml
+- oauth-proxy.yaml
+commonLabels:
+  server: infrastructure-sca
+commonAnnotations:
+  email: xzq615@hotmail.com
+  owner: xiaozhongqi
+namespace: sca
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+images:
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/sca-analysis
+  newTag: 9273520a45f9a83d1601096c73950c15684d9c9d
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/sca-api-gateway
+  newTag: e195219d626108b98df901846764b5a3a53a2095
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/sca-datamanager
+  newTag: e195219d626108b98df901846764b5a3a53a2095
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/sca-web
+  newTag: 9273520a45f9a83d1601096c73950c15684d9c9d

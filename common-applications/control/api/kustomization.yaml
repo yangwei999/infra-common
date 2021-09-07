@@ -4,7 +4,11 @@ resources:
   - namespace.yaml
   - secrets.yaml
   - nginx-purger.yaml
+  - sca-api-gateway.yaml
 commonLabels:
   app: osinfra-api
+commonAnnotations:
+  owner: tommylike
+  email: "tommylikehu@gmail.com"
 namespace: osinfra-api
 

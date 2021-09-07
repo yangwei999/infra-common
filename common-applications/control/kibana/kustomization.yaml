@@ -3,6 +3,10 @@ resources:
   - ingress.yaml
   - secrets.yaml
   - namespace.yaml
+  - oauth-proxy.yaml
+commonAnnotations:
+  owner: tommylike
+  email: "tommylikehu@gmail.com"
 commonLabels:
   app: control-kibana
 namespace: kibana

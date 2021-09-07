@@ -24,7 +24,7 @@ data:
     # The path to the list receipt (used as the required file when
     # matching list addresses)
     MM3_LISTCHK=MM3_HOME/lists/${local_part}.${domain}
-  
+
   00_local_macros: |
     DKIM_CANON = relaxed
     DKIM_SELECTOR = default
@@ -231,6 +231,395 @@ metadata:
   name: mailman-web-configmap
   namespace: mail
 data:
+  base2.html: |
+    {% load i18n %}
+    {% load compress %}
+    {% load static %}
+    {% load gravatar %}
+    <!DOCTYPE HTML>
+    <html>
+        <head>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <meta name="ROBOTS" content="INDEX, FOLLOW" />
+            <title>{% block head_title %}{{ site_name }}{% endblock %}</title>
+            <meta name="author" content="" />
+            <meta name="dc.language" content="en" />
+            <link rel="shortcut icon" href="{% static 'hyperkitty/img/favicon.ico' %}" />
+            <link rel="stylesheet" href="{% static 'hyperkitty/libs/jquery/smoothness/jquery-ui-1.10.3.custom.min.css' %}" type="text/css" media="all" />
+            <link rel="stylesheet" href="{% static 'hyperkitty/libs/fonts/font-awesome/css/font-awesome.min.css' %}" type="text/css" media="all" />
+            {% compress css %}
+            <link rel="stylesheet" href="{% static 'hyperkitty/libs/fonts/icomoon/icomoon.css' %}" type="text/css" media="all" />
+            <link rel="stylesheet" href="{% static 'hyperkitty/libs/fonts/droid/droid.css' %}" type="text/css" media="all" />
+            <link rel="stylesheet" href="{% static 'django-mailman3/css/main.css' %}" />
+            <link rel="stylesheet" type="text/x-scss" media="all" href="{% static 'hyperkitty/sass/hyperkitty.scss' %}" />
+            {% endcompress %}
+            {% block additional_stylesheets %} {% endblock %}
+            {% include 'hyperkitty/headers.html' %}
+        </head>
+
+        <body>
+
+        {% include 'hyperkitty/top.html' %}
+
+        <nav class="navbar sticky-top navbar-light bg-light navbar-expand-md">
+            <div class="container">
+                <div class="navbar-header col-md"> <!--part of navbar that's always present-->
+                    <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="fa fa-bars"></span>
+                    </button>
+                    {% include 'hyperkitty/navbar-brand.html' %}
+                </div> <!-- /navbar-header -->
+
+                <div class="navbar-collapse collapse justify-content-end"> <!--part of navbar that's collapsed on small screens-->
+                    <!-- show dropdown for smaller viewports b/c login name/email may be too long -->
+                    <!-- only show this extra button/dropdown if we're in small screen sizes -->
+                    <div class="nav navbar-nav navbar-right auth dropdown d-sm-none">
+                    <a href="#" role="button" class="btn dropdown-toggle" id="loginDropdownMenu"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {% if user.is_authenticated %}
+                                {% gravatar user.email 20 %}
+                            {% else %}
+                                <span class="fa fa-bars"></span>
+                            {% endif %}
+                        </a>
+                        {% if user.is_authenticated %}
+                            <div class="dropdown-menu">
+                                <a role="menuitem" tabindex="-1" class="dropdown-item" href="{% url 'mm_user_profile' %}">
+                                    <span class="fa fa-user"></span>
+                                    {% trans 'Account' %}
+                                </a>
+                                {% if 'postorius' in INSTALLED_APPS %}
+                                <a role="menuitem" tabindex="-1" class="dropdown-item" href="{% url 'ps_user_profile' %}">
+                                    <span class="fa fa-cog"></span>
+                                    {% trans 'Mailman settings' %}
+                                </a>
+                                {% endif %}
+                                <a role="menuitem" tabindex="-1" class="dropdown-item" href="{% url 'hk_user_profile' %}">
+                                    <span class="fa fa-comments"></span>
+                                    {% trans 'Posting activity' %}
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a role="menuitem" tabindex="-1" class="dropdown-item" href="{% url LOGOUT_URL %}?next={% url 'hk_root' %}">
+                                    <span class="fa fa-sign-out"></span>
+                                    {% trans "Logout" %}
+                                </a>
+                            </div> <!-- dropdown menu -->
+                            {% else %}
+                                <a role="menuitem" tabindex="-1" href="{% url LOGIN_URL %}?next={{next|default:request.path|urlencode}}">
+                                    <span class="fa fa-sign-in"></span>
+                                    {% trans "Sign In" %}
+                                </a>
+                                <!-- disable signup --<a role="menuitem" tabindex="-1" href="">
+                                    <span class="fa fa-user-plus"></span>
+                                    {% trans "Sign Up" %}
+                                </a>-->
+                            {% endif %}
+
+                    </div>
+                    <form name="search" method="get" action="{% url 'hk_search' %}" class="navbar-form navbar-right my-2 my-lg-2 order-1" role="search">
+                        {% if mlist %}<input type="hidden" name="mlist" value="{{ mlist.name }}" />{% endif %}
+                            <div class="input-group">
+                                <input name="q" type="text" class="form-control mr-sm-2"
+                                    placeholder="{% if mlist %}{% trans 'Search this list' %}{% else %}{% trans 'Search all lists' %}{% endif %}"
+                                    {% if query %}value="{{ query }}"{% endif %}
+                                    />
+                                <span class="input-group-btn">
+                                    <button class="btn btn-secondary my-2 my-sm-0 " type="submit"><span class="fa fa-search"></span></button>
+                                </span>
+                            </div>
+                    </form>
+                    <!-- larger viewports -->
+                    <ul class="nav navbar-nav d-none d-sm-flex auth order-3">
+                        {% if user.is_authenticated %}
+                            <li class="dropdown nav-item">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"
+                                role="button" aria-haspopup="true" aria-expanded="false">
+                                    {% gravatar user.email 20 %}
+                                    {{ user.username|truncatechars:"35" }}
+                                    <span class="caret"></span>
+                                </a>
+                                <div class="dropdown-menu">
+                                    <a href="{% url 'mm_user_profile' %}" class="dropdown-item">
+                                        <span class="fa fa-user"></span>
+                                        {% trans 'Account' %}
+                                    </a>
+                                    {% if 'postorius' in INSTALLED_APPS %}
+                                    <a href="{% url 'ps_user_profile' %}" class="dropdown-item">
+                                        <span class="fa fa-cog"></span>
+                                        {% trans 'Mailman settings' %}
+                                    </a>
+                                    {% endif %}
+                                    <a href="{% url 'hk_user_profile' %}" class="dropdown-item">
+                                        <span class="fa fa-comments"></span>
+                                        {% trans 'Posting activity' %}
+                                    </a>
+                                    <div role="separator" class="dropdown-divider"></div>
+                                    <a href="{% url LOGOUT_URL %}?next={% url 'hk_root' %}" class="dropdown-item">
+                                        <span class="fa fa-sign-out"></span>
+                                        {% trans "Logout" %}
+                                    </a>
+                                </div>
+                            </li>
+                        {% else %}
+                            <li class="nav-item"><a href="{% url LOGIN_URL %}?next={{next|default:request.path|urlencode}}" class="nav-link">
+                                <span class="fa fa-sign-in"></span>
+                                {% trans "Sign In" %}
+                            </a></li>
+                            <!--disable signup--<li class="nav-item"><a href="">
+                                <span class="fa fa-user-plus"></span>
+                                {% trans "Sign Up" %}
+                            </a></li>-->
+                        {% endif %}
+                    </ul>
+
+                    {% if 'postorius' in INSTALLED_APPS %}
+                    <ul class="nav navbar-nav order-2">
+                        <li class="nav-item">
+                        {% if mlist %}
+                        <a href="{% url 'list_summary' mlist.list_id %}" class="nav-link">
+                            <span class="fa fa-cog"></span>
+                            {% trans 'Manage this list' %}
+                        </a>
+                        {% else %}
+                        <a href="{% url 'list_index' %}" class="nav-link">
+                            <span class="fa fa-cog"></span>
+                            {% trans 'Manage lists' %}
+                        </a>
+                        {% endif %}
+                        </li>
+                    </ul>
+                    {% endif %}
+
+
+                </div> <!--/navbar-collapse -->
+            </div> <!-- /container for navbar -->
+        </nav>
+
+        {% if messages %}
+        <div class="flashmsgs">
+        {% for msg in messages %}
+            <div class="flashmsg-wrapper">
+                <!--<div class="alert alert-{{ msg.level_tag }}">-->
+                <div role="alert" class="alert alert-{{ msg.tags }} {{msg.tags}}
+                    {% if msg.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                    ">
+                    {% else %}
+                    alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    {% endif %}
+                    {{ msg }}
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+        {% endif %}
+
+        <div class="modal fade" tabindex="-1" role="dialog" id="keyboard-shortcuts">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">{% trans "Keyboard Shortcuts" %}</h4>
+            </div>
+            <div class="modal-body">
+                <h3>{% trans "Thread View" %}</h3>
+                <ul>
+                <li><code>j</code>: {% trans "Next unread message" %} </li>
+                <li><code>k</code>: {% trans "Previous unread message" %} </li>
+                <li><code>j a</code>: {% trans "Jump to all threads" %}
+                <li><code>j l</code>: {% trans "Jump to MailingList overview" %}
+                </ul>
+            </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <div class="container">
+            {% block content %} {% endblock %}
+        </div> <!-- /container for content -->
+
+        <footer class="footer">
+        <div class="container">
+            <p class="text-muted">
+                {% trans 'Powered by' %} <a href="http://hyperkitty.readthedocs.org">HyperKitty</a> {% trans 'version' %} {{ HYPERKITTY_VERSION }}.
+            </p>
+        </div>
+        </footer>
+
+        <script src="{% static 'hyperkitty/libs/jquery/jquery-1.10.1.min.js' %}"></script>
+        <script src="{% static 'hyperkitty/libs/jquery/jquery-ui-1.10.3.custom.min.js' %}"></script>
+        {% compress js %}
+        <script type="text/javascript" src="{% static 'hyperkitty/libs/popper/popper.min.js' %}" />
+        <script type="text/javascript" src="{% static 'hyperkitty/libs/bootstrap/javascripts/bootstrap.min.js' %}" />
+        <script type="text/javascript" src="{% static 'hyperkitty/libs/mousetrap/mousetrap.min.js' %}" />
+        <script type="text/javascript" src="{% static 'hyperkitty/libs/jquery.expander.js' %}" />
+        <script type="text/javascript" src="{% static 'hyperkitty/libs/d3.v2.min.js' %}" />
+        <script type="text/javascript" src="{% static 'hyperkitty/libs/jquery.hotkeys.js' %}" />
+        <script type="text/javascript" src="{% static 'django-mailman3/js/main.js' %}" />
+        <script type="text/javascript" src="{% static 'hyperkitty/js/hyperkitty-common.js' %}" />
+        <script type="text/javascript" src="{% static 'hyperkitty/js/hyperkitty-index.js' %}" />
+        <script type="text/javascript" src="{% static 'hyperkitty/js/hyperkitty-overview.js' %}" />
+        <script type="text/javascript" src="{% static 'hyperkitty/js/hyperkitty-thread.js' %}" />
+        <script type="text/javascript" src="{% static 'hyperkitty/js/hyperkitty-userprofile.js' %}" />
+        {% endcompress %}
+        {% block additionaljs %} {% endblock %}
+
+        {% include 'hyperkitty/bottom.html' %}
+
+        </body>
+    </html>
+  base.html: |
+    {% load i18n %}
+    {% load static %}
+    {% load gravatar %}
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block head_title %}{{ site_name }}{% endblock %}</title>
+        <link rel="shortcut icon" href="{% static 'postorius/img/favicon.ico' %}">
+        <link rel="stylesheet" href="{% static 'postorius/libs/bootstrap/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'django-mailman3/css/main.css' %}">
+        <link rel="stylesheet" href="{% static 'postorius/css/style.css' %}">
+        <link rel="stylesheet" href="{% static 'postorius/libs/fonts/font-awesome/css/font-awesome.min.css' %}" type="text/css" media="all" />
+        {% block additionalcss %}{% endblock %}
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="{% static 'postorius/libs/html5shiv/html5shiv.min.js' %}"></script>
+        <script src="{% static 'postorius/libs/respond/respond.min.js' %}"></script>
+        <![endif]-->
+    </head>
+    <body>
+    <nav class="navbar navbar-expand-md navbar-light bg-light navbar-default">
+        <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#header-nav" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="fa fa-bars"></span>
+                    </button>
+                    <a class="navbar-brand" href="{% url 'list_index' %}"><span><img src="{% static 'postorius/img/mailman_logo_small_trans.png' %}" alt="{% trans 'Mailman logo' %}"/> Postorius</span></a>
+                </div>
+                <div class="collapse navbar-collapse" id="header-nav">
+                    <ul class="nav navbar-nav mr-auto">
+                        <li class="nav-item"><a href="{% url 'list_index' %}" class="nav-link">
+                            <span class="fa fa-envelope"></span>
+                            {% trans 'Lists' %}
+                        </a></li>
+                        {% if user.is_superuser %}
+                            <li class="nav-item">
+                            <a href="{% url 'domain_index' %}" class="nav-link">
+                                <span class="fa fa-globe"></span>
+                                {% trans 'Domains' %}
+                            </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{% url 'global_bans' %}" class="nav-link">
+                                    <span class="fa fa-ban"></span>
+                                    {% trans 'Bans' %}
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{% url 'system_information' %}" class="nav-link">
+                                    <span class="fa fa-list-alt"></span>
+                                    {% trans 'System Information' %}
+                                </a>
+                            </li>
+                        {% endif %}
+                        {% if 'hyperkitty' in INSTALLED_APPS %}
+                            <li class="nav-item"><a href="{% url 'hk_root' %}" class="nav-link">
+                                <span class="fa fa-comment"></span>
+                                {% trans 'Archives' %}
+                            </a></li>
+                        {% endif %}
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        {% if user.is_authenticated %}
+                            <li class="dropdown nav-item">
+                                <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown"
+                                role="button" aria-haspopup="true" aria-expanded="false">
+                                    {% gravatar user.email 20 %}
+                                    {{ user.username|truncatechars:"35" }}
+                                    <span class="caret"></span>
+                                </a>
+                                <div class="dropdown-menu">
+                                    <a href="{% url 'mm_user_profile' %}" class="dropdown-item">
+                                        <span class="fa fa-user"></span>
+                                        {% trans 'Account' %}
+                                    </a>
+                                    <a href="{% url 'ps_user_profile' %}" class="dropdown-item">
+                                        <span class="fa fa-cog"></span>
+                                        {% trans 'Mailman settings' %}
+                                    </a>
+                                    {% if 'hyperkitty' in INSTALLED_APPS %}
+                                    <a href="{% url 'hk_user_profile' %}" class="dropdown-item">
+                                    <span class="fa fa-comment"></span>
+                                        {% trans 'Posting activity' %}
+                                    </a>
+                                    {% endif %}
+                                    <div class="dropdown-divider"></div>
+                                    <a href="{% url LOGOUT_URL %}?next={% url 'list_index' %}" class="dropdown-item">
+                                        <span class="fa fa-sign-out"></span>
+                                        {% trans 'Logout' %}
+                                    </a>
+                                </ul>
+                            </li>
+                        {% else %}
+                            <li class="nav-item"><a class="nav-link" href="{% url LOGIN_URL %}?next={{ next|default:request.path|urlencode }}">
+                                <span class="fa fa-sign-in"></span>
+                                {% trans 'Login' %}
+                            </a></li>
+                            <!--Signup is disabled--<li  class="nav-item"><a class="nav-link" href="">
+                                <span class="fa fa-user-plus"></span>
+                                {% trans 'Sign Up' %}
+                            </a></li>-->
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container" role="main">
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} fade show" role="alert">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {% endfor %}
+            {% block content %}{% endblock content %}
+        </div>
+
+        <footer class="footer">
+            <div class="container">
+                <p class="text-center">
+                    <a href="https://postorius.readthedocs.org">{% trans 'Postorius Documentation' %}</a>
+                    &bull;
+                    <a href="http://list.org">GNU Mailman</a>
+                    &bull;
+                    {% trans 'Postorius Version' %} {{ POSTORIUS_VERSION }}
+                    {% if mailman_day %}
+                    &bull;
+                    {% trans 'Happy Mailman Day!' %}
+                    {% endif %}
+                </p>
+            </div>
+        </footer>
+
+        <script src="{% static 'postorius/libs/jquery/jquery-1.11.3.min.js' %}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+        <script src="{% static 'postorius/libs/bootstrap/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'django-mailman3/js/main.js' %}"></script>
+        <script src="{% static 'postorius/js/script.js' %}"></script>
+        {% block additionaljs %}{% endblock %}
+    </body>
+    </html>
   uwsgi.ini: |
     [uwsgi]
     # Port on which uwsgi will be listening.
@@ -286,7 +675,7 @@ data:
     import socket
     import ipaddress
 
-    DEBUG = True
+    DEBUG = False
 
     SITE_ID = 1
 
@@ -301,6 +690,27 @@ data:
     EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
     EMAIL_PORT = 25
 
+    INSTALLED_APPS = [
+    'hyperkitty',
+    'postorius',
+    'django_mailman3',
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.sites',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'rest_framework',
+    'django_gravatar',
+    'compressor',
+    'haystack',
+    'django_extensions',
+    'django_q',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    ]
     ALLOWED_HOSTS = [
         "localhost",
         "0.0.0.0",
@@ -310,9 +720,7 @@ data:
         "mailweb.osinfra.cn",
         "mailweb.openhetuengine.org"
     ]
-
     COMPRESS_CSS_HASHING_METHOD = 'content'
-
 ---
 apiVersion: v1
 kind: ConfigMap

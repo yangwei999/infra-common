@@ -15,7 +15,7 @@ spec:
         component: cla-backend
     spec:
       containers:
-        - image: swr.ap-southeast-1.myhuaweicloud.com/opensourceway/cla-backend:0.0.1
+        - image: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/cla-backend:32a2c8144b109221bd591d70b17771b3dd957fdc
           imagePullPolicy: IfNotPresent
           name: cla-backend-pod
           ports:
@@ -53,6 +53,8 @@ spec:
               value: "80"
             - name: RUN_MODE
               value: dev
+            - name: RESTRICTED_CORP_EMAIL_SUFFIX
+              value: "[qq.com,gmail.com,163.com,foxmail.com,yahoo.com,126.com]"
           volumeMounts:
             - mountPath: /opt/app/conf/pdfs
               name: data-volume
@@ -91,7 +93,7 @@ spec:
         component: cla-frontend
     spec:
       containers:
-        - image: swr.ap-southeast-1.myhuaweicloud.com/opensourceway/cla-webui:aebbf8682914e3ad42abd850eab675ecfa8b0159
+        - image: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/cla-webui:0a1d30fe9ce79bba84f50d8c88f29d61b8748335
           imagePullPolicy: IfNotPresent
           name: cla-frontend-pod
           ports:

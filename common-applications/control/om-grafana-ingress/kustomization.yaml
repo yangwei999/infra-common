@@ -3,8 +3,12 @@ resources:
   - namespace.yaml
   - service.yaml
   - secrets.yaml
+  - oauth-proxy.yaml
 commonLabels:
   app: control-om-grafana
+commonAnnotations:
+  owner: tommylike
+  email: "tommylikehu@gmail.com"
 patchesJson6902:
   - target:
       group: ""

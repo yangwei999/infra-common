@@ -13,4 +13,11 @@ resources:
   - report-email
   - meetings
   - cla
+  - polymerization
+  - polymerization-download
+  - account_org
+  - git_commit
+commonAnnotations:
+  owner: zhongjun
+  email: "jun.zhongjun2@gmail.com"
 namespace: opengauss-om

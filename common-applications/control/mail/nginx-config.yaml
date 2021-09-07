@@ -22,6 +22,10 @@ data:
             include uwsgi_params;
             uwsgi_read_timeout 300;
         }
+
+        location /accounts/signup {
+            return 403;
+        }
     }
   nginx.conf : |
     user  nginx;
@@ -49,5 +53,6 @@ data:
         keepalive_timeout  65;
         gzip  on;
 
+        server_tokens off;
         include /etc/nginx/conf.d/*.conf;
     }

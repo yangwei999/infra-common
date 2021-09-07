@@ -13,4 +13,9 @@ resources:
   - meetings
   - polymerization
   - polymerization-download
+  - tryme
+  - git_commit
+commonAnnotations:
+  owner: zhongjun
+  email: "jun.zhongjun2@gmail.com"
 namespace: openlookeng-om
