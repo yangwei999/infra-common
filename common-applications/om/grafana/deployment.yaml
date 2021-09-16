@@ -10,7 +10,7 @@ spec:
     spec:
       containers:
       - name: grafana
-        image: swr.cn-north-4.myhuaweicloud.com/om/grafana_world:0.0.4
+        image: grafana/grafana
         resources:
           requests:
             cpu: 1000m
@@ -21,3 +21,8 @@ spec:
             secretKeyRef:
               name: grafana-secrets
               key: san_html
+        - name: GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS
+          valueFrom:
+            secretKeyRef:
+              name: grafana-secrets
+              key: allow_plugins
