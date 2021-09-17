@@ -37,6 +37,10 @@ spec:
                   key: mongodb-connection
             - name: CLA_PLATFORM_URL
               value: "https://test-clasign.osinfra.cn/"
+            - name: PASSWORD_RETRIEVAL_URL
+              value: "https://test-clasign.osinfra.cn/retrieve-password"
+            - name: PASSWORD_RESET_URL
+              value: "https://test-clasign.osinfra.cn/reset-password"
             - name: MONGODB_NAME
               value: "cla-test"
             - name: OBS_SERVICE
