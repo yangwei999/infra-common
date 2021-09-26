@@ -19,3 +19,7 @@ spec:
               serviceName: cla-backend-service
               servicePort: 80
             path: /api(/|$)(.*)
+          - backend:
+              serviceName: cla-robot-service
+              servicePort: 80
+            path: /robot(/|$)(.*)
