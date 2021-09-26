@@ -100,3 +100,70 @@ spec:
             - containerPort: 80
               name: http
               protocol: TCP
+
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: cla-robot
+  name: cla-robot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: cla-robot
+  template:
+    metadata:
+      labels:
+        component: cla-robot
+    spec:
+      containers:
+        - image: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/cla-robot:32a2c8144b109221bd591d70b17771b3dd957fdc
+          imagePullPolicy: IfNotPresent
+          name: cla-robot-pod
+          ports:
+            - containerPort: 80
+              name: http
+              protocol: TCP
+          command:
+            - /bin/sh
+            - -c
+            - |
+              /opt/app/cla-server
+          env:
+            - name: CLA_PLATFORM_URL
+              value: "https://clasign.osinfra.cn/sign"
+            - name: MONGODB_CONNECTION
+              valueFrom:
+                secretKeyRef:
+                  name: cla-secrets
+                  key: mongodb-connection
+            - name: MONGODB_NAME
+              value: "cla"
+            - name: ROBOT_GITHUB_FAQ_OF_CHECKING_BY_AUTHOR
+              value: "https://clasign.osinfra.cn/sign"
+            - name: ROBOT_GITHUB_FAQ_OF_CHECKING_BY_COMMITTER
+              value: "https://clasign.osinfra.cn/sign"
+            - name: HTTP_PORT
+              value: "80"
+            - name: RUN_MODE
+              value: dev
+          volumeMounts:
+            - mountPath: /opt/app/conf/robot-github/robot_token
+              subPath: github_token
+              name: secret-volume
+            - mountPath: /opt/app/conf/robot-github/hmac
+              subPath: github_hmac 
+              name: secret-volume
+            - mountPath: /opt/app/conf/robot-github/cla_repo.yaml
+              subPath: cla_repo.yaml
+              name: github-cla-repo
+              readOnly: true
+      volumes:
+        - name: secret-volume
+          secret:
+            secretName: cla-secrets
+        - name: github-cla-repo
+          configMap:
+            name: github-cla-repo

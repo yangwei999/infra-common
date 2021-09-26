@@ -1,6 +1,14 @@
+---
 apiVersion: v1
-data:
-  config_key: config_value
 kind: ConfigMap
 metadata:
-  name: cla-configmap
+  name: github-cla-repo
+data:
+  cla_repo.yaml: |
+    cla:
+    - repos:
+      - openlookeng
+      cla_label_yes: openlookeng-cla/yes
+      cla_label_no: openlookeng-cla/no
+      cla_id: "gitee_openlookeng-1614322910578209320"
+      check_by_committer: false
