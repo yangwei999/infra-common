@@ -134,6 +134,10 @@ spec:
           env:
             - name: CLA_PLATFORM_URL
               value: "https://clasign.osinfra.cn/sign"
+            - name: ENABLE_SERVICE
+              value: "robot"
+            - name: APP_CONFIG_FILE
+              value: "./conf/robot.conf.yaml"
             - name: MONGODB_CONNECTION
               valueFrom:
                 secretKeyRef:
