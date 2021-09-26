@@ -155,13 +155,13 @@ spec:
               value: dev
           volumeMounts:
             - mountPath: /opt/app/conf/robot-github/robot_token
-              subPath: github_token
+              subPath: github-token
               name: secret-volume
             - mountPath: /opt/app/conf/robot-github/hmac
-              subPath: github_hmac 
+              subPath: github-hmac
               name: secret-volume
             - mountPath: /opt/app/conf/robot-github/cla_repo.yaml
-              subPath: cla_repo.yaml
+              subPath: cla-repo.yaml
               name: github-cla-repo
               readOnly: true
       volumes:

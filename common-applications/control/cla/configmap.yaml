@@ -4,7 +4,7 @@ kind: ConfigMap
 metadata:
   name: github-cla-repo
 data:
-  cla_repo.yaml: |
+  cla-repo.yaml: |
     cla:
     - repos:
       - openlookeng
