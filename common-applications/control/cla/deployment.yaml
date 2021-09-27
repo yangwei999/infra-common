@@ -39,6 +39,10 @@ spec:
               value: "https://clasign.osinfra.cn/"
             - name: MONGODB_NAME
               value: "cla"
+            - name: PASSWORD_RETRIEVAL_URL
+              value: "https://clasign.osinfra.cn/retrieve-password"
+            - name: PASSWORD_RESET_URL
+              value: "https://clasign.osinfra.cn/reset-password"
             - name: API_TOKEN_KEY
               valueFrom:
                 secretKeyRef:
