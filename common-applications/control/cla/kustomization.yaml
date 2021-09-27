@@ -21,4 +21,4 @@ images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/cla-robot
   newTag: 6f5daef1c123c782408ed2ce0850ae01be8cd010
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/cla-webui
-  newTag: b150c41571eca07e60ab3eb430f4d19767cd2059
+  newTag: 5a041152cc5ecaae5f0a868345fe94fe64822b1d
