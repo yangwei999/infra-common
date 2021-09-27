@@ -23,7 +23,7 @@ resources:
   - gitee-issue
   - git_commit
   - up-download-ratio
-  - obs-build-averagetime
+  - obs_build_averagetime
 commonAnnotations:
   owner: zhongjun
   email: "jun.zhongjun2@gmail.com"
