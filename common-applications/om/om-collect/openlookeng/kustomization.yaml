@@ -15,6 +15,7 @@ resources:
   - polymerization-download
   - tryme
   - git_commit
+  - github_pr_issue
 commonAnnotations:
   owner: zhongjun
   email: "jun.zhongjun2@gmail.com"
