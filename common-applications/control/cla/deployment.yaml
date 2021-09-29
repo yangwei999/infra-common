@@ -150,9 +150,9 @@ spec:
             - name: MONGODB_NAME
               value: "cla"
             - name: ROBOT_GITHUB_FAQ_OF_CHECKING_BY_AUTHOR
-              value: "https://clasign.osinfra.cn/sign"
+              value: "https://github.com/opensourceways/app-cla-server/blob/stable5/robot/faq/check-by-author/faq_english.md"
             - name: ROBOT_GITHUB_FAQ_OF_CHECKING_BY_COMMITTER
-              value: "https://clasign.osinfra.cn/sign"
+              value: "https://github.com/opensourceways/app-cla-server/blob/stable5/robot/faq/check-by-author/faq_english.md"
             - name: HTTP_PORT
               value: "80"
             - name: RUN_MODE
