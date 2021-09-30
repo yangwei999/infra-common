@@ -11,4 +11,5 @@ data:
       cla_label_yes: openlookeng-cla/yes
       cla_label_no: openlookeng-cla/no
       cla_id: "gitee_openlookeng-1614322910578209320"
+      sign_url: "https://clasign.openlookeng.io/sign"
       check_by_committer: false
