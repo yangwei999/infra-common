@@ -9,6 +9,7 @@ resources:
 - ingress-backend.yaml
 - clasign-ingress.yaml
 - clasign-secrets.yaml
+- clasign-backend.yaml
 commonLabels:
   app: infrastructure-cla
 commonAnnotations:
