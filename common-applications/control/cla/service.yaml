@@ -25,3 +25,17 @@ spec:
   selector:
     component: cla-frontend
   type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cla-robot-service
+spec:
+  ports:
+    - name: httpport
+      port: 80
+      protocol: TCP
+      targetPort: 80
+  selector:
+    component: cla-robot
+  type: ClusterIP
