@@ -13,6 +13,7 @@ resources:
   - meetings
   - polymerization
   - polymerization-download
+  - polymerization-github
   - tryme
   - git_commit
   - github_pr_issue
