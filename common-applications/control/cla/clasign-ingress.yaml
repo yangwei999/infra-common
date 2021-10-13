@@ -16,14 +16,14 @@ metadata:
       add_header Strict-Transport-Security "max-age=31536000; includeSubDomains; preload";
       add_header X-Frame-Options "SAMEORIGIN";
       add_header X-Download-Options "noopen";
-  name: cla-ingress
+  name: clasign-ingress
 spec:
   tls:
     - hosts:
-        - clasign.osinfra.cn
-      secretName: tls-secrets
+        - clasign.openlookeng.io
+      secretName: clasign-openlookeng-tls
   rules:
-    - host: clasign.osinfra.cn
+    - host: clasign.openlookeng.io
       http:
         paths:
           - backend:

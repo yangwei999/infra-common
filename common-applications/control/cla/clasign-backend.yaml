@@ -5,14 +5,14 @@ metadata:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/rewrite-target: /$2
     nginx.ingress.kubernetes.io/proxy-body-size: 8m
-  name: cla-ingress-backend
+  name: clasign-backend
 spec:
   tls:
     - hosts:
-        - clasign.osinfra.cn
-      secretName: tls-secrets
+        - clasign.openlookeng.io
+      secretName: clasign-openlookeng-tls
   rules:
-    - host: clasign.osinfra.cn
+    - host: clasign.openlookeng.io
       http:
         paths:
           - backend:

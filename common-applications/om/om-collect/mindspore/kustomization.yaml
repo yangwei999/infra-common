@@ -10,7 +10,6 @@ resources:
   - gitee-event
   - gitee-star
   - report-email
-  - meetings
   - cla
   - polymerization
   - polymerization-download

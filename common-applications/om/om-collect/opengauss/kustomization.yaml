@@ -11,12 +11,12 @@ resources:
   - collect-data
   - gitee-event
   - report-email
-  - meetings
   - cla
   - polymerization
   - polymerization-download
   - account_org
   - git_commit
+  - git-commit-test
 commonAnnotations:
   owner: zhongjun
   email: "jun.zhongjun2@gmail.com"
