@@ -24,6 +24,8 @@ resources:
   - git_commit
   - up-download-ratio
   - obs_build_averagetime
+  - download
+  - download_beijing
 commonAnnotations:
   owner: zhongjun
   email: "jun.zhongjun2@gmail.com"
