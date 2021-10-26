@@ -29,6 +29,7 @@ metadata:
     kubernetes.io/ingress.class: nginx
     cert-manager.io/cluster-issuer: letsencrypt-issuer
     nginx.ingress.kubernetes.io/custom-http-errors: "400, 500"
+    nginx.ingress.kubernetes.io/proxy-body-size: 100M
     nginx.ingress.kubernetes.io/rewrite-target: /$1
   name: cloudsca
   namespace: sca
