@@ -12,6 +12,7 @@ resources:
   - gitee-event
   - report-email
   - cla
+  - cloc
   - website-repo
   - website-ru-repo
   - cve
