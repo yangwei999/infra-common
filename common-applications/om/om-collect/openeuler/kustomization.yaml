@@ -27,8 +27,6 @@ resources:
   - obs_build_averagetime
   - download
   - download_beijing
-  - issue_rule_label
-  - prophet_prediction
 commonAnnotations:
   owner: zhongjun
   email: "jun.zhongjun2@gmail.com"
