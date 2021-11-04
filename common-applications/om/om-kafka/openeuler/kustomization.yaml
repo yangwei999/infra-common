@@ -4,6 +4,7 @@ resources:
   - statewall-ci-ac
   - namespace.yaml
   - statewall-dist-build-time
+  - package-status
 commonAnnotations:
   owner: zhongjun
   email: "jun.zhongjun2@gmail.com"
