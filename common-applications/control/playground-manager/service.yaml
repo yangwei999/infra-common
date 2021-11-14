@@ -11,5 +11,4 @@ spec:
       targetPort: 8080
   selector:
     app: playground-manager
-  loadBalancerIP: 119.8.24.33
-  type: LoadBalancer
+  type: ClusterIP
