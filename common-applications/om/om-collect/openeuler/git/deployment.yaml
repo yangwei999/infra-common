@@ -13,3 +13,5 @@ spec:
         resources:
           requests:
             memory: 4000Mi
+      nodeSelector:
+        issue-label: rule
