@@ -17,6 +17,7 @@ resources:
   - tryme
   - git_commit
   - github_pr_issue
+  - user-relation
 commonAnnotations:
   owner: zhongjun
   email: "jun.zhongjun2@gmail.com"
