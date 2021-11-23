@@ -29,6 +29,7 @@ resources:
   - download_beijing
   - issue_rule_label
   - prophet_prediction
+  - user-relation
 commonAnnotations:
   owner: zhongjun
   email: "jun.zhongjun2@gmail.com"
