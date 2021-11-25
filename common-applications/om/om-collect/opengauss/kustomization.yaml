@@ -19,6 +19,7 @@ resources:
   - git_commit
   - git-commit-test
   - user-relation
+  - gitee-org-baidutongji
 commonAnnotations:
   owner: zhongjun
   email: "jun.zhongjun2@gmail.com"
