@@ -24,7 +24,7 @@ spec:
       - name: huawei-swr-image-pull-secret
       containers:
       - name: websitepod
-        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/test_openlookeng_website:e4ca0be60c49f3d405da67431a3091cd2624dd2d
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/test_openlookeng_website:3ee278b0aafefedda6acee69286198e0622a56c6
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 80
