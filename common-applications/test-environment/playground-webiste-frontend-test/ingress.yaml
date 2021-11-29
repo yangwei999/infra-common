@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+  name: playground-website-frontend-ingress
+  namespace: playground-website-frontend
+spec:
+  tls:
+    - hosts:
+        - test.playground.osinfra.cn
+      secretName: playground-website-frontend-tls-secret
+  rules:
+    - host: test.playground.osinfra.cn
+      http:
+        paths:
+          - backend:
+              serviceName: playground-website-frontend-service
+              servicePort: 80
+            path: /playground(/|$)(.*)
