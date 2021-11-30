@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: om-webserver
-          image: swr.cn-north-4.myhuaweicloud.com/om/om-webserver:0.0.44
+          image: swr.cn-north-4.myhuaweicloud.com/om/om-webserver:0.0.46
           resources:
             requests:
               memory: 100Mi
@@ -22,6 +22,9 @@ spec:
             - containerPort: 8888
               name: om-webserver
           volumeMounts:
+            - mountPath: /var/lib/om-webserver/starFork.properties
+              subPath: starFork_properties
+              name: om-webserver-secrets-volume
             - mountPath: /var/lib/om-webserver/blueZone.properties
               subPath: blueZone_properties
               name: om-webserver-secrets-volume
