@@ -25,6 +25,7 @@ spec:
             - --cookie-expire=6h0m0s
             - --set-xauthrequest=true
             - --custom-sign-in-logo=https://openeulerinfrastructure.obs.cn-north-4.myhuaweicloud.com/img/gardener-large.png
+            - --skip-auth-regex=^/api/
           env:
             - name: OAUTH2_PROXY_CLIENT_ID
               valueFrom:
