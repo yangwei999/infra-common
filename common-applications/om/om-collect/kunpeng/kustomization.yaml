@@ -10,4 +10,5 @@ resources:
   - blue_zone_user
   - white_git
   - namespace.yaml
+  - gitee_github_combine
 namespace: kunpeng-om

@@ -18,6 +18,8 @@ resources:
   - github-star
   - huawei_swr
   - git_commit
+  - user-relation
+  - gitee-org-baidutongji
 commonAnnotations:
   owner: zhongjun
   email: "jun.zhongjun2@gmail.com"
