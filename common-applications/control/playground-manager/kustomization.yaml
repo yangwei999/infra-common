@@ -1,0 +1,19 @@
+resources:
+- namespace.yaml
+- deployment.yaml
+- service.yaml
+- secrets.yaml
+- ingress.yaml
+commonLabels:
+  app: playground-manager
+  owner: zhangjianjun
+commonAnnotations:
+  email: 841670711@qq.com
+  owner: zhangjianjun
+namespace: playground-manager
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+images:
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/playground-manager
+  newName: swr.cn-north-4.myhuaweicloud.com/opensourceway/playground/playground-manager
+  newTag: 3f011e21b489838c7f1fecfd3fcabfb9a34307e4
