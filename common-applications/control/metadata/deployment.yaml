@@ -14,6 +14,8 @@ spec:
       labels:
         component: git-metadata-server
     spec:
+      imagePullSecrets:
+        - name: huawei-swr-image-pull-secret
       containers:
         - image: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/git-metadata:latest
           imagePullPolicy: Always
