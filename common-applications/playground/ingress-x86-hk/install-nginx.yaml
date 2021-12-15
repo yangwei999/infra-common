@@ -274,6 +274,7 @@ spec:
             - --publish-service=$(POD_NAMESPACE)/ingress-nginx
             - --annotations-prefix=nginx.ingress.kubernetes.io
             - --default-backend-service=ingress-nginx/ingress-default-backend
+            - --maxmind-license-key=TtutIbyHcPwZNxNX
           securityContext:
             allowPrivilegeEscalation: true
             capabilities:
