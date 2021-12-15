@@ -4,4 +4,4 @@ metadata:
   name: metadata-service
 spec:
   type: ExternalName
-  externalName: main-server.git-metadata.svc.cluster.local
+  externalName: git-metadata.git-metadata.svc.cluster.local
