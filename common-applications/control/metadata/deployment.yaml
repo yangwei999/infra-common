@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: git-metadata
+spec:
+  strategy:
+    type: Recreate
+  replicas: 1
+  selector:
+    matchLabels:
+      component: git-metadata-server
+  template:
+    metadata:
+      labels:
+        component: git-metadata-server
+    spec:
+      containers:
+        - image: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/git-metadata:latest
+          imagePullPolicy: Always
+          name: git-metadata-server
+          livenessProbe:
+            httpGet:
+              path: "/health"
+              port: 9500
+            initialDelaySeconds: 3
+            periodSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: "/ready"
+              port: 9500
+            initialDelaySeconds: 20
+            failureThreshold: 1
+            periodSeconds: 5
+            timeoutSeconds: 10
+          resources:
+            requests:
+              cpu: 1000m
+              memory: 1000Mi
+            limits:
+              cpu: 2000m
+              memory: 2000Mi
+          ports:
+            - containerPort: 9500
+              name: http
+              protocol: TCP
+          env:
+            - name: APP_ENV
+              value: "prod"
+          volumeMounts:
+            - mountPath: /app/repos
+              name: data-volume
+            - mountPath: /app/config/app.toml
+              name: config-volume
+              subPath: app.toml
+      serviceAccountName: git-metadata
+      volumes:
+        - name: data-volume
+          persistentVolumeClaim:
+            claimName: git-repo-data
+        - name: config-volume
+          configMap:
+            name: git-metadata-config

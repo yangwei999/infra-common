@@ -1,0 +1,16 @@
+resources:
+- namespace.yaml
+- deployment.yaml
+- service.yaml
+- pvc.yaml
+- config.yaml
+- rbac.yaml
+commonLabels:
+  owner: tommylike
+  app: community-metadata
+commonAnnotations:
+  email: tommylikehu@gmail.com
+namespace: git-metadata
+images:
+  - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/git-metadata
+    newTag: 6c56ca45ca5b9442aac45c1771d0691b0fcdd1f8
