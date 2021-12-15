@@ -1,0 +1,6 @@
+resources:
+  - install-code-server-operator.yaml
+commonLabels:
+  common-app: code-server-x86-hk
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
