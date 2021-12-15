@@ -1,0 +1,8 @@
+resources:
+- install-nginx.yaml
+- default-backend.yaml
+- custom-headers.yaml
+commonLabels:
+  common-app: nginx-ingress
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
