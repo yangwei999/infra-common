@@ -18,6 +18,5 @@ data:
     baseFolder = "/app/repos/"
     gitSyncPath = "/app/git-sync"
 
-    [plugins]
-        [plugin.playgroundmeta]
-        enabled = true
+    [plugins.playgroundmeta]
+    enabled = true
