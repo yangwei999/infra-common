@@ -131,6 +131,6 @@ spec:
         - name: code-server-workspace
           secret:
             defaultMode: 420
-            secretName: lxc-launcher-secret
+            secretName: lxc-launcher-secrets
         - name: data-volume
           emptyDir: {}
