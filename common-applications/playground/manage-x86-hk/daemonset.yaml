@@ -114,7 +114,7 @@ spec:
           args:
             - manage
             - /data
-          image: swr.cn-north-4.myhuaweicloud.com/opensourceway/playground/lxc-launcher:aa2314c4531a0c5077f206a731177f9675428c9e
+          image: swr.cn-north-4.myhuaweicloud.com/opensourceway/playground/lxc-launcher:96b95759b8b96d5fbee76b35dc3e4c5c53d47919
           resources:
             limits:
               memory: 400Mi
