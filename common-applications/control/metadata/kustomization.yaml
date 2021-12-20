@@ -6,11 +6,13 @@ resources:
 - config.yaml
 - rbac.yaml
 commonLabels:
-  owner: tommylike
   app: community-metadata
+  owner: tommylike
 commonAnnotations:
   email: tommylikehu@gmail.com
 namespace: git-metadata
 images:
-  - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/git-metadata
-    newTag: 6c56ca45ca5b9442aac45c1771d0691b0fcdd1f8
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/git-metadata
+  newTag: 0eee320eb7800a13afe17cd138ce54ac54f81bde
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
