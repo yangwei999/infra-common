@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: playground-website-frontend-service
+  namespace: playground-website-frontend
+spec:
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 8080
+  selector:
+    app: playground-website-frontend
+  type: ClusterIP
