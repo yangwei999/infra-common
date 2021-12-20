@@ -1,7 +1,6 @@
 resources:
 - namespace.yaml
 - daemonset.yaml
-- secrets.yaml
 commonLabels:
   app: lxc-launcher-system
   owner: zhangjianjun
