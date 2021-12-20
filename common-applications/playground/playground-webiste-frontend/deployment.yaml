@@ -1,0 +1,25 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: playground-website-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: playground-website-frontend
+  template:
+    metadata:
+      labels:
+        app: playground-website-frontend
+    spec:
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
+      containers:
+      - name: playground-website-frontend
+        image: swr.ap-southeast-1.myhuaweicloud.com/opensourceway/playground/playground-app:69d61359ac4670b7fc899eca16b3a33a6d67a01b
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+          name: http
+          protocol: TCP
