@@ -17,7 +17,7 @@ spec:
       - name: huawei-swr-image-pull-secret
       containers:
       - name: playground-website-frontend
-        image: swr.ap-southeast-1.myhuaweicloud.com/opensourceway/playground/playground-app:69d61359ac4670b7fc899eca16b3a33a6d67a01b
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/playground/playground-app:69d61359ac4670b7fc899eca16b3a33a6d67a01b
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080

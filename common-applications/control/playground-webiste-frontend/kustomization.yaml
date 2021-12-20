@@ -12,5 +12,5 @@ namespace: playground-website-frontend
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
-- name: swr.ap-southeast-1.myhuaweicloud.com/opensourceway/playground/playground-app
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/playground/playground-app
   newTag: 69d61359ac4670b7fc899eca16b3a33a6d67a01b
