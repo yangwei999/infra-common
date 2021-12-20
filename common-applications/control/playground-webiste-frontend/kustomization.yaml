@@ -1,0 +1,16 @@
+resources:
+- ingress.yaml
+- deployment.yaml
+- namespace.yaml
+- service.yaml
+- secrets.yaml
+commonLabels:
+  app: playground-website-frontend
+commonAnnotations:
+  owner: Caowendong
+namespace: playground-website-frontend
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+images:
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/playground/playground-app
+  newTag: 69d61359ac4670b7fc899eca16b3a33a6d67a01b
