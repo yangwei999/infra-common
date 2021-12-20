@@ -1,0 +1,136 @@
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: lxc-launcher
+  namespace: lxc-launcher-system
+imagePullSecrets:
+  - name: huawei-swr-image-pull-secret
+
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRole
+metadata:
+  name: lxc-launcher
+  namespace: lxc-launcher-system
+rules:
+  - apiGroups:
+      - ""
+    resources:
+      - pods
+      - namespaces
+    verbs:
+      - get
+      - list
+      - watch
+
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1beta1
+metadata:
+  name: lxc-launcher
+roleRef:
+  kind: ClusterRole
+  name: lxc-launcher
+  apiGroup: rbac.authorization.k8s.io
+subjects:
+  - kind: ServiceAccount
+    name: lxc-launcher
+    namespace: lxc-launcher-system
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: lxc-launcher
+  namespace: lxc-launcher-system
+  labels:
+    k8s-app: lxc-launcher-system
+    version: v1
+spec:
+  selector:
+    matchLabels:
+      k8s-app: lxc-launcher-system
+      version: v1
+  template:
+    metadata:
+      labels:
+        k8s-app: lxc-launcher-system
+        version: v1
+    spec:
+      serviceAccount: lxc-launcher
+      serviceAccountName: lxc-launcher
+      tolerations:
+        - key: node-role.kubernetes.io/master
+          effect: NoSchedule
+      containers:
+        - env:
+            - name: LAUNCHER_LXD_SERVER_ADDRESS
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: status.hostIP
+            - name: LAUNCHER_CLIENT_KEY_PATH
+              value: /workspace/tls.key
+            - name: LAUNCHER_CLIENT_CERT_PATH
+              value: /workspace/tls.crt
+            - name: LAUNCHER_STORAGE_POOL
+              valueFrom:
+                secretKeyRef:
+                  name: lxc-launcher-secrets
+                  key: storage-pool
+            - name: LAUNCHER_IMAGE_WORKER
+              valueFrom:
+                secretKeyRef:
+                  name: lxc-launcher-secrets
+                  key: image-worker
+            - name: LAUNCHER_SYNC_INTERVAL
+              valueFrom:
+                secretKeyRef:
+                  name: lxc-launcher-secrets
+                  key: sync-interval
+            - name: LAUNCHER_META_ENDPOINT
+              valueFrom:
+                secretKeyRef:
+                  name: lxc-launcher-secrets
+                  key: meta-endpoint
+            - name: LAUNCHER_REGISTRY_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: lxc-launcher-secrets
+                  key: registry-password
+            - name: LAUNCHER_REGISTRY_USER
+              valueFrom:
+                secretKeyRef:
+                  name: lxc-launcher-secrets
+                  key: registry-user
+            - name: LAUNCHER_EXIT_WHEN_UNREADY
+              valueFrom:
+                secretKeyRef:
+                  name: lxc-launcher-secrets
+                  key: exit-when-unready
+            - name: TZ
+              value: Asia/Shanghai
+          name: lxc-launcher
+          args:
+            - manage
+            - /data
+          image: 841670711/lxc-launcher:v3
+          resources:
+            limits:
+              memory: 400Mi
+            requests:
+              cpu: 400m
+              memory: 400Mi
+          volumeMounts:
+            - name: code-server-workspace
+              mountPath: /workspace
+            - mountPath: /data
+              name: data-volume
+      terminationGracePeriodSeconds: 30
+      volumes:
+        - name: code-server-workspace
+          secret:
+            defaultMode: 420
+            secretName: lxc-launcher-secret
+        - name: data-volume
+          emptyDir: {}
