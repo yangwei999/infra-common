@@ -12,4 +12,4 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/playground/playground-app-test
-  newTag: 9891bf16ee71b77f3c929269d3d4bd879141e3bc
+  newTag: aa5953f5869caeea9325126852b4319a352de889
