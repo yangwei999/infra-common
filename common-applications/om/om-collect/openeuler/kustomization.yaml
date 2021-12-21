@@ -31,6 +31,7 @@ resources:
   - prophet_prediction
   - user-relation
   - gitee-org-baidutongji
+  - gitee_developer
 commonAnnotations:
   owner: zhongjun
   email: "jun.zhongjun2@gmail.com"
