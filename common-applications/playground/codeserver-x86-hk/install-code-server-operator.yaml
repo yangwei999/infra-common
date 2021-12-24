@@ -698,6 +698,8 @@ spec:
       labels:
         control-plane: controller-manager
     spec:
+      imagePullSecrets:
+        - name: huawei-swr-image-pull-secret
       containers:
       - args:
         - --secure-listen-address=0.0.0.0:8443
@@ -715,7 +717,7 @@ spec:
         - --max-probe-retry=20
         command:
         - /manager
-        image: opensourceway/codeserver-controller:6f20b2aa66081f6463e6e80283f2bd7532218034
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/playground/codeserver-controller:6f20b2aa66081f6463e6e80283f2bd7532218034
         imagePullPolicy: Always
         name: manager
         resources:
