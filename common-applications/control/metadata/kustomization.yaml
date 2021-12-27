@@ -13,6 +13,6 @@ commonAnnotations:
 namespace: git-metadata
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/git-metadata
-  newTag: 5404dab7628c82f598a4a563b0e886f688fed72b
+  newTag: 95d66388f4c18fb7a8fcfaa4c53ac4999b416988
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
