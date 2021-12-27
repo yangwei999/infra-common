@@ -1,0 +1,45 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: updating-mindspore-hub
+  namespace: mindspore-website
+spec:
+  schedule: "0 */6 * * *"
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 3
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          imagePullSecrets:
+            - name: huawei-swr-image-pull-secret
+          containers:
+            - name: mindspore-hub-update
+              image: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/alpine_with_curl:0.0.1
+              command:
+                - /bin/sh
+                - -c
+                - |
+                  [ ! -d "./hub" ] &&  git clone https://gitee.com/mindspore/hub.git;
+                  cd hub && git pull origin master
+                  curl  --user ${API_USER}:${API_PASS} http://websiteservice.website.svc.cluster.local/hubInfo/initHubInfo
+              volumeMounts:
+                - mountPath: /mnt/share/mindspore_repository
+                  name: website-hub-data-volume
+              env:
+                - name: API_USER
+                  valueFrom:
+                    secretKeyRef:
+                      key: api_user
+                      name: mindspore-website-secrets
+                - name: API_PASS
+                  valueFrom:
+                    secretKeyRef:
+                      key: api_passs
+                      name: mindspore-website-secrets
+          volumes:
+            - name: website-hub-data-volume
+              persistentVolumeClaim:
+                claimName: website-hub-data
