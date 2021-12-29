@@ -8,6 +8,9 @@ metadata:
       rewrite ^/icla https://clasign.osinfra.cn/sign/Z2l0ZWUlMkZtaW5kc3BvcmU= redirect;
     nginx.ingress.kubernetes.io/proxy-body-size: 1024m
     nginx.ingress.kubernetes.io/custom-http-errors: '400,500,404'
+    nginx.ingress.kubernetes.io/auth-type: basic
+    nginx.ingress.kubernetes.io/auth-secret: basic-auth
+    nginx.ingress.kubernetes.io/auth-realm: 'Authentication Required - mindspore'    
   name: mindspore-website-ingress
   namespace: mindspore-website
 spec:
