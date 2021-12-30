@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: om-webserver
-          image: swr.cn-north-4.myhuaweicloud.com/om/om-webserver:0.0.52
+          image: swr.cn-north-4.myhuaweicloud.com/om/om-webserver:0.0.54
           resources:
             requests:
               memory: 100Mi
@@ -42,18 +42,6 @@ spec:
               name: om-webserver-secrets-volume
             - mountPath: /var/lib/om-webserver/application.properties
               subPath: application_properties
-              name: om-webserver-secrets-volume
-            - mountPath: /var/lib/om-webserver/openeuler_2022.csv
-              subPath: openeuler_2022
-              name: om-webserver-secrets-volume
-            - mountPath: /var/lib/om-webserver/opengauss_2022.csv
-              subPath: opengauss_2022
-              name: om-webserver-secrets-volume
-            - mountPath: /var/lib/om-webserver/openlookeng_2022.csv
-              subPath: openlookeng_2022
-              name: om-webserver-secrets-volume
-            - mountPath: /var/lib/om-webserver/mindspore_2022.csv
-              subPath: mindspore_2022
               name: om-webserver-secrets-volume
       volumes:
         - name: om-webserver-secrets-volume
