@@ -1,0 +1,11 @@
+resources:
+  - ../../../../../common-services/om
+patchesStrategicMerge:
+  - secrets.yaml
+  - deployment.yaml
+  - pvc.yaml
+images:
+  - name: swr.cn-north-4.myhuaweicloud.com/om/om-collect
+    newName: swr.cn-north-4.myhuaweicloud.com/om/om-collection
+    newTag: 0.2.79
+namePrefix: git-commit-log-

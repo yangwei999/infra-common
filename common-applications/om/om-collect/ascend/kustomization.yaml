@@ -4,6 +4,7 @@ resources:
   - git
   - namespace.yaml
   - git-commit
+  - git-commit-log
 commonAnnotations:
   owner: zhongjun
   email: "jun.zhongjun2@gmail.com"
