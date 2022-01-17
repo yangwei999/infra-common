@@ -20,7 +20,7 @@ spec:
               subPath: credentials_cfg
               name: om-commit-log-secrets-volume
             - mountPath: /mnt
-              subPath: commitLog
+              subPath: commitlog
               name: storage
       volumes:
         - name: om-commit-log-secrets-volume
@@ -28,4 +28,4 @@ spec:
             secretName: om-commit-log-secrets
         - name: storage
           persistentVolumeClaim:
-            claimName: commitLog
+            claimName: commitlog
