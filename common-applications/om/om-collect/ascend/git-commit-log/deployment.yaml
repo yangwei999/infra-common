@@ -1,26 +1,31 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: om-collect
+  name: om-commit-log
   namespace: om
   labels:
-    app: om-collect
+    app: om-commit-log
 spec:
+  revisionHistoryLimit: 10
   template:
+    metadata:
+      labels:
+        app: om-commit-log
     spec:
       containers:
-        - name: om-collect
+        - name: om-commit-log
+          image: swr.cn-north-4.myhuaweicloud.com/om/om-collect:0.2.79
           volumeMounts:
-            - mountPath: /mnt
-              subPath: git-commit-log
-              name: storage
             - mountPath: /var/lib/om/config.ini
               subPath: credentials_cfg
-              name: om-collect-secrets-volume
+              name: om-commit-log-secrets-volume
+            - mountPath: /mnt
+              subPath: commitLog
+              name: storage
       volumes:
-        - name: om-collect-secrets-volume
+        - name: om-commit-log-secrets-volume
           secret:
-            secretName: git-commit-log-om-secrets
+            secretName: om-commit-log-secrets
         - name: storage
           persistentVolumeClaim:
-            claimName: git-commit-log
+            claimName: commitLog

@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: git-commit-log
+  name: commitLog
 spec:
   accessModes:
     - ReadWriteMany
