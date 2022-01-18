@@ -9,5 +9,5 @@ spec:
   resources:
     requests:
       storage: 200Gi
-  storageClassName: ssd
+  storageClassName: csi-nas
   volumeMode: Filesystem
