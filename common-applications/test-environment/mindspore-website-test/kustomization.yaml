@@ -4,7 +4,6 @@ resources:
 - service.yaml
 - ingress.yaml
 - pvc.yaml
-- secrets.yaml
 - job.yaml
 namespace: mindspore-website
 apiVersion: kustomize.config.k8s.io/v1beta1
