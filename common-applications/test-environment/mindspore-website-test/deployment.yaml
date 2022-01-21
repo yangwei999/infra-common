@@ -17,7 +17,7 @@ spec:
     metadata:
       labels:
         app: mindspore-website
-    sepc:
+    spec:
       imagePullSecrets:
       - name: huawei-southeast-swr-image-pull-secret
       containers:
