@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: om-commit-log
-          image: swr.cn-north-4.myhuaweicloud.com/om/om-collection:0.2.82
+          image: swr.cn-north-4.myhuaweicloud.com/om/om-collection:0.2.83
           volumeMounts:
             - mountPath: /var/lib/om/config.ini
               subPath: credentials_cfg
@@ -26,6 +26,6 @@ spec:
         - name: om-commit-log-secrets-volume
           secret:
             secretName: om-commit-log-secrets
-        - name: storage
+        - name: storage.;
           persistentVolumeClaim:
             claimName: commitlog
