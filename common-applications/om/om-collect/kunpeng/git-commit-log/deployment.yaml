@@ -26,6 +26,6 @@ spec:
         - name: om-commit-log-secrets-volume
           secret:
             secretName: om-commit-log-secrets
-        - name: storage.;
+        - name: storage
           persistentVolumeClaim:
             claimName: commitlog
