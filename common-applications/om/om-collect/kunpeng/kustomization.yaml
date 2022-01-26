@@ -12,4 +12,5 @@ resources:
   - namespace.yaml
   - gitee_github_combine
   - git-commit-log
+  - white-commit-log
 namespace: kunpeng-om
