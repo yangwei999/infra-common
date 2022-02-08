@@ -13,4 +13,5 @@ resources:
   - gitee_github_combine
   - git-commit-log
   - white-commit-log
+  - upstream-commit-log
 namespace: kunpeng-om

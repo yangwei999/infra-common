@@ -1,0 +1,31 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: upstream-commit-log
+  namespace: om
+  labels:
+    app: upstream-commit-log
+spec:
+  revisionHistoryLimit: 10
+  template:
+    metadata:
+      labels:
+        app: upstream-commit-log
+    spec:
+      containers:
+        - name: upstream-commit-log
+          image: swr.cn-north-4.myhuaweicloud.com/om/om-collection:0.2.89
+          volumeMounts:
+            - mountPath: /var/lib/om/config.ini
+              subPath: credentials_cfg
+              name: upstream-commit-log-secrets-volume
+            - mountPath: /mnt
+              subPath: commitlog
+              name: storage
+      volumes:
+        - name: upstream-commit-log-secrets-volume
+          secret:
+            secretName: upstream-commit-log-secrets
+        - name: storage
+          persistentVolumeClaim:
+            claimName: upstreamcommitlog
