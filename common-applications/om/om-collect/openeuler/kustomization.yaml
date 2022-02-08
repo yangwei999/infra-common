@@ -21,7 +21,7 @@ resources:
   - polymerization-download-ip
   - account_org
   - googleanalytic-user
-  - gitee-issue
+#  - gitee-issue
   - git_commit
   - up-download-ratio
   - obs_build_averagetime
