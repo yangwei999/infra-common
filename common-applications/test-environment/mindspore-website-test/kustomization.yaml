@@ -10,4 +10,4 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: swr.ap-southeast-1.myhuaweicloud.com/opensourceway/mindspore-website-test
-  newTag: rasp0.0.8
+  newTag: 164e3e0cca6c2bc8d3f146feeb102d02346fdf07
