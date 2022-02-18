@@ -5,6 +5,7 @@ resources:
   - secrets.yaml
   - nginx-purger.yaml
   - sca-api-gateway.yaml
+  - metadata.yaml
 commonLabels:
   app: osinfra-api
 commonAnnotations:

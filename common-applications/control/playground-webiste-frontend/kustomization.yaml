@@ -3,6 +3,7 @@ resources:
 - deployment.yaml
 - namespace.yaml
 - service.yaml
+- secrets.yaml
 commonLabels:
   app: playground-website-frontend
 commonAnnotations:
@@ -11,5 +12,5 @@ namespace: playground-website-frontend
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
-- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/playground/playground-app-test
-  newTag: 5b2a6aadf709e2b40be33bced268d303bea8c197
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/playground/playground-app
+  newTag: 0377404b722ee14a2998008660d65709b6ff1801
