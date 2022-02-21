@@ -53,7 +53,7 @@ spec:
                   name: playground-secrets
                   key: oauth2-callback
             - name: TEMPLATE_PATH
-              value: https://api.test.osinfra.cn/metadata/v1/metadata/infrastructure/playground-meta/templates
+              value: https://api.osinfra.cn/metadata/v1/metadata/infrastructure/playground-meta/templates
             - name: TZ
               value: Asia/Shanghai
           image: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/playground-manager:5e4d96b3b6e2efc1a4d1cad557d1932c2a974bd9
