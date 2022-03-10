@@ -12,7 +12,7 @@ spec:
       - name: om-collect
         resources:
           requests:
-            memory: 4000Mi
+            memory: 400Mi
       volumes:
       - name: om-collect-secrets-volume
         secret:

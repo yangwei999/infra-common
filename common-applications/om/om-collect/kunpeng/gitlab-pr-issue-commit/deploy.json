@@ -22,6 +22,6 @@
   {
     "op": "replace",
     "path": "/spec/template/spec/containers/0/resources/requests/memory",
-    "value": "4000Mi"
+    "value": "400Mi"
   }
 ]
