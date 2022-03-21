@@ -15,4 +15,5 @@ resources:
   - white-commit-log
   - upstream-commit-log
   - tag-removed-gitee
+  - gitlab-pr-issue-commit
 namespace: kunpeng-om
