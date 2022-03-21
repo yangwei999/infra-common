@@ -1,0 +1,31 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: white-commit-log
+  namespace: om
+  labels:
+    app: white-commit-log
+spec:
+  revisionHistoryLimit: 10
+  template:
+    metadata:
+      labels:
+        app: white-commit-log
+    spec:
+      containers:
+        - name: white-commit-log
+          image: swr.cn-north-4.myhuaweicloud.com/om/om-collection:0.2.87
+          volumeMounts:
+            - mountPath: /var/lib/om/config.ini
+              subPath: credentials_cfg
+              name: white-commit-log-secrets-volume
+            - mountPath: /mnt
+              subPath: commitlog
+              name: storage
+      volumes:
+        - name: white-commit-log-secrets-volume
+          secret:
+            secretName: white-commit-log-secrets
+        - name: storage
+          persistentVolumeClaim:
+            claimName: whitecommitlog

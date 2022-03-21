@@ -32,6 +32,8 @@ resources:
   - user-relation
   - gitee-org-baidutongji
   - gitee_developer
+  - git-commit-log
+  - activities-practice
 commonAnnotations:
   owner: zhongjun
   email: "jun.zhongjun2@gmail.com"

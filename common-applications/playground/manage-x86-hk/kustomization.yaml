@@ -12,4 +12,4 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/playground/lxc-launcher
-  newTag: 96b95759b8b96d5fbee76b35dc3e4c5c53d47919
+  newTag: d417f8813e5893ce4f92c1c6df183f77276b6e03
