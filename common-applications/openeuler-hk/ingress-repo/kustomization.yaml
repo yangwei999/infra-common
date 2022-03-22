@@ -10,3 +10,4 @@ patchesStrategicMerge:
   - service.yaml
   - deployment.yaml
   - tcp_configmap.yaml
+  - nginx-purger-deployment.yaml
