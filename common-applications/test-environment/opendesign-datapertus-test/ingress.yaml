@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-issuer
+  name: opendesign-datapertus-test-ingress
+  namespace: opendesign-datapertus-test
+spec:
+  tls:
+    - hosts:
+        - datastat.osinfra.cn
+      secretName: opendesign-datapertus-test-tls
+  rules:
+    - host: datastat.osinfra.cn
+      http:
+        paths:
+          - backend:
+              serviceName: opendesign-datapertus-test-service
+              servicePort: 80
+            path: /
