@@ -1,0 +1,13 @@
+resources:
+  - ../../../common-services/nginx-ingress
+commonLabels:
+  app: openeuler-hk-ingress-repo
+namespace: ingress-nginx-repo
+commonAnnotations:
+  owner: tommylike
+  email: "tommylikehu@gmail.com"
+patchesStrategicMerge:
+  - service.yaml
+  - deployment.yaml
+  - tcp_configmap.yaml
+  - nginx-purger-deployment.yaml

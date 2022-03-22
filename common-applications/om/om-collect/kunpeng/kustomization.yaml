@@ -12,4 +12,8 @@ resources:
   - namespace.yaml
   - gitee_github_combine
   - git-commit-log
+  - white-commit-log
+  - upstream-commit-log
+  - tag-removed-gitee
+  - gitlab-pr-issue-commit
 namespace: kunpeng-om
