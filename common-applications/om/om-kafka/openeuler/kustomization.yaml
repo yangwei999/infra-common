@@ -5,6 +5,8 @@ resources:
   - namespace.yaml
   - statewall-dist-build-time
   - package-status
+  - statewall-ci-result
+  - statewall-ci-mistake
 commonAnnotations:
   owner: zhongjun
   email: "jun.zhongjun2@gmail.com"
