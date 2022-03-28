@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: opendesign-datapertus-deployment
+  namespace: opendesign-datapertus
+spec:
+  replicas: 2
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 1
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: opendesign-datapertus
+  template:
+    metadata:
+      labels:
+        app: opendesign-datapertus
+    spec:
+      containers:
+      - name: opendesign-datapertus
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/datastat:45e2c77369fe4954a20bbc833b94aac6e9fad729
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+          name: http
+          protocol: TCP
+        resources:
+          requests:
+            cpu: 2000m
+            memory: 2000Mi
+          limits:
+            cpu: 2000m
+            memory: 2000Mi

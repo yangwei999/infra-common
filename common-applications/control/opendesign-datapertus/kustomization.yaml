@@ -1,0 +1,13 @@
+resources:
+- deployment.yaml
+- namespace.yaml
+- service.yaml
+- ingress.yaml
+- secret.yaml
+namespace: opendesign-datapertus
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+images:
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/datastat
+  newName: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/datastat
+  newTag: 9db6e931fc5f7dc89303112426d1e6b75b2add8e
