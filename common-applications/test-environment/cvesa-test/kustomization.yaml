@@ -8,4 +8,5 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/cve-sa-backend/cvesa-test
-  newTag: 2e565997f1894bf68ce8adcbe04e644c8673012d
+  newName: swr.cn-north-4.myhuaweicloud.com/opensourceway/cve-sa-backend/cvesa-test
+  newTag: 1d3eff69a1006bbeb92d255eba42c07c71749f67
