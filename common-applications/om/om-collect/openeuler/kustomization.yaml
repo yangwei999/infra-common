@@ -22,6 +22,7 @@ resources:
   - account_org
   - googleanalytic-user
   - gitee-issue
+  - gitee-issue-score
   - git_commit
   - up-download-ratio
   - obs_build_averagetime
