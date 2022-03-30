@@ -1,5 +1,5 @@
 resources:
-  - ../../../common-services/nginx-ingress
+  - ../ingress-repo-base
 commonLabels:
   app: openeuler-hk-ingress-repo
 namespace: ingress-nginx-repo

@@ -23,7 +23,12 @@ spec:
           volumeMounts:
             - mountPath: /var/www/html/data
               name: paste-data
+            - mountPath: /var/backup_data
+              name: paste-backup-data
       volumes:
         - name: paste-data
           persistentVolumeClaim:
             claimName: cce-evs-paste-data
+        - name: paste-backup-data
+          persistentVolumeClaim:
+            claimName: cce-evs-paste-backup-data

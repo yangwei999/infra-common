@@ -1,5 +1,7 @@
 apiVersion: v1
+data:
+  X-Using-Nginx-Controller: "true"
 kind: ConfigMap
 metadata:
-  name: tcp-services
+  name: custom-headers
   namespace: ingress-nginx
