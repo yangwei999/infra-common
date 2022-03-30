@@ -7,6 +7,7 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt-issuer
     nginx.ingress.kubernetes.io/server-snippet: |
       rewrite ^/zh/query/(.*) https://omapi.osinfra.cn/query/$1 redirect;
+      rewrite ^/en/query/(.*) https://omapi.osinfra.cn/query/$1 redirect;
   name: opendesign-datapertus-test-openeuler-ingress
   namespace: opendesign-datapertus-test
 spec:
@@ -32,6 +33,7 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt-issuer
     nginx.ingress.kubernetes.io/server-snippet: |
       rewrite ^/zh/query/(.*) https://omapi.osinfra.cn/query/$1 redirect;
+      rewrite ^/en/query/(.*) https://omapi.osinfra.cn/query/$1 redirect;
   name: opendesign-datapertus-test-mindspore-ingress
   namespace: opendesign-datapertus-test
 spec:
@@ -57,6 +59,7 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt-issuer
     nginx.ingress.kubernetes.io/server-snippet: |
       rewrite ^/zh/query/(.*) https://omapi.osinfra.cn/query/$1 redirect;
+      rewrite ^/en/query/(.*) https://omapi.osinfra.cn/query/$1 redirect;
   name: opendesign-datapertus-test-opengauss-ingress
   namespace: opendesign-datapertus-test
 spec:
@@ -82,6 +85,7 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt-issuer
     nginx.ingress.kubernetes.io/server-snippet: |
       rewrite ^/zh/query/(.*) https://omapi.osinfra.cn/query/$1 redirect;
+      rewrite ^/en/query/(.*) https://omapi.osinfra.cn/query/$1 redirect;
   name: opendesign-datapertus-test-openlookeng-ingress
   namespace: opendesign-datapertus-test
 spec:
