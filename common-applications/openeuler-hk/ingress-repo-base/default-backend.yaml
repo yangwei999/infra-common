@@ -1,0 +1,70 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: ingress-default-backend
+  namespace: ingress-nginx
+  labels:
+    app.kubernetes.io/name: ingress-nginx-backend
+    app.kubernetes.io/part-of: ingress-nginx
+spec:
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/name: ingress-nginx-backend
+    app.kubernetes.io/part-of: ingress-nginx
+  ports:
+    - name: http
+      port: 80
+      protocol: TCP
+      targetPort: http
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-ingress-default-backend
+  namespace: ingress-nginx
+  labels:
+    app.kubernetes.io/name: ingress-nginx-backend
+    app.kubernetes.io/part-of: ingress-nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: ingress-nginx-backend
+      app.kubernetes.io/part-of: ingress-nginx
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: ingress-nginx-backend
+        app.kubernetes.io/part-of: ingress-nginx
+    spec:
+      containers:
+        - name: nginx-ingress-default-backend
+          image: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/default_backend:810353efaac838107f16f45702ad5ed135a919bd
+          env:
+            - name: NODE_ENV
+              value: production
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /healthy
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 10
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /healthy
+              port: 8080
+              scheme: HTTP
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 10
+

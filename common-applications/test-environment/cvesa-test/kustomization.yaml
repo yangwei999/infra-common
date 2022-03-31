@@ -1,0 +1,12 @@
+resources:
+- deployment.yaml
+- namespace.yaml
+- service.yaml
+- ingress.yaml
+namespace: cvesa-test
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+images:
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/cve-sa-backend/cvesa-test
+  newName: swr.cn-north-4.myhuaweicloud.com/opensourceway/cve-sa-backend/cvesa-test
+  newTag: 78da2f4c0c9d36e539bcc1119963a9e3a20067bf

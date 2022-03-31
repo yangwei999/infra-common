@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cvesa-test-deployment
+  namespace: cvesa-test
+spec:
+  replicas: 2
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 1
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: cvesa-test
+  template:
+    metadata:
+      labels:
+        app: cvesa-test
+    spec:
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
+      containers:
+      - name: cvesa-test
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/cve-sa-backend/cvesa-test:v0.0.1
+        imagePullPolicy: IfNotPresent
+        env:
+          - name: DB_URL
+            value: 10.0.0.187
+          - name: DB_USER
+            valueFrom:
+              secretKeyRef:
+                key: db_user
+                name: cvesa-test-secrets
+          - name: DB_PWD
+            valueFrom:
+              secretKeyRef:
+                key: db_password
+                name: cvesa-test-secrets
+          - name: AK
+            valueFrom:
+              secretKeyRef:
+                key: ak_value
+                name: cvesa-test-secrets
+          - name: SK
+            valueFrom:
+              secretKeyRef:
+                key: sk_value
+                name: cvesa-test-secrets
+        resources:
+          requests:
+            cpu: 2000m
+            memory: 2000Mi
+          limits:
+            cpu: 2000m
+            memory: 2000Mi

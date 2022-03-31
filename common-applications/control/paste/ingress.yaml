@@ -12,8 +12,48 @@ spec:
     - hosts:
         - paste.osinfra.cn
       secretName: paste-tls
+    - hosts:
+        - paste.mindspore.cn
+      secretName: paste-mindspore-tls
+    - hosts:
+        - paste.openeuler.org
+      secretName: paste-openeuler-tls
+    - hosts:
+        - paste.opengauss.org
+      secretName: paste-opengauss-tls
+    - hosts:
+        - paste.openlookeng.io
+      secretName: paste-openlookeng-tls
   rules:
     - host: paste.osinfra.cn
+      http:
+        paths:
+          - backend:
+              serviceName: paste-service
+              servicePort: 80
+            path: /
+    - host: paste.mindspore.cn
+      http:
+        paths:
+          - backend:
+              serviceName: paste-service
+              servicePort: 80
+            path: /
+    - host: paste.openeuler.org
+      http:
+        paths:
+          - backend:
+              serviceName: paste-service
+              servicePort: 80
+            path: /
+    - host: paste.opengauss.org
+      http:
+        paths:
+          - backend:
+              serviceName: paste-service
+              servicePort: 80
+            path: /
+    - host: paste.openlookeng.io
       http:
         paths:
           - backend:
