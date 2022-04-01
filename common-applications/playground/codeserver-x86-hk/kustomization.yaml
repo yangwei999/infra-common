@@ -6,4 +6,4 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/playground/codeserver-controller
-  newTag: e38fb3489db701af71b20eca98efec6b0ba46275
+  newTag: c6f63a7b3d3f284601a2b2b3b7fe9a81af366497
