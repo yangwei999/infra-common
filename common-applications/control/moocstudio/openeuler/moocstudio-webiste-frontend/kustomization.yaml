@@ -8,7 +8,7 @@ commonLabels:
   app: moocstudio-openeuler-website-frontend
 commonAnnotations:
   owner: Caowendong
-namespace: moocstudio-website-frontend
+namespace: moocstudio-openeuler-website-frontend
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
