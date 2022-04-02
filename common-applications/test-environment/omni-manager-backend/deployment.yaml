@@ -43,6 +43,8 @@ spec:
                 key: mysql_database_name
           - name: REDIS_ADDR
             value: redis-0.redis-service.omni-manager-backend.svc.cluster.local
+          - name: CUSTOM_RPM_API
+            value: http://omni-insight-service.omni-insight.svc.cluster.local:6666
         resources:
           requests:
             cpu: 2000m
