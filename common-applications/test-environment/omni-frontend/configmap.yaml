@@ -1,0 +1,60 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: omni-configmap
+  namespace: omni-frontend
+data:
+  default.conf: | 
+    server { 
+      listen 8080;
+      server_name omni.test.osinfra.cn;
+      charset utf-8;
+      limit_conn perserver 50;
+      if ($request_method = 'OPTIONS') {
+        return 401;
+      }
+
+      location / {
+
+        location / {
+          add_header Cache-Control no-cache;
+        }
+
+        # error_page 404 /404.html;
+        location /assets {
+        # publish every two weeks
+        # expires 14d;
+        # add_header Cache-Control public;
+        }
+
+        root /usr/share/nginx/html;
+        index /index.html;
+      }
+    }
+
+    upstream websocket {
+    server omni-manager-service.omni-manager-backend.svc.cluster.local:8888; # appserver_ip:ws_port
+    }
+
+    map $http_upgrade $connection_upgrade {
+      default upgrade;
+      ''      close;
+    }
+
+    server {
+      listen 8888;
+      server_name omni.test.osinfra.cn;
+      charset utf-8;
+      limit_conn perserver 50;
+
+      location /wsQueryJobStatus {
+          proxy_pass http://omni-manager-service.omni-manager-backend.svc.cluster.local:8888;
+          proxy_http_version 1.1;
+          proxy_set_header Upgrade $http_upgrade;
+          proxy_set_header Connection $connection_upgrade;
+          proxy_read_timeout 300s;
+          proxy_send_timeout 300s;
+          root /usr/share/nginx/html;
+          index /index.html;
+      }
+    }
