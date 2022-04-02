@@ -1,0 +1,13 @@
+resources:
+- deployment.yaml
+- namespace.yaml
+- service.yaml
+- secret.yaml
+- redis-service.yaml
+- redis-statefulset.yaml
+namespace: omni-manager-backend
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+images:
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/omni-manager-backend/omni-manager
+  newTag: 24f5f4f8d327c70022f9df07a998b6b9b4c2bbe2
