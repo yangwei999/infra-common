@@ -108,6 +108,11 @@ spec:
                 secretKeyRef:
                   name: lxc-launcher-secrets
                   key: exit-when-unready
+            - name: POD_CONFIG
+              valueFrom:
+                secretKeyRef:
+                  name: lxc-launcher-secrets
+                  key: pod-config
             - name: TZ
               value: Asia/Shanghai
           name: lxc-launcher
