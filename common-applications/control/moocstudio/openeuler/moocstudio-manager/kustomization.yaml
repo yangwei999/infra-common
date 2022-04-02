@@ -5,12 +5,12 @@ resources:
 - secrets.yaml
 - ingress.yaml
 commonLabels:
-  app: moocstudio-manager
+  app: moocstudio-openeuler-manager
   owner: zhangjianjun
 commonAnnotations:
   email: 841670711@qq.com
   owner: zhangjianjun
-namespace: moocstudio-manager
+namespace: moocstudio-openeuler-manager
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
