@@ -52,6 +52,21 @@ spec:
                 secretKeyRef:
                   name: playground-secrets
                   key: oauth2-callback
+            - name: USERPOOL_ID
+              valueFrom:
+                secretKeyRef:
+                  name: playground-secrets
+                  key: userpool-id
+            - name: USERPOOL_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: playground-secrets
+                  key: userpool-secret
+            - name: CONTAINER_TIMEOUT
+              valueFrom:
+                secretKeyRef:
+                  name: playground-secrets
+                  key: container-timeout
             - name: TEMPLATE_PATH
               value: https://api.osinfra.cn/metadata/v1/metadata/infrastructure/playground-meta/templates
             - name: TZ
