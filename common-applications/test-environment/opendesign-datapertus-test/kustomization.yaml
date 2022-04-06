@@ -8,4 +8,5 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/dataset-test
-  newTag: 58549ca5f59e87c0b12e88b599a3fdb6a997789b
+  newName: swr.cn-north-4.myhuaweicloud.com/opensourceway/dataset-test
+  newTag: e87fafa2021add862d41842aeb81f3d8b8ccc425
