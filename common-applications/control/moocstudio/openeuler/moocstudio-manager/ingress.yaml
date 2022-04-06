@@ -16,6 +16,6 @@ spec:
       http:
         paths:
           - backend:
-              serviceName: moocstudio-manager-service
+              serviceName: playground-service
               servicePort: 80
             path: /api(/|$)(.*)
