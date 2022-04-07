@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: omni-manager
+  namespace: omni-manager-backend
+spec:
+  replicas: 2
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 1
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: omni-manager
+  template:
+    metadata:
+      labels:
+        app: omni-manager
+    spec:
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
+      containers:
+      - name: omni-manager
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/omni-manager-backend/omni-manager:24f5f4f8d327c70022f9df07a998b6b9b4c2bbe2
+        imagePullPolicy: IfNotPresent
+        env:
+          - name: DB_USER
+            valueFrom:
+              secretKeyRef:
+                name: omni-manager-secrets
+                key: mysql_user
+          - name: DB_PSWD
+            valueFrom:
+              secretKeyRef:
+                name: omni-manager-secrets
+                key: mysql_passwd
+          - name: DB_HOST
+            value: 10.0.0.187
+          - name: DB_NAME
+            valueFrom:
+              secretKeyRef:
+                name: omni-manager-secrets
+                key: mysql_database_name
+          - name: REDIS_ADDR
+            value: redis-0.redis-service.omni-manager-backend.svc.cluster.local
+          - name: CUSTOM_RPM_API
+            value: http://omni-insight-service.omni-insight.svc.cluster.local:6666
+        resources:
+          requests:
+            cpu: 2000m
+            memory: 2000Mi
+          limits:
+            cpu: 2000m
+            memory: 2000Mi

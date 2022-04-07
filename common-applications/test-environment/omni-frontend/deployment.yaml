@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: omni-frontend-deployment
+  namespace: omni-frontend
+spec:
+  replicas: 2
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 1
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: omni-frontend
+  template:
+    metadata:
+      labels:
+        app: omni-frontend
+    spec:
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
+      containers:
+      - name: omni-frontend
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/omni-frontend/omni:3f181351d67addea4a2f2582ae8161389566a057
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+          - mountPath: /etc/nginx/conf.d
+            name: configmap-volume
+        resources:
+          requests:
+            cpu: 2000m
+            memory: 2000Mi
+          limits:
+            cpu: 2000m
+            memory: 2000Mi
+      volumes:
+      - configMap:
+          defaultMode: 420
+          name: omni-configmap
+        name: configmap-volume
+      

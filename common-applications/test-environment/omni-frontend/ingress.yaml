@@ -1,0 +1,46 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx   
+  name: omni-frontend-ingress
+  namespace: omni-frontend
+spec:
+  tls:
+    - hosts:
+        - omni.test.osinfra.cn
+      secretName: omni-frontend-tls
+  rules:
+    - host: omni.test.osinfra.cn
+      http:
+        paths:
+          - backend:
+              serviceName: omni-manager-backend
+              servicePort: 8080
+            path: /api
+          - backend:
+              serviceName: omni-frontend-service
+              servicePort: 80
+            path: /
+          
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+  name: omni-manager-backend-ingress
+  namespace: omni-frontend
+spec:
+  tls:
+    - hosts:
+        - omni.test.osinfra.cn
+      secretName: omni-frontend-tls
+  rules:
+    - host: omni.test.osinfra.cn
+      http:
+        paths:
+        - backend:
+            serviceName: omni-manager-backend
+            servicePort: 8888
+          path: /ws

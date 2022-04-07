@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: moocstudio-manager-service
+  namespace: moocstudio-manager
+spec:
+  ports:
+    - name: moocstudio-manager
+      port: 80
+      protocol: TCP
+      targetPort: 8080
+  selector:
+    app: moocstudio-manager
+  type: ClusterIP
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: playground-service
+  namespace: moocstudio-manager
+spec:
+  externalName: playground-manager-service.playground-manager.svc.cluster.local
+  type: ExternalName

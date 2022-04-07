@@ -52,6 +52,21 @@ spec:
                 secretKeyRef:
                   name: playground-secrets
                   key: oauth2-callback
+            - name: USERPOOL_ID
+              valueFrom:
+                secretKeyRef:
+                  name: playground-secrets
+                  key: userpool-id
+            - name: USERPOOL_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: playground-secrets
+                  key: userpool-secret
+            - name: CONTAINER_TIMEOUT
+              valueFrom:
+                secretKeyRef:
+                  name: playground-secrets
+                  key: container-timeout
             - name: TEMPLATE_PATH
               value: https://api.osinfra.cn/metadata/v1/metadata/infrastructure/playground-meta/templates
             - name: TZ
@@ -79,6 +94,9 @@ spec:
             httpGet:
               path: /healthz/liveness
               port: 8080
+          volumeMounts:
+          - mountPath: /opt/statisticslog
+            name: pvc-data
           resources:
             limits:
               cpu: 1500m
@@ -86,3 +104,7 @@ spec:
             requests:
               cpu: 1000m
               memory: 2000Mi
+      volumes:
+      - name: pvc-data
+        persistentVolumeClaim:
+          claimName: cce-obs-playground-manager
