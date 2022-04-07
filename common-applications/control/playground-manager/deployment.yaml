@@ -94,6 +94,9 @@ spec:
             httpGet:
               path: /healthz/liveness
               port: 8080
+          volumeMounts:
+          - mountPath: /opt/statisticslog
+            name: pvc-data
           resources:
             limits:
               cpu: 1500m
@@ -101,3 +104,7 @@ spec:
             requests:
               cpu: 1000m
               memory: 2000Mi
+      volumes:
+      - name: pvc-data
+        persistentVolumeClaim:
+          claimName: cce-obs-playground-manager
