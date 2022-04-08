@@ -1,0 +1,25 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: moocstudio-website-frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: moocstudio-website-frontend
+  template:
+    metadata:
+      labels:
+        app: moocstudio-website-frontend
+    spec:
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
+      containers:
+      - name: moocstudio-website-frontend
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/moocstudio-app:69d61359ac4670b7fc899eca16b3a33a6d67a01b
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+          name: http
+          protocol: TCP

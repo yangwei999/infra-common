@@ -46,6 +46,16 @@ spec:
               secretKeyRef:
                 key: sk_value
                 name: cvesa-test-secrets
+          - name: UPLOAD_USERNAME
+            valueFrom:
+              secretKeyRef:
+                key: upload_username
+                name: cvesa-test-secrets
+          - name: UPLOAD_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: upload_password
+                name: cvesa-test-secrets
         resources:
           requests:
             cpu: 2000m
