@@ -95,7 +95,7 @@ spec:
               path: /healthz/liveness
               port: 8080
           volumeMounts:
-          - mountPath: /opt/statisticslog
+          - mountPath: /opt/app/statisticslog
             name: pvc-data
           resources:
             limits:
