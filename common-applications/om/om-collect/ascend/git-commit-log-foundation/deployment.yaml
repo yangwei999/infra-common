@@ -1,0 +1,31 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: git-commit-log-foundation
+  namespace: om
+  labels:
+    app: git-commit-log-foundation
+spec:
+  revisionHistoryLimit: 10
+  template:
+    metadata:
+      labels:
+        app: git-commit-log-foundation
+    spec:
+      containers:
+        - name: git-commit-log-foundation
+          image: swr.cn-north-4.myhuaweicloud.com/om/om-collection:0.2.87
+          volumeMounts:
+            - mountPath: /var/lib/om/config.ini
+              subPath: credentials_cfg
+              name: git-commit-log-foundation-secrets-volume
+            - mountPath: /mnt
+              subPath: commitlog
+              name: storage
+      volumes:
+        - name: git-commit-log-foundation-secrets-volume
+          secret:
+            secretName: git-commit-log-foundation-secrets
+        - name: storage
+          persistentVolumeClaim:
+            claimName: commitlogfoundation

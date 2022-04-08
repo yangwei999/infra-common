@@ -5,6 +5,8 @@ resources:
   - namespace.yaml
   - git-commit
   - git-commit-log
+  - gitee-foundation
+  - git-commit-log-foundation
 commonAnnotations:
   owner: zhongjun
   email: "jun.zhongjun2@gmail.com"
