@@ -19,6 +19,8 @@ spec:
         app: infrastructure-robot-gitee
         component: sync-repo-file-job
     spec:
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
       containers:
         - name: sync-repo-file-job
           image: swr.cn-north-4.myhuaweicloud.com/opensourceway/robot/sync-repo-file-job:main-f83e60a
