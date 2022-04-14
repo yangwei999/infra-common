@@ -4,7 +4,7 @@ metadata:
   name: opendesign-datapertus-deployment
   namespace: opendesign-datapertus
 spec:
-  replicas: 0
+  replicas: 2
   strategy:
     rollingUpdate:
       maxUnavailable: 1
