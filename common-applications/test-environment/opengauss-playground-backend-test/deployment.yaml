@@ -80,7 +80,10 @@ spec:
               name: opengauss-playground-backend-secrets
               key: container-timeout
         - name: TEMPLATE_PATH
-          value: https://api.test.osinfra.cn/metadata/v1/metadata/infrastructure/playground-meta/templates
+          valueFrom:
+            secretKeyRef:
+              name: opengauss-playground-backend-secrets
+              key: template_path
         - name: TZ
           value: Asia/Shanghai
         - name: COURSE_URL
