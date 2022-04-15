@@ -70,6 +70,8 @@ spec:
               secretKeyRef:
                 name: omni-manager-secrets
                 key: authing_user_pool_id
+          - name: RUN_MODE
+            value: prod
         resources:
           requests:
             cpu: 2000m
