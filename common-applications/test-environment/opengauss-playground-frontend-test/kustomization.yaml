@@ -1,0 +1,12 @@
+resources:
+- ingress.yaml
+- deployment.yaml
+- namespace.yaml
+- service.yaml
+- secret.yaml
+namespace: opengauss-playground-frontend-test
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+images:
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/playground/opengauss-playground-frontend-test
+  newTag: 097a2d4a87f23fd586acbe26b298ff7455db71b5
