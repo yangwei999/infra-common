@@ -1,0 +1,26 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: opengauss-playground-frontend
+  namespace: opengauss-playground-frontend-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: opengauss-playground-frontend
+  template:
+    metadata:
+      labels:
+        app: opengauss-playground-frontend
+    spec:
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
+      containers:
+      - name: opengauss-playground-frontend
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/playground/opengauss-playground-frontend-test:a6fb6c2d84bfb67622695b77c8c6fe9cc12376e3
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+          name: http
+          protocol: TCP
