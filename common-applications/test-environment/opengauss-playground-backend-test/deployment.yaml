@@ -101,6 +101,8 @@ spec:
             secretKeyRef:
               name: opengauss-playground-backend-secrets
               key: chapter_detail_url
+        - name: RUN_MODE
+          value: prod
         ports:
         - containerPort: 8080
           name: http
