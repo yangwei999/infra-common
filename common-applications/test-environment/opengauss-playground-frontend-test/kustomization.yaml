@@ -9,4 +9,5 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/playground/opengauss-playground-frontend-test
-  newTag: 097a2d4a87f23fd586acbe26b298ff7455db71b5
+  newName: swr.cn-north-4.myhuaweicloud.com/opensourceway/playground/opengauss-playground-frontend-test
+  newTag: 6459db569f23edf8744e09dfd9fb9397d429ac8b
