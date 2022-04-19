@@ -3,6 +3,7 @@ resources:
 - ingress.yaml
 - service.yaml
 - deployment.yaml
+- secret.yaml
 commonLabels:
   app: openlookeng-website
 namespace: openlookeng-website
@@ -10,4 +11,4 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/test_openlookeng_website
-  newTag: 764b00bc1598476fea58b42bd1c1935e907aa4be
+  newTag: 654a21625f25c264f2afc70d543e2607f11c7ae1
