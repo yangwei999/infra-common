@@ -72,6 +72,8 @@ spec:
                 key: authing_user_pool_id
           - name: RUN_MODE
             value: prod
+          - name: GIN_MODE
+            value: release
         resources:
           requests:
             cpu: 2000m
