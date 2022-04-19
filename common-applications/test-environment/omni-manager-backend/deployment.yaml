@@ -81,3 +81,10 @@ spec:
           limits:
             cpu: 2000m
             memory: 2000Mi
+        volumeMounts:
+          - mountPath: /var/logs/omni-manager
+            name: static-log-data
+      volumes:
+      - name: static-log-data
+        persistentVolumeClaim:
+          claimName: cce-obs-omni-manager-backend
