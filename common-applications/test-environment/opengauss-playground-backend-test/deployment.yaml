@@ -101,6 +101,11 @@ spec:
             secretKeyRef:
               name: opengauss-playground-backend-secrets
               key: chapter_detail_url
+        - name: CONTACT_EMAIL
+          valueFrom:
+            secretKeyRef:
+              name: opengauss-playground-backend-secrets
+              key: contact_email
         - name: RUN_MODE
           value: prod
         ports:
