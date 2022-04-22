@@ -1,0 +1,88 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: data-cache
+  namespace: sunmao
+spec:
+  ports:
+  - port: 80
+    targetPort: 8080
+    protocol: TCP
+  selector:
+    app: data-cache
+
+---
+apiVersion: secrets-manager.tuenti.io/v1alpha1
+kind: SecretDefinition
+metadata:
+  name: data-cache-secrets
+  namespace: sunmao
+spec:
+  name: data-cache-secrets
+  keysMap:
+    rmq_user:
+      path: secrets/data/mindspore/sunmao-data-cache
+      key: rmq_user
+    rmq_pass:
+      path: secrets/data/mindspore/sunmao-data-cache
+      key: rmq_pass
+    rmq_queue_name:
+      path: secrets/data/mindspore/sunmao-data-cache
+      key: rmq_queue_name
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: data-cache
+  namespace: sunmao
+spec:
+  selector:
+    matchLabels:
+      app: data-cache
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: data-cache
+    spec:
+      containers:
+      - name: data-cache
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/sunmao/data-cache:f939000aaf6bc67c63d056585679442a13d2e027
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+        env:
+        - name: LOGURU_LEVEL
+          value: "INFO"
+        - name: RULE_HANDLER_URL
+          value: "http://rule-handler.sunmao.svc.cluster.local:9002/rulehandler"
+        - name: RMQ_HOST
+          value: "rabbitmq"
+        - name: RMQ_VHOST
+          value: "/"
+        - name: RMQ_USER
+          valueFrom:
+            secretKeyRef:
+              name: data-cache-secrets
+              key: rmq_user
+        - name: RMQ_PASS
+          valueFrom:
+            secretKeyRef:
+              name: data-cache-secrets
+              key: rmq_pass
+        - name: RMQ_QUEUE_NAME
+          valueFrom:
+            secretKeyRef:
+              name: data-cache-secrets
+              key: rmq_queue_name
+        - name: STRATEGY_EXECUTOR_URL
+          value: "http://strategy-executor.sunmao.svc.cluster.local:9003/api/Executor/execute-event/"
+        volumeMounts:
+          - name: data-cache-log-volume
+            mountPath: "/data-cache/log/"
+      volumes:
+      - name: data-cache-log-volume
+        persistentVolumeClaim:
+          claimName: cce-obs-data-cache-log-volume

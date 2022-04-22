@@ -1,0 +1,33 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  annotations:
+    email: 986740642@qq.com
+    owner: xieweizhi
+  labels:
+    app: infrastructure-robot-gitee
+    component: sync-repo-file-job
+  name: job-sync-repo-file-job
+  namespace: robot-gitee
+spec:
+  ttlSecondsAfterFinished: 100
+  template:
+    metadata:
+      annotations:
+        email: 986740642@qq.com
+        owner: xieweizhi
+      labels:
+        app: infrastructure-robot-gitee
+        component: sync-repo-file-job
+    spec:
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
+      containers:
+        - name: sync-repo-file-job
+          image: swr.cn-north-4.myhuaweicloud.com/opensourceway/robot/sync-repo-file-job:main-f83e60a
+          args:
+            - --platform=gitee
+            - --orgRepos=cve-manage-test/config
+            - --fileNames=OWNERS
+            - --endpoint=192.168.1.3
+      restartPolicy: Never

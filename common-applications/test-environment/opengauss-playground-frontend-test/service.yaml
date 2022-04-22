@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: opengauss-playground-frontend-service
+  namespace: opengauss-playground-frontend-test
+spec:
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 8080
+  selector:
+    app: opengauss-playground-frontend
+  type: ClusterIP

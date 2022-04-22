@@ -4,7 +4,7 @@ metadata:
   name: opendesign-datapertus-deployment
   namespace: opendesign-datapertus
 spec:
-  replicas: 0
+  replicas: 2
   strategy:
     rollingUpdate:
       maxUnavailable: 1
@@ -19,8 +19,11 @@ spec:
     spec:
       containers:
       - name: opendesign-datapertus
-        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/datastat:45e2c77369fe4954a20bbc833b94aac6e9fad729
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/datastat:6871ddaf67d27eb5c4a8dc7cbf85c65dbbbc275a
         imagePullPolicy: IfNotPresent
+        volumeMounts:
+        - mountPath: /etc/nginx/conf.d
+          name: datastat-nginx-volume
         ports:
         - containerPort: 8080
           name: http
@@ -32,3 +35,8 @@ spec:
           limits:
             cpu: 2000m
             memory: 2000Mi
+      volumes:
+      - configMap:
+          defaultMode: 420
+          name: datastat-configmap
+        name: datastat-nginx-volume

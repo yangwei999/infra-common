@@ -16,4 +16,4 @@ kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/playground-manager
   newName: swr.cn-north-4.myhuaweicloud.com/opensourceway/playground/playground-manager
-  newTag: d6d922faff8660404a5285c2f5c2e2026aa535b8
+  newTag: e8befac7acf56836a51d95707f462c089f6bedc0

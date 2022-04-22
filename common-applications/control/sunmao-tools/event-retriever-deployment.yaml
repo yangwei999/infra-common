@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: event-retriever
+  namespace: sunmao
+spec:
+  selector:
+    matchLabels:
+      app: event-retriever
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: event-retriever
+    spec:
+      containers:
+      - name: event-retriever
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/sunmao/event-retriever:f939000aaf6bc67c63d056585679442a13d2e027
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8001
+        env:
+        - name: LOG_LEVEL
+          value: "INFO"
+        - name: api_url
+          value: "http://data-cache.sunmao.svc.cluster.local/api/dataCache/pushGiteeIssue"
+        - name: gitee_token
+          valueFrom:
+            secretKeyRef:
+              name: sunmao-event-retriever-secrets
+              key: gitee_token
+        volumeMounts:
+          - name: log-volume
+            mountPath: "/app/src/log/"
+      volumes:
+      - name: log-volume
+        persistentVolumeClaim:
+          claimName: cce-obs-log-volume
