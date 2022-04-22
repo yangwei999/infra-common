@@ -1,0 +1,24 @@
+resources:
+- data-cache.yaml
+- event-retriever-deployment.yaml
+- event-retriever-ingress.yaml
+- event-retriever-secret.yaml
+- event-retriever-service.yaml
+- rabbitmq.yaml
+- rule-handler.yaml
+- strategy-executor.yaml
+- sunmao-namespace.yaml
+namespace: sunmao
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+images:
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/sunmao/data-cache
+  newTag: f939000aaf6bc67c63d056585679442a13d2e027
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/sunmao/event-retriever
+  newTag: f939000aaf6bc67c63d056585679442a13d2e027
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/sunmao/rabbitmq
+  newTag: f939000aaf6bc67c63d056585679442a13d2e027
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/sunmao/rule-handler
+  newTag: v1.0.20220414163258
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/sunmao/strategy-executor
+  newTag: f939000aaf6bc67c63d056585679442a13d2e027
