@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+  name: opengauss-playground-frontend-ingress
+  namespace: opengauss-playground-frontend-test
+spec:
+  tls:
+    - hosts:
+        - opengaussplayground.test.osinfra.cn
+      secretName: opengauss-playground-frontend-tls
+  rules:
+    - host: opengaussplayground.test.osinfra.cn
+      http:
+        paths:
+          - backend:
+              serviceName: opengauss-playground-frontend-service
+              servicePort: 80
+            path: /

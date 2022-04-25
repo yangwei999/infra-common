@@ -1,0 +1,120 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: strategy-executor
+  namespace: sunmao
+spec:
+  ports:
+  - port: 9003
+    targetPort: 8002
+    protocol: TCP
+  selector:
+    app: strategy-executor
+  type: ClusterIP
+
+---
+apiVersion: secrets-manager.tuenti.io/v1alpha1
+kind: SecretDefinition
+metadata:
+  name: strategy-executor-secrets
+  namespace: sunmao
+spec:
+  name: strategy-executor-secrets
+  keysMap:
+    rmq_user:
+      path: secrets/data/mindspore/sunmao-strategy-executor
+      key: rmq_user
+    rmq_pass:
+      path: secrets/data/mindspore/sunmao-strategy-executor
+      key: rmq_pass
+    rmq_queue_name:
+      path: secrets/data/mindspore/sunmao-strategy-executor
+      key: rmq_queue_name
+    rmq_routingkey:
+      path: secrets/data/mindspore/sunmao-strategy-executor
+      key: rmq_routingkey
+    rmq_exchange_name:
+      path: secrets/data/mindspore/sunmao-strategy-executor
+      key: rmq_exchange_name
+    rmq_exchange_type:
+      path: secrets/data/mindspore/sunmao-strategy-executor
+      key: rmq_exchange_type
+    gitee_token:
+      path: secrets/data/mindspore/sunmao-strategy-executor
+      key: gitee_token
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: strategy-executor
+  namespace: sunmao
+spec:
+  selector:
+    matchLabels:
+      app: strategy-executor
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: strategy-executor
+    spec:
+      containers:
+      - name: strategy-executor
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/sunmao/strategy-executor:f939000aaf6bc67c63d056585679442a13d2e027
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+        env:
+        - name: LOG_LEVEL
+          value: "DEBUG"
+        - name: RULE_HANDLER_URL
+          value: "http://rule-handler.sunmao.svc.cluster.local:9002/rulehandler"
+        - name: RMQ_HOST
+          value: "rabbitmq"
+        - name: RMQ_VHOST
+          value: "/"
+        - name: RMQ_USER
+          valueFrom:
+            secretKeyRef:
+              name: strategy-executor-secrets
+              key: rmq_user
+        - name: RMQ_PASS
+          valueFrom:
+            secretKeyRef:
+              name: strategy-executor-secrets
+              key: rmq_pass
+        - name: RMQ_QUEUE_NAME
+          valueFrom:
+            secretKeyRef:
+              name: strategy-executor-secrets
+              key: rmq_queue_name
+        - name: RMQ_PORT
+          value: "5672"
+        - name: RMQ_ROUTINGKEY
+          valueFrom:
+            secretKeyRef:
+              name: strategy-executor-secrets
+              key: rmq_routingkey
+        - name: RMQ_EXCHANGE_NAME
+          valueFrom:
+            secretKeyRef:
+              name: strategy-executor-secrets
+              key: rmq_exchange_name
+        - name: RMQ_EXCHANGE_TYPE
+          valueFrom:
+            secretKeyRef:
+              name: strategy-executor-secrets
+              key: rmq_exchange_type
+        - name: gitee_token
+          valueFrom:
+            secretKeyRef:
+              name: strategy-executor-secrets
+              key: gitee_token
+        volumeMounts:
+          - name: strategy-executor-log-volume
+            mountPath: "/app/src/log/"
+      volumes:
+      - name: strategy-executor-log-volume
+        persistentVolumeClaim:
+          claimName: cce-obs-strategy-executor-log-volume

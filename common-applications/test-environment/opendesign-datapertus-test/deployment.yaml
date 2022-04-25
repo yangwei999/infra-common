@@ -4,7 +4,7 @@ metadata:
   name: opendesign-datapertus-test-deployment
   namespace: opendesign-datapertus-test
 spec:
-  replicas: 2
+  replicas: 1
   strategy:
     rollingUpdate:
       maxUnavailable: 1
@@ -19,11 +19,19 @@ spec:
     spec:
       containers:
       - name: opendesign-datapertus-test
-        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/dataset-test:v0.0.1
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/dataset-test:63a05ea93d9a4a28a0d9bbecd5c51f40ba470ded
         imagePullPolicy: IfNotPresent
+        volumeMounts:
+        - mountPath: /etc/nginx/conf.d
+          name: datastat-nginx-volume
         ports:
         - containerPort: 8080
           name: http
           protocol: TCP
       imagePullSecrets:
       - name: huawei-swr-image-pull-secret
+      volumes:
+      - configMap:
+          defaultMode: 420
+          name: datastat-configmap
+        name: datastat-nginx-volume
