@@ -1,0 +1,43 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: indextoolinfo
+  namespace: openlookeng-indextool
+  labels:
+    app: indextoolinfo
+  annotations:
+    flux.weave.works/automated: "true"
+    flux.weave.works/tag.indextoolinfod: semver:~1.0
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 1
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: indextoolinfo
+  template:
+    metadata:
+      labels:
+        app: indextoolinfo
+    spec:
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
+      containers:
+      - name: indextoolinfo
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/openlookeng/index-tools-test:23c753cedc2803575a57080ce994c6d8f004facb
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+          name: http
+          protocol: TCP
+        volumeMounts:
+        - mountPath: /opengauss/application.yaml
+          name: configmap-volume
+          subPath: application.yaml
+      volumes:
+      - name: configmap-volume
+        configMap:
+          name: indextoolconfigmap
