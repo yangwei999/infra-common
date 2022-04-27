@@ -36,7 +36,7 @@ resources:
   - git-commit-log
   - activities-practice
   - refresh_token
-  - gutee-metrics
+  - gitee-metrics
 commonAnnotations:
   owner: zhongjun
   email: "jun.zhongjun2@gmail.com"
