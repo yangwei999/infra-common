@@ -1,0 +1,68 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: opengaussdb-service
+  labels:
+    app: opengaussdb-service
+  namespace: mail2list
+spec:
+  clusterIP: None
+  selector:
+    app: opengaussdb-service
+  sessionAffinity: None
+  type: ClusterIP
+
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  labels:
+    app: opengaussdb-service
+  name: opengaussdb
+  namespace: mail2list
+spec:
+  selector:
+    matchLabels:
+      app: opengaussdb-service
+  serviceName: opengaussdb-service
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: opengaussdb-service
+    spec:
+      containers:
+      - image: enmotech/opengauss:2.1.0
+        imagePullPolicy: IfNotPresent
+        name: opengaussdb
+        ports:
+        - name: opengaussdb
+          containerPort: 5432
+        volumeMounts:
+        - mountPath: /var/lib/opengauss
+          name: opengaussdb-data
+        env:
+        - name: GS_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mail2list-gaussdb-secrets
+              key: gs_password
+        - name: GS_NODENAME
+          valueFrom:
+            secretKeyRef:
+              name: mail2list-gaussdb-secrets
+              key: gs_nodename
+        - name: GS_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: mail2list-gaussdb-secrets
+              key: gs_username
+        - name: GS_PORT
+          valueFrom:
+            secretKeyRef:
+              name: mail2list-gaussdb-secrets
+              key: gs_port
+      volumes:
+      - name: opengaussdb-data
+        persistentVolumeClaim:
+          claimName: cce-evs-opengaussdb-data
