@@ -58,7 +58,7 @@ spec:
             - name: RUN_MODE
               value: dev
             - name: RESTRICTED_CORP_EMAIL_SUFFIX
-              value: "[qq.com,gmail.com,163.com,foxmail.com,yahoo.com,126.com]"
+              value: "[qq.com,gmail.com,163.com,foxmail.com,yahoo.com,126.com,139.com,189.cn,sina.com,sina.cn,sohu.com,outlook.com,hotmail.com]"
           volumeMounts:
             - mountPath: /opt/app/conf/pdfs
               name: data-volume
