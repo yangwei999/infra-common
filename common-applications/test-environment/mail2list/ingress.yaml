@@ -18,3 +18,7 @@ spec:
               serviceName: mail2list-web-service
               servicePort: 80
             path: /
+          - backend:
+              serviceName: mail2list-backend-service
+              servicePort: 9999
+            path: /maillist
