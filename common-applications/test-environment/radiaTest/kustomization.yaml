@@ -15,4 +15,5 @@ images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/rabbitmq
   newTag: v1.0.1
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/supervisor
-  newTag: 0ba7b65cd80d7f9c364ac16361cb3cb502d6cb6b
+  newName: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/supervisor
+  newTag: f710f3eab3c59c469f37758fbbb43a90bd201053
