@@ -2,5 +2,5 @@
 	{"op": "remove", "path": "/spec/template/spec/containers/0/volumeMounts"},
 	{"op": "add", "path": "/spec/template/spec/containers/0/volumeMounts", "value": [{"mountPath": "/var/lib/om/config.ini", "subPath": "credentials_cfg", "name": "om-collect-secrets-volume"}, {"mountPath": "/var/lib/om/users", "subPath": "users", "name": "om-collect-secrets-volume"}]},
 	{"op": "replace", "path": "/spec/template/spec/volumes/0/secret/secretName", "value": "gitee-om-secrets"},
-	{"op": "add", "path": "/spec/template/spec/containers/0/env", "value": [{"name": "GENERAL_CREDENTIALS_CFG", "valueFrom": {"secretKeyRef": {"name": "gitee-om-secrets", "key": "general_credentials_cfg"}}}]}
+	{"op": "add", "path": "/spec/template/spec/containers/0/env", "value": [{"name": "GENERAL_CREDENTIALS_CFG", "valueFrom": {"secretKeyRef": {"name": "global-om-secrets", "key": "credentials_cfg"}}}]}
 ]

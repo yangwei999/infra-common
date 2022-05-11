@@ -13,7 +13,7 @@ images:
   newTag: 2.1.0
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/mail2list/mail-backend
   newName: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/mail2list/mail-backend
-  newTag: df14a9541ed273ebbfe53681f7eb4e2836bcafde
+  newTag: e7a097176dc70aedad258c28f055b6f5785b85c4
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/mail2list/web
   newName: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/mail2list/web
   newTag: 5911c02244622e5505d17a554cf2a4516902d047
