@@ -1,0 +1,77 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: supervisor-service
+  namespace: radia-test
+spec:
+  ports:
+    - name: http-port-1
+      protocol: TCP
+      port: 21500
+      targetPort: 21500
+  selector:
+    app: supervisor
+  type: ClusterIP
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: supervisor
+  namespace: radia-test
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 1
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: supervisor
+  template:
+    metadata:
+      labels:
+        app: supervisor
+    spec:
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
+      containers:
+      - name: supervisor
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/supervisor:c1fa4de60945464af8edf9a52638fc76a76f71a7
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+        - mountPath: /opt/radiaTest/radiaTest-server/log
+          name: log-storage
+        - mountPath: /opt/radiaTest/radiaTest-server/server/static
+          name: static-storage
+        - mountPath: /opt/radiaTest/radiaTest-server/migrations
+          name: migrations-storage
+        - mountPath: /etc/radiaTest
+          name: radiatest-configure
+        - mountPath: /opt/radiaTest/radiaTest-server/gunicorn
+          name: supervisor-script
+        resources:
+          requests:
+            cpu: 8000m
+            memory: 8000Mi
+          limits:
+            cpu: 8000m
+            memory: 8000Mi
+      volumes:
+      - name: log-storage
+        persistentVolumeClaim:
+          claimName: cce-obs-supervisor-log
+      - name: migrations-storage
+        persistentVolumeClaim:
+          claimName: cce-evs-migrations
+      - name: static-storage
+        persistentVolumeClaim:
+          claimName: cce-evs-static
+      - configMap:
+          defaultMode: 420
+          name: supervisor-radiatest-configmap
+        name: radiatest-configure
+      - configMap:
+          defaultMode: 420
+          name: supervisor-script-configmap
+        name: supervisor-script
