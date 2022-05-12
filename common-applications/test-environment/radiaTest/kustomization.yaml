@@ -16,4 +16,4 @@ images:
   newTag: v1.0.1
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/supervisor
   newName: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/supervisor
-  newTag: 9e635918604c31375483e5e572d9e0389ecf4315
+  newTag: 1ecfdfe978e7d98cccdd4a291041df1336a2def6
