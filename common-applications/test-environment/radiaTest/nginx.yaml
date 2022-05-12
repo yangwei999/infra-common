@@ -20,7 +20,7 @@ metadata:
   name: radia-test-nginx
   namespace: radia-test
 spec:
-  replicas: 1
+  replicas: 2
   strategy:
     rollingUpdate:
       maxUnavailable: 1
