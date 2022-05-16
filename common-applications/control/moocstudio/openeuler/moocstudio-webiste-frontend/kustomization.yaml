@@ -13,4 +13,4 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/moocstudio-app
-  newTag: c20227f58813efa7afabe5639829611f09bca762
+  newTag: 292f4e42cc8385cacf3778f173c9a609ea16aa7e
