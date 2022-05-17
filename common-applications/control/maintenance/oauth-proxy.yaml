@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - args:
-            - --provider=github
+            - --provider=oidc
             - --email-domain=*
             - --upstream=file:///dev/null
             - --http-address=0.0.0.0:4180
