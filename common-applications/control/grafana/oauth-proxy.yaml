@@ -23,6 +23,7 @@ spec:
             - --provider-display-name=authing
             - --insecure-oidc-allow-unverified-email=true
             - --redirect-url=https://eye.osinfra.cn/oauth2/callback
+            - --oidc-issuer-url=https://oauth2-proxy.authing.cn/oidc
             - --cookie-expire=6h0m0s
             - --session-cookie-minimal=false
             - --pass-access-token=true
