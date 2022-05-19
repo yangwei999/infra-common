@@ -10,4 +10,4 @@ kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openlookeng/openlookeng_website_docs_test
   newName: swr.cn-north-4.myhuaweicloud.com/opensourceway/openlookeng/openlookeng_website_docs_test
-  newTag: d8273775d37c4528f21c564635a6db3e66dcf1bb
+  newTag: 748fc1114ced7bebcaa8496f6bb051676c94be11
