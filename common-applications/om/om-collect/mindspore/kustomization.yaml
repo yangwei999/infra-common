@@ -21,6 +21,7 @@ resources:
   - user-relation
   - gitee-org-baidutongji
   - git-commit-log
+  - cve
   - gitee-metrics
   - tinyms_down
 commonAnnotations:
