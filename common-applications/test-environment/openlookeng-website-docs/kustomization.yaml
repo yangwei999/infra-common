@@ -1,0 +1,13 @@
+resources:
+- namespace.yaml
+- ingress.yaml
+- service.yaml
+- deployment.yaml
+- secret.yaml
+namespace: openlookeng-docs
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+images:
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openlookeng/openlookeng_website_docs_test
+  newName: swr.cn-north-4.myhuaweicloud.com/opensourceway/openlookeng/openlookeng_website_docs_test
+  newTag: b65ef02a4cf61c6d79cf5ffd6ad12ae1149779ff
