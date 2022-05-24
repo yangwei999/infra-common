@@ -12,6 +12,7 @@ resources:
   - gitee-event
   - report-email
   - cla
+  - cve
   - cloc
   - polymerization
   - polymerization-download
