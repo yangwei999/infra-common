@@ -117,7 +117,7 @@ spec:
       volumes:
       - name: log-storage
         persistentVolumeClaim:
-          claimName: cce-obs-case-resolver-log
+          claimName: cce-obs-supervisor-log
       - configMap:
           defaultMode: 420
           name: supervisor-radiatest-configmap
@@ -164,7 +164,7 @@ spec:
       volumes:
       - name: log-storage
         persistentVolumeClaim:
-          claimName: cce-obs-case-updator-log
+          claimName: cce-obs-supervisor-log
       - configMap:
           defaultMode: 420
           name: supervisor-radiatest-configmap
@@ -211,7 +211,7 @@ spec:
       volumes:
       - name: log-storage
         persistentVolumeClaim:
-          claimName: cce-obs-celerybeat-log
+          claimName: cce-obs-supervisor-log
       - configMap:
           defaultMode: 420
           name: supervisor-radiatest-configmap
@@ -258,7 +258,7 @@ spec:
       volumes:
       - name: log-storage
         persistentVolumeClaim:
-          claimName: cce-obs-lifecycle-monitor-log
+          claimName: cce-obs-supervisor-log
       - configMap:
           defaultMode: 420
           name: supervisor-radiatest-configmap
@@ -305,7 +305,7 @@ spec:
       volumes:
       - name: log-storage
         persistentVolumeClaim:
-          claimName: cce-obs-repo-reader-log
+          claimName: cce-obs-supervisor-log
       - configMap:
           defaultMode: 420
           name: supervisor-radiatest-configmap
@@ -352,7 +352,7 @@ spec:
       volumes:
       - name: log-storage
         persistentVolumeClaim:
-          claimName: cce-obs-script-loader-log
+          claimName: cce-obs-supervisor-log
       - configMap:
           defaultMode: 420
           name: supervisor-radiatest-configmap
@@ -399,7 +399,7 @@ spec:
       volumes:
       - name: log-storage
         persistentVolumeClaim:
-          claimName: cce-obs-set-resolver-log
+          claimName: cce-obs-supervisor-log
       - configMap:
           defaultMode: 420
           name: supervisor-radiatest-configmap
@@ -446,7 +446,7 @@ spec:
       volumes:
       - name: log-storage
         persistentVolumeClaim:
-          claimName: cce-obs-suite-updator-log
+          claimName: cce-obs-supervisor-log
       - configMap:
           defaultMode: 420
           name: supervisor-radiatest-configmap
@@ -493,7 +493,7 @@ spec:
       volumes:
       - name: log-storage
         persistentVolumeClaim:
-          claimName: cce-obs-task-updator-log
+          claimName: cce-obs-supervisor-log
       - configMap:
           defaultMode: 420
           name: supervisor-radiatest-configmap
