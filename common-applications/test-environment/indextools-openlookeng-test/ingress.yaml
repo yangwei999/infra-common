@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+  name: openlookeng-indextool-ingress
+  namespace: openlookeng-indextool
+spec:
+  tls:
+    - hosts:
+        - openlookengindextool.test.osinfra.cn
+      secretName: openlookeng-indextool-tls
+  rules:
+    - host: openlookengindextool.test.osinfra.cn
+      http:
+        paths:
+          - backend:
+              serviceName: indextool-service
+              servicePort: 80
+            path: /

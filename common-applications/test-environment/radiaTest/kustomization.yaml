@@ -1,0 +1,19 @@
+resources:
+- ingress.yaml
+- namespace.yaml
+- nginx.yaml
+- rabbitmq.yaml
+- supervisor.yaml
+- secret.yaml
+namespace: radia-test
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+images:
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/nginx
+  newName: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/nginx
+  newTag: d0d3558dc6dee115949b3deca8a28af7e02063ee
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/rabbitmq
+  newTag: v1.0.1
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/supervisor
+  newName: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/supervisor
+  newTag: 1ecfdfe978e7d98cccdd4a291041df1336a2def6

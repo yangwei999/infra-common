@@ -22,6 +22,8 @@ resources:
   - gitee-org-baidutongji
   - git-commit-log
   - cve
+  - gitee-metrics
+  - tinyms_down
 commonAnnotations:
   owner: zhongjun
   email: "jun.zhongjun2@gmail.com"
