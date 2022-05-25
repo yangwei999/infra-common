@@ -14,8 +14,6 @@ spec:
       labels:
         k8s-app: oauth2-proxy
     spec:
-      nodeSelector:
-        vault: "true"
       containers:
         - args:
           - --provider=oidc
