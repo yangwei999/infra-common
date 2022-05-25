@@ -10,7 +10,6 @@ resources:
   - gitee-star
   - collect-data
   - gitee-event
-  - report-email
   - cla
   - cloc
   - polymerization
