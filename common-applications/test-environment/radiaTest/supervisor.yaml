@@ -103,8 +103,6 @@ spec:
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/case_resolver:f0b5570a9f140e6876678e49c72b488d51679d75
         imagePullPolicy: IfNotPresent
         volumeMounts:
-        - mountPath: /opt/radiaTest/radiaTest-server/log
-          name: log-storage
         - mountPath: /etc/radiaTest
           name: case-resolver-configure
         resources:
@@ -115,9 +113,6 @@ spec:
             cpu: 2000m
             memory: 2000Mi
       volumes:
-      - name: log-storage
-        persistentVolumeClaim:
-          claimName: cce-obs-supervisor-log
       - configMap:
           defaultMode: 420
           name: supervisor-radiatest-configmap
@@ -150,8 +145,6 @@ spec:
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/case_updator:f0b5570a9f140e6876678e49c72b488d51679d75
         imagePullPolicy: IfNotPresent
         volumeMounts:
-        - mountPath: /opt/radiaTest/radiaTest-server/log
-          name: log-storage
         - mountPath: /etc/radiaTest
           name: case-updator-configure
         resources:
@@ -162,9 +155,6 @@ spec:
             cpu: 2000m
             memory: 2000Mi
       volumes:
-      - name: log-storage
-        persistentVolumeClaim:
-          claimName: cce-obs-supervisor-log
       - configMap:
           defaultMode: 420
           name: supervisor-radiatest-configmap
@@ -197,8 +187,6 @@ spec:
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/celerybeat:f0b5570a9f140e6876678e49c72b488d51679d75
         imagePullPolicy: IfNotPresent
         volumeMounts:
-        - mountPath: /opt/radiaTest/radiaTest-server/log
-          name: log-storage
         - mountPath: /etc/radiaTest
           name: celerybeat-configure
         resources:
@@ -209,9 +197,6 @@ spec:
             cpu: 2000m
             memory: 2000Mi
       volumes:
-      - name: log-storage
-        persistentVolumeClaim:
-          claimName: cce-obs-supervisor-log
       - configMap:
           defaultMode: 420
           name: supervisor-radiatest-configmap
@@ -244,8 +229,6 @@ spec:
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/lifecycle_monitor:f0b5570a9f140e6876678e49c72b488d51679d75
         imagePullPolicy: IfNotPresent
         volumeMounts:
-        - mountPath: /opt/radiaTest/radiaTest-server/log
-          name: log-storage
         - mountPath: /etc/radiaTest
           name: lifecycle-monitor-configure
         resources:
@@ -256,9 +239,6 @@ spec:
             cpu: 2000m
             memory: 2000Mi
       volumes:
-      - name: log-storage
-        persistentVolumeClaim:
-          claimName: cce-obs-supervisor-log
       - configMap:
           defaultMode: 420
           name: supervisor-radiatest-configmap
@@ -291,8 +271,6 @@ spec:
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/repo_reader:f0b5570a9f140e6876678e49c72b488d51679d75
         imagePullPolicy: IfNotPresent
         volumeMounts:
-        - mountPath: /opt/radiaTest/radiaTest-server/log
-          name: log-storage
         - mountPath: /etc/radiaTest
           name: repo-reader-configure
         resources:
@@ -303,9 +281,6 @@ spec:
             cpu: 2000m
             memory: 2000Mi
       volumes:
-      - name: log-storage
-        persistentVolumeClaim:
-          claimName: cce-obs-supervisor-log
       - configMap:
           defaultMode: 420
           name: supervisor-radiatest-configmap
@@ -338,8 +313,6 @@ spec:
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/script_loader:f0b5570a9f140e6876678e49c72b488d51679d75
         imagePullPolicy: IfNotPresent
         volumeMounts:
-        - mountPath: /opt/radiaTest/radiaTest-server/log
-          name: log-storage
         - mountPath: /etc/radiaTest
           name: script-loader-configure
         resources:
@@ -350,9 +323,6 @@ spec:
             cpu: 2000m
             memory: 2000Mi
       volumes:
-      - name: log-storage
-        persistentVolumeClaim:
-          claimName: cce-obs-supervisor-log
       - configMap:
           defaultMode: 420
           name: supervisor-radiatest-configmap
@@ -385,8 +355,6 @@ spec:
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/set_resolver:f0b5570a9f140e6876678e49c72b488d51679d75
         imagePullPolicy: IfNotPresent
         volumeMounts:
-        - mountPath: /opt/radiaTest/radiaTest-server/log
-          name: log-storage
         - mountPath: /etc/radiaTest
           name: set-resolver-configure
         resources:
@@ -397,9 +365,6 @@ spec:
             cpu: 2000m
             memory: 2000Mi
       volumes:
-      - name: log-storage
-        persistentVolumeClaim:
-          claimName: cce-obs-supervisor-log
       - configMap:
           defaultMode: 420
           name: supervisor-radiatest-configmap
@@ -432,8 +397,6 @@ spec:
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/suite_updator:f0b5570a9f140e6876678e49c72b488d51679d75
         imagePullPolicy: IfNotPresent
         volumeMounts:
-        - mountPath: /opt/radiaTest/radiaTest-server/log
-          name: log-storage
         - mountPath: /etc/radiaTest
           name: suite-updator-configure
         resources:
@@ -444,9 +407,6 @@ spec:
             cpu: 2000m
             memory: 2000Mi
       volumes:
-      - name: log-storage
-        persistentVolumeClaim:
-          claimName: cce-obs-supervisor-log
       - configMap:
           defaultMode: 420
           name: supervisor-radiatest-configmap
@@ -479,8 +439,6 @@ spec:
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/task_updator:f0b5570a9f140e6876678e49c72b488d51679d75
         imagePullPolicy: IfNotPresent
         volumeMounts:
-        - mountPath: /opt/radiaTest/radiaTest-server/log
-          name: log-storage
         - mountPath: /etc/radiaTest
           name: task-updator-configure
         resources:
@@ -491,9 +449,6 @@ spec:
             cpu: 2000m
             memory: 2000Mi
       volumes:
-      - name: log-storage
-        persistentVolumeClaim:
-          claimName: cce-obs-supervisor-log
       - configMap:
           defaultMode: 420
           name: supervisor-radiatest-configmap
