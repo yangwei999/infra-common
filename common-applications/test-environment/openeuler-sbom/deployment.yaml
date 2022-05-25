@@ -1,0 +1,77 @@
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: sbom-server
+  namespace: openeuler-sbom
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 1
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: sbom-server
+  template:
+    metadata:
+      labels:
+        app: sbom-server
+    spec:
+      imagePullSecrets:
+        - name: huawei-swr-image-pull-secret
+      containers:
+      - name: sbom-server
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/sbom-server-test:377f63734aeaa3fe3337b3650d6fd9ef4197214a
+        resources:
+          requests:
+            cpu: 2000m
+            memory: 2000Mi
+          limits:
+            cpu: 2000m
+            memory: 2000Mi
+        env:
+          - name: SECRET_KEY
+            valueFrom:
+              secretKeyRef:
+                key: secret_key
+                name: sbom-server-secrets
+          - name: DB_NAME
+            valueFrom:
+              secretKeyRef:
+                key: db_name
+                name: sbom-server-secrets
+          - name: DB_USER
+            valueFrom:
+              secretKeyRef:
+                key: db_uesr
+                name: sbom-server-secrets
+          - name: DB_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: db_password
+                name: sbom-server-secrets
+          - name: DB_HOST
+            valueFrom:
+              secretKeyRef:
+                key: db_host
+                name: sbom-server-secrets
+          - name: DB_PORT
+            valueFrom:
+              secretKeyRef:
+                key: db_port
+                name: sbom-server-secrets
+        command:
+          - /bin/sh
+          - -c
+          - |
+            # Fix wkhtmltopdf shared library issue when running on kernel which < 3.17
+            # Read detail at https://stackoverflow.com/questions/54582864/missing-qt-libs-with-wkhtmltopdf-in-docker-on-debian-buster
+            strip -R .note.ABI-tag /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.11.3
+            # incase the __init__.py does not exist in the mounted volume
+            touch /work/app-sbom-server/meetings/migrations/__init__.py
+            python manage.py collectstatic
+            # python manage.py makemigrations
+            # python manage.py migrate
+            exec uwsgi --ini /home/worker/sbom-1/sbom_server/uwsgi.ini
+
