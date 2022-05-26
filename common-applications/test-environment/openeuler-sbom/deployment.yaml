@@ -69,3 +69,4 @@ spec:
             # python manage.py migrate
             exec uwsgi --ini /home/worker/sbom-app/cve_server_api/uwsgi.ini
 
+
