@@ -11,6 +11,7 @@ resources:
   - collect-data
   - gitee-event
   - cla
+  - cve
   - cloc
   - polymerization
   - polymerization-download
