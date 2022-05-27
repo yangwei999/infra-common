@@ -13,4 +13,3 @@ namespace: openeuler-sbom
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/sbom-server-test
   newTag: d1896f8579fa297663ea770353989200be5145a9
-
