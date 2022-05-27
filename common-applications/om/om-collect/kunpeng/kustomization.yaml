@@ -17,4 +17,6 @@ resources:
   - tag-removed-gitee
   - gitlab-pr-issue-commit
   - github_spark_pr_issue
+  - github_pytorch_pr_issue
+  - github_tensorflow_pr_issue
 namespace: kunpeng-om
