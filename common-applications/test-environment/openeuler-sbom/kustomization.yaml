@@ -12,4 +12,4 @@ kind: Kustomization
 namespace: openeuler-sbom
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/sbom-server-test
-  newTag: b8cdcad0f41a55083aed61ed67b58f7fca90412c
+  newTag: 97a180b7dcafb9b8aa42daf40b25e8af91bf35bf
