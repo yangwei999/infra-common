@@ -7,7 +7,7 @@ metadata:
     nginx.ingress.kubernetes.io/custom-http-errors: "400, 500"
     nginx.ingress.kubernetes.io/proxy-body-size: 100M
     nginx.ingress.kubernetes.io/rewrite-target: /$1
-    nginx.ingress.kubernetes.io/proxy-read-timeout: 900
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "900"
   name: cloudsca-test
   namespace: sca
 spec:
