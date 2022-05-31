@@ -1,0 +1,15 @@
+resources:
+- namespace.yaml
+- deployment.yaml
+- service.yaml
+- secrets.yaml
+- ingress.yaml
+commonAnnotations:
+  email: zhu_it2019@126.com
+  owner: zhudong
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: openeuler-sbom
+images:
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/sbom-server-test
+  newTag: 15b055e53dfb3481b58c83625028e706a920c2f4
