@@ -21,6 +21,7 @@ resources:
   - git-commit-log
   - cve
   - gitee-metrics
+  - gitee-issue-score
 commonAnnotations:
   owner: zhongjun
   email: "jun.zhongjun2@gmail.com"
