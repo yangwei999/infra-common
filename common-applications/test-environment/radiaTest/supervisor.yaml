@@ -50,6 +50,8 @@ spec:
           name: radiatest-configure
         - mountPath: /opt/radiaTest/radiaTest-server/gunicorn
           name: supervisor-script
+        - mountPath: /var/lib/messengers_certifi
+          name: messengers-certifi-storage
         resources:
           requests:
             cpu: 8000m
@@ -67,6 +69,9 @@ spec:
       - name: static-storage
         persistentVolumeClaim:
           claimName: cce-evs-static
+      - name: messengers-certifi-storage
+        persistentVolumeClaim:
+          claimName: cce-evs-messagers-certifi
       - configMap:
           defaultMode: 420
           name: supervisor-radiatest-configmap
