@@ -716,6 +716,7 @@ spec:
         - --enable-leader-election
         - --max-probe-retry=20
         - --max-concurrency=20
+        - --domain-name=pool1.playground.osinfra.cn
         command:
         - /manager
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/playground/codeserver-controller:6f20b2aa66081f6463e6e80283f2bd7532218034
