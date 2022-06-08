@@ -36,6 +36,8 @@ resources:
   - activities-practice
   - refresh_token
   - gitee-metrics
+  - sig-score
+  - sig-radar-score
 commonAnnotations:
   owner: zhongjun
   email: "jun.zhongjun2@gmail.com"
