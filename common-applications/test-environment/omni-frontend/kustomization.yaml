@@ -11,4 +11,4 @@ kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/omni-frontend/omni
   newName: swr.cn-north-4.myhuaweicloud.com/opensourceway/omni-frontend/omni
-  newTag: dc9af236df579450e6107635adb525e04fc638eb
+  newTag: aff6684f043c4f36b6e44f623ef6af56271ff86d
