@@ -17,7 +17,6 @@ resources:
   - polymerization-download
   - account_org
   - git_commit
-  - git-commit-test
   - user-relation
   - gitee-org-baidutongji
   - git-commit-log
