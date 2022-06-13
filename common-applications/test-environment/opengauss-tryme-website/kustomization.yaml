@@ -1,0 +1,13 @@
+---
+resources:
+- namespace.yaml
+- ingress.yaml
+- service.yaml
+- deployment.yaml
+- secrets.yaml
+namespace: opengauss-tryme-website
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+images:
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/opengauss/opengauss-tryme-website-test
+  newTag: 81442d98ab68563d67eaf46dd8b143c29ad4f893

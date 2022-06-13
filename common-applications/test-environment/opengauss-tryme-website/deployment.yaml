@@ -1,0 +1,37 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: opengauss-tryme-website
+  namespace: opengauss-tryme-website
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 1
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: opengauss-tryme-website
+  template:
+    metadata:
+      labels:
+        app: opengauss-tryme-website
+    spec:
+      imagePullSecrets:
+        - name: huawei-swr-image-pull-secret
+      containers:
+      - name: websiteinfod
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/opengauss/opengauss-tryme-website-test:81442d98ab68563d67eaf46dd8b143c29ad4f893
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+          name: http
+          protocol: TCP
+        resources:
+          requests:
+            cpu: 1000m
+            memory: 1000Mi
+          limits:
+            cpu: 1000m
+            memory: 1000Mi
