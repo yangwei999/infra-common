@@ -11,4 +11,4 @@ kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/omni-manager-backend/omni-manager
   newName: swr.cn-north-4.myhuaweicloud.com/opensourceway/omni-manager-backend/omni-manager
-  newTag: 3c516b2f5a6b9c6c4dd94ca221a781ed6effd788
+  newTag: d92cd71c79e9e272593593a1a20e50b2019e63d3
