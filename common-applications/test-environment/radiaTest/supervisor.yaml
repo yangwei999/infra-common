@@ -52,6 +52,8 @@ spec:
           name: supervisor-script
         - mountPath: /var/lib/messengers_certifi
           name: messengers-certifi-storage
+        - mountPath: /etc/radiaTest_ssl
+          name: ssl-data
         resources:
           requests:
             cpu: 8000m
@@ -72,6 +74,9 @@ spec:
       - name: messengers-certifi-storage
         persistentVolumeClaim:
           claimName: cce-evs-messagers-certifi
+      - name: ssl-data
+        persistentVolumeClaim:
+          claimName: cce-evs-radiatest-ssl
       - configMap:
           defaultMode: 420
           name: supervisor-radiatest-configmap
