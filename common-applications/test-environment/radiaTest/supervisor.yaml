@@ -54,6 +54,8 @@ spec:
           name: messengers-certifi-storage
         - mountPath: /etc/radiaTest_ssl
           name: ssl-data
+        - mountPath: /tmp
+          name: gunicorn-share
         resources:
           requests:
             cpu: 8000m
@@ -77,6 +79,9 @@ spec:
       - name: ssl-data
         persistentVolumeClaim:
           claimName: cce-evs-radiatest-ssl
+      - name: gunicorn-share
+        persistentVolumeClaim:
+          claimName: cce-sfs-gunicorn-share
       - configMap:
           defaultMode: 420
           name: supervisor-radiatest-configmap
@@ -115,6 +120,8 @@ spec:
         volumeMounts:
         - mountPath: /etc/radiaTest
           name: case-resolver-configure
+        - mountPath: /tmp
+          name: case-resolver-share
         resources:
           requests:
             cpu: 2000m
@@ -127,6 +134,9 @@ spec:
           defaultMode: 420
           name: supervisor-radiatest-configmap
         name: case-resolver-configure
+      - name: case-resolver-share
+        persistentVolumeClaim:
+          claimName: cce-sfs-gunicorn-share
 
 ---
 apiVersion: apps/v1
@@ -283,6 +293,8 @@ spec:
         volumeMounts:
         - mountPath: /etc/radiaTest
           name: repo-reader-configure
+        - mountPath: /tmp
+          name: repo-reader-share
         resources:
           requests:
             cpu: 2000m
@@ -295,6 +307,9 @@ spec:
           defaultMode: 420
           name: supervisor-radiatest-configmap
         name: repo-reader-configure
+      - name: repo-reader-share
+        persistentVolumeClaim:
+          claimName: cce-sfs-gunicorn-share
 
 ---
 apiVersion: apps/v1
@@ -325,6 +340,8 @@ spec:
         volumeMounts:
         - mountPath: /etc/radiaTest
           name: script-loader-configure
+        - mountPath: /tmp
+          name: script-loader-share
         resources:
           requests:
             cpu: 2000m
@@ -337,6 +354,9 @@ spec:
           defaultMode: 420
           name: supervisor-radiatest-configmap
         name: script-loader-configure
+      - name: script-loader-share
+        persistentVolumeClaim:
+          claimName: cce-sfs-gunicorn-share
 
 ---
 apiVersion: apps/v1
@@ -367,6 +387,8 @@ spec:
         volumeMounts:
         - mountPath: /etc/radiaTest
           name: set-resolver-configure
+        - mountPath: /tmp
+          name: set-resolver-share
         resources:
           requests:
             cpu: 2000m
@@ -379,6 +401,9 @@ spec:
           defaultMode: 420
           name: supervisor-radiatest-configmap
         name: set-resolver-configure
+      - name: set-resolver-share
+        persistentVolumeClaim:
+          claimName: cce-sfs-gunicorn-share
 
 ---
 apiVersion: apps/v1
