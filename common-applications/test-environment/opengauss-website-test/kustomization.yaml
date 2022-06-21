@@ -3,7 +3,7 @@ resources:
 - ingress.yaml
 - service.yaml
 - deployment.yaml
-- secrets.yaml
+- secret.yaml
 commonLabels:
   app: opengauss-website
 namespace: opengauss-website
