@@ -4,6 +4,7 @@ resources:
 - service.yaml
 - deployment.yaml
 - secret.yaml
+- configmap.yaml
 commonLabels:
   app: opengauss-website
 namespace: opengauss-website
@@ -12,4 +13,4 @@ kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/opengauss/test_opengauss_website
   newName: swr.cn-north-4.myhuaweicloud.com/opensourceway/opengauss/test_opengauss_website
-  newTag: 6e570a54f4dbe18871921708c81849a962d1c7af
+  newTag: v1.0.20220621112656

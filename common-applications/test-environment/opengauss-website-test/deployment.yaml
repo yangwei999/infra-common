@@ -10,7 +10,7 @@ metadata:
     flux.weave.works/automated: "true"
     flux.weave.works/tag.websiteinfod: semver:~1.0
 spec:
-  replicas: 2
+  replicas: 1
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -26,16 +26,20 @@ spec:
     spec:
       imagePullSecrets:
         - name: huawei-swr-image-pull-secret
+      nodeSelector:
+        opengauss-website: "true"
       containers:
       - name: websiteinfod
-        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/opengauss/test_opengauss_website:v1.0.20220401184956
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/opengauss/test_opengauss_website:v1.0.20220621112656
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 80
           name: http
           protocol: TCP
-        - containerPort: 443
-          name: https
-          protocol: TCP
-        nodeSelector:
-          opengauss-website: "true"
+        volumeMounts:
+        - mountPath: /etc/nginx/conf.d
+          name: configmap-volume
+      volumes:
+      - name: configmap-volume
+        configMap:
+          name: websitesvcconfigmap
