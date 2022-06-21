@@ -10,27 +10,27 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/case_resolver
-  newTag: 8c9bde61f0520293b7b865327898cafda55748bc
+  newTag: e09af074399652ef924ee6702cad0e73647e5d12
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/case_updator
-  newTag: 8c9bde61f0520293b7b865327898cafda55748bc
+  newTag: e09af074399652ef924ee6702cad0e73647e5d12
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/celerybeat
-  newTag: 8c9bde61f0520293b7b865327898cafda55748bc
+  newTag: e09af074399652ef924ee6702cad0e73647e5d12
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/gunicorn
-  newTag: 8c9bde61f0520293b7b865327898cafda55748bc
+  newTag: e09af074399652ef924ee6702cad0e73647e5d12
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/lifecycle_monitor
-  newTag: 8c9bde61f0520293b7b865327898cafda55748bc
+  newTag: e09af074399652ef924ee6702cad0e73647e5d12
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/nginx
   newName: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/nginx
   newTag: 8c9bde61f0520293b7b865327898cafda55748bc
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/rabbitmq
   newTag: v1.0.1
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/repo_reader
-  newTag: 8c9bde61f0520293b7b865327898cafda55748bc
+  newTag: e09af074399652ef924ee6702cad0e73647e5d12
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/script_loader
-  newTag: 8c9bde61f0520293b7b865327898cafda55748bc
+  newTag: e09af074399652ef924ee6702cad0e73647e5d12
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/set_resolver
-  newTag: 8c9bde61f0520293b7b865327898cafda55748bc
+  newTag: e09af074399652ef924ee6702cad0e73647e5d12
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/suite_updator
-  newTag: 8c9bde61f0520293b7b865327898cafda55748bc
+  newTag: e09af074399652ef924ee6702cad0e73647e5d12
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/task_updator
-  newTag: 8c9bde61f0520293b7b865327898cafda55748bc
+  newTag: e09af074399652ef924ee6702cad0e73647e5d12
