@@ -4,6 +4,7 @@ resources:
   - namespace.yaml
   - ingress.yaml
   - oauth-proxy.yaml
+  - cronjob.yaml
 commonLabels:
   app: common-jenkins
 commonAnnotations:
