@@ -19,4 +19,5 @@ resources:
   - github_spark_pr_issue
   - github_pytorch_pr_issue
   - github_tensorflow_pr_issue
+  - gitee_enterprise
 namespace: kunpeng-om
