@@ -112,22 +112,6 @@ spec:
         - containerPort: 8080
           name: http
           protocol: TCP
-        readinessProbe:              #就绪探针
-          initialDelaySeconds: 20    #延迟加载时间
-          periodSeconds: 5           #重试时间间隔
-          timeoutSeconds: 10         #超时时间设置
-          failureThreshold: 5        #探测失败的重试次数
-          httpGet:
-            path: /healthz/readiness
-            port: 8080
-        livenessProbe:               #存活探针
-          initialDelaySeconds: 60    #延迟加载时间
-          periodSeconds: 5           #重试时间间隔
-          timeoutSeconds: 5          #超时时间设置
-          failureThreshold: 3        #探测失败的重试次数
-          httpGet:
-            path: /healthz/liveness
-            port: 8080
         resources:
           requests:
             cpu: 1500m
