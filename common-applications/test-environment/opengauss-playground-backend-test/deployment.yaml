@@ -108,6 +108,8 @@ spec:
               key: contact_email
         - name: RUN_MODE
           value: prod
+        - name: DOMAIN
+          value: tryme.test.osinfra.cn
         ports:
         - containerPort: 8080
           name: http
