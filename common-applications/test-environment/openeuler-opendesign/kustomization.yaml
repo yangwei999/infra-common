@@ -1,0 +1,12 @@
+resources:
+- namespace.yaml
+- ingress.yaml
+- service.yaml
+- deployment.yaml
+- secret.yaml
+namespace: openeuler-opendesign
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+images:
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/opendesign-test
+  newTag: 241df476807c2bd419652f1d7cbc1e4c18445a44
