@@ -23,6 +23,7 @@ resources:
   - cve
   - gitee-metrics
   - tinyms_down
+  - github_mindspore_pr_issue
   - ndcg
 commonAnnotations:
   owner: zhongjun
