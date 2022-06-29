@@ -23,6 +23,7 @@ resources:
   - cve
   - gitee-metrics
   - tinyms_down
+  - ndcg
 commonAnnotations:
   owner: zhongjun
   email: "jun.zhongjun2@gmail.com"

@@ -38,6 +38,7 @@ resources:
   - gitee-metrics
   - sig-score
   - sig-radar-score
+  - ndcg
 commonAnnotations:
   owner: zhongjun
   email: "jun.zhongjun2@gmail.com"
