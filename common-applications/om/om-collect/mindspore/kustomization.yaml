@@ -25,6 +25,7 @@ resources:
   - tinyms_down
   - github_mindspore_pr_issue
   - ndcg
+  - activities-practice
 commonAnnotations:
   owner: zhongjun
   email: "jun.zhongjun2@gmail.com"
