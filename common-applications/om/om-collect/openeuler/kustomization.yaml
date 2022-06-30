@@ -38,6 +38,7 @@ resources:
   - gitee-metrics
   - sig-score
   - sig-radar-score
+  - ndcg
   - company-location
 commonAnnotations:
   owner: zhongjun
