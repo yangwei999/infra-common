@@ -1,0 +1,43 @@
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: doc-search
+  namespace: openeuler-doc-search
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 1
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: doc-search
+  template:
+    metadata:
+      labels:
+        app: doc-search
+    spec:
+      imagePullSecrets:
+        - name: huawei-swr-image-pull-secret
+      containers:
+      - name: doc-search
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/doc-search-test:19998e269f5c6a35c6fc106887d80d0d3b773942
+        resources:
+          requests:
+            cpu: 500m
+            memory: 500Mi
+          limits:
+            cpu: 500m
+            memory: 500Mi
+        volumeMounts:
+        - mountPath: /openeuler/application.yaml
+          name: configmap-volume
+          subPath: application.yaml
+      volumes:
+      - configMap:
+          defaultMode: 420
+          name: indextoolconfigmap
+        name: configmap-volume
+
+
