@@ -1,0 +1,61 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/server-snippet: |
+      rewrite ^/zh/other/cla https://clasign.osinfra.cn/sign/Z2l0ZWUlMkZvcGVuZXVsZXI= redirect;
+      rewrite ^/en/other/cla https://clasign.osinfra.cn/sign/Z2l0ZWUlMkZvcGVuZXVsZXI= redirect;
+      rewrite ^/zh/docs(/|$)(.*) https://docs.openeuler.org/zh/docs/$2 redirect;
+      rewrite ^/en/docs(/|$)(.*) https://docs.openeuler.org/en/docs/$2 redirect;
+      rewrite ^/ru(/|$)(.*) https://ru.openeuler.org/ru/$2 redirect;
+      set $country_china false;
+      if ($geoip_country_code ~ "CN"){
+          set $country_china true;
+      }
+
+      if ($country_china ~ "true"){
+          rewrite ^/$ /zh redirect;
+      }
+
+      if ($country_china ~ "false"){
+          rewrite ^/$ /en redirect;
+      }
+  name: openeuler-website-ingress
+  namespace: openeuler-website
+spec:
+  tls:
+    - hosts:
+      - openeuler.test.osinfra.cn
+      secretName: openeuler-website-tls
+  rules:
+    - host: openeuler.test.osinfra.cn
+      http:
+        paths:
+        - backend:
+            serviceName: openeuler-website-service
+            servicePort: 80
+          path: /
+
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+  name: openeuler-website-backend-ingress
+  namespace: openeuler-website
+spec:
+  tls:
+    - hosts:
+      - openeuler.test.osinfra.cn
+      secretName: openeuler-website-tls
+  rules:
+    - host: openeuler.test.osinfra.cn
+      http:
+        paths:
+        - backend:
+            serviceName: cvesa-test-service
+            servicePort: 80
+          path: /api-cve(/|$)(.*)
