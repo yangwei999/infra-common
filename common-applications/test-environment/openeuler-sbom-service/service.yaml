@@ -7,7 +7,7 @@ spec:
   ports:
   - name: sbom-api-endpoint
     port: 80
-    targetPort: 8080
+    targetPort: 13331
   selector:
     app: sbom-deployment
   type: ClusterIP
