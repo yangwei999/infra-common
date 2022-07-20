@@ -39,6 +39,7 @@ resources:
   - sig-score
   - sig-radar-score
   - ndcg
+  - company-location
 commonAnnotations:
   owner: zhongjun
   email: "jun.zhongjun2@gmail.com"
