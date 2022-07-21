@@ -10,4 +10,4 @@ kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/playground/opengauss-playground-frontend-test
   newName: swr.cn-north-4.myhuaweicloud.com/opensourceway/playground/opengauss-playground-frontend-test
-  newTag: b785b24f4d675b4642e47764d42d44b030dd19ef
+  newTag: 562a90bfc1ba81faa38716ebdb21ad29c4be56e7
