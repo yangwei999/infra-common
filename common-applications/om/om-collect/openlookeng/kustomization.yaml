@@ -22,6 +22,7 @@ resources:
   - cve
   - gitee-metrics
   - gitee-issue-score
+  - ndcg
 commonAnnotations:
   owner: zhongjun
   email: "jun.zhongjun2@gmail.com"
