@@ -10,3 +10,5 @@ kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler-website-test
   newTag: c8895929246cabd7fad3002fbd02cbf2d56b37f5
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openeuler-website-portal
+  newTag: 5bc8e56f3c40bdd1986183d006c3ea00206f02cf
