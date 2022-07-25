@@ -22,7 +22,6 @@ resources:
   - git-commit-log
   - gitee-metrics
   - ndcg
-  - github_pr_issue
 commonAnnotations:
   owner: zhongjun
   email: "jun.zhongjun2@gmail.com"
