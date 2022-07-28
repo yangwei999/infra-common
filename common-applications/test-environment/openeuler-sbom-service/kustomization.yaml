@@ -14,3 +14,5 @@ namespace: openeuler-sbom-service
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openeuler-sbom-service-test
   newTag: 0bc3b1e0704882bb631bd778f9939439569b26b0
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openeuler-sbom-website-test
+  newTag: dc20f621d90d23aaad96d9da31b0e2cf6840eeb4
