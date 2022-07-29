@@ -33,6 +33,7 @@ resources:
   - gitee-org-baidutongji
   - gitee_developer
   - git-commit-log
+  - code-statistics
   - activities-practice
   - refresh_token
   - gitee-metrics
