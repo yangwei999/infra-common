@@ -1,0 +1,31 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: om-code-statistics
+  namespace: om
+  labels:
+    app: om-code-statistics
+spec:
+  revisionHistoryLimit: 10
+  template:
+    metadata:
+      labels:
+        app: om-code-statistics
+    spec:
+      containers:
+        - name: om-code-statistics
+          image: swr.cn-north-4.myhuaweicloud.com/om/om-collection:0.4.22
+          volumeMounts:
+            - mountPath: /var/lib/om/config.ini
+              subPath: credentials_cfg
+              name: om-code-statistics-secrets-volume
+            - mountPath: /mnt
+              subPath: codestatistics
+              name: storage
+      volumes:
+        - name: om-code-statistics-secrets-volume
+          secret:
+            secretName: om-code-statistics-secrets
+        - name: storage
+          persistentVolumeClaim:
+            claimName: codestatistics
