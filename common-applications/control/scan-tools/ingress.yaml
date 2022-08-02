@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx   
+  name: scan-tools-ingress
+  namespace: scan-tools
+spec:
+  tls:
+    - hosts:
+        - scan-tool.osinfra.cn
+      secretName: scan-tools-tls
+  rules:
+    - host: scan-tool.osinfra.cn
+      http:
+        paths:
+          - backend:
+              serviceName: scan-tools-backend-service
+              servicePort: 80
+            path: /api
+          - backend:
+              serviceName: oauth2-proxy
+              servicePort: 4180
+            path: /
