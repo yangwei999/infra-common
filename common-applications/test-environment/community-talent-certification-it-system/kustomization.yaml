@@ -1,0 +1,12 @@
+resources:
+- namespace.yaml
+- ingress.yaml
+- service.yaml
+- deployment.yaml
+- secret.yaml
+namespace: community-talent-certification-it-system
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+images:
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/infra-common/community-talent-certification-test
+  newTag: ff431c51760cbf1a7b5a92cc11c2223312f550b6
