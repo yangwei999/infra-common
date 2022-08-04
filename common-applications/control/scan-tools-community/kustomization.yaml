@@ -1,0 +1,16 @@
+resources:
+- website.yaml
+- backend.yaml
+- namespace.yaml
+- service.yaml
+- ingress.yaml
+- secret.yaml
+- oauth-proxy.yaml
+namespace: scan-tools-community
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+images:
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/infra-common/community-scan-tools-backend
+  newTag: 65c3172f5f061e37ca982b60399c2c2be9285c48
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/infra-common/community-scan-tools-website
+  newTag: 65c3172f5f061e37ca982b60399c2c2be9285c48
