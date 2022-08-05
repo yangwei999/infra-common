@@ -1,8 +1,9 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: scan-tools-website
-  namespace: scan-tools-community
+  name: website
+  namespace: community-talent-certification-it-system
 spec:
   replicas: 2
   strategy:
@@ -19,8 +20,12 @@ spec:
     spec:
       containers:
       - name: website
-        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/infra-common/community-scan-tools-website:b427d2d0db92981d080b671be662e43acbcbc96f
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/infra-common/community-talent-certification:fb877e83a84a18fcb2ae59b2dc619bd61887dbb9
         imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
+          name: http
+          protocol: TCP
         resources:
           requests:
             cpu: 500m
@@ -28,4 +33,3 @@ spec:
           limits:
             cpu: 1000m
             memory: 1000Mi
-      
