@@ -67,6 +67,11 @@ spec:
                 secretKeyRef:
                   name: playground-secrets
                   key: container-timeout
+            - name: TOKEN_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: playground-secrets
+                  key: token_key
             - name: TEMPLATE_PATH
               value: https://api.osinfra.cn/metadata/v1/metadata/infrastructure/playground-meta/templates
             - name: TZ

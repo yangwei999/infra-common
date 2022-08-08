@@ -1,0 +1,7 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  labels:
+    app: community-talent-certification-it-system
+  name: community-talent-certification-it-system
