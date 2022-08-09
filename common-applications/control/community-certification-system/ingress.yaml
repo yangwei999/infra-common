@@ -8,10 +8,10 @@ metadata:
 spec:
   tls:
     - hosts:
-      - talent-assessment.osinfra.cn
+      - talent-assessment.openeuler.org
       secretName: website-tls
   rules:
-    - host: talent-assessment.osinfra.cn
+    - host: talent-assessment.openeuler.org
       http:
         paths:
         - backend:
