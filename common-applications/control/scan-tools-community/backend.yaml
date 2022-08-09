@@ -1,0 +1,88 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: scan-tools-backend
+  namespace: scan-tools-community
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 1
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+      - name: backend
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/infra-common/community-scan-tools-backend:65c3172f5f061e37ca982b60399c2c2be9285c48
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: pwd
+          valueFrom:
+            secretKeyRef:
+              key: pwd
+              name: scan-tools-secret
+        - name: mysql_host
+          valueFrom:
+            secretKeyRef:
+              key: mysql_host
+              name: scan-tools-secret
+        - name: mysql_port
+          valueFrom:
+            secretKeyRef:
+              key: mysql_port
+              name: scan-tools-secret
+        - name: mysql_user
+          valueFrom:
+            secretKeyRef:
+              key: mysql_user
+              name: scan-tools-secret
+        - name: mysql_password
+          valueFrom:
+            secretKeyRef:
+              key: mysql_password
+              name: scan-tools-secret
+        - name: mysql_database
+          valueFrom:
+            secretKeyRef:
+              key: mysql_database
+              name: scan-tools-secret
+        - name: obs_ak
+          valueFrom:
+            secretKeyRef:
+              key: obs_ak
+              name: scan-tools-secret
+        - name: obs_sk
+          valueFrom:
+            secretKeyRef:
+              key: obs_sk
+              name: scan-tools-secret
+        - name: obs_url
+          valueFrom:
+            secretKeyRef:
+              key: obs_url
+              name: scan-tools-secret
+        resources:
+          requests:
+            cpu: 1000m
+            memory: 1000Mi
+          limits:
+            cpu: 1000m
+            memory: 1000Mi
+        volumeMounts:
+        - mountPath: /var/log/open-infra
+          name: static-log-data
+        - mountPath: /var/lib/open-infra
+          name: static-lib-data
+      volumes:
+      - name: static-log-data
+        persistentVolumeClaim:
+          claimName: cce-evs-log-data
+      - name: static-lib-data
+        persistentVolumeClaim:
+          claimName: cce-evs-lib-data
