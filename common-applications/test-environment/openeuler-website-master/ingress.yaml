@@ -1,0 +1,52 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      set $Real $http_x_forwarded_for;
+      if ( $http_x_forwarded_for = "" ){
+        set $Real $proxy_add_x_forwarded_for;
+      }
+      if ( $Real ~ (\d+)\.(\d+)\.(\d+)\.(\d+),(.*) ){
+          set $Real $1.$2.$3.$4;
+      }
+      proxy_set_header True-Client-IP $Real;
+  name: openeuler-website-ingress
+  namespace: openeuler-website-master
+spec:
+  tls:
+  - hosts:
+    - openeuler2.test.osinfra.cn
+    secretName: openeuler-website-tls
+  rules:
+  - host: openeuler2.test.osinfra.cn
+    http:
+      paths:
+      - backend:
+          serviceName: openeuler-website-service
+          servicePort: 80
+        path: /
+
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+  name: openeuler-website-backend-ingress
+  namespace: openeuler-website
+spec:
+  tls:
+  - hosts:
+    - openeuler2.test.osinfra.cn
+    secretName: openeuler-website-tls
+  rules:
+  - host: openeuler2.test.osinfra.cn
+    http:
+      paths:
+      - backend:
+          serviceName: cvesa-test-service
+          servicePort: 80
+        path: /api-cve(/|$)(.*)
