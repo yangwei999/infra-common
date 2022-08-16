@@ -21,7 +21,7 @@ images:
   newTag: 6786bbfa98669702e1482a260634247203f30509
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/nginx
   newName: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/nginx
-  newTag: f8c6749af31fbd31413a401f7554344d7d38643f
+  newTag: 6786bbfa98669702e1482a260634247203f30509
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/rabbitmq
   newTag: v1.0.1
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/repo_reader
