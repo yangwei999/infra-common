@@ -1,0 +1,78 @@
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/proxy-body-size: 20m
+  name: sbom-repo-service-ingress
+  namespace: openeuler-sbom-service
+spec:
+  tls:
+    - hosts:
+        - sbom-repo-service.test.osinfra.cn
+      secretName: sbom-service-tls
+  rules:
+    - host: sbom-repo-service.test.osinfra.cn
+      http:
+        paths:
+          - backend:
+              serviceName: sbom-repo-service
+              servicePort: 80
+            path: /
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sbom-repo-service
+  namespace: openeuler-sbom-service
+spec:
+  ports:
+  - name: sbom-website
+    port: 80
+    targetPort: 15551
+  selector:
+    app: sbom-repo-service
+  type: ClusterIP
+
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: sbom-repo-service
+  namespace: openeuler-sbom-service
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 1
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: sbom-repo-service
+  template:
+    metadata:
+      labels:
+        app: sbom-repo-service
+    spec:
+      imagePullSecrets:
+        - name: huawei-swr-image-pull-secret
+      containers:
+      - name: sbom-repo-service
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/sbom-repo-service:568471465707c5102c1e93c350cfd8fb359f2e4f
+        resources:
+          requests:
+            cpu: 1000m
+            memory: 1000Mi
+          limits:
+            cpu: 1000m
+            memory: 1000Mi
+        volumeMounts:
+        - mountPath: /opt/repo-data
+          name: repo-data
+      volumes:
+      - name: repo-data
+        persistentVolumeClaim:
+          claimName: cce-evs-data
+

@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: openeuler-website-service
+  namespace: openeuler-website-master
+spec:
+  ports:
+  - name: https-port
+    protocol: TCP
+    port: 80
+    targetPort: 8080
+  selector:
+    app: openeuler-website
+  type: ClusterIP
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cvesa-test-service
+  namespace: openeuler-website-master
+spec:
+  externalName: cvesa-test-service.cvesa-test.svc.cluster.local
+  type: ExternalName
+
+  
