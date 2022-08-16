@@ -10,27 +10,27 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/case_resolver
-  newTag: 662df31ae7113057caf100d4efcfdf95ee3cad1c
+  newTag: 6786bbfa98669702e1482a260634247203f30509
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/case_updator
-  newTag: 662df31ae7113057caf100d4efcfdf95ee3cad1c
+  newTag: 6786bbfa98669702e1482a260634247203f30509
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/celerybeat
-  newTag: 662df31ae7113057caf100d4efcfdf95ee3cad1c
+  newTag: 6786bbfa98669702e1482a260634247203f30509
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/gunicorn
   newTag: 6786bbfa98669702e1482a260634247203f30509
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/lifecycle_monitor
-  newTag: 662df31ae7113057caf100d4efcfdf95ee3cad1c
+  newTag: 6786bbfa98669702e1482a260634247203f30509
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/nginx
   newName: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/nginx
   newTag: f8c6749af31fbd31413a401f7554344d7d38643f
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/rabbitmq
   newTag: v1.0.1
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/repo_reader
-  newTag: 662df31ae7113057caf100d4efcfdf95ee3cad1c
+  newTag: 6786bbfa98669702e1482a260634247203f30509
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/script_loader
-  newTag: 662df31ae7113057caf100d4efcfdf95ee3cad1c
+  newTag: 6786bbfa98669702e1482a260634247203f30509
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/set_resolver
-  newTag: 662df31ae7113057caf100d4efcfdf95ee3cad1c
+  newTag: 6786bbfa98669702e1482a260634247203f30509
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/suite_updator
-  newTag: 662df31ae7113057caf100d4efcfdf95ee3cad1c
+  newTag: 6786bbfa98669702e1482a260634247203f30509
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/task_updator
-  newTag: 662df31ae7113057caf100d4efcfdf95ee3cad1c
+  newTag: 6786bbfa98669702e1482a260634247203f30509
