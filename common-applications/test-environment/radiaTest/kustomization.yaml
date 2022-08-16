@@ -34,3 +34,9 @@ images:
   newTag: 8cd81336bc98635a01e83402f04ef21bc1628ccf
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/task_updator
   newTag: 8cd81336bc98635a01e83402f04ef21bc1628ccf
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/openqa_group_overview
+  newTag: 8cd81336bc98635a01e83402f04ef21bc1628ccf
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/openqa_homepage_reader
+  newTag: 8cd81336bc98635a01e83402f04ef21bc1628ccf
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/openqa_tests_overview
+  newTag: 8cd81336bc98635a01e83402f04ef21bc1628ccf
