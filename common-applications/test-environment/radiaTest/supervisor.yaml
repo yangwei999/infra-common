@@ -520,11 +520,11 @@ spec:
           name: openqa-group-overview-configure
         resources:
           requests:
-            cpu: 500m
-            memory: 500Mi
-          limits:
             cpu: 1000m
             memory: 1000Mi
+          limits:
+            cpu: 1000m
+            memory: 2000Mi
       volumes:
       - configMap:
           defaultMode: 420
@@ -562,11 +562,11 @@ spec:
           name: openqa-homepage-reader-configure
         resources:
           requests:
-            cpu: 500m
-            memory: 500Mi
-          limits:
             cpu: 1000m
             memory: 1000Mi
+          limits:
+            cpu: 1000m
+            memory: 2000Mi
       volumes:
       - configMap:
           defaultMode: 420
@@ -604,11 +604,11 @@ spec:
           name: openqa-tests-overview-configure
         resources:
           requests:
-            cpu: 500m
-            memory: 500Mi
-          limits:
             cpu: 1000m
             memory: 1000Mi
+          limits:
+            cpu: 1000m
+            memory: 2000Mi
       volumes:
       - configMap:
           defaultMode: 420
