@@ -16,7 +16,7 @@ images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/celerybeat
   newTag: 6786bbfa98669702e1482a260634247203f30509
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/gunicorn
-  newTag: 6786bbfa98669702e1482a260634247203f30509
+  newTag: 8cd81336bc98635a01e83402f04ef21bc1628ccf
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/lifecycle_monitor
   newTag: 6786bbfa98669702e1482a260634247203f30509
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/nginx
