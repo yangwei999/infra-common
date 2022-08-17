@@ -5,6 +5,7 @@ resources:
 - secrets.yaml
 - ingress.yaml
 - sbom-website.yaml
+- sbom-repo-service.yaml
 commonAnnotations:
   email: huangheqing2@huawei.com
   owner: huangheqing
@@ -15,4 +16,6 @@ images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openeuler-sbom-service-test
   newTag: 812b84d74290105e50d4354ee342f75e677356b0
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openeuler-sbom-website-test
-  newTag: v1.0.20220808104400
+  newTag: v1.0.20220816164029
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/sbom-repo-service
+  newTag: 568471465707c5102c1e93c350cfd8fb359f2e4f

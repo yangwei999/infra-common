@@ -56,6 +56,11 @@ spec:
             secretKeyRef:
               key: db_password_file
               name: sbom-server-secrets
+        - name: OSSINDEX_API_TOKEN_FILE
+          valueFrom:
+            secretKeyRef:
+              key: ossindex_api_token_file
+              name: sbom-server-secrets
         volumeMounts:
         - mountPath: /var/db_secrets
           name: db-secret

@@ -488,3 +488,129 @@ spec:
           defaultMode: 420
           name: supervisor-radiatest-configmap
         name: task-updator-configure
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: openqa-group-overview
+  namespace: radia-test
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 1
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: openqa-group-overview
+  template:
+    metadata:
+      labels:
+        app: openqa-group-overview
+    spec:
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
+      containers:
+      - name: openqa-group-overview
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/openqa_group_overview:8cd81336bc98635a01e83402f04ef21bc1628ccf
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+        - mountPath: /etc/radiaTest
+          name: openqa-group-overview-configure
+        resources:
+          requests:
+            cpu: 1000m
+            memory: 1000Mi
+          limits:
+            cpu: 1000m
+            memory: 2000Mi
+      volumes:
+      - configMap:
+          defaultMode: 420
+          name: supervisor-radiatest-configmap
+        name: openqa-group-overview-configure
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: openqa-homepage-reader
+  namespace: radia-test
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 1
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: openqa-homepage-reader
+  template:
+    metadata:
+      labels:
+        app: openqa-homepage-reader
+    spec:
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
+      containers:
+      - name: openqa-homepage-reader
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/openqa_homepage_reader:8cd81336bc98635a01e83402f04ef21bc1628ccf
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+        - mountPath: /etc/radiaTest
+          name: openqa-homepage-reader-configure
+        resources:
+          requests:
+            cpu: 1000m
+            memory: 1000Mi
+          limits:
+            cpu: 1000m
+            memory: 2000Mi
+      volumes:
+      - configMap:
+          defaultMode: 420
+          name: supervisor-radiatest-configmap
+        name: openqa-homepage-reader-configure
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: openqa-tests-overview
+  namespace: radia-test
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 1
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: openqa-tests-overview
+  template:
+    metadata:
+      labels:
+        app: openqa-tests-overview
+    spec:
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
+      containers:
+      - name: openqa-tests-overview
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/openqa_tests_overview:8cd81336bc98635a01e83402f04ef21bc1628ccf
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+        - mountPath: /etc/radiaTest
+          name: openqa-tests-overview-configure
+        resources:
+          requests:
+            cpu: 1000m
+            memory: 1000Mi
+          limits:
+            cpu: 1000m
+            memory: 2000Mi
+      volumes:
+      - configMap:
+          defaultMode: 420
+          name: supervisor-radiatest-configmap
+        name: openqa-tests-overview-configure
