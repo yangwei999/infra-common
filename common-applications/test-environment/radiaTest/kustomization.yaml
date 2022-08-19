@@ -40,3 +40,7 @@ images:
   newTag: 71be49f2dcaf5d72fa96d70429b3c1477dbc9d38
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/task_updator
   newTag: 71be49f2dcaf5d72fa96d70429b3c1477dbc9d38
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/update_issue_rate
+  newTag: a3762243ad2433df58f7f069af044ec897dba3e0
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/update_issue_type_state
+  newTag: a3762243ad2433df58f7f069af044ec897dba3e0
