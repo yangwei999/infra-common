@@ -614,3 +614,88 @@ spec:
           defaultMode: 420
           name: supervisor-radiatest-configmap
         name: openqa-tests-overview-configure
+
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: update-issue-rate
+  namespace: radia-test
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 1
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: update-issue-rate
+  template:
+    metadata:
+      labels:
+        app: update-issue-rate
+    spec:
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
+      containers:
+      - name: update-issue-rate
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/update_issue_rate:3cb97d713d5c67bdf78d069579d3c4d3b695fa04
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+        - mountPath: /etc/radiaTest
+          name: update-issue-rate-configure
+        resources:
+          requests:
+            cpu: 500m
+            memory: 500Mi
+          limits:
+            cpu: 1000m
+            memory: 1000Mi
+      volumes:
+      - configMap:
+          defaultMode: 420
+          name: supervisor-radiatest-configmap
+        name: update-issue-rate-configure
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: update-issue-type-state
+  namespace: radia-test
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 1
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: update-issue-type-state
+  template:
+    metadata:
+      labels:
+        app: update-issue-type-state
+    spec:
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
+      containers:
+      - name: update-issue-type-state
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/update_issue_type_state:3cb97d713d5c67bdf78d069579d3c4d3b695fa04
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+        - mountPath: /etc/radiaTest
+          name: update-issue-type-state-configure
+        resources:
+          requests:
+            cpu: 500m
+            memory: 500Mi
+          limits:
+            cpu: 1000m
+            memory: 1000Mi
+      volumes:
+      - configMap:
+          defaultMode: 420
+          name: supervisor-radiatest-configmap
+        name: update-issue-type-state-configure
