@@ -1,0 +1,9 @@
+resources:
+- cluster-configuration.yaml
+- kubesphere-installer.yaml
+commonAnnotations:
+  owner: liuyang
+  email: "747802914@qq.com"
+namespace: kubesphere-system
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
