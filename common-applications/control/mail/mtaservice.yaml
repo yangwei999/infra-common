@@ -17,6 +17,10 @@ spec:
     name: exim4-port
     targetPort: 25
     protocol: TCP
+  - port: 465
+    name: exim4-port-2
+    targetPort: 465
+    protocol: TCP
   selector:
     component: mail-exim4-service
   type: LoadBalancer
