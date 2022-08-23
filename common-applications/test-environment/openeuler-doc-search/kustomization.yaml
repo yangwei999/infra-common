@@ -12,4 +12,4 @@ kind: Kustomization
 namespace: openeuler-doc-search
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/doc-search-test
-  newTag: 5f35cdba86e7291e5ceb74534294d14fd063aecf
+  newTag: 0e98b24711d7fecc33ab9ba13d4e7f721256d93a
