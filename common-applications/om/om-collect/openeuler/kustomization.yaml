@@ -42,6 +42,7 @@ resources:
   - ndcg
   - company-location
   - github_pr_issue
+  - iso_download
 commonAnnotations:
   owner: zhongjun
   email: "jun.zhongjun2@gmail.com"
