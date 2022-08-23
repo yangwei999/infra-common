@@ -36,6 +36,7 @@ resources:
   - code-statistics
   - activities-practice
   - refresh_token
+  - rpm-repo-download
   - gitee-metrics
   - sig-score
   - sig-radar-score
