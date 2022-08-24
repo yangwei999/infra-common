@@ -699,3 +699,45 @@ spec:
           defaultMode: 420
           name: supervisor-radiatest-configmap
         name: update-issue-type-state-configure
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dailybuild-resolver
+  namespace: radia-test
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 1
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: dailybuild-resolver
+  template:
+    metadata:
+      labels:
+        app: dailybuild-resolver
+    spec:
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
+      containers:
+      - name: dailybuild-resolver
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/dailybuild_resolver:25a65e451d39ffb64501782dda1b5a2e4366bb81
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+        - mountPath: /etc/radiaTest
+          name: dailybuild-resolver-configure
+        resources:
+          requests:
+            cpu: 500m
+            memory: 500Mi
+          limits:
+            cpu: 1000m
+            memory: 1000Mi
+      volumes:
+      - configMap:
+          defaultMode: 420
+          name: supervisor-radiatest-configmap
+        name: dailybuild-resolver-configure

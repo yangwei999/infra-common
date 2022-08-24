@@ -44,3 +44,5 @@ images:
   newTag: 542b1a1e3fea6258f14c19291b71e666ae62e9e9
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/update_issue_type_state
   newTag: 542b1a1e3fea6258f14c19291b71e666ae62e9e9
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/dailybuild_resolver
+  newTag: 25a65e451d39ffb64501782dda1b5a2e4366bb81
