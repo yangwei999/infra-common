@@ -1,0 +1,31 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prometheus-proxy-deployment
+  namespace: infra-monitor
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: prometheus-proxy
+  template:
+    metadata:
+      labels:
+        app: prometheus-proxy
+    spec:
+      containers:
+      - name: prometheus-proxy
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/monitor/prometheus-proxy:1.13.0
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 9090
+          name: http
+          protocol: TCP
+        resources:
+          requests:
+            cpu: 200m
+            memory: 500Mi
+          limits:
+            cpu: 500m
+            memory: 1000Mi
