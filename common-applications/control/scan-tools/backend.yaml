@@ -62,6 +62,11 @@ spec:
             secretKeyRef:
               key: obs_url
               name: scan-tools-secret
+        - name: uptime_robot_api_key
+          valueFrom:
+            secretKeyRef:
+              key: uptime_robot_api_key
+              name: scan-tools-secret
         resources:
           requests:
             cpu: 1000m
