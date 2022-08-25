@@ -44,6 +44,7 @@ resources:
   - company-location
   - github_pr_issue
   - iso_download
+  - qinghua-down
 commonAnnotations:
   owner: zhongjun
   email: "jun.zhongjun2@gmail.com"
