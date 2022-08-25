@@ -28,6 +28,7 @@ resources:
   - activities-practice
   - xihe_down
   - obs-download
+  - model-zoo-download
 commonAnnotations:
   owner: zhongjun
   email: "jun.zhongjun2@gmail.com"
