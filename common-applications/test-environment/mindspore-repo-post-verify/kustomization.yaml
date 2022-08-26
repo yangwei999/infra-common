@@ -12,4 +12,4 @@ kind: Kustomization
 namespace: mindspore-repo-post-verify
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/mindspore/mindspore-repo-post-verify-test
-  newTag: 0d9744911c06ea3d2d1055c35ce3f03615baa489
+  newTag: b35ba9a1951cd866dfa3f2bb25642805576c1c1d
