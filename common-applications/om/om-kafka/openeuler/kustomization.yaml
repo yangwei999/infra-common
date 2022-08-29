@@ -8,6 +8,7 @@ resources:
   - package-status
   - statewall-ci-result
   - statewall-ci-mistake
+  - community-tracker
 commonAnnotations:
   owner: zhongjun
   email: "jun.zhongjun2@gmail.com"
