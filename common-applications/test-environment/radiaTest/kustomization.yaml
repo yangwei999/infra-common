@@ -10,39 +10,39 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/case_resolver
-  newTag: 740f76463098bc03679df5ea0456bdc521acb43f
+  newTag: 23f8f9930d7b04803cb0830234291d26bb6be6ab
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/case_updator
-  newTag: 740f76463098bc03679df5ea0456bdc521acb43f
+  newTag: 23f8f9930d7b04803cb0830234291d26bb6be6ab
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/celerybeat
-  newTag: 740f76463098bc03679df5ea0456bdc521acb43f
+  newTag: 23f8f9930d7b04803cb0830234291d26bb6be6ab
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/dailybuild_resolver
-  newTag: 740f76463098bc03679df5ea0456bdc521acb43f
+  newTag: 23f8f9930d7b04803cb0830234291d26bb6be6ab
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/gunicorn
   newTag: 23f8f9930d7b04803cb0830234291d26bb6be6ab
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/lifecycle_monitor
-  newTag: 740f76463098bc03679df5ea0456bdc521acb43f
+  newTag: 23f8f9930d7b04803cb0830234291d26bb6be6ab
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/nginx
   newName: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/nginx
   newTag: e03f63fde5c5b1e5f713cd3e485577a4df892bcd
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/openqa_group_overview
-  newTag: 740f76463098bc03679df5ea0456bdc521acb43f
+  newTag: 23f8f9930d7b04803cb0830234291d26bb6be6ab
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/openqa_homepage_reader
-  newTag: 740f76463098bc03679df5ea0456bdc521acb43f
+  newTag: 23f8f9930d7b04803cb0830234291d26bb6be6ab
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/openqa_tests_overview
-  newTag: 740f76463098bc03679df5ea0456bdc521acb43f
+  newTag: 23f8f9930d7b04803cb0830234291d26bb6be6ab
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/rabbitmq
   newTag: v1.0.1
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/repo_reader
-  newTag: 740f76463098bc03679df5ea0456bdc521acb43f
+  newTag: 23f8f9930d7b04803cb0830234291d26bb6be6ab
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/script_loader
-  newTag: 740f76463098bc03679df5ea0456bdc521acb43f
+  newTag: 23f8f9930d7b04803cb0830234291d26bb6be6ab
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/set_resolver
-  newTag: 740f76463098bc03679df5ea0456bdc521acb43f
+  newTag: 23f8f9930d7b04803cb0830234291d26bb6be6ab
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/suite_updator
-  newTag: 740f76463098bc03679df5ea0456bdc521acb43f
+  newTag: 23f8f9930d7b04803cb0830234291d26bb6be6ab
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/task_updator
-  newTag: 740f76463098bc03679df5ea0456bdc521acb43f
+  newTag: 23f8f9930d7b04803cb0830234291d26bb6be6ab
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/update_issue_rate
-  newTag: 740f76463098bc03679df5ea0456bdc521acb43f
+  newTag: 23f8f9930d7b04803cb0830234291d26bb6be6ab
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/update_issue_type_state
-  newTag: 740f76463098bc03679df5ea0456bdc521acb43f
+  newTag: 23f8f9930d7b04803cb0830234291d26bb6be6ab
