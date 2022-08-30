@@ -9,18 +9,15 @@ metadata:
       rewrite ^/zh/docs(/|$)(.*) https://docs.openeuler.org/zh/docs/$2 redirect;
       rewrite ^/en/docs(/|$)(.*) https://docs.openeuler.org/en/docs/$2 redirect;
       rewrite ^/ru(/|$)(.*) https://ru.openeuler.org/ru/$2 redirect;
-      set $country_china false;
-      if ($geoip_country_code ~ "CN"){
-          set $country_china true;
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      set $Real $http_x_forwarded_for;
+      if ( $http_x_forwarded_for = "" ){
+        set $Real $proxy_add_x_forwarded_for;
       }
-
-      if ($country_china ~ "true"){
-          rewrite ^/$ /zh redirect;
+      if ( $Real ~ (\d+)\.(\d+)\.(\d+)\.(\d+),(.*) ){
+          set $Real $1.$2.$3.$4;
       }
-
-      if ($country_china ~ "false"){
-          rewrite ^/$ /en redirect;
-      }
+      proxy_set_header True-Client-IP $Real;
   name: openeuler-website-ingress
   namespace: openeuler-website
 spec:
