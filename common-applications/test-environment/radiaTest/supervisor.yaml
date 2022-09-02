@@ -95,7 +95,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: case-resolver
+  name: suitecase-updator
   namespace: radia-test
 spec:
   replicas: 1
@@ -105,36 +105,36 @@ spec:
     type: RollingUpdate
   selector:
     matchLabels:
-      app: case-resolver
+      app: suitecase-updator
   template:
     metadata:
       labels:
-        app: case-resolver
+        app: suitecase-updator
     spec:
       imagePullSecrets:
       - name: huawei-swr-image-pull-secret
       containers:
-      - name: case-resolver
-        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/case_resolver:f0b5570a9f140e6876678e49c72b488d51679d75
+      - name: suitecase-updator
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/suitecase_updator:9f022b7867d8d311a28d6c0f0836cb18719ee718
         imagePullPolicy: IfNotPresent
         volumeMounts:
         - mountPath: /etc/radiaTest
-          name: case-resolver-configure
+          name: suitecase-updator-configure
         - mountPath: /tmp
-          name: case-resolver-share
+          name: suitecase-updator-share
         resources:
           requests:
             cpu: 2000m
             memory: 2000Mi
           limits:
-            cpu: 4000m
-            memory: 4000Mi
+            cpu: 2000m
+            memory: 2000Mi
       volumes:
       - configMap:
           defaultMode: 420
           name: supervisor-radiatest-configmap
-        name: case-resolver-configure
-      - name: case-resolver-share
+        name: suitecase-updator-configure
+      - name: suitecase-updator-share
         persistentVolumeClaim:
           claimName: cce-sfs-gunicorn-share
 
@@ -142,7 +142,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: case-updator
+  name: casefile-resolver
   namespace: radia-test
 spec:
   replicas: 1
@@ -152,21 +152,21 @@ spec:
     type: RollingUpdate
   selector:
     matchLabels:
-      app: case-updator
+      app: casefile-resolver
   template:
     metadata:
       labels:
-        app: case-updator
+        app: casefile-resolver
     spec:
       imagePullSecrets:
       - name: huawei-swr-image-pull-secret
       containers:
-      - name: case-updator
-        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/case_updator:f0b5570a9f140e6876678e49c72b488d51679d75
+      - name: casefile-resolver
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/casefile_resolver:9f022b7867d8d311a28d6c0f0836cb18719ee718
         imagePullPolicy: IfNotPresent
         volumeMounts:
         - mountPath: /etc/radiaTest
-          name: case-updator-configure
+          name: casefile-resolver-configure
         resources:
           requests:
             cpu: 2000m
@@ -178,7 +178,7 @@ spec:
       - configMap:
           defaultMode: 420
           name: supervisor-radiatest-configmap
-        name: case-updator-configure
+        name: casefile-resolver-configure
 
 ---
 apiVersion: apps/v1
@@ -204,18 +204,18 @@ spec:
       - name: huawei-swr-image-pull-secret
       containers:
       - name: celerybeat
-        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/celerybeat:f0b5570a9f140e6876678e49c72b488d51679d75
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/celerybeat:9f022b7867d8d311a28d6c0f0836cb18719ee718
         imagePullPolicy: IfNotPresent
         volumeMounts:
         - mountPath: /etc/radiaTest
           name: celerybeat-configure
         resources:
           requests:
-            cpu: 2000m
-            memory: 2000Mi
+            cpu: 1000m
+            memory: 1000Mi
           limits:
-            cpu: 2000m
-            memory: 2000Mi
+            cpu: 1000m
+            memory: 1000Mi
       volumes:
       - configMap:
           defaultMode: 420
@@ -226,7 +226,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: lifecycle-monitor
+  name: periodic-worker
   namespace: radia-test
 spec:
   replicas: 1
@@ -236,65 +236,23 @@ spec:
     type: RollingUpdate
   selector:
     matchLabels:
-      app: lifecycle-monitor
+      app: periodic-worker
   template:
     metadata:
       labels:
-        app: lifecycle-monitor
+        app: periodic-worker
     spec:
       imagePullSecrets:
       - name: huawei-swr-image-pull-secret
       containers:
-      - name: lifecycle-monitor
-        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/lifecycle_monitor:f0b5570a9f140e6876678e49c72b488d51679d75
+      - name: periodic-worker
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/periodic_worker:9f022b7867d8d311a28d6c0f0836cb18719ee718
         imagePullPolicy: IfNotPresent
         volumeMounts:
         - mountPath: /etc/radiaTest
-          name: lifecycle-monitor-configure
-        resources:
-          requests:
-            cpu: 2000m
-            memory: 2000Mi
-          limits:
-            cpu: 2000m
-            memory: 2000Mi
-      volumes:
-      - configMap:
-          defaultMode: 420
-          name: supervisor-radiatest-configmap
-        name: lifecycle-monitor-configure
-
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: repo-reader
-  namespace: radia-test
-spec:
-  replicas: 1
-  strategy:
-    rollingUpdate:
-      maxUnavailable: 1
-    type: RollingUpdate
-  selector:
-    matchLabels:
-      app: repo-reader
-  template:
-    metadata:
-      labels:
-        app: repo-reader
-    spec:
-      imagePullSecrets:
-      - name: huawei-swr-image-pull-secret
-      containers:
-      - name: repo-reader
-        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/repo_reader:f0b5570a9f140e6876678e49c72b488d51679d75
-        imagePullPolicy: IfNotPresent
-        volumeMounts:
-        - mountPath: /etc/radiaTest
-          name: repo-reader-configure
+          name: periodic-worker-configure
         - mountPath: /tmp
-          name: repo-reader-share
+          name: periodic-worker-share
         resources:
           requests:
             cpu: 2000m
@@ -306,8 +264,8 @@ spec:
       - configMap:
           defaultMode: 420
           name: supervisor-radiatest-configmap
-        name: repo-reader-configure
-      - name: repo-reader-share
+        name: periodic-worker-configure
+      - name: periodic-worker-share
         persistentVolumeClaim:
           claimName: cce-sfs-gunicorn-share
 
@@ -335,7 +293,7 @@ spec:
       - name: huawei-swr-image-pull-secret
       containers:
       - name: script-loader
-        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/script_loader:f0b5570a9f140e6876678e49c72b488d51679d75
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/scripts_loader:9f022b7867d8d311a28d6c0f0836cb18719ee718
         imagePullPolicy: IfNotPresent
         volumeMounts:
         - mountPath: /etc/radiaTest
@@ -344,11 +302,11 @@ spec:
           name: script-loader-share
         resources:
           requests:
-            cpu: 2000m
-            memory: 2000Mi
+            cpu: 1000m
+            memory: 1500Mi
           limits:
-            cpu: 2000m
-            memory: 2000Mi
+            cpu: 1000m
+            memory: 1500Mi
       volumes:
       - configMap:
           defaultMode: 420
@@ -362,7 +320,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: set-resolver
+  name: root-resolver
   namespace: radia-test
 spec:
   replicas: 1
@@ -372,23 +330,23 @@ spec:
     type: RollingUpdate
   selector:
     matchLabels:
-      app: set-resolver
+      app: root-resolver
   template:
     metadata:
       labels:
-        app: set-resolver
+        app: root-resolver
     spec:
       imagePullSecrets:
       - name: huawei-swr-image-pull-secret
       containers:
-      - name: set-resolver
-        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/set_resolver:f0b5570a9f140e6876678e49c72b488d51679d75
+      - name: root-resolver
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/root_resolver:9f022b7867d8d311a28d6c0f0836cb18719ee718
         imagePullPolicy: IfNotPresent
         volumeMounts:
         - mountPath: /etc/radiaTest
-          name: set-resolver-configure
+          name: root-resolver-configure
         - mountPath: /tmp
-          name: set-resolver-share
+          name: root-resolver-share
         resources:
           requests:
             cpu: 2000m
@@ -400,8 +358,8 @@ spec:
       - configMap:
           defaultMode: 420
           name: supervisor-radiatest-configmap
-        name: set-resolver-configure
-      - name: set-resolver-share
+        name: root-resolver-configure
+      - name: root-resolver-share
         persistentVolumeClaim:
           claimName: cce-sfs-gunicorn-share
 
@@ -409,7 +367,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: suite-updator
+  name: issuerate-updator
   namespace: radia-test
 spec:
   replicas: 1
@@ -419,236 +377,25 @@ spec:
     type: RollingUpdate
   selector:
     matchLabels:
-      app: suite-updator
+      app: issuerate-updator
   template:
     metadata:
       labels:
-        app: suite-updator
+        app: issuerate-updator
     spec:
       imagePullSecrets:
       - name: huawei-swr-image-pull-secret
       containers:
-      - name: suite-updator
-        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/suite_updator:f0b5570a9f140e6876678e49c72b488d51679d75
+      - name: issuerate-updator
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/issuerate_updator:9f022b7867d8d311a28d6c0f0836cb18719ee718
         imagePullPolicy: IfNotPresent
         volumeMounts:
         - mountPath: /etc/radiaTest
-          name: suite-updator-configure
-        resources:
-          requests:
-            cpu: 2000m
-            memory: 2000Mi
-          limits:
-            cpu: 2000m
-            memory: 2000Mi
-      volumes:
-      - configMap:
-          defaultMode: 420
-          name: supervisor-radiatest-configmap
-        name: suite-updator-configure
-
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: task-updator
-  namespace: radia-test
-spec:
-  replicas: 1
-  strategy:
-    rollingUpdate:
-      maxUnavailable: 1
-    type: RollingUpdate
-  selector:
-    matchLabels:
-      app: task-updator
-  template:
-    metadata:
-      labels:
-        app: task-updator
-    spec:
-      imagePullSecrets:
-      - name: huawei-swr-image-pull-secret
-      containers:
-      - name: task-updator
-        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/task_updator:f0b5570a9f140e6876678e49c72b488d51679d75
-        imagePullPolicy: IfNotPresent
-        volumeMounts:
-        - mountPath: /etc/radiaTest
-          name: task-updator-configure
-        resources:
-          requests:
-            cpu: 2000m
-            memory: 2000Mi
-          limits:
-            cpu: 2000m
-            memory: 2000Mi
-      volumes:
-      - configMap:
-          defaultMode: 420
-          name: supervisor-radiatest-configmap
-        name: task-updator-configure
-
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: openqa-group-overview
-  namespace: radia-test
-spec:
-  replicas: 1
-  strategy:
-    rollingUpdate:
-      maxUnavailable: 1
-    type: RollingUpdate
-  selector:
-    matchLabels:
-      app: openqa-group-overview
-  template:
-    metadata:
-      labels:
-        app: openqa-group-overview
-    spec:
-      imagePullSecrets:
-      - name: huawei-swr-image-pull-secret
-      containers:
-      - name: openqa-group-overview
-        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/openqa_group_overview:8cd81336bc98635a01e83402f04ef21bc1628ccf
-        imagePullPolicy: IfNotPresent
-        volumeMounts:
-        - mountPath: /etc/radiaTest
-          name: openqa-group-overview-configure
+          name: issuerate-updator-configure
         resources:
           requests:
             cpu: 1000m
             memory: 1000Mi
-          limits:
-            cpu: 1000m
-            memory: 2000Mi
-      volumes:
-      - configMap:
-          defaultMode: 420
-          name: supervisor-radiatest-configmap
-        name: openqa-group-overview-configure
-
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: openqa-homepage-reader
-  namespace: radia-test
-spec:
-  replicas: 1
-  strategy:
-    rollingUpdate:
-      maxUnavailable: 1
-    type: RollingUpdate
-  selector:
-    matchLabels:
-      app: openqa-homepage-reader
-  template:
-    metadata:
-      labels:
-        app: openqa-homepage-reader
-    spec:
-      imagePullSecrets:
-      - name: huawei-swr-image-pull-secret
-      containers:
-      - name: openqa-homepage-reader
-        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/openqa_homepage_reader:8cd81336bc98635a01e83402f04ef21bc1628ccf
-        imagePullPolicy: IfNotPresent
-        volumeMounts:
-        - mountPath: /etc/radiaTest
-          name: openqa-homepage-reader-configure
-        resources:
-          requests:
-            cpu: 1000m
-            memory: 1000Mi
-          limits:
-            cpu: 1000m
-            memory: 2000Mi
-      volumes:
-      - configMap:
-          defaultMode: 420
-          name: supervisor-radiatest-configmap
-        name: openqa-homepage-reader-configure
-
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: openqa-tests-overview
-  namespace: radia-test
-spec:
-  replicas: 1
-  strategy:
-    rollingUpdate:
-      maxUnavailable: 1
-    type: RollingUpdate
-  selector:
-    matchLabels:
-      app: openqa-tests-overview
-  template:
-    metadata:
-      labels:
-        app: openqa-tests-overview
-    spec:
-      imagePullSecrets:
-      - name: huawei-swr-image-pull-secret
-      containers:
-      - name: openqa-tests-overview
-        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/openqa_tests_overview:8cd81336bc98635a01e83402f04ef21bc1628ccf
-        imagePullPolicy: IfNotPresent
-        volumeMounts:
-        - mountPath: /etc/radiaTest
-          name: openqa-tests-overview-configure
-        resources:
-          requests:
-            cpu: 1000m
-            memory: 1000Mi
-          limits:
-            cpu: 1000m
-            memory: 2000Mi
-      volumes:
-      - configMap:
-          defaultMode: 420
-          name: supervisor-radiatest-configmap
-        name: openqa-tests-overview-configure
-
-
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: update-issue-rate
-  namespace: radia-test
-spec:
-  replicas: 1
-  strategy:
-    rollingUpdate:
-      maxUnavailable: 1
-    type: RollingUpdate
-  selector:
-    matchLabels:
-      app: update-issue-rate
-  template:
-    metadata:
-      labels:
-        app: update-issue-rate
-    spec:
-      imagePullSecrets:
-      - name: huawei-swr-image-pull-secret
-      containers:
-      - name: update-issue-rate
-        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/update_issue_rate:3cb97d713d5c67bdf78d069579d3c4d3b695fa04
-        imagePullPolicy: IfNotPresent
-        volumeMounts:
-        - mountPath: /etc/radiaTest
-          name: update-issue-rate-configure
-        resources:
-          requests:
-            cpu: 500m
-            memory: 500Mi
           limits:
             cpu: 1000m
             memory: 1000Mi
@@ -656,13 +403,14 @@ spec:
       - configMap:
           defaultMode: 420
           name: supervisor-radiatest-configmap
-        name: update-issue-rate-configure
+        name: issuerate-updator-configure
+
 
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: update-issue-type-state
+  name: openqa-reader
   namespace: radia-test
 spec:
   replicas: 1
@@ -672,25 +420,25 @@ spec:
     type: RollingUpdate
   selector:
     matchLabels:
-      app: update-issue-type-state
+      app: openqa-reader
   template:
     metadata:
       labels:
-        app: update-issue-type-state
+        app: openqa-reader
     spec:
       imagePullSecrets:
       - name: huawei-swr-image-pull-secret
       containers:
-      - name: update-issue-type-state
-        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/update_issue_type_state:3cb97d713d5c67bdf78d069579d3c4d3b695fa04
+      - name: openqa-reader
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/openqa_reader:9f022b7867d8d311a28d6c0f0836cb18719ee718
         imagePullPolicy: IfNotPresent
         volumeMounts:
         - mountPath: /etc/radiaTest
-          name: update-issue-type-state-configure
+          name: openqa-reader-configure
         resources:
           requests:
-            cpu: 500m
-            memory: 500Mi
+            cpu: 1000m
+            memory: 1000Mi
           limits:
             cpu: 1000m
             memory: 1000Mi
@@ -698,46 +446,7 @@ spec:
       - configMap:
           defaultMode: 420
           name: supervisor-radiatest-configmap
-        name: update-issue-type-state-configure
+        name: openqa-reader-configure
 
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: dailybuild-resolver
-  namespace: radia-test
-spec:
-  replicas: 1
-  strategy:
-    rollingUpdate:
-      maxUnavailable: 1
-    type: RollingUpdate
-  selector:
-    matchLabels:
-      app: dailybuild-resolver
-  template:
-    metadata:
-      labels:
-        app: dailybuild-resolver
-    spec:
-      imagePullSecrets:
-      - name: huawei-swr-image-pull-secret
-      containers:
-      - name: dailybuild-resolver
-        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/dailybuild_resolver:25a65e451d39ffb64501782dda1b5a2e4366bb81
-        imagePullPolicy: IfNotPresent
-        volumeMounts:
-        - mountPath: /etc/radiaTest
-          name: dailybuild-resolver-configure
-        resources:
-          requests:
-            cpu: 500m
-            memory: 500Mi
-          limits:
-            cpu: 1000m
-            memory: 1000Mi
-      volumes:
-      - configMap:
-          defaultMode: 420
-          name: supervisor-radiatest-configmap
-        name: dailybuild-resolver-configure
+
+
