@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-kubesphere
+spec:
+  tls:
+  - hosts:
+    - kubesphere.osinfra.cn
+    secretName: kubesphere-tls
+  rules:
+  - host: kubesphere.osinfra.cn
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: oauth2-proxy
+            port:
+              number: 4180
+  ingressClassName: nginx

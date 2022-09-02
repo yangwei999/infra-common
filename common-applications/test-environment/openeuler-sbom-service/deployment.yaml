@@ -61,6 +61,21 @@ spec:
             secretKeyRef:
               key: ossindex_api_token_file
               name: sbom-server-secrets
+        - name: GITHUB_API_TOKEN_FILE
+          valueFrom:
+            secretKeyRef:
+              key: github_api_token_file
+              name: sbom-server-secrets
+        - name: GITEE_API_TOKEN_FILE
+          valueFrom:
+            secretKeyRef:
+              key: gitee_api_token_file
+              name: sbom-server-secrets
+        - name: GITLAB_API_TOKEN_FILE
+          valueFrom:
+            secretKeyRef:
+              key: gitlab_api_token_file
+              name: sbom-server-secrets
         volumeMounts:
         - mountPath: /var/db_secrets
           name: db-secret
