@@ -437,11 +437,11 @@ spec:
           name: openqa-reader-configure
         resources:
           requests:
-            cpu: 1000m
-            memory: 1000Mi
+            cpu: 2000m
+            memory: 4000Mi
           limits:
-            cpu: 1000m
-            memory: 1000Mi
+            cpu: 2000m
+            memory: 4000Mi
       volumes:
       - configMap:
           defaultMode: 420
