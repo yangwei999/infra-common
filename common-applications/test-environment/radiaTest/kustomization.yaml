@@ -10,25 +10,25 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/casefile_resolver
-  newTag: 9f022b7867d8d311a28d6c0f0836cb18719ee718
-- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/suitecase_updator
-  newTag: 9f022b7867d8d311a28d6c0f0836cb18719ee718
+  newTag: 399e4186a49b5713139d25995fbfd2e934cca7cb
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/celerybeat
-  newTag: 9f022b7867d8d311a28d6c0f0836cb18719ee718
-- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/issuerate_updator
-  newTag: 9f022b7867d8d311a28d6c0f0836cb18719ee718
-- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/openqa_reader
-  newTag: 9f022b7867d8d311a28d6c0f0836cb18719ee718
-- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/periodic_worker
-  newTag: 9f022b7867d8d311a28d6c0f0836cb18719ee718
-- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/root_resolver
-  newTag: 9f022b7867d8d311a28d6c0f0836cb18719ee718
-- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/scripts_loader
-  newTag: 9f022b7867d8d311a28d6c0f0836cb18719ee718
+  newTag: 399e4186a49b5713139d25995fbfd2e934cca7cb
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/gunicorn
   newTag: 9f022b7867d8d311a28d6c0f0836cb18719ee718
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/issuerate_updator
+  newTag: 399e4186a49b5713139d25995fbfd2e934cca7cb
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/nginx
   newName: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/nginx
   newTag: e03f63fde5c5b1e5f713cd3e485577a4df892bcd
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/openqa_reader
+  newTag: 399e4186a49b5713139d25995fbfd2e934cca7cb
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/periodic_worker
+  newTag: 399e4186a49b5713139d25995fbfd2e934cca7cb
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/rabbitmq
   newTag: v1.0.1
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/root_resolver
+  newTag: 399e4186a49b5713139d25995fbfd2e934cca7cb
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/scripts_loader
+  newTag: 399e4186a49b5713139d25995fbfd2e934cca7cb
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/suitecase_updator
+  newTag: 399e4186a49b5713139d25995fbfd2e934cca7cb
