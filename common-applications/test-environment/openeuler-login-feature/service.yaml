@@ -1,0 +1,47 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: website-service
+  namespace: openeuler-login-feature
+spec:
+  ports:
+  - name: http-port
+    protocol: TCP
+    port: 80
+    targetPort: 8080
+  selector:
+    app: website
+  type: ClusterIP
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: website-docs-zh-service
+  namespace: openeuler-login-feature
+spec:
+  ports:
+  - name: https-port
+    protocol: TCP
+    port: 80
+    targetPort: 80
+  selector:
+    app: docs-zh
+  type: ClusterIP
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: website-docs-ru-service
+  namespace: openeuler-login-feature
+spec:
+  ports:
+  - name: https-port
+    protocol: TCP
+    port: 80
+    targetPort: 80
+  selector:
+    app: docs-ru
+  type: ClusterIP
+  
