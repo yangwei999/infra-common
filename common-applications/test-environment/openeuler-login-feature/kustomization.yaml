@@ -8,8 +8,8 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openeuler-login-feature-docs-ru-test
-  newTag: 2aeff0dbefcd68c48e9befba8cce40f2c1ed5bda
+  newTag: ef5193c1471ce9c29d78204ac70235ebe4d16669
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openeuler-login-feature-docs-zh-test
-  newTag: 2aeff0dbefcd68c48e9befba8cce40f2c1ed5bda
+  newTag: ef5193c1471ce9c29d78204ac70235ebe4d16669
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openeuler-login-feature-website-test
   newTag: d0b4560271795eab4f2939e7911721cca6fbe274
