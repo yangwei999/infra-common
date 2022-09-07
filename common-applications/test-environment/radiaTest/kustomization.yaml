@@ -10,25 +10,25 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/casefile_resolver
-  newTag: c1ded14f949e025a1ed0b3ace581e8631f6913ef
+  newTag: becfb3478b6158795a46afe517757853adad397e
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/celerybeat
-  newTag: c1ded14f949e025a1ed0b3ace581e8631f6913ef
+  newTag: becfb3478b6158795a46afe517757853adad397e
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/gunicorn
-  newTag: c1ded14f949e025a1ed0b3ace581e8631f6913ef
+  newTag: becfb3478b6158795a46afe517757853adad397e
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/issuerate_updator
-  newTag: c1ded14f949e025a1ed0b3ace581e8631f6913ef
+  newTag: becfb3478b6158795a46afe517757853adad397e
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/nginx
   newName: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/nginx
   newTag: 5b587ddeb1399d4bf4724a68b286a88311bac675
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/openqa_reader
-  newTag: c1ded14f949e025a1ed0b3ace581e8631f6913ef
+  newTag: becfb3478b6158795a46afe517757853adad397e
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/periodic_worker
-  newTag: c1ded14f949e025a1ed0b3ace581e8631f6913ef
+  newTag: becfb3478b6158795a46afe517757853adad397e
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/rabbitmq
   newTag: v1.0.1
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/root_resolver
-  newTag: c1ded14f949e025a1ed0b3ace581e8631f6913ef
+  newTag: becfb3478b6158795a46afe517757853adad397e
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/scripts_loader
-  newTag: c1ded14f949e025a1ed0b3ace581e8631f6913ef
+  newTag: becfb3478b6158795a46afe517757853adad397e
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/suitecase_updator
-  newTag: c1ded14f949e025a1ed0b3ace581e8631f6913ef
+  newTag: becfb3478b6158795a46afe517757853adad397e
