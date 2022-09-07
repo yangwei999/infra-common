@@ -10,25 +10,25 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/casefile_resolver
-  newTag: becfb3478b6158795a46afe517757853adad397e
+  newTag: e067af467e3f4626a155ff235165c365284143df
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/celerybeat
-  newTag: becfb3478b6158795a46afe517757853adad397e
+  newTag: e067af467e3f4626a155ff235165c365284143df
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/gunicorn
-  newTag: becfb3478b6158795a46afe517757853adad397e
+  newTag: e067af467e3f4626a155ff235165c365284143df
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/issuerate_updator
-  newTag: becfb3478b6158795a46afe517757853adad397e
+  newTag: e067af467e3f4626a155ff235165c365284143df
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/nginx
   newName: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/nginx
   newTag: e067af467e3f4626a155ff235165c365284143df
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/openqa_reader
-  newTag: becfb3478b6158795a46afe517757853adad397e
+  newTag: e067af467e3f4626a155ff235165c365284143df
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/periodic_worker
-  newTag: becfb3478b6158795a46afe517757853adad397e
+  newTag: e067af467e3f4626a155ff235165c365284143df
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/rabbitmq
   newTag: v1.0.1
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/root_resolver
-  newTag: becfb3478b6158795a46afe517757853adad397e
+  newTag: e067af467e3f4626a155ff235165c365284143df
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/scripts_loader
-  newTag: becfb3478b6158795a46afe517757853adad397e
+  newTag: e067af467e3f4626a155ff235165c365284143df
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/suitecase_updator
-  newTag: becfb3478b6158795a46afe517757853adad397e
+  newTag: e067af467e3f4626a155ff235165c365284143df
