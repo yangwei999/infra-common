@@ -86,7 +86,7 @@ spec:
           claimName: cce-sfs-gunicorn-share
       - name: pkglist-storage
         persistentVolumeClaim:
-          claimName: pkglist-data-volume
+          claimName: pkglist-data-share-volume
       - configMap:
           defaultMode: 420
           name: supervisor-radiatest-configmap
@@ -352,6 +352,8 @@ spec:
           name: root-resolver-configure
         - mountPath: /tmp
           name: root-resolver-share
+        - mountPath: /var/radiaTest/pkglist
+          name: pkglist-share
         resources:
           requests:
             cpu: 2000m
@@ -367,6 +369,9 @@ spec:
       - name: root-resolver-share
         persistentVolumeClaim:
           claimName: cce-sfs-gunicorn-share
+      - name: pkglist-share
+        persistentVolumeClaim:
+          claimName: pkglist-data-share-volume
 
 ---
 apiVersion: apps/v1
