@@ -56,6 +56,8 @@ spec:
           name: ssl-data
         - mountPath: /tmp
           name: gunicorn-share
+        - mountPath: /var/radiaTest/pkglist
+          name: pkglist-storage
         resources:
           requests:
             cpu: 8000m
@@ -82,6 +84,9 @@ spec:
       - name: gunicorn-share
         persistentVolumeClaim:
           claimName: cce-sfs-gunicorn-share
+      - name: pkglist-storage
+        persistentVolumeClaim:
+          claimName: pkglist-data-volume
       - configMap:
           defaultMode: 420
           name: supervisor-radiatest-configmap
