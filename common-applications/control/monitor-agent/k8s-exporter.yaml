@@ -34,18 +34,25 @@ spec:
         app: k8s-exporter
     spec:
       containers:
-        - name: k8s-exporter
-          image: swr.cn-north-4.myhuaweicloud.com/opensourceway/monitor/k8s_exporter:a8806d52c50f4ff931c5ede5a13202a72f9b1c12
-          imagePullPolicy: IfNotPresent
-          ports:
-          - containerPort: 9201
-            protocol: TCP
-            name: http
-          resources:
-            requests:
-              cpu: 800m
-              memory: 200Mi
-            limits:
-              cpu: 800m
-              memory: 200Mi
-          
+      - name: k8s-exporter
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/monitor/k8s_exporter:v1.0.2
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 9201
+          protocol: TCP
+          name: http
+        resources:
+          requests:
+            cpu: 800m
+            memory: 200Mi
+          limits:
+            cpu: 800m
+            memory: 200Mi
+        volumeMounts:
+        - mountPath: /opt/app/conf/
+          name: config
+      volumes:
+      - name: config
+        configMap:
+          name: k8s-exporter-configmap
+            
