@@ -43,11 +43,11 @@ spec:
           name: http
         resources:
           requests:
-            cpu: 800m
-            memory: 200Mi
+            cpu: 400m
+            memory: 400Mi
           limits:
-            cpu: 800m
-            memory: 200Mi
+            cpu: 400m
+            memory: 400Mi
         volumeMounts:
         - mountPath: /opt/app/conf/
           name: config
