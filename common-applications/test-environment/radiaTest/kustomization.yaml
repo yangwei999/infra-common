@@ -10,25 +10,25 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/casefile_resolver
-  newTag: e067af467e3f4626a155ff235165c365284143df
+  newTag: d9ba9db523639c08407c5b462525fad12d06f333
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/celerybeat
-  newTag: e067af467e3f4626a155ff235165c365284143df
+  newTag: d9ba9db523639c08407c5b462525fad12d06f333
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/gunicorn
-  newTag: e067af467e3f4626a155ff235165c365284143df
+  newTag: d9ba9db523639c08407c5b462525fad12d06f333
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/issuerate_updator
-  newTag: e067af467e3f4626a155ff235165c365284143df
+  newTag: d9ba9db523639c08407c5b462525fad12d06f333
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/nginx
   newName: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/nginx
   newTag: e067af467e3f4626a155ff235165c365284143df
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/openqa_reader
-  newTag: e067af467e3f4626a155ff235165c365284143df
+  newTag: d9ba9db523639c08407c5b462525fad12d06f333
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/periodic_worker
-  newTag: e067af467e3f4626a155ff235165c365284143df
+  newTag: d9ba9db523639c08407c5b462525fad12d06f333
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/rabbitmq
   newTag: v1.0.1
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/root_resolver
-  newTag: e067af467e3f4626a155ff235165c365284143df
+  newTag: d9ba9db523639c08407c5b462525fad12d06f333
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/scripts_loader
-  newTag: e067af467e3f4626a155ff235165c365284143df
+  newTag: d9ba9db523639c08407c5b462525fad12d06f333
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/suitecase_updator
-  newTag: e067af467e3f4626a155ff235165c365284143df
+  newTag: d9ba9db523639c08407c5b462525fad12d06f333
