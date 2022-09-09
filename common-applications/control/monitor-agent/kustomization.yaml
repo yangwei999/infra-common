@@ -3,16 +3,12 @@ resources:
 - rbac.yaml
 - configmap.yaml
 - k8s-exporter.yaml
-- prometheus-agent.yaml
 - prometheus-metrics.yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: monitor-agent
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/monitor/k8s_exporter
-  newTag: a8806d52c50f4ff931c5ede5a13202a72f9b1c12
-- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/monitor/prometheus-agent
-  newTag: 1.13.0
+  newTag: v1.0.3
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/monitor/prometheus
   newTag: v2.38.0
-

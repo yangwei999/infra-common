@@ -18,7 +18,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: prometheus-proxy-service
+  name: prometheus-gateway-service
   namespace: infra-monitor
   annotations:
     kubernetes.io/elb.class: union
@@ -26,14 +26,10 @@ metadata:
     kubernetes.io/elb.lb-algorithm: ROUND_ROBIN
 spec:
   ports:
-  - name: http1
+  - name: http-port1
     protocol: TCP
-    port: 50051
-    targetPort: 50051
-  - name: http2
-    protocol: TCP
-    port: 8080
-    targetPort: 8080
+    port: 8000
+    targetPort: 8000
   selector:
-    app: prometheus-proxy
+    app: prometheus-gateway
   type: LoadBalancer

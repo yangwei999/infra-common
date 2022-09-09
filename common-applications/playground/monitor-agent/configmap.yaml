@@ -10,10 +10,10 @@ data:
       scrape_interval:     60s
       evaluation_interval: 60s
       external_labels:
-        cluster: infra-hk-cluster
+        cluster: mindspore-playground-hk-cluster
     
     scrape_configs:
-      - job_name: 'infra-hk-cluster'
+      - job_name: 'mindspore-playground-hk-cluster'
         scheme: https
         tls_config:
           ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt

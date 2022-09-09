@@ -5,7 +5,7 @@ resources:
 - service.yaml
 - configmap.yaml
 - pvc.yaml
-- prometheus-proxy.yaml
+- prometheus-gateway.yaml
 - secret.yaml
 - oauth-proxy.yaml
 namespace: infra-monitor
@@ -14,7 +14,7 @@ kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/monitor/prometheus
   newTag: v2.38.0
-- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/monitor/prometheus-proxy
-  newTag: 1.13.0
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/monitor/prometheus_gateway
+  newTag: v1.0.6
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/oauth2-proxy
   newTag: 4b64a9c04a247dd5da3ff664d9d497c902324c3a
