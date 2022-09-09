@@ -13,13 +13,15 @@ images:
   newTag: 811826205d40270d49151439aa3ddafb0248a449
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/celerybeat
   newTag: 811826205d40270d49151439aa3ddafb0248a449
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/database_updator
+  newTag: 811826205d40270d49151439aa3ddafb0248a449
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/gunicorn
   newTag: 811826205d40270d49151439aa3ddafb0248a449
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/issuerate_updator
   newTag: 811826205d40270d49151439aa3ddafb0248a449
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/nginx
   newName: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/nginx
-  newTag: d9ba9db523639c08407c5b462525fad12d06f333
+  newTag: 20711e756963dcdb7e62466fadfcf27ecb745e08
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/openqa_reader
   newTag: 811826205d40270d49151439aa3ddafb0248a449
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/periodic_worker
@@ -29,6 +31,4 @@ images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/root_resolver
   newTag: 811826205d40270d49151439aa3ddafb0248a449
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/scripts_loader
-  newTag: 811826205d40270d49151439aa3ddafb0248a449
-- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/database_updator
   newTag: 811826205d40270d49151439aa3ddafb0248a449
