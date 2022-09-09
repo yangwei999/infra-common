@@ -100,7 +100,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: suitecase-updator
+  name: database-updator
   namespace: radia-test
 spec:
   replicas: 1
@@ -110,23 +110,23 @@ spec:
     type: RollingUpdate
   selector:
     matchLabels:
-      app: suitecase-updator
+      app: database-updator
   template:
     metadata:
       labels:
-        app: suitecase-updator
+        app: database-updator
     spec:
       imagePullSecrets:
       - name: huawei-swr-image-pull-secret
       containers:
-      - name: suitecase-updator
-        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/suitecase_updator:9f022b7867d8d311a28d6c0f0836cb18719ee718
+      - name: database-updator
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/database_updator:9f022b7867d8d311a28d6c0f0836cb18719ee718
         imagePullPolicy: IfNotPresent
         volumeMounts:
         - mountPath: /etc/radiaTest
-          name: suitecase-updator-configure
+          name: database-updator-configure
         - mountPath: /tmp
-          name: suitecase-updator-share
+          name: database-updator-share
         resources:
           requests:
             cpu: 2000m
@@ -138,8 +138,8 @@ spec:
       - configMap:
           defaultMode: 420
           name: supervisor-radiatest-configmap
-        name: suitecase-updator-configure
-      - name: suitecase-updator-share
+        name: database-updator-configure
+      - name: database-updator-share
         persistentVolumeClaim:
           claimName: cce-sfs-gunicorn-share
 
