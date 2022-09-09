@@ -33,6 +33,8 @@ spec:
       labels:
         app: k8s-exporter
     spec:
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
       containers:
       - name: k8s-exporter
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/monitor/k8s_exporter:v1.0.2
