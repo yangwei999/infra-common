@@ -28,8 +28,8 @@ spec:
             cpu: 500m
             memory: 500Mi
           limits:
-            cpu: 500m
-            memory: 500Mi
+            cpu: 1000m
+            memory: 3000Mi
         env:
         - name: eshost
           valueFrom:

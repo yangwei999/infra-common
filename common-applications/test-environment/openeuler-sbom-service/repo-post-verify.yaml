@@ -1,0 +1,72 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: post-verification-service
+  namespace: openeuler-sbom-service
+  annotations:
+    kubernetes.io/elb.class: union
+    kubernetes.io/elb.id: 8a3388d9-36fd-40c6-8166-a0970e495f1a
+    kubernetes.io/elb.lb-algorithm: ROUND_ROBIN
+spec:
+  ports:
+  - name: http-port
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: post-verification
+  type: LoadBalancer
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: post-verification-deployment
+  namespace: openeuler-sbom-service
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: post-verification
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: post-verification
+    spec:
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
+      containers:
+      - image: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/repo-post-verification-test:b28d7034dfdc1264e659e43a465d21b08ed25df9
+        imagePullPolicy: Always
+        name: post-verification
+        resources:
+          requests:
+            cpu: 1000m
+            memory: 1000Mi
+          limits:
+            cpu: 1000m
+            memory: 3000Mi
+        volumeMounts:
+        - mountPath: /var/log
+          name: log-data-volume
+      volumes:
+      - name: log-data-volume
+        persistentVolumeClaim:
+          claimName: openeuler-data-volume
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: openeuler-data-volume
+  namespace: openeuler-sbom-service
+spec:
+  accessModes:
+  - ReadWriteOnce
+  storageClassName: ssd
+  resources:
+    requests:
+      storage: 10Gi

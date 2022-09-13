@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prometheus-configmap
+  namespace: infra-monitor
+data:
+  prometheus.yml: |
+    global:
+      scrape_interval: 120s
+      evaluation_interval: 120s
+      scrape_timeout: 120s
+
+    scrape_configs:
+      - job_name: mindspore-hk-test-cluster
+        metrics_path: "/mindspore-hk-test-cluster"
+        static_configs:
+          - targets: ['prometheus-proxy-service.infra-monitor.svc.cluster.local:8080']
+      - job_name: infra-hk-cluster
+        metrics_path: "/infra-hk-cluster"
+        static_configs:
+          - targets: ['prometheus-proxy-service.infra-monitor.svc.cluster.local:8080']

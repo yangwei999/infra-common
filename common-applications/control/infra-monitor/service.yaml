@@ -1,0 +1,39 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: prometheus-website-service
+  namespace: infra-monitor
+spec:
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 9090
+  selector:
+    app: prometheus
+  type: ClusterIP
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: prometheus-proxy-service
+  namespace: infra-monitor
+  annotations:
+    kubernetes.io/elb.class: union
+    kubernetes.io/elb.id: cec8f42c-1e8b-4b04-bc19-43a43e01a4c6
+    kubernetes.io/elb.lb-algorithm: ROUND_ROBIN
+spec:
+  ports:
+  - name: http1
+    protocol: TCP
+    port: 50051
+    targetPort: 50051
+  - name: http2
+    protocol: TCP
+    port: 8080
+    targetPort: 8080
+  selector:
+    app: prometheus-proxy
+  type: LoadBalancer

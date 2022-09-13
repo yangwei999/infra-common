@@ -1,0 +1,42 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+  name: openeuler-website-docs-zh-ingress
+  namespace: openeuler-website-docs
+spec:
+  tls:
+    - hosts:
+      - openeuler-docs-zh.test.osinfra.cn
+      secretName: openeuler-website-docs-tls
+  rules:
+    - host: openeuler-docs-zh.test.osinfra.cn
+      http:
+        paths:
+        - backend:
+            serviceName: openeuler-website-docs-zh
+            servicePort: 80
+          path: /
+
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+  name: openeuler-website-docs-ru-ingress
+  namespace: openeuler-website-docs
+spec:
+  tls:
+    - hosts:
+      - openeuler-docs-ru.test.osinfra.cn
+      secretName: openeuler-website-docs-tls
+  rules:
+    - host: openeuler-docs-ru.test.osinfra.cn
+      http:
+        paths:
+        - backend:
+            serviceName: openeuler-website-docs-ru
+            servicePort: 80
+          path: /

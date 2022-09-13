@@ -9,18 +9,24 @@ metadata:
       rewrite ^/zh/docs(/|$)(.*) https://docs.openeuler.org/zh/docs/$2 redirect;
       rewrite ^/en/docs(/|$)(.*) https://docs.openeuler.org/en/docs/$2 redirect;
       rewrite ^/ru(/|$)(.*) https://ru.openeuler.org/ru/$2 redirect;
-      set $country_china false;
-      if ($geoip_country_code ~ "CN"){
-          set $country_china true;
+      rewrite ^/zh/other/migration(/|$)(.*)                     /zh/migration/ redirect;
+      rewrite ^/zh/migration/$                                  /zh/migration/download/ redirect;
+      rewrite ^/zh/interaction/summit-list/devday2022/          https://v1.openeuler.org/zh/interaction/summit-list/devday2022/ redirect;
+      rewrite ^/zh/interaction/summit-list/summit2021/          https://v1.openeuler.org/zh/interaction/summit-list/summit2021/ redirect;
+      rewrite ^/zh/interaction/summit-list/devday2021/          https://v1.openeuler.org/zh/interaction/summit-list/devday2021/ redirect;
+      rewrite ^/zh/interaction/summit-list/$                    https://v1.openeuler.org/zh/interaction/summit-list/ redirect;
+      rewrite ^/zh/interaction/summit-list/list/                https://v1.openeuler.org/zh/interaction/summit-list/list/ redirect;
+      rewrite ^/zh/community/certification-services/$           https://v1.openeuler.org/zh/community/certification-services/ redirect;
+      rewrite /zh/community/certification-services/search.html  https://v1.openeuler.org/zh/community/certification-services/search.html redirect;
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      set $Real $http_x_forwarded_for;
+      if ( $http_x_forwarded_for = "" ){
+        set $Real $proxy_add_x_forwarded_for;
       }
-
-      if ($country_china ~ "true"){
-          rewrite ^/$ /zh redirect;
+      if ( $Real ~ (\d+)\.(\d+)\.(\d+)\.(\d+),(.*) ){
+          set $Real $1.$2.$3.$4;
       }
-
-      if ($country_china ~ "false"){
-          rewrite ^/$ /en redirect;
-      }
+      proxy_set_header True-Client-IP $Real;
   name: openeuler-website-ingress
   namespace: openeuler-website
 spec:
