@@ -12,6 +12,7 @@ resources:
   - namespace.yaml
   - gitee_github_combine
   - git-commit-log
+  - git-commit-log-enterprise
   - white-commit-log
   - upstream-commit-log
   - tag-removed-gitee
