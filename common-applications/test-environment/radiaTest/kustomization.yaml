@@ -10,25 +10,25 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/casefile_resolver
-  newTag: 6a99884eba3b8ec0ad3a8ea6d03dbf2ce7f30472
+  newTag: 85e059374723ad64dbb5660752faceaa573bface
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/celerybeat
-  newTag: 6a99884eba3b8ec0ad3a8ea6d03dbf2ce7f30472
+  newTag: 85e059374723ad64dbb5660752faceaa573bface
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/database_updator
-  newTag: 6a99884eba3b8ec0ad3a8ea6d03dbf2ce7f30472
+  newTag: 85e059374723ad64dbb5660752faceaa573bface
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/gunicorn
-  newTag: 6a99884eba3b8ec0ad3a8ea6d03dbf2ce7f30472
+  newTag: 85e059374723ad64dbb5660752faceaa573bface
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/issuerate_updator
-  newTag: 6a99884eba3b8ec0ad3a8ea6d03dbf2ce7f30472
+  newTag: 85e059374723ad64dbb5660752faceaa573bface
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/nginx
   newName: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/nginx
   newTag: e651de393f8bf735abf4c1105a0afb361a86b3ea
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/openqa_reader
-  newTag: 6a99884eba3b8ec0ad3a8ea6d03dbf2ce7f30472
+  newTag: 85e059374723ad64dbb5660752faceaa573bface
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/periodic_worker
-  newTag: 6a99884eba3b8ec0ad3a8ea6d03dbf2ce7f30472
+  newTag: 85e059374723ad64dbb5660752faceaa573bface
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/rabbitmq
   newTag: v1.0.1
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/root_resolver
-  newTag: 6a99884eba3b8ec0ad3a8ea6d03dbf2ce7f30472
+  newTag: 85e059374723ad64dbb5660752faceaa573bface
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/scripts_loader
-  newTag: 6a99884eba3b8ec0ad3a8ea6d03dbf2ce7f30472
+  newTag: 85e059374723ad64dbb5660752faceaa573bface
