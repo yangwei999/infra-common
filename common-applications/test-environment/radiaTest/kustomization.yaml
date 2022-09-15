@@ -10,25 +10,25 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/casefile_resolver
-  newTag: db90d5781073fe5add5e1072222c0f91a339dce6
+  newTag: 6a99884eba3b8ec0ad3a8ea6d03dbf2ce7f30472
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/celerybeat
-  newTag: db90d5781073fe5add5e1072222c0f91a339dce6
+  newTag: 6a99884eba3b8ec0ad3a8ea6d03dbf2ce7f30472
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/database_updator
-  newTag: db90d5781073fe5add5e1072222c0f91a339dce6
+  newTag: 6a99884eba3b8ec0ad3a8ea6d03dbf2ce7f30472
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/gunicorn
-  newTag: db90d5781073fe5add5e1072222c0f91a339dce6
+  newTag: 6a99884eba3b8ec0ad3a8ea6d03dbf2ce7f30472
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/issuerate_updator
-  newTag: db90d5781073fe5add5e1072222c0f91a339dce6
+  newTag: 6a99884eba3b8ec0ad3a8ea6d03dbf2ce7f30472
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/nginx
   newName: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/nginx
   newTag: e651de393f8bf735abf4c1105a0afb361a86b3ea
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/openqa_reader
-  newTag: db90d5781073fe5add5e1072222c0f91a339dce6
+  newTag: 6a99884eba3b8ec0ad3a8ea6d03dbf2ce7f30472
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/periodic_worker
-  newTag: db90d5781073fe5add5e1072222c0f91a339dce6
+  newTag: 6a99884eba3b8ec0ad3a8ea6d03dbf2ce7f30472
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/rabbitmq
   newTag: v1.0.1
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/root_resolver
-  newTag: db90d5781073fe5add5e1072222c0f91a339dce6
+  newTag: 6a99884eba3b8ec0ad3a8ea6d03dbf2ce7f30472
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/scripts_loader
-  newTag: db90d5781073fe5add5e1072222c0f91a339dce6
+  newTag: 6a99884eba3b8ec0ad3a8ea6d03dbf2ce7f30472
