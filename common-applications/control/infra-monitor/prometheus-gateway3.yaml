@@ -2,17 +2,17 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: prometheus-gateway-deployment
+  name: prometheus-gateway3-deployment
   namespace: infra-monitor
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: prometheus-gateway
+      app: prometheus-gateway3
   template:
     metadata:
       labels:
-        app: prometheus-gateway
+        app: prometheus-gateway3
     spec:
       containers:
       - name: prometheus-gateway
@@ -32,7 +32,7 @@ spec:
         volumeMounts:
         - mountPath: /opt/prometheus_gateway/prometheus_gateway.yaml
           name: secret
-          subPath: prometheus_gateway.yaml
+          subPath: prometheus_gateway3.yaml
       volumes:
       - name: secret
         secret:

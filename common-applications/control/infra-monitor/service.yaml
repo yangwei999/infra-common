@@ -20,10 +20,6 @@ kind: Service
 metadata:
   name: prometheus-gateway-service
   namespace: infra-monitor
-  annotations:
-    kubernetes.io/elb.class: union
-    kubernetes.io/elb.id: cec8f42c-1e8b-4b04-bc19-43a43e01a4c6
-    kubernetes.io/elb.lb-algorithm: ROUND_ROBIN
 spec:
   ports:
   - name: http-port1
@@ -32,4 +28,36 @@ spec:
     targetPort: 8000
   selector:
     app: prometheus-gateway
-  type: LoadBalancer
+  type: ClusterIP
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: prometheus-gateway2-service
+  namespace: infra-monitor
+spec:
+  ports:
+  - name: http-port1
+    protocol: TCP
+    port: 8000
+    targetPort: 8000
+  selector:
+    app: prometheus-gateway2
+  type: ClusterIP
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: prometheus-gateway3-service
+  namespace: infra-monitor
+spec:
+  ports:
+  - name: http-port1
+    protocol: TCP
+    port: 8000
+    targetPort: 8000
+  selector:
+    app: prometheus-gateway3
+  type: ClusterIP

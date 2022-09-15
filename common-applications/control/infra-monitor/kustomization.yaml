@@ -6,6 +6,8 @@ resources:
 - configmap.yaml
 - pvc.yaml
 - prometheus-gateway.yaml
+- prometheus-gateway2.yaml
+- prometheus-gateway3.yaml
 - secret.yaml
 - oauth-proxy.yaml
 namespace: infra-monitor
