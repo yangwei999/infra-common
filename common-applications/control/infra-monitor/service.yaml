@@ -61,3 +61,19 @@ spec:
   selector:
     app: prometheus-gateway3
   type: ClusterIP
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: prometheus-gateway-ecs-service
+  namespace: infra-monitor
+spec:
+  ports:
+  - name: http-port1
+    protocol: TCP
+    port: 8000
+    targetPort: 8000
+  selector:
+    app: prometheus-gateway-ecs
+  type: ClusterIP

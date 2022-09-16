@@ -19,7 +19,11 @@ data:
         metrics_path: "/metrics"
         static_configs:
           - targets: ["prometheus-gateway2-service.infra-monitor.svc.cluster.local:8000"]
-      - job_name: prometheus_gateway_ecs
+      - job_name: prometheus_gateway3
         metrics_path: "/metrics"
         static_configs:
           - targets: ["prometheus-gateway3-service.infra-monitor.svc.cluster.local:8000"]
+      - job_name: prometheus_gateway_ecs
+        metrics_path: "/metrics"
+        static_configs:
+          - targets: ["prometheus-gateway-ecs-service.infra-monitor.svc.cluster.local:8000"]
