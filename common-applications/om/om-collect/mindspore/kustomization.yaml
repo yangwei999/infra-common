@@ -29,6 +29,8 @@ resources:
   - xihe_down
   - obs-download
   - model-zoo-download
+  - gitee-search-repos
+  - github-search-repos
 commonAnnotations:
   owner: zhongjun
   email: "jun.zhongjun2@gmail.com"

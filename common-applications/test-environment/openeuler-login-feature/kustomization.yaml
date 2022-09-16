@@ -1,0 +1,15 @@
+resources:
+- namespace.yaml
+- ingress.yaml
+- service.yaml
+- deployment.yaml
+namespace: openeuler-login-feature
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+images:
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openeuler-login-feature-docs-ru-test
+  newTag: 45bd90d17a897b66b8cb93956b9115d77607243c
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openeuler-login-feature-docs-zh-test
+  newTag: 45bd90d17a897b66b8cb93956b9115d77607243c
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openeuler-login-feature-website-test
+  newTag: 21806509975864f73cdcd01a16c26ac592f16772

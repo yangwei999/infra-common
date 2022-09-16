@@ -17,6 +17,9 @@ metadata:
       if ($http_origin ~ '^https:\/\/opengaussplayground\.test\.osinfra\.cn$') {
         set $allow_origin $http_origin;
       }
+      if ($http_origin ~ '^http:\/\/localhost\:3456$') {
+        set $allow_origin $http_origin;
+      }
       more_set_headers "Access-Control-Allow-Origin: $allow_origin";
       more_set_headers "Access-Control-Allow-Credentials: true";
       more_set_headers "Access-Control-Allow-Methods: GET, PUT, POST, DELETE,PATCH, OPTIONS";

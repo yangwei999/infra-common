@@ -1,0 +1,89 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: etherpad
+  name: etherpad
+  namespace: etherpad
+spec:
+  replicas: 1
+  revisionHistoryLimit: 5
+  selector:
+    matchLabels:
+      app: etherpad
+  template:
+    metadata:
+      labels:
+        app: etherpad
+    spec:
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
+      containers:
+      - env:
+        - name: DB_TYPE
+          valueFrom:
+            secretKeyRef:
+              name: etherpad-secrets
+              key: db_type
+        - name: DB_HOST
+          valueFrom:
+            secretKeyRef:
+              name: etherpad-secrets
+              key: db_host
+        - name: DB_PORT
+          valueFrom:
+            secretKeyRef:
+              name: etherpad-secrets
+              key: db_port
+        - name: DB_USER
+          valueFrom:
+            secretKeyRef:
+              name: etherpad-secrets
+              key: db_user
+        - name: DB_PASS
+          valueFrom:
+            secretKeyRef:
+              name: etherpad-secrets
+              key: db_pass
+        - name: DB_CHARSET
+          valueFrom:
+            secretKeyRef:
+              name: etherpad-secrets
+              key: db_charset
+        - name: DB_NAME
+          valueFrom:
+            secretKeyRef:
+              name: etherpad-secrets
+              key: db_name
+        - name: ADMIN_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: etherpad-secrets
+              key: admin_password
+        - name: SKIN_NAME
+          valueFrom:
+            secretKeyRef:
+              name: etherpad-secrets
+              key: skin_name
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/etherpad:1.8.18
+        imagePullPolicy: IfNotPresent
+        name: etherpad
+        ports:
+        - containerPort: 9001
+          name: http
+          protocol: TCP
+        resources:
+          requests:
+            cpu: 500m
+            memory: 500Mi
+          limits:
+            cpu: 500m
+            memory: 500Mi
+        volumeMounts:
+        - mountPath: /opt/etherpad-lite/var
+          name: data-volume
+      volumes:
+      - name: data-volume
+        persistentVolumeClaim:
+          claimName: etherpad-data-volume
+          

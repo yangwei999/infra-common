@@ -1,0 +1,16 @@
+resources:
+- namespace.yaml
+- deployment.yaml
+- service.yaml
+- secrets.yaml
+- ingress.yaml
+- pvc.yaml
+commonAnnotations:
+  owner: liuyang
+  email: 747802914@qq.com
+namespace: etherpad
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+images:
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/etherpad
+  newTag: 1.8.18
