@@ -1,0 +1,12 @@
+resources:
+- ingress.yaml
+- deployment.yaml
+- namespace.yaml
+- service.yaml
+- secret.yaml
+namespace: playground-manager
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+images:
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/playground/playground-manager
+  newTag: 1b69af050ea274866238e76f60ce5ca8519b942a

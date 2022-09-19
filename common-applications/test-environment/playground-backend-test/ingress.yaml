@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+  name: playground-manager-ingress
+  namespace: playground-manager
+spec:
+  tls:
+    - hosts:
+        - preview.moocstudio.openeuler.sh
+      secretName: playground-tls
+  rules:
+    - host: preview.moocstudio.openeuler.sh
+      http:
+        paths:
+          - backend:
+              serviceName: playground-manager-service
+              servicePort: 80
+            path: /api(/|$)(.*)

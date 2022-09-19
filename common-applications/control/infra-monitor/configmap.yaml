@@ -6,9 +6,9 @@ metadata:
 data:
   prometheus.yml: |
     global:
-      scrape_interval:     60s
-      evaluation_interval: 60s
-      scrape_timeout: 60s
+      scrape_interval:     120s
+      evaluation_interval: 120s
+      scrape_timeout: 120s
 
     scrape_configs:
       - job_name: prometheus_gateway
