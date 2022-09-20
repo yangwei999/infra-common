@@ -4,6 +4,7 @@ resources:
 - configmap.yaml
 - k8s-exporter.yaml
 - prometheus-metrics.yaml
+- secret.yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: monitor-agent
