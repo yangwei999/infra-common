@@ -25,6 +25,7 @@ spec:
           - --cookie-expire=12h0m0s
           - --redirect-url=https://monitor.osinfra.cn/oauth2/callback
           - --oidc-issuer-url=https://infra-monitor.authing.cn/oidc
+          - --skip-auth-regex=^/api/
           - --insecure-oidc-allow-unverified-email=true
           - --session-cookie-minimal=false
           - --pass-access-token=true

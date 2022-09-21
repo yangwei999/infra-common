@@ -49,10 +49,11 @@ spec:
             cpu: 400m
             memory: 800Mi
         volumeMounts:
-        - mountPath: /opt/app/conf/
-          name: config
+        - mountPath: /opt/app/conf/app.conf
+          name: secret
+          subPath: app.conf
       volumes:
-      - name: config
-        configMap:
-          name: k8s-exporter-configmap
+      - name: secret
+        secret:
+          secretName: k8s-exporter-secrets
             
