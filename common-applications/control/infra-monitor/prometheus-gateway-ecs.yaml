@@ -1,0 +1,39 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prometheus-gateway-ecs-deployment
+  namespace: infra-monitor
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: prometheus-gateway-ecs
+  template:
+    metadata:
+      labels:
+        app: prometheus-gateway-ecs
+    spec:
+      containers:
+      - name: prometheus-gateway
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/monitor/prometheus_gateway:v1.0.6
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8000
+          name: http
+          protocol: TCP
+        resources:
+          requests:
+            cpu: 2000m
+            memory: 1000Mi
+          limits:
+            cpu: 2000m
+            memory: 1000Mi
+        volumeMounts:
+        - mountPath: /opt/prometheus_gateway/prometheus_gateway.yaml
+          name: secret
+          subPath: prometheus_gateway_ecs.yaml
+      volumes:
+      - name: secret
+        secret:
+          secretName: infra-monitor-secret

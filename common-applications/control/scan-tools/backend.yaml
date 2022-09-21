@@ -67,6 +67,11 @@ spec:
             secretKeyRef:
               key: uptime_robot_api_key
               name: scan-tools-secret
+        - name: alarm_email_pwd
+          valueFrom:
+            secretKeyRef:
+              key: alarm_email_pwd
+              name: scan-tools-secret
         resources:
           requests:
             cpu: 1000m
