@@ -10,25 +10,25 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/casefile_resolver
-  newTag: 8255f1593b25710b58e8d015e37c9670d0b8929b
+  newTag: 4b60dc0179824a586a891fde7109328296943ba3
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/celerybeat
-  newTag: 8255f1593b25710b58e8d015e37c9670d0b8929b
+  newTag: 4b60dc0179824a586a891fde7109328296943ba3
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/database_updator
-  newTag: 8255f1593b25710b58e8d015e37c9670d0b8929b
+  newTag: 4b60dc0179824a586a891fde7109328296943ba3
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/gunicorn
-  newTag: 8255f1593b25710b58e8d015e37c9670d0b8929b
+  newTag: 4b60dc0179824a586a891fde7109328296943ba3
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/issuerate_updator
-  newTag: 8255f1593b25710b58e8d015e37c9670d0b8929b
+  newTag: 4b60dc0179824a586a891fde7109328296943ba3
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/nginx
   newName: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/nginx
   newTag: 8255f1593b25710b58e8d015e37c9670d0b8929b
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/openqa_reader
-  newTag: 8255f1593b25710b58e8d015e37c9670d0b8929b
+  newTag: 4b60dc0179824a586a891fde7109328296943ba3
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/periodic_worker
-  newTag: 8255f1593b25710b58e8d015e37c9670d0b8929b
+  newTag: 4b60dc0179824a586a891fde7109328296943ba3
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/rabbitmq
   newTag: v1.0.1
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/root_resolver
-  newTag: 8255f1593b25710b58e8d015e37c9670d0b8929b
+  newTag: 4b60dc0179824a586a891fde7109328296943ba3
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/scripts_loader
-  newTag: 8255f1593b25710b58e8d015e37c9670d0b8929b
+  newTag: 4b60dc0179824a586a891fde7109328296943ba3
