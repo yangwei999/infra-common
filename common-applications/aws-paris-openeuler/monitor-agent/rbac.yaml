@@ -8,13 +8,19 @@ metadata:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: prometheus
+  name: prometheus-agent
 rules:
   - apiGroups: [ "" ]
-    resources: ["nodes", "nodes/proxy", "services", "endpoints", "pods"]
+    resources:
+      - nodes
+      - nodes/proxy
+      - services
+      - endpoints
+      - pods
     verbs: [ "get", "list", "watch" ]
   - apiGroups: [ "" ]
-    resources: ["configmaps"]
+    resources:
+      - configmaps
     verbs: [ "get" ]
   - nonResourceURLs: [ "/metrics" ]
     verbs: [ "get" ]
@@ -22,25 +28,11 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: prometheus
-subjects:
-  - kind: ServiceAccount
-    name: prometheus
-    namespace: monitor-agent
+  name: prometheus-agent
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: prometheus
-
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRoleBinding
-metadata:
-  name: prometheus
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
-  name: prometheus
+  name: prometheus-agent
 subjects:
   - kind: ServiceAccount
     name: prometheus
