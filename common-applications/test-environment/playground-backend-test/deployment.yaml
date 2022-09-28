@@ -1,0 +1,105 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: playground-manager
+  namespace: playground-manager
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: playground-manager
+  template:
+    metadata:
+      labels:
+        app: playground-manager
+    spec:
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
+      containers:
+      - name: playground-manager
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/playground/playground-manager:1b69af050ea274866238e76f60ce5ca8519b942a
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+          name: http
+          protocol: TCP
+        env:
+        - name: DB_USER
+          valueFrom:
+            secretKeyRef:
+              key: db-username
+              name: playground-secrets
+        - name: DB_PWD
+          valueFrom:
+            secretKeyRef:
+              key: db-passwd
+              name: playground-secrets
+        - name: DB_URI
+          valueFrom:
+            secretKeyRef:
+              key: db-uri
+              name: playground-secrets
+        - name: AES_KEY
+          valueFrom:
+            secretKeyRef:
+              key: aes-key
+              name: playground-secrets
+        - name: CLIENT_SECRET
+          valueFrom:
+            secretKeyRef:
+              key: authing-client-secret
+              name: playground-secrets
+        - name: CLIENT_ID
+          valueFrom:
+            secretKeyRef:
+              key: authing-client-id
+              name: playground-secrets
+        - name: OAUTH2_CALLBACK
+          valueFrom:
+            secretKeyRef:
+              key: oauth2-callback
+              name: playground-secrets
+        - name: USERPOOL_ID
+          valueFrom:
+            secretKeyRef:
+              key: userpool-id
+              name: playground-secrets
+        - name: USERPOOL_SECRET
+          valueFrom:
+            secretKeyRef:
+              key: userpool-secret
+              name: playground-secrets
+        - name: CONTAINER_TIMEOUT
+          valueFrom:
+            secretKeyRef:
+              key: container-timeout
+              name: playground-secrets
+        - name: TOKEN_KEY
+          valueFrom:
+            secretKeyRef:
+              key: token_key
+              name: playground-secrets
+        - name: TEMPLATE_PATH
+          valueFrom:
+            secretKeyRef:
+              key: template_path
+              name: playground-secrets
+        - name: TZ
+          valueFrom:
+            secretKeyRef:
+              key: tz
+              name: playground-secrets
+        - name: RUN_MODE
+          valueFrom:
+            secretKeyRef:
+              key: run_mode
+              name: playground-secrets
+        resources:
+          limits:
+            cpu: 1500m
+            memory: 3000Mi
+          requests:
+            cpu: 1000m
+            memory: 2000Mi
+        
