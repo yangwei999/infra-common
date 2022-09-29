@@ -8,10 +8,10 @@ metadata:
 spec:
   tls:
     - hosts:
-        - open-ops.osinfra.cn
+        - ops.osinfra.cn
       secretName: scan-tools-tls
   rules:
-    - host: open-ops.osinfra.cn
+    - host: ops.osinfra.cn
       http:
         paths:
           - backend:
