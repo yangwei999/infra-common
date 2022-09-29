@@ -77,6 +77,36 @@ spec:
             secretKeyRef:
               key: alarm_email_user
               name: scan-tools-secret
+        - name: ALARM_SMS_URL
+          valueFrom:
+            secretKeyRef:
+              key: alarm_sms_url
+              name: scan-tools-secret
+        - name: ALARM_SMS_KEY
+          valueFrom:
+            secretKeyRef:
+              key: alarm_sms_key
+              name: scan-tools-secret
+        - name: ALARM_SMS_SECRET
+          valueFrom:
+            secretKeyRef:
+              key: alarm_sms_secret
+              name: scan-tools-secret
+        - name: ALARM_SMS_SENDER
+          valueFrom:
+            secretKeyRef:
+              key: alarm_sms_sender
+              name: scan-tools-secret
+        - name: ALARM_SMS_ALARM_TEMPLATE
+          valueFrom:
+            secretKeyRef:
+              key: alarm_sms_alarm_template
+              name: scan-tools-secret
+        - name: ALARM_SMS_RECOVER_TEMPLATE
+          valueFrom:
+            secretKeyRef:
+              key: alarm_sms_recover_template
+              name: scan-tools-secret
         resources:
           requests:
             cpu: 1000m
