@@ -4,9 +4,6 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
     cert-manager.io/cluster-issuer: letsencrypt-issuer
-    nginx.ingress.kubernetes.io/server-snippet: |
-      rewrite ^/zh/query/(.*) https://omapi.osinfra.cn/query/$1 redirect;
-      rewrite ^/en/query/(.*) https://omapi.osinfra.cn/query/$1 redirect;
   name: opendesign-datapertus-openeuler-ingress
   namespace: opendesign-datapertus
 spec:
@@ -30,9 +27,6 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
     cert-manager.io/cluster-issuer: letsencrypt-issuer
-    nginx.ingress.kubernetes.io/server-snippet: |
-      rewrite ^/zh/query/(.*) https://omapi.osinfra.cn/query/$1 redirect;
-      rewrite ^/en/query/(.*) https://omapi.osinfra.cn/query/$1 redirect;
   name: opendesign-datapertus-opengauss-ingress
   namespace: opendesign-datapertus
 spec:
@@ -56,9 +50,6 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
     cert-manager.io/cluster-issuer: letsencrypt-issuer
-    nginx.ingress.kubernetes.io/server-snippet: |
-      rewrite ^/zh/query/(.*) https://omapi.osinfra.cn/query/$1 redirect;
-      rewrite ^/en/query/(.*) https://omapi.osinfra.cn/query/$1 redirect;
   name: opendesign-datapertus-mindspore-ingress
   namespace: opendesign-datapertus
 spec:
@@ -82,9 +73,6 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
     cert-manager.io/cluster-issuer: letsencrypt-issuer
-    nginx.ingress.kubernetes.io/server-snippet: |
-      rewrite ^/zh/query/(.*) https://omapi.osinfra.cn/query/$1 redirect;
-      rewrite ^/en/query/(.*) https://omapi.osinfra.cn/query/$1 redirect;
   name: opendesign-datapertus-openlookeng-ingress
   namespace: opendesign-datapertus
 spec:
