@@ -18,7 +18,7 @@ spec:
       - args:
         - --config.file=/etc/prometheus/prometheus.yml
         - --storage.tsdb.path=/prometheus
-        - --storage.tsdb.retention=7d
+        - --storage.tsdb.retention=30d
         name: prometheus
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/monitor/prometheus:v2.38.0
         imagePullPolicy: IfNotPresent
