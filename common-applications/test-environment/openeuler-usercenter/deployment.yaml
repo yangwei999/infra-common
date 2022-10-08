@@ -1,0 +1,38 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: openeuler-usercenter
+  namespace: openeuler-usercenter
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: openeuler-usercenter
+  template:
+    metadata:
+      labels:
+        app: openeuler-usercenter
+    spec:
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
+      containers:
+      - name: openeuler-usercenter
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openeuler-usercenter-test:e712c3c7c79c610f6b615a4c018929d73e3d277c
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
+          name: http
+          protocol: TCP
+        resources:
+          requests:
+            cpu: 500m
+            memory: 500Mi
+          limits:
+            cpu: 500m
+            memory: 500Mi
