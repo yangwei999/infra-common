@@ -13,4 +13,4 @@ images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/infra-common/scan-tools-backend
   newTag: e8d9e648c01393e941b4ccd6d078922e81e668f7
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/infra-common/scan-tools-website
-  newTag: e8d9e648c01393e941b4ccd6d078922e81e668f7
+  newTag: 9df2e6e4728626bfcb1761b816d24b23dbcb9b22
