@@ -11,6 +11,7 @@ resources:
 - prometheus-gateway-ecs.yaml
 - secret.yaml
 - oauth-proxy.yaml
+- uptime-status-deployment.yaml
 namespace: infra-monitor
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
@@ -21,3 +22,5 @@ images:
   newTag: v2.38.0
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/monitor/prometheus_gateway
   newTag: v1.0.15
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/uptime-status
+  newTag: v1.0.1
