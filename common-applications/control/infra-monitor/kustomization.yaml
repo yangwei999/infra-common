@@ -18,9 +18,9 @@ kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/oauth2-proxy
   newTag: 4b64a9c04a247dd5da3ff664d9d497c902324c3a
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/uptime-status
+  newTag: v1.0.2
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/monitor/prometheus
   newTag: v2.38.0
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/monitor/prometheus_gateway
   newTag: v1.0.15
-- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/uptime-status
-  newTag: v1.0.1
