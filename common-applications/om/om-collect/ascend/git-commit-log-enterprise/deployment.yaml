@@ -1,0 +1,31 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: om-commit-log-enterprise
+  namespace: om
+  labels:
+    app: om-commit-log-enterprise
+spec:
+  revisionHistoryLimit: 10
+  template:
+    metadata:
+      labels:
+        app: om-commit-log-enterprise
+    spec:
+      containers:
+        - name: om-commit-log-enterprise
+          image: swr.cn-north-4.myhuaweicloud.com/om/om-collection:0.4.76
+          volumeMounts:
+            - mountPath: /var/lib/om/config.ini
+              subPath: credentials_cfg
+              name: om-commit-log-enterprise-secrets-volume
+            - mountPath: /mnt
+              subPath: commitlogenterprise
+              name: storage
+      volumes:
+        - name: om-commit-log-enterprise-secrets-volume
+          secret:
+            secretName: om-commit-log-enterprise-secrets
+        - name: storage
+          persistentVolumeClaim:
+            claimName: commitlogenterprise

@@ -1,10 +1,12 @@
 resources:
   - gitee
+  - gitee-enterprise
   - gitee-star
   - git
   - namespace.yaml
   - git-commit
   - git-commit-log
+  - git-commit-log-enterprise
   - gitee-foundation
   - git-commit-log-foundation
 commonAnnotations:
