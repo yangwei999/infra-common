@@ -77,3 +77,19 @@ spec:
   selector:
     app: prometheus-gateway-ecs
   type: ClusterIP
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: uptime-status-service
+  namespace: infra-monitor
+spec:
+  ports:
+  - name: http-port1
+    protocol: TCP
+    port: 80
+    targetPort: 3000
+  selector:
+    app: uptime-status
+  type: ClusterIP
