@@ -1,0 +1,13 @@
+resources:
+- namespace.yaml
+- ingress.yaml
+- service.yaml
+- deployment.yaml
+- secret.yaml
+- pvc.yaml
+namespace: majun-anti-poisoning
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+images:
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/majun/anti-poisoning
+  newTag: dd23c9301a24e32f8acc2325d006609feab2d781

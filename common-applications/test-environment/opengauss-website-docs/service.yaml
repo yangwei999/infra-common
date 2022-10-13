@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: website-service
+  namespace: opengauss-website-docs
+spec:
+  ports:
+  - name: https-port
+    protocol: TCP
+    port: 80
+    targetPort: 80
+  selector:
+    app: website
+  type: ClusterIP
+
+  
