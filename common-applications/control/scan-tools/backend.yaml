@@ -125,7 +125,7 @@ spec:
           name: static-log-data
         - mountPath: /var/lib/open-infra
           name: static-lib-data
-        - mountPath: /opt/open_infra/open-infra/open_infra/open_infra/config/kubeconfig/
+        - mountPath: /opt/open_infra/open-infra/open_infra/open_infra/config/kubeconfig/cluster-kubeconfig/
           name: kubeconfig-secret
       volumes:
       - name: static-log-data
