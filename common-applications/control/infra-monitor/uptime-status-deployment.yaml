@@ -1,0 +1,60 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: uptime-status-deployment
+  namespace: infra-monitor
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: uptime-status
+  template:
+    metadata:
+      labels:
+        app: uptime-status
+    spec:
+      containers:
+      - name: uptime-status
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/uptime-status:v1.0.1
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 3000
+          name: http
+          protocol: TCP
+        resources:
+          requests:
+            cpu: 2000m
+            memory: 4000Mi
+          limits:
+            cpu: 2000m
+            memory: 4000Mi
+        livenessProbe:
+          failureThreshold: 3
+          initialDelaySeconds: 20
+          periodSeconds: 20
+          successThreshold: 1
+          tcpSocket:
+            port: 3000
+          timeoutSeconds: 5
+        readinessProbe:
+          failureThreshold: 3
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          successThreshold: 1
+          tcpSocket:
+            port: 3000
+          timeoutSeconds: 5
+        volumeMounts:
+        - mountPath: /home/uptime-status/web/public/config.js
+          name: secret
+          subPath: config.js
+      volumes:
+      - name: secret
+        secret:
+          secretName: infra-monitor-secret

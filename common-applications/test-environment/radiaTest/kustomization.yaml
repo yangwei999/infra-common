@@ -10,25 +10,25 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/casefile_resolver
-  newTag: 4b60dc0179824a586a891fde7109328296943ba3
+  newTag: a6e163b44683da14240f0825c0c5629af621f0ed
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/celerybeat
-  newTag: 4b60dc0179824a586a891fde7109328296943ba3
+  newTag: a6e163b44683da14240f0825c0c5629af621f0ed
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/database_updator
-  newTag: 4b60dc0179824a586a891fde7109328296943ba3
+  newTag: a6e163b44683da14240f0825c0c5629af621f0ed
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/gunicorn
-  newTag: 4b60dc0179824a586a891fde7109328296943ba3
+  newTag: a6e163b44683da14240f0825c0c5629af621f0ed
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/issuerate_updator
-  newTag: 4b60dc0179824a586a891fde7109328296943ba3
+  newTag: a6e163b44683da14240f0825c0c5629af621f0ed
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/nginx
   newName: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/nginx
-  newTag: dfdf009bfbb8ff7636aa9be0c20102c5f28680fe
+  newTag: af4e780ecb2d93313c19ddaf47f64bfe536bb5ff
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/openqa_reader
-  newTag: 4b60dc0179824a586a891fde7109328296943ba3
+  newTag: a6e163b44683da14240f0825c0c5629af621f0ed
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/periodic_worker
-  newTag: 4b60dc0179824a586a891fde7109328296943ba3
+  newTag: a6e163b44683da14240f0825c0c5629af621f0ed
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/rabbitmq
   newTag: v1.0.1
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/root_resolver
-  newTag: 4b60dc0179824a586a891fde7109328296943ba3
+  newTag: a6e163b44683da14240f0825c0c5629af621f0ed
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/scripts_loader
-  newTag: 4b60dc0179824a586a891fde7109328296943ba3
+  newTag: a6e163b44683da14240f0825c0c5629af621f0ed

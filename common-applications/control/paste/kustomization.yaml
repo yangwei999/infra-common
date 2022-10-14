@@ -8,5 +8,7 @@ namespace: paste
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
-- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/mindspore/paste
-  newTag: v0.0.2
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/privatebin/chown
+  newTag: 1.33.0-musl-1.2.2-r0
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/privatebin/nginx-fpm-alpine
+  newTag: 1.4.0

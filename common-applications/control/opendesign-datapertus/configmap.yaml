@@ -33,8 +33,11 @@ data:
         #   error_page 404 /404.html;
       }
 
+      location /query {
+        proxy_pass https://omapi.osinfra.cn/query/ ;
+      }
 
-      location ~ ^/(en|zh)/(overview|detail|mobile|about) {
+      location ~ ^/(en|zh) {
         try_files $uri /index.html;
       }
 
@@ -83,7 +86,11 @@ data:
         #   error_page 404 /404.html;
       }
 
-      location ~ ^/(en|zh)/(overview|detail|mobile|about) {
+      location /query {
+        proxy_pass https://omapi.osinfra.cn/query/ ;
+      }
+
+      location ~ ^/(en|zh) {
         try_files $uri /index.html;
       }
 
@@ -132,7 +139,11 @@ data:
         #   error_page 404 /404.html;
       }
 
-      location ~ ^/(en|zh)/(overview|detail|mobile|about) {
+      location /query {
+        proxy_pass https://omapi.osinfra.cn/query/ ;
+      }
+
+      location ~ ^/(en|zh) {
         try_files $uri /index.html;
       }
 
@@ -181,7 +192,11 @@ data:
         #   error_page 404 /404.html;
       }
 
-      location ~ ^/(en|zh)/(overview|detail|mobile|about) {
+      location /query {
+        proxy_pass https://omapi.osinfra.cn/query/ ;
+      }
+
+      location ~ ^/(en|zh) {
         try_files $uri /index.html;
       }
 
