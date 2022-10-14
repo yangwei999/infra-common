@@ -7,7 +7,8 @@ spec:
   replicas: 1
   strategy:
     rollingUpdate:
-      maxUnavailable: 1
+      maxSurge: 1
+      maxUnavailable: 0
     type: RollingUpdate
   selector:
     matchLabels:
@@ -107,6 +108,11 @@ spec:
             secretKeyRef:
               key: alarm_sms_recover_template
               name: scan-tools-secret
+        - name: GITHUB_SECRET
+          valueFrom:
+            secretKeyRef:
+              key: github_secret
+              name: scan-tools-secret
         resources:
           requests:
             cpu: 1000m
@@ -119,6 +125,8 @@ spec:
           name: static-log-data
         - mountPath: /var/lib/open-infra
           name: static-lib-data
+        - mountPath: /opt/open_infra/open-infra/open_infra/open_infra/config/kubeconfig/
+          name: kubeconfig-secret
       volumes:
       - name: static-log-data
         persistentVolumeClaim:
@@ -126,3 +134,6 @@ spec:
       - name: static-lib-data
         persistentVolumeClaim:
           claimName: cce-evs-lib-data
+      - name: kubeconfig-secret
+        secret:
+          secretName: kubeconfig-secret
