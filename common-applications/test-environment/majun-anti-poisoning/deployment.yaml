@@ -44,30 +44,10 @@ spec:
             secretKeyRef:
               key: jasypt_encryptor_password
               name: anti-poisoning-secrets
-        - name: spring.data.mongodb.host
+        - name: spring.data.mongodb.uri
           valueFrom:
             secretKeyRef:
-              key: spring_data_mongodb_host
-              name: anti-poisoning-secrets
-        - name: spring.data.mongodb.port
-          valueFrom:
-            secretKeyRef:
-              key: spring_data_mongodb_port
-              name: anti-poisoning-secrets
-        - name: spring.data.mongodb.database
-          valueFrom:
-            secretKeyRef:
-              key: spring_data_mongodb_database
-              name: anti-poisoning-secrets
-        - name: spring.data.mongodb.username
-          valueFrom:
-            secretKeyRef:
-              key: spring_data_mongodb_username
-              name: anti-poisoning-secrets
-        - name: spring.data.mongodb.password
-          valueFrom:
-            secretKeyRef:
-              key: spring_data_mongodb_password
+              key: spring_data_mongodb_uri
               name: anti-poisoning-secrets
         volumeMounts:
         - mountPath: /var/log
