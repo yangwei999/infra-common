@@ -47,6 +47,16 @@ spec:
             secretKeyRef:
               key: spring_data_mongodb_uri
               name: anti-poisoning-secrets
+        - name: spring.data.mongodb.dbname
+          valueFrom:
+            secretKeyRef:
+              key: spring_data_mongodb_dbname
+              name: anti-poisoning-secrets
+        - name: spring.data.mongodb.env
+          valueFrom:
+            secretKeyRef:
+              key: spring_data_mongodb_env
+              name: anti-poisoning-secrets
         volumeMounts:
         - mountPath: /var/log
           name: log-data
