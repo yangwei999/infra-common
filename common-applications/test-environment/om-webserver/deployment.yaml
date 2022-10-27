@@ -1,0 +1,50 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: om-webserver
+  namespace: om
+  labels:
+    app: om-webserver
+spec:
+  replicas: 2
+  revisionHistoryLimit: 10
+  template:
+    metadata:
+      labels:
+        app: om-webserver
+    spec:
+      containers:
+        - name: om-webserver
+          image: swr.cn-north-4.myhuaweicloud.com/om/om-webserver:0.2.24
+          resources:
+            requests:
+              memory: 100Mi
+          ports:
+            - containerPort: 8888
+              name: om-webserver
+          volumeMounts:
+            - mountPath: /var/lib/om-webserver/starFork.properties
+              subPath: starFork_properties
+              name: om-webserver-secrets-volume
+            - mountPath: /var/lib/om-webserver/blueZone.properties
+              subPath: blueZone_properties
+              name: om-webserver-secrets-volume
+            - mountPath: /var/lib/om-webserver/openEuler.properties
+              subPath: openEuler_properties
+              name: om-webserver-secrets-volume
+            - mountPath: /var/lib/om-webserver/openGauss.properties
+              subPath: openGauss_properties
+              name: om-webserver-secrets-volume
+            - mountPath: /var/lib/om-webserver/openLookeng.properties
+              subPath: openLookeng_properties
+              name: om-webserver-secrets-volume
+            - mountPath: /var/lib/om-webserver/mindSpore.properties
+              subPath: mindSpore_properties
+              name: om-webserver-secrets-volume
+            - mountPath: /var/lib/om-webserver/application.properties
+              subPath: application_test_properties
+              name: om-webserver-secrets-volume
+      volumes:
+        - name: om-webserver-secrets-volume
+          secret:
+            secretName: om-webserver-secrets
