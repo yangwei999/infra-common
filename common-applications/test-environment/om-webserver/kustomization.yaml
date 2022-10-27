@@ -3,8 +3,10 @@ resources:
 - secrets.yaml
 - ingress.yaml
 - service.yaml
+- namespace.yaml
 commonAnnotations:
   owner: zhongjun
   email: "jun.zhongjun2@gmail.com"
+namespace: om
 commonLabels:
   common-app: om-webserver
