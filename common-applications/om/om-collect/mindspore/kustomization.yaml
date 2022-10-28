@@ -31,6 +31,8 @@ resources:
   - model-zoo-download
   - gitee-search-repos
   - github-search-repos
+  - docker-hub
+  - ecosystem-repo
 commonAnnotations:
   owner: zhongjun
   email: "jun.zhongjun2@gmail.com"
