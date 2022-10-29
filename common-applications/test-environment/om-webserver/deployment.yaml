@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: om-webserver
@@ -13,6 +13,8 @@ spec:
       labels:
         app: om-webserver
     spec:
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
       containers:
         - name: om-webserver
           image: swr.cn-north-4.myhuaweicloud.com/om/om-webserver:0.2.24
@@ -42,7 +44,7 @@ spec:
               subPath: mindSpore_properties
               name: om-webserver-secrets-volume
             - mountPath: /var/lib/om-webserver/application.properties
-              subPath: application_test_properties
+              subPath: application_properties
               name: om-webserver-secrets-volume
       volumes:
         - name: om-webserver-secrets-volume
