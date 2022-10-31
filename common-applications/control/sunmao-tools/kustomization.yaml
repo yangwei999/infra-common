@@ -21,4 +21,4 @@ images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/sunmao/rule-handler
   newTag: v1.0.20220414163258
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/sunmao/strategy-executor
-  newTag: v1.0.20221031105804
+  newTag: v1.0.20221031105933
