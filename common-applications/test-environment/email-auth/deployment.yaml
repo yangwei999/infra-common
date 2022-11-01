@@ -20,6 +20,8 @@ spec:
         app: email-auth
         component: api-backend
     spec:
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
       containers:
         - name: email-auth
           image: swr.cn-north-4.myhuaweicloud.com/opensourceway/email-auth/email-auth-api:master-3c35b46
@@ -61,7 +63,7 @@ spec:
             - name: DB_LOC
               valueFrom:
                 secretKeyRef:
-                  key: DB_CHARSET
+                  key: DB_LOC
                   name: email-auth-secrets
             - name: EMAIL_HOST
               valueFrom:
