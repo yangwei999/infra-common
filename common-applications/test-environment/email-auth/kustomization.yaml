@@ -9,4 +9,4 @@ resources:
 namespace: email-auth
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/email-auth/email-auth-api
-  newTag: master-3c35b46
+  newTag: master-3029873
