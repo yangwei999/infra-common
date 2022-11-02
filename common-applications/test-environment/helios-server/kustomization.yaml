@@ -10,4 +10,4 @@ resources:
 namespace: heliosserver
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/helios-server/helios-voting
-  newTag: master-8e7533d
+  newTag: test-enviorment-4131a2c
