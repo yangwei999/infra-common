@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    kubernetes.io/ingress.class: nginx
+  name: ingress
+  namespace: email-auth
+spec:
+  tls:
+    - hosts:
+        - email-auth.test.osinfra.cn
+      secretName: email-auth-tls
+  rules:
+    - host: email-auth.test.osinfra.cn
+      http:
+        paths:
+          - backend:
+              serviceName: email-auth
+              servicePort: 80
+            path: /

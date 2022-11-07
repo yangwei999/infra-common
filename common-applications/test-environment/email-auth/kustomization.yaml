@@ -5,9 +5,8 @@ resources:
 - ingress.yaml
 - secrets.yaml
 - service.yaml
-- pvc.yaml
 - namespace.yaml
-namespace: heliosserver
+namespace: email-auth
 images:
-- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/helios-server/helios-voting
-  newTag: test-enviorment-4131a2c
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/email-auth/email-auth-api
+  newTag: master-cd59622
