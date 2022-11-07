@@ -46,6 +46,7 @@ resources:
   - iso_download
   - qinghua-down
   - city-location
+  - gitee-repo
 commonAnnotations:
   owner: zhongjun
   email: "jun.zhongjun2@gmail.com"
