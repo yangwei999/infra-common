@@ -9,4 +9,4 @@ kind: Kustomization
 namespace: opengauss-repo-verify
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/opengauss/opengauss-repo-verify-test
-  newTag: v1.0.20221108192351
+  newTag: v1.0.20221109174742
