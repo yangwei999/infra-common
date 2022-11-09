@@ -8,6 +8,7 @@ resources:
 - sca-namespace.yaml
 - secrets.yaml
 - web.yaml
+- rabbitmq.yaml
 commonLabels:
   server: infrastructure-sca
 commonAnnotations:
