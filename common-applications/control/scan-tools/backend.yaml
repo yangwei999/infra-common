@@ -113,6 +113,11 @@ spec:
             secretKeyRef:
               key: github_secret
               name: scan-tools-secret
+        - name: obs_domain_id
+          valueFrom:
+            secretKeyRef:
+              key: obs_domain_id
+              name: scan-tools-secret
         resources:
           requests:
             cpu: 1000m

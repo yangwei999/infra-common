@@ -1,0 +1,92 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment
+  namespace: email-auth
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: email-auth
+      component: api-backend
+  template:
+    metadata:
+      labels:
+        app: email-auth
+        component: api-backend
+    spec:
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
+      containers:
+        - name: email-auth
+          image: swr.cn-north-4.myhuaweicloud.com/opensourceway/email-auth/email-auth-api:master-3c35b46
+          resources:
+            requests:
+              cpu: 2000m
+              memory: 2000Mi
+          env:
+            - name: DB_HOST
+              valueFrom:
+                secretKeyRef:
+                  key: DB_HOST
+                  name: email-auth-secrets
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  key: DB_USER
+                  name: email-auth-secrets
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: DB_PASSWORD
+                  name: email-auth-secrets
+            - name: DB_PORT
+              valueFrom:
+                secretKeyRef:
+                  key: DB_PORT
+                  name: email-auth-secrets
+            - name: DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  key: DB_NAME
+                  name: email-auth-secrets
+            - name: DB_CHARSET
+              valueFrom:
+                secretKeyRef:
+                  key: DB_CHARSET
+                  name: email-auth-secrets
+            - name: DB_LOC
+              valueFrom:
+                secretKeyRef:
+                  key: DB_LOC
+                  name: email-auth-secrets
+            - name: EMAIL_HOST
+              valueFrom:
+                secretKeyRef:
+                  key: EMAIL_HOST
+                  name: email-auth-secrets
+            - name: EMAIL_PORT
+              valueFrom:
+                secretKeyRef:
+                  key: EMAIL_PORT
+                  name: email-auth-secrets
+            - name: EMAIL_HOST_USER
+              valueFrom:
+                secretKeyRef:
+                  key: EMAIL_HOST_USER
+                  name: email-auth-secrets
+            - name: EMAIL_HOST_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: EMAIL_HOST_PASSWORD
+                  name: email-auth-secrets
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+              name: http
+              protocol: TCP
