@@ -1,0 +1,124 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rabbitmq-service
+  namespace: sca
+spec:
+  type: ClusterIP
+  ports:
+  - port: 5672
+    name: http1
+    protocol: TCP
+    targetPort: 5672
+  - port: 15672
+    name: http2
+    protocol: TCP
+    targetPort: 15672
+  selector:
+    app: rabbitmq
+
+---
+apiVersion: secrets-manager.tuenti.io/v1alpha1
+kind: SecretDefinition
+metadata:
+  name: sca-rabbitmq-secret
+  namespace: sca
+spec:
+  name: sca-rabbitmq-secret
+  keysMap:
+    rabbitmq_default_user:
+      path: secrets/data/infra-common/sca
+      key: rabbitmq_default_user
+    rabbitmq_default_pass:
+      path: secrets/data/infra-common/sca
+      key: rabbitmq_default_pass
+    rabbitmq_default_vhost:
+      path: secrets/data/infra-common/sca
+      key: rabbitmq_default_vhost
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: rabbitmq-data-volume
+  namespace: sca
+spec:
+  accessModes:
+  - ReadWriteOnce
+  storageClassName: csi-disk-sas
+  resources:
+    requests:
+      storage: 10Gi
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rabbitmq
+  namespace: sca
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: rabbitmq
+  template:
+    metadata:
+      labels:
+        app: rabbitmq
+    spec:
+      containers:
+      - name: rabbitmq
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/sca/rabbitmq:lts-20221109
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: RABBITMQ_DEFAULT_USER
+          valueFrom:
+            secretKeyRef:
+              key: rabbitmq_default_user
+              name: sca-rabbitmq-secret
+        - name: RABBITMQ_DEFAULT_PASS
+          valueFrom:
+            secretKeyRef:
+              key: rabbitmq_default_pass
+              name: sca-rabbitmq-secret
+        - name: RABBITMQ_DEFAULT_VHOST
+          valueFrom:
+            secretKeyRef:
+              key: rabbitmq_default_vhost
+              name: sca-rabbitmq-secret
+        readinessProbe:
+          tcpSocket:
+            port: 5672
+          initialDelaySeconds: 10
+          failureThreshold: 3
+          successThreshold: 1
+          periodSeconds: 10
+          timeoutSeconds: 5
+        livenessProbe:
+          tcpSocket:
+            port: 5672
+          initialDelaySeconds: 20
+          periodSeconds: 20
+          successThreshold: 1
+          failureThreshold: 3
+          timeoutSeconds: 5
+        resources:
+          requests:
+            cpu: 1000m
+            memory: 2G
+          limits:
+            cpu: 2000m
+            memory: 4G
+        volumeMounts:
+        - mountPath: /var/lib/rabbitmq
+          name: data
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: rabbitmq-data-volume
