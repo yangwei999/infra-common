@@ -10,25 +10,25 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/casefile_resolver
-  newTag: 1d11befd65d1d72b4da5f9b50ad25710fb8fdadd
+  newTag: e29010e64efbd42def22634071b4db2acb496dd3
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/celerybeat
-  newTag: 1d11befd65d1d72b4da5f9b50ad25710fb8fdadd
+  newTag: e29010e64efbd42def22634071b4db2acb496dd3
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/database_updator
-  newTag: 1d11befd65d1d72b4da5f9b50ad25710fb8fdadd
+  newTag: e29010e64efbd42def22634071b4db2acb496dd3
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/gunicorn
-  newTag: 1d11befd65d1d72b4da5f9b50ad25710fb8fdadd
+  newTag: e29010e64efbd42def22634071b4db2acb496dd3
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/issuerate_updator
-  newTag: 1d11befd65d1d72b4da5f9b50ad25710fb8fdadd
+  newTag: e29010e64efbd42def22634071b4db2acb496dd3
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/nginx
   newName: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/nginx
   newTag: 0e421cab3e14594ca18507050d1a9eedf1537f51
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/openqa_reader
-  newTag: 1d11befd65d1d72b4da5f9b50ad25710fb8fdadd
+  newTag: e29010e64efbd42def22634071b4db2acb496dd3
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/periodic_worker
-  newTag: 1d11befd65d1d72b4da5f9b50ad25710fb8fdadd
+  newTag: e29010e64efbd42def22634071b4db2acb496dd3
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/rabbitmq
   newTag: v1.0.1
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/root_resolver
-  newTag: 1d11befd65d1d72b4da5f9b50ad25710fb8fdadd
+  newTag: e29010e64efbd42def22634071b4db2acb496dd3
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/scripts_loader
-  newTag: 1d11befd65d1d72b4da5f9b50ad25710fb8fdadd
+  newTag: e29010e64efbd42def22634071b4db2acb496dd3
