@@ -4,6 +4,14 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
     cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/server-snippet: |
+      rewrite ^/zh/docs/(.*)                              https://docs.opengauss.org/zh/docs/$1 redirect;
+      rewrite ^/zh/blogs/blogs.html                       /zh/blogs/? redirect;
+      rewrite ^/zh/video.html$                            /zh/video/ redirect;
+      rewrite ^/zh/security-advisories.html$              /zh/security-advisories/ redirect;
+      rewrite ^/zh/cve.html$                              /zh/cve/ redirect;
+      rewrite ^/zh/summit.html                            /zh/summit/summit2022/  permanent;
+      rewrite ^/zh/summit2021.html                        /zh/summit/summit2021/  permanent;
   name: opengauss-website-ingress
   namespace: opengauss-website-revision
 spec:
