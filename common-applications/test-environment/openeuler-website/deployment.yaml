@@ -5,10 +5,10 @@ metadata:
   name: openeuler-website
   namespace: openeuler-website
 spec:
-  replicas: 1
+  replicas: 8
   strategy:
     rollingUpdate:
-      maxUnavailable: 1
+      maxUnavailable: 0
     type: RollingUpdate
   selector:
     matchLabels:
@@ -30,8 +30,8 @@ spec:
           protocol: TCP
         resources:
           requests:
-            cpu: 1000m
-            memory: 1000Mi
+            cpu: 100m
+            memory: 100Mi
           limits:
-            cpu: 1000m
-            memory: 1000Mi
+            cpu: 200m
+            memory: 200Mi
