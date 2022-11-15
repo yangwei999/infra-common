@@ -10,25 +10,25 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/casefile_resolver
-  newTag: 22c13f10eb57e3cd937b6457a07e60454bd2f0e6
+  newTag: bfa51baa6048a42d37bd1ebaff31cd03d0b957d3
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/celerybeat
-  newTag: 22c13f10eb57e3cd937b6457a07e60454bd2f0e6
+  newTag: bfa51baa6048a42d37bd1ebaff31cd03d0b957d3
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/database_updator
-  newTag: 22c13f10eb57e3cd937b6457a07e60454bd2f0e6
+  newTag: bfa51baa6048a42d37bd1ebaff31cd03d0b957d3
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/gunicorn
-  newTag: 22c13f10eb57e3cd937b6457a07e60454bd2f0e6
+  newTag: bfa51baa6048a42d37bd1ebaff31cd03d0b957d3
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/issuerate_updator
-  newTag: 22c13f10eb57e3cd937b6457a07e60454bd2f0e6
+  newTag: bfa51baa6048a42d37bd1ebaff31cd03d0b957d3
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/nginx
   newName: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/nginx
   newTag: 0e421cab3e14594ca18507050d1a9eedf1537f51
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/openqa_reader
-  newTag: 22c13f10eb57e3cd937b6457a07e60454bd2f0e6
+  newTag: bfa51baa6048a42d37bd1ebaff31cd03d0b957d3
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/periodic_worker
-  newTag: 22c13f10eb57e3cd937b6457a07e60454bd2f0e6
+  newTag: bfa51baa6048a42d37bd1ebaff31cd03d0b957d3
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/rabbitmq
   newTag: v1.0.1
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/root_resolver
-  newTag: 22c13f10eb57e3cd937b6457a07e60454bd2f0e6
+  newTag: bfa51baa6048a42d37bd1ebaff31cd03d0b957d3
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/scripts_loader
-  newTag: 22c13f10eb57e3cd937b6457a07e60454bd2f0e6
+  newTag: bfa51baa6048a42d37bd1ebaff31cd03d0b957d3
