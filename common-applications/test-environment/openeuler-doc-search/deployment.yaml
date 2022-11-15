@@ -56,4 +56,24 @@ spec:
             secretKeyRef:
               name: doc-search-secrets
               key: system
+        - name: teshost
+          valueFrom:
+            secretKeyRef:
+              name: doc-search-secrets
+              key: teshost
+        - name: tesusername
+          valueFrom:
+            secretKeyRef:
+              name: doc-search-secrets
+              key: tesusername
+        - name: tesport
+          valueFrom:
+            secretKeyRef:
+              name: doc-search-secrets
+              key: tesport
+        - name: tespassword
+          valueFrom:
+            secretKeyRef:
+              name: doc-search-secrets
+              key: tespassword
 

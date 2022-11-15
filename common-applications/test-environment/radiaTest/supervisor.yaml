@@ -58,6 +58,8 @@ spec:
           name: gunicorn-share
         - mountPath: /var/radiaTest/pkglist
           name: pkglist-storage
+        - mountPath: /tmp/requirement_attachment
+          name: requirement-attachment-storage
         resources:
           requests:
             cpu: 8000m
@@ -87,6 +89,9 @@ spec:
       - name: pkglist-storage
         persistentVolumeClaim:
           claimName: pkglist-data-share-volume
+      - name: requirement-attachment-storage
+        persistentVolumeClaim:
+          claimName: requirement-attachment-storage
       - configMap:
           defaultMode: 420
           name: supervisor-radiatest-configmap

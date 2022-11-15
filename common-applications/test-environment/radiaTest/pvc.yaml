@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: requirement-attachment-storage
+  namespace: radia-test
+spec:
+  storageClassName: "csi-disk-sas"
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
