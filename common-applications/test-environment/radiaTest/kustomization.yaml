@@ -11,25 +11,25 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/casefile_resolver
-  newTag: ece42a97aba00dd75782c80b33ac68ea03c886db
+  newTag: beccf871a467158289927bac98c7cd6d80588c87
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/celerybeat
-  newTag: ece42a97aba00dd75782c80b33ac68ea03c886db
+  newTag: beccf871a467158289927bac98c7cd6d80588c87
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/database_updator
-  newTag: ece42a97aba00dd75782c80b33ac68ea03c886db
+  newTag: beccf871a467158289927bac98c7cd6d80588c87
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/gunicorn
-  newTag: ece42a97aba00dd75782c80b33ac68ea03c886db
+  newTag: beccf871a467158289927bac98c7cd6d80588c87
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/issuerate_updator
-  newTag: ece42a97aba00dd75782c80b33ac68ea03c886db
+  newTag: beccf871a467158289927bac98c7cd6d80588c87
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/nginx
   newName: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/nginx
   newTag: 83cd55085d54317f3eacdc541566642fe43a0dcc
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/openqa_reader
-  newTag: ece42a97aba00dd75782c80b33ac68ea03c886db
+  newTag: beccf871a467158289927bac98c7cd6d80588c87
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/periodic_worker
-  newTag: ece42a97aba00dd75782c80b33ac68ea03c886db
+  newTag: beccf871a467158289927bac98c7cd6d80588c87
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/rabbitmq
   newTag: v1.0.1
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/root_resolver
-  newTag: ece42a97aba00dd75782c80b33ac68ea03c886db
+  newTag: beccf871a467158289927bac98c7cd6d80588c87
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/scripts_loader
-  newTag: ece42a97aba00dd75782c80b33ac68ea03c886db
+  newTag: beccf871a467158289927bac98c7cd6d80588c87
