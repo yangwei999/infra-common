@@ -11,25 +11,25 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/casefile_resolver
-  newTag: d08aa17601c44f2b0da46cc5c93a7c7c8b86e886
+  newTag: ccf90ed641d9229ff3437685cae8e30f0c169bf4
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/celerybeat
-  newTag: d08aa17601c44f2b0da46cc5c93a7c7c8b86e886
+  newTag: ccf90ed641d9229ff3437685cae8e30f0c169bf4
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/database_updator
-  newTag: d08aa17601c44f2b0da46cc5c93a7c7c8b86e886
+  newTag: ccf90ed641d9229ff3437685cae8e30f0c169bf4
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/gunicorn
-  newTag: d08aa17601c44f2b0da46cc5c93a7c7c8b86e886
+  newTag: ccf90ed641d9229ff3437685cae8e30f0c169bf4
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/issuerate_updator
-  newTag: d08aa17601c44f2b0da46cc5c93a7c7c8b86e886
+  newTag: ccf90ed641d9229ff3437685cae8e30f0c169bf4
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/nginx
   newName: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/nginx
   newTag: ccf90ed641d9229ff3437685cae8e30f0c169bf4
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/openqa_reader
-  newTag: d08aa17601c44f2b0da46cc5c93a7c7c8b86e886
+  newTag: ccf90ed641d9229ff3437685cae8e30f0c169bf4
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/periodic_worker
-  newTag: d08aa17601c44f2b0da46cc5c93a7c7c8b86e886
+  newTag: ccf90ed641d9229ff3437685cae8e30f0c169bf4
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/rabbitmq
   newTag: v1.0.1
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/root_resolver
-  newTag: d08aa17601c44f2b0da46cc5c93a7c7c8b86e886
+  newTag: ccf90ed641d9229ff3437685cae8e30f0c169bf4
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/scripts_loader
-  newTag: d08aa17601c44f2b0da46cc5c93a7c7c8b86e886
+  newTag: ccf90ed641d9229ff3437685cae8e30f0c169bf4
