@@ -14,11 +14,11 @@ spec:
           image: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/ingress-nginx-controller-with-purge-cache:v0.35.0.0
           resources:
             requests:
-              cpu: 4000m
-              memory: 8192Mi
+              cpu: 2000m
+              memory: 4096Mi
             limits:
-              cpu: 4000m
-              memory: 8192Mi
+              cpu: 2000m
+              memory: 4096Mi
           args:
             - /nginx-ingress-controller
             - --configmap=$(POD_NAMESPACE)/nginx-configuration
