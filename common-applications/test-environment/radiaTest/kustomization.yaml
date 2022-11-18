@@ -11,25 +11,25 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/casefile_resolver
-  newTag: ccf90ed641d9229ff3437685cae8e30f0c169bf4
+  newTag: fc6a4fc868605e44a635123e961ace73fecd8a4b
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/celerybeat
-  newTag: ccf90ed641d9229ff3437685cae8e30f0c169bf4
+  newTag: fc6a4fc868605e44a635123e961ace73fecd8a4b
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/database_updator
-  newTag: ccf90ed641d9229ff3437685cae8e30f0c169bf4
+  newTag: fc6a4fc868605e44a635123e961ace73fecd8a4b
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/gunicorn
-  newTag: ccf90ed641d9229ff3437685cae8e30f0c169bf4
+  newTag: fc6a4fc868605e44a635123e961ace73fecd8a4b
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/issuerate_updator
-  newTag: ccf90ed641d9229ff3437685cae8e30f0c169bf4
+  newTag: fc6a4fc868605e44a635123e961ace73fecd8a4b
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/nginx
   newName: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/nginx
   newTag: ccf90ed641d9229ff3437685cae8e30f0c169bf4
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/openqa_reader
-  newTag: ccf90ed641d9229ff3437685cae8e30f0c169bf4
+  newTag: fc6a4fc868605e44a635123e961ace73fecd8a4b
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/periodic_worker
-  newTag: ccf90ed641d9229ff3437685cae8e30f0c169bf4
+  newTag: fc6a4fc868605e44a635123e961ace73fecd8a4b
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/rabbitmq
   newTag: v1.0.1
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/root_resolver
-  newTag: ccf90ed641d9229ff3437685cae8e30f0c169bf4
+  newTag: fc6a4fc868605e44a635123e961ace73fecd8a4b
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/scripts_loader
-  newTag: ccf90ed641d9229ff3437685cae8e30f0c169bf4
+  newTag: fc6a4fc868605e44a635123e961ace73fecd8a4b
