@@ -172,6 +172,8 @@ spec:
         volumeMounts:
         - mountPath: /etc/radiaTest
           name: casefile-resolver-configure
+        - mountPath: /tmp
+          name: casefile-resolver-share
         resources:
           requests:
             cpu: 2000m
@@ -184,6 +186,9 @@ spec:
           defaultMode: 420
           name: supervisor-radiatest-configmap
         name: casefile-resolver-configure
+      - name: casefile-resolver-share
+        persistentVolumeClaim:
+          claimName: cce-sfs-gunicorn-share
 
 ---
 apiVersion: apps/v1
