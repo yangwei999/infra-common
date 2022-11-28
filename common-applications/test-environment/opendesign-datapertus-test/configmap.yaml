@@ -33,12 +33,12 @@ data:
         #   error_page 404 /404.html;
       }
 
-      location /authing {
-        proxy_pass https://omapi.osinfra.cn/authing/ ;
+      location /oneid/ {
+        proxy_pass https://omapi.test.osinfra.cn ;
       }
 
-      location /query {
-        proxy_pass https://omapi.osinfra.cn/query/ ;
+      location /query/ {
+        proxy_pass https://omapi.test.osinfra.cn ;
       }
 
       location ~ ^/(en|zh) {
@@ -90,6 +90,14 @@ data:
         #   error_page 404 /404.html;
       }
 
+      location /oneid/ {
+        proxy_pass https://omapi.test.osinfra.cn ;
+      }
+
+      location /query/ {
+        proxy_pass https://omapi.test.osinfra.cn ;
+      }
+
       location ~ ^/(en|zh) {
         try_files $uri /index.html;
       }
@@ -137,6 +145,14 @@ data:
         root /usr/share/nginx/html/opengauss;
         index index.html;
         #   error_page 404 /404.html;
+      }
+
+      location /oneid/ {
+        proxy_pass https://omapi.test.osinfra.cn ;
+      }
+
+      location /query/ {
+        proxy_pass https://omapi.test.osinfra.cn ;
       }
 
       location ~ ^/(en|zh) {
@@ -190,6 +206,14 @@ data:
 
       location ~ ^/(en|zh) {
         try_files $uri /index.html;
+      }
+
+      location /oneid/ {
+        proxy_pass https://omapi.test.osinfra.cn ;
+      }
+
+      location /query/ {
+        proxy_pass https://omapi.test.osinfra.cn ;
       }
 
       error_page 500 501 502 503 504 505 /500.html;
