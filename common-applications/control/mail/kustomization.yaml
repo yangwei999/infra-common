@@ -10,7 +10,6 @@ resources:
   - suiteservice.yaml
   - webservice.yaml
   - ingress.yaml
-  - exim-configmap.yaml
 commonAnnotations:
   owner: tommylike
   email: "tommylikehu@gmail.com"
