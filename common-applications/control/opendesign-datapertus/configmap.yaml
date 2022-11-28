@@ -33,6 +33,10 @@ data:
         #   error_page 404 /404.html;
       }
 
+      location /oneid/ {
+        proxy_pass https://omapi.osinfra.cn ;
+      }
+
       location /query {
         proxy_pass https://omapi.osinfra.cn/query/ ;
       }
@@ -84,6 +88,10 @@ data:
         root /usr/share/nginx/html/mindspore;
         index index.html;
         #   error_page 404 /404.html;
+      }
+
+      location /oneid/ {
+        proxy_pass https://omapi.osinfra.cn ;
       }
 
       location /query {
@@ -139,6 +147,10 @@ data:
         #   error_page 404 /404.html;
       }
 
+      location /oneid/ {
+        proxy_pass https://omapi.osinfra.cn ;
+      }
+
       location /query {
         proxy_pass https://omapi.osinfra.cn/query/ ;
       }
@@ -190,6 +202,10 @@ data:
         root /usr/share/nginx/html/openlookeng;
         index index.html;
         #   error_page 404 /404.html;
+      }
+
+      location /oneid/ {
+        proxy_pass https://omapi.osinfra.cn ;
       }
 
       location /query {
