@@ -9,4 +9,4 @@ kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/dataset-test
   newName: swr.cn-north-4.myhuaweicloud.com/opensourceway/dataset-test
-  newTag: 624557be1bf1a5762082c8e730ec8c876f4146cd
+  newTag: 38e1f8ed985aec55b612a11fed16f991288487f3
