@@ -11,25 +11,25 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/casefile_resolver
-  newTag: ab5febca173e6f18b5ddca28eefd16a930c1d281
+  newTag: 579f3940d51340cf7802edd4349e57e25a4cd96f
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/celerybeat
-  newTag: ab5febca173e6f18b5ddca28eefd16a930c1d281
+  newTag: 579f3940d51340cf7802edd4349e57e25a4cd96f
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/database_updator
-  newTag: ab5febca173e6f18b5ddca28eefd16a930c1d281
+  newTag: 579f3940d51340cf7802edd4349e57e25a4cd96f
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/gunicorn
-  newTag: ab5febca173e6f18b5ddca28eefd16a930c1d281
+  newTag: 579f3940d51340cf7802edd4349e57e25a4cd96f
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/issuerate_updator
-  newTag: ab5febca173e6f18b5ddca28eefd16a930c1d281
+  newTag: 579f3940d51340cf7802edd4349e57e25a4cd96f
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/nginx
   newName: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/nginx
   newTag: ab5febca173e6f18b5ddca28eefd16a930c1d281
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/openqa_reader
-  newTag: ab5febca173e6f18b5ddca28eefd16a930c1d281
+  newTag: 579f3940d51340cf7802edd4349e57e25a4cd96f
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/periodic_worker
-  newTag: ab5febca173e6f18b5ddca28eefd16a930c1d281
+  newTag: 579f3940d51340cf7802edd4349e57e25a4cd96f
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/rabbitmq
   newTag: v1.0.1
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/root_resolver
-  newTag: ab5febca173e6f18b5ddca28eefd16a930c1d281
+  newTag: 579f3940d51340cf7802edd4349e57e25a4cd96f
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/scripts_loader
-  newTag: ab5febca173e6f18b5ddca28eefd16a930c1d281
+  newTag: 579f3940d51340cf7802edd4349e57e25a4cd96f
