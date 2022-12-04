@@ -11,25 +11,25 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/casefile_resolver
-  newTag: 3c5aa37a9b3d5684a19654a01db503fa936422e6
+  newTag: 91cf8f78243a5467736808b52f729678274a3078
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/celerybeat
-  newTag: 3c5aa37a9b3d5684a19654a01db503fa936422e6
+  newTag: 91cf8f78243a5467736808b52f729678274a3078
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/database_updator
-  newTag: 3c5aa37a9b3d5684a19654a01db503fa936422e6
+  newTag: 91cf8f78243a5467736808b52f729678274a3078
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/gunicorn
-  newTag: 3c5aa37a9b3d5684a19654a01db503fa936422e6
+  newTag: 91cf8f78243a5467736808b52f729678274a3078
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/issuerate_updator
-  newTag: 3c5aa37a9b3d5684a19654a01db503fa936422e6
+  newTag: 91cf8f78243a5467736808b52f729678274a3078
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/nginx
   newName: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/nginx
   newTag: 3c5aa37a9b3d5684a19654a01db503fa936422e6
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/openqa_reader
-  newTag: 3c5aa37a9b3d5684a19654a01db503fa936422e6
+  newTag: 91cf8f78243a5467736808b52f729678274a3078
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/periodic_worker
-  newTag: 3c5aa37a9b3d5684a19654a01db503fa936422e6
+  newTag: 91cf8f78243a5467736808b52f729678274a3078
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/rabbitmq
   newTag: v1.0.1
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/root_resolver
-  newTag: 3c5aa37a9b3d5684a19654a01db503fa936422e6
+  newTag: 91cf8f78243a5467736808b52f729678274a3078
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/scripts_loader
-  newTag: 3c5aa37a9b3d5684a19654a01db503fa936422e6
+  newTag: 91cf8f78243a5467736808b52f729678274a3078
