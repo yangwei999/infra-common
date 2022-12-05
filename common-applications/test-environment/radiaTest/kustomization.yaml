@@ -11,25 +11,25 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/casefile_resolver
-  newTag: d9aabccc6e26bb9737c5e306f4a8d9ee237c6382
+  newTag: c43c1a7b8244cd1f9b65f3311bfc77857b5f4b68
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/celerybeat
-  newTag: d9aabccc6e26bb9737c5e306f4a8d9ee237c6382
+  newTag: c43c1a7b8244cd1f9b65f3311bfc77857b5f4b68
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/database_updator
-  newTag: d9aabccc6e26bb9737c5e306f4a8d9ee237c6382
+  newTag: c43c1a7b8244cd1f9b65f3311bfc77857b5f4b68
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/gunicorn
-  newTag: d9aabccc6e26bb9737c5e306f4a8d9ee237c6382
+  newTag: c43c1a7b8244cd1f9b65f3311bfc77857b5f4b68
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/issuerate_updator
-  newTag: d9aabccc6e26bb9737c5e306f4a8d9ee237c6382
+  newTag: c43c1a7b8244cd1f9b65f3311bfc77857b5f4b68
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/nginx
   newName: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/nginx
   newTag: e790aabe390b0b6e3573069a013d9ada06a08d30
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/openqa_reader
-  newTag: d9aabccc6e26bb9737c5e306f4a8d9ee237c6382
+  newTag: c43c1a7b8244cd1f9b65f3311bfc77857b5f4b68
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/periodic_worker
-  newTag: d9aabccc6e26bb9737c5e306f4a8d9ee237c6382
+  newTag: c43c1a7b8244cd1f9b65f3311bfc77857b5f4b68
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/rabbitmq
   newTag: v1.0.1
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/root_resolver
-  newTag: d9aabccc6e26bb9737c5e306f4a8d9ee237c6382
+  newTag: c43c1a7b8244cd1f9b65f3311bfc77857b5f4b68
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/scripts_loader
-  newTag: d9aabccc6e26bb9737c5e306f4a8d9ee237c6382
+  newTag: c43c1a7b8244cd1f9b65f3311bfc77857b5f4b68
