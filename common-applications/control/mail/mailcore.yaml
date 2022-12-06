@@ -31,6 +31,9 @@ spec:
             - mountPath: /usr/lib/python3.6/site-packages/mailman/runners/command.py
               name: mailman-core-hack-volume
               subPath: command.py
+            - mountPath: /usr/lib/python3.6/site-packages/mailman/mta/base.py
+              name: mailman-core-base-py
+              subPath: base.py
           env:
             - name: DATABASE_TYPE
               value: mysql
@@ -94,3 +97,6 @@ spec:
         - name: mailman-core-hack-volume
           configMap:
             name: mailman-webpage-hack
+        - name: mailman-core-base-py
+          configMap:
+            name: mailman-core-configmap

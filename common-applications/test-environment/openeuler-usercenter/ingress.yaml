@@ -19,3 +19,26 @@ spec:
             serviceName: openeuler-usercenter-service
             servicePort: 80
           path: /
+
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+  name: opengauss-usercenter-ingress
+  namespace: openeuler-usercenter
+spec:
+  tls:
+    - hosts:
+      - opengauss-usercenter.test.osinfra.cn
+      secretName: opengauss-usercenter-tls
+  rules:
+    - host: opengauss-usercenter.test.osinfra.cn
+      http:
+        paths:
+        - backend:
+            serviceName: openeuler-usercenter-service
+            servicePort: 80
+          path: /
