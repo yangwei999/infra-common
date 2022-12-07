@@ -8,3 +8,14 @@ commonAnnotations:
 patchesStrategicMerge:
   - service.yaml
   - deployment.yaml
+patchesJson6902:
+  - path: patch.json
+    target:
+      version: v1
+      kind: ConfigMap
+      name: tcp-services
+  - path: service-patch.json
+    target:
+      version: v1
+      kind: Service
+      name: ingress-nginx
