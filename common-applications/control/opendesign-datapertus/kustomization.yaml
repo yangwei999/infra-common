@@ -10,4 +10,4 @@ kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/datastat
   newName: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/datastat
-  newTag: 04f8cdf52aeaadd20865df2b76e5508c9a4679e9
+  newTag: fc4a3b1fc0494bdaac561126548596147e5890bb
