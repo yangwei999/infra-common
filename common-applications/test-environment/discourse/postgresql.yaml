@@ -1,0 +1,67 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pgsql
+  labels:
+    app: pgsql-server
+  namespace: discourse
+spec:
+  ports:
+  - port: 5432
+    protocol: TCP
+    targetPort: 5432
+  selector:
+    app: pgsql-server
+  type: ClusterIP
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pgsql
+  namespace: discourse
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: pgsql-server
+  template:
+    metadata:
+      labels:
+        app: pgsql-server
+    spec:
+      containers:
+        - name: pgsql-server
+          image: swr.cn-north-4.myhuaweicloud.com/opensourceway/discourse/postgres:latest-20221206
+          ports:
+          - containerPort: 5432
+          volumeMounts:
+            - name: pgsql-storage
+              mountPath: /var/lib/postgresql/data
+          env:
+            - name: PGDATA
+              value: /var/lib/postgresql/data/pgdata
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: discourse-secret
+                  key: discourse_database_userrname
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: discourse-secret
+                  key: discourse_database_password
+            - name: POSTGRES_DB
+              valueFrom:
+                secretKeyRef:
+                  name: discourse-secret
+                  key: discourse_db_name
+      nodeSelector:
+        discourse: "true"
+      volumes:
+      - name: pgsql-storage
+        persistentVolumeClaim:
+          claimName: postgre-pv-claim
