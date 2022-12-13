@@ -11,25 +11,25 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/casefile_resolver
-  newTag: 0ac7141971d6d128098c5f101531ae64e35c8190
+  newTag: a63c36d48a25cbbb028f3af747bc9bc91db9578e
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/celerybeat
-  newTag: 0ac7141971d6d128098c5f101531ae64e35c8190
+  newTag: a63c36d48a25cbbb028f3af747bc9bc91db9578e
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/database_updator
-  newTag: 0ac7141971d6d128098c5f101531ae64e35c8190
+  newTag: a63c36d48a25cbbb028f3af747bc9bc91db9578e
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/gunicorn
-  newTag: 0ac7141971d6d128098c5f101531ae64e35c8190
+  newTag: a63c36d48a25cbbb028f3af747bc9bc91db9578e
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/issuerate_updator
-  newTag: 0ac7141971d6d128098c5f101531ae64e35c8190
+  newTag: a63c36d48a25cbbb028f3af747bc9bc91db9578e
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/nginx
   newName: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/nginx
   newTag: e790aabe390b0b6e3573069a013d9ada06a08d30
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/openqa_reader
-  newTag: 0ac7141971d6d128098c5f101531ae64e35c8190
+  newTag: a63c36d48a25cbbb028f3af747bc9bc91db9578e
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/periodic_worker
-  newTag: 0ac7141971d6d128098c5f101531ae64e35c8190
+  newTag: a63c36d48a25cbbb028f3af747bc9bc91db9578e
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/rabbitmq
   newTag: v1.0.1
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/root_resolver
-  newTag: 0ac7141971d6d128098c5f101531ae64e35c8190
+  newTag: a63c36d48a25cbbb028f3af747bc9bc91db9578e
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/scripts_loader
-  newTag: 0ac7141971d6d128098c5f101531ae64e35c8190
+  newTag: a63c36d48a25cbbb028f3af747bc9bc91db9578e
