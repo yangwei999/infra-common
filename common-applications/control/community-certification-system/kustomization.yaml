@@ -9,4 +9,4 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/infra-common/community-talent-certification
-  newTag: 8e4aad66ca55499f019b4cb87b19986dd3b7bb87
+  newTag: 0b9d42469c974e6e4f8a765081ccbf547ededb04
