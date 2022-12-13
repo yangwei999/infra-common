@@ -1,0 +1,79 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: source-credible-consistency-deployment
+  namespace: majun-source-credible-consistency
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: source-credible-consistency
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: source-credible-consistency
+    spec:
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
+      containers:
+      - env:
+        - name: jasypt.encryptor.password
+          valueFrom:
+            secretKeyRef:
+              key: jasypt.encryptor.password
+              name: source-credible-consistency-secret
+        - name: spring.data.mongodb.username
+          valueFrom:
+            secretKeyRef:
+              key: spring.data.mongodb.username
+              name: source-credible-consistency-secret
+        - name: spring.data.mongodb.password
+          valueFrom:
+            secretKeyRef:
+              key: spring.data.mongodb.password
+              name: source-credible-consistency-secret
+        - name: spring.data.mongodb.address
+          valueFrom:
+            secretKeyRef:
+              key: spring.data.mongodb.address
+              name: source-credible-consistency-secret
+        - name: spring.data.mongodb.dbName
+          valueFrom:
+            secretKeyRef:
+              key: spring.data.mongodb.dbname
+              name: source-credible-consistency-secret
+        - name: sourceclean.authentication.token
+          valueFrom:
+            secretKeyRef:
+              key: sourceclean.authentication.token
+              name: source-credible-consistency-secret
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/majun/source-credible-consisitency-test:fd4043bb0c586667eec80ae4e349169a8a399a5b
+        imagePullPolicy: IfNotPresent
+        livenessProbe:
+          failureThreshold: 3
+          initialDelaySeconds: 20
+          periodSeconds: 10
+          successThreshold: 1
+          tcpSocket:
+            port: 8089
+          timeoutSeconds: 5
+        name: source-credible-consistency
+        readinessProbe:
+          failureThreshold: 3
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          successThreshold: 1
+          tcpSocket:
+            port: 8089
+          timeoutSeconds: 5
+        resources:
+          limits:
+            cpu: 2000m
+            memory: 4000Mi
+          requests:
+            cpu: 1000m
+            memory: 2000Mi
