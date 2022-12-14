@@ -1,7 +1,7 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/majun/source-credible-consisitency-test
-  newTag: fd4043bb0c586667eec80ae4e349169a8a399a5b
+  newTag: 5a70f635b8f4fc67e6d94d851daec41468f436fb
 kind: Kustomization
 namespace: majun-source-credible-consistency
 resources:
