@@ -11,25 +11,25 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/casefile_resolver
-  newTag: 68c8fdfc093808e5219064599254ac9622c16c00
+  newTag: 3bd1cdef34c2ef2cc7778889e9f3e90b6847dc6c
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/celerybeat
-  newTag: 68c8fdfc093808e5219064599254ac9622c16c00
+  newTag: 3bd1cdef34c2ef2cc7778889e9f3e90b6847dc6c
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/database_updator
-  newTag: 68c8fdfc093808e5219064599254ac9622c16c00
+  newTag: 3bd1cdef34c2ef2cc7778889e9f3e90b6847dc6c
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/gunicorn
-  newTag: 68c8fdfc093808e5219064599254ac9622c16c00
+  newTag: 3bd1cdef34c2ef2cc7778889e9f3e90b6847dc6c
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/issuerate_updator
-  newTag: 68c8fdfc093808e5219064599254ac9622c16c00
+  newTag: 3bd1cdef34c2ef2cc7778889e9f3e90b6847dc6c
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/nginx
   newName: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/nginx
   newTag: 8674b45d8745962c5f71fc1a929aacf82b46d8bb
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/openqa_reader
-  newTag: 68c8fdfc093808e5219064599254ac9622c16c00
+  newTag: 3bd1cdef34c2ef2cc7778889e9f3e90b6847dc6c
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/periodic_worker
-  newTag: 68c8fdfc093808e5219064599254ac9622c16c00
+  newTag: 3bd1cdef34c2ef2cc7778889e9f3e90b6847dc6c
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/rabbitmq
   newTag: v1.0.1
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/root_resolver
-  newTag: 68c8fdfc093808e5219064599254ac9622c16c00
+  newTag: 3bd1cdef34c2ef2cc7778889e9f3e90b6847dc6c
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/scripts_loader
-  newTag: 68c8fdfc093808e5219064599254ac9622c16c00
+  newTag: 3bd1cdef34c2ef2cc7778889e9f3e90b6847dc6c
