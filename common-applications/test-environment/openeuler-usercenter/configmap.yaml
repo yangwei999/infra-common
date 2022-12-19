@@ -32,6 +32,9 @@ data:
         location /oneid/ {
           proxy_pass https://omapi.test.osinfra.cn;
         }
+        root /usr/share/nginx/html/euler;
+        index index.html index.htm;
+        try_files $uri $uri/ /index.html;
         #   error_page 404 /404.html;
       }
     }
@@ -61,6 +64,9 @@ data:
         location /oneid/ {
           proxy_pass https://omapi.test.osinfra.cn;
         }
+        root /usr/share/nginx/html/gauss;
+        index index.html index.htm;
+        try_files $uri $uri/ /index.html;
         #   error_page 404 /404.html;
       }
     }
