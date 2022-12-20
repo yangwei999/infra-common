@@ -33,6 +33,7 @@ resources:
   - github-search-repos
   - docker-hub
   - ecosystem-repo
+  - sig-maintainer
 commonAnnotations:
   owner: zhongjun
   email: "jun.zhongjun2@gmail.com"
