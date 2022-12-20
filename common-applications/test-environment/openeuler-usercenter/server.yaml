@@ -1,0 +1,54 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: oneid-server
+  namespace: openeuler-usercenter
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: oneid-server
+  template:
+    metadata:
+      labels:
+        app: oneid-server
+    spec:
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
+      containers:
+      - name: oneid-server
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openeuler-usercenter-server-test:7935c10d75b1fa426e7fe12241b4659a295282cf
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+          name: http
+          protocol: TCP
+        env:
+        - name: dburl
+          valueFrom:
+            secretKeyRef:
+              key: dburl
+              name: oneid-server-secrets
+        - name: dbusername
+          valueFrom:
+            secretKeyRef:
+              key: dbusername
+              name: oneid-server-secrets
+        - name: dbpassword
+          valueFrom:
+            secretKeyRef:
+              key: dbpassword
+              name: oneid-server-secrets
+        resources:
+          requests:
+            cpu: 500m
+            memory: 500Mi
+          limits:
+            cpu: 500m
+            memory: 500Mi

@@ -13,4 +13,20 @@ spec:
     app: openeuler-usercenter
   type: ClusterIP
 
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: oneid-server-service
+  namespace: openeuler-usercenter
+spec:
+  ports:
+  - name: https-port
+    protocol: TCP
+    port: 80
+    targetPort: 8080
+  selector:
+    app: oneid-server
+  type: ClusterIP
+
   
