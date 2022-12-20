@@ -41,7 +41,7 @@ data:
     daemon_smtp_ports = 25 : 465
     tls_on_connect_ports = 465
 
-    log_file_path = /var/log/exim4/%s.%M
+    log_file_path = /var/log/exim/%s.%M
     exim_path = /usr/sbin/exim4
 
     .ifndef CONFDIR

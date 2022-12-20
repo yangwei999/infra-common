@@ -23,17 +23,11 @@ spec:
     spec:
       containers:
         - name: mailman-core
-          image: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/mail-core:v0.1.1
+          image: swr.cn-north-4.myhuaweicloud.com/opensourceway/app-mailman/mailman-core-new-build:6b76c46366444649b7653cb387557ea03b278f251671436341
           imagePullPolicy: "IfNotPresent"
           volumeMounts:
             - mountPath: /opt/mailman/
               name: mailman-core-volume
-            - mountPath: /usr/lib/python3.6/site-packages/mailman/runners/command.py
-              name: mailman-core-hack-volume
-              subPath: command.py
-            - mountPath: /usr/lib/python3.6/site-packages/mailman/mta/base.py
-              name: mailman-core-base-py
-              subPath: base.py
           env:
             - name: DATABASE_TYPE
               value: mysql
@@ -79,24 +73,35 @@ spec:
                 secretKeyRef:
                   name: mailman-secrets
                   key: exim4_credential_password
+            - name: MM_HOSTNAME
+              valueFrom:
+                secretKeyRef:
+                  name: mailman-secrets
+                  key: mailcore_mm_hostname
+            - name: MAILMAN_REST_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: mailman-secrets
+                  key: mailcore_rest_port
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: mailman-secrets
+                  key: mailcore_database_url
+            - name: MTA
+              valueFrom:
+                secretKeyRef:
+                  name: mailman-secrets
+                  key: mailcore_mta
+            - name: SMTP_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: mailman-secrets
+                  key: mailcore_smtp_port
           # Sed command is used here to force change default charsets to UTF-8
           # related issue: https://gitlab.com/mailman/postorius/issues/325
-          command:
-            - /bin/sh
-            - -c
-            - |
-              export DATABASE_URL=mysql://${MYSQL_USER}:${MYSQL_PASSWORD}@192.168.1.3:3306/mailman
-              sed -i "s/charset: us-ascii/charset: utf-8/g" /usr/lib/python3.6/site-packages/mailman/config/schema.cfg;
-              sed -i "s/email_commands_max_lines: 10/email_commands_max_lines: 30/g" /usr/lib/python3.6/site-packages/mailman/config/schema.cfg;
-              exec docker-entrypoint.sh master --force
       #NOTE: Empty dir can't be used in a production dir. Please upgrade it before using.
       volumes:
         - name: mailman-core-volume
           persistentVolumeClaim:
             claimName: config-vol
-        - name: mailman-core-hack-volume
-          configMap:
-            name: mailman-webpage-hack
-        - name: mailman-core-base-py
-          configMap:
-            name: mailman-core-configmap

@@ -9,7 +9,7 @@ spec:
   ports:
   - port: 80
     name: website-port-http
-    targetPort: 80
+    targetPort: 8000
     protocol: TCP
   selector:
     component: mail-web-service
@@ -41,21 +41,26 @@ spec:
       containers:
         - name: mailman-web
           # We modified the mail-web image to add static folder.
-          image: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/mailman-web:0.3.5
+          image: swr.cn-north-4.myhuaweicloud.com/opensourceway/app-mailman/mailman-web-new-build:5f4bdbc464a510296b5401256956aa71be077c621671503020
           imagePullPolicy: "Always"
-          volumeMounts:
-            - mountPath: /opt/mailman-web-config
-              name: mailman-web-configmap-volume
-            - mountPath: /opt/mailman-web-data
-              name: mailman-web-volume
-            - mountPath: /usr/lib/python3.6/site-packages/postorius/templates/postorius/lists/summary.html
-              name: mailman-webpage-hack-volume
-              subPath: summary.html
-            - mountPath: /opt/mailman-web/uwsgi.ini
-              name: mailman-web-configmap-volume
-              subPath: uwsgi.ini
           ports:
-            - containerPort: 80
+            - containerPort: 8000
+          livenessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 10
+            periodSeconds: 5
+            successThreshold: 1
+            tcpSocket:
+              port: 8000
+            timeoutSeconds: 1
+          readinessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 10
+            periodSeconds: 5
+            successThreshold: 1
+            tcpSocket:
+              port: 8000
+            timeoutSeconds: 1
           env:
             - name: MYSQL_USER
               valueFrom:
@@ -116,49 +121,29 @@ spec:
             #NOTE: this is the domain name that mailman web will serve
             - name: SERVE_FROM_DOMAIN
               value: mailweb.osinfra.cn
-          #NOTE: Command is overwritten for the purpose of copy config file into dest folder
-          command:
-            - /bin/sh
-            - -c
-            - |
-              export DATABASE_URL=mysql://${MYSQL_USER}:${MYSQL_PASSWORD}@192.168.1.3:3306/mailman
-              cp /opt/mailman-web-config/settings_local.py /opt/mailman-web-data;
-              #disable signup page for mailman web postrious
-              cp /opt/mailman-web-config/base.html /usr/lib/python3.6/site-packages/postorius/templates/postorius;
-              #disable signup page for mailman web hyperkitty
-              cp /opt/mailman-web-config/base2.html /usr/lib/python3.6/site-packages/hyperkitty/templates/hyperkitty/base.html
-              cp /opt/mailman-web-config/email.py /usr/lib/python3.6/site-packages/hyperkitty/models/email.py
-              # upgrade version of jquery to fix security vulnerability
-              rm -f /usr/lib/python3.6/site-packages/postorius/static/postorius/libs/jquery/jquery-1.11.3.min.js
-              wget https://code.jquery.com/jquery-3.6.0.js -O /usr/lib/python3.6/site-packages/postorius/static/postorius/libs/jquery/jquery-3.6.0.js
-              wget https://code.jquery.com/jquery-3.6.0.min.js -O /usr/lib/python3.6/site-packages/postorius/static/postorius/libs/jquery/jquery-3.6.0.min.js
-              wget https://code.jquery.com/jquery-3.6.0.min.map -O /usr/lib/python3.6/site-packages/postorius/static/postorius/libs/jquery/jquery-3.6.0.min.map
-              exec docker-entrypoint.sh uwsgi --ini /opt/mailman-web/uwsgi.ini;
-        - name: nginx-web
-          image: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/nginx:latest
-          volumeMounts:
-            - mountPath: /etc/nginx/nginx.conf
-              name: mailman-nginx-configmap-volume
-              subPath: nginx.conf
-            - mountPath: /etc/nginx/conf.d/default.conf
-              name: mailman-nginx-configmap-volume
-              subPath: default.conf
-            - mountPath: /opt/mailman-web-data
-              name: mailman-web-volume
-      #NOTE: Empty dir can't be used in a production dir. Please upgrade it before using.
-      volumes:
-        - name: mailman-web-volume
-          emptyDir: {}
-        - name: mailman-web-configmap-volume
-          configMap:
-            name: mailman-web-configmap
-        - name: mailman-cert-secrets
-          secret:
-            secretName: mailman-cert-secrets
-        - name: mailman-webpage-hack-volume
-          configMap:
-            name: mailman-webpage-hack
-        - name: mailman-nginx-configmap-volume
-          configMap:
-            name: mailman-nginx-configmap
----
+            # update 2022.12.15
+            - name: SMTP_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: mailman-secrets
+                  key: mailweb_smtp_host
+            - name: SMTP_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: mailman-secrets
+                  key: mailweb_smtp_port
+            - name: DJANGO_ALLOWED_HOSTS
+              valueFrom:
+                secretKeyRef:
+                  name: mailman-secrets
+                  key: mailweb_django_allowed_hosts
+            - name: POSTORIUS_TEMPLATE_BASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: mailman-secrets
+                  key: mailweb_postorius_template_base_url
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: mailman-secrets
+                  key: mailweb_database_url     
