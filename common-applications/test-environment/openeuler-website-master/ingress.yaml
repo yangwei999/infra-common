@@ -3,6 +3,23 @@ kind: Ingress
 metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/server-snippet: |
+      set $allow_request 0;
+      if ($uri ~* ^/zh/interaction/summit-list/ ){
+        set $allow_request 1;
+      }
+      if ($uri ~* ^/ip-api/ ){
+        set $allow_request 1;
+      }
+      if ($uri ~* \.(js|css|png|ts|svg|woff|ttf|ico)$ ){
+        set $allow_request 1;
+      }
+      if ($uri ~* icons ){
+        set $allow_request 1;
+      }
+      if ($allow_request = 0){
+        rewrite ^/.* https://www.openeuler.org;
+      }
     nginx.ingress.kubernetes.io/configuration-snippet: |
       set $Real $http_x_forwarded_for;
       if ( $http_x_forwarded_for = "" ){

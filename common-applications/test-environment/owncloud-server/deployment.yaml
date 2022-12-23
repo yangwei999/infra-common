@@ -1,0 +1,121 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: owncloud-server
+  namespace: owncloud-server
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 1
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: owncloud-server
+  template:
+    metadata:
+      labels:
+        app: owncloud-server
+    spec:
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
+      containers:
+      - name: server
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/owncloud/server:v10.11
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: OWNCLOUD_DOMAIN
+          valueFrom:
+            secretKeyRef:
+              key: owncloud_domain
+              name: owncloud-server-secret
+        - name: OWNCLOUD_TRUSTED_DOMAINS
+          valueFrom:
+            secretKeyRef:
+              key: owncloud_trusted_domains
+              name: owncloud-server-secret
+        - name: OWNCLOUD_DB_TYPE
+          valueFrom:
+            secretKeyRef:
+              key: owncloud_db_type
+              name: owncloud-server-secret
+        - name: OWNCLOUD_DB_NAME
+          valueFrom:
+            secretKeyRef:
+              key: owncloud_db_name
+              name: owncloud-server-secret
+        - name: OWNCLOUD_DB_USERNAME
+          valueFrom:
+            secretKeyRef:
+              key: owncloud_db_username
+              name: owncloud-server-secret
+        - name: OWNCLOUD_DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: owncloud_db_password
+              name: owncloud-server-secret
+        - name: OWNCLOUD_DB_HOST
+          valueFrom:
+            secretKeyRef:
+              key: owncloud_db_host
+              name: owncloud-server-secret
+        - name: OWNCLOUD_ADMIN_USERNAME
+          valueFrom:
+            secretKeyRef:
+              key: owncloud_admin_username
+              name: owncloud-server-secret
+        - name: OWNCLOUD_ADMIN_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: owncloud_admin_password
+              name: owncloud-server-secret
+        - name: OWNCLOUD_MYSQL_UTF8MB4
+          valueFrom:
+            secretKeyRef:
+              key: owncloud_mysql_utf8mb4
+              name: owncloud-server-secret
+        - name: OWNCLOUD_REDIS_ENABLED
+          valueFrom:
+            secretKeyRef:
+              key: owncloud_redis_enabled
+              name: owncloud-server-secret
+        - name: OWNCLOUD_REDIS_HOST
+          valueFrom:
+            secretKeyRef:
+              key: owncloud_redis_host
+              name: owncloud-server-secret
+        ports:
+        - containerPort: 8080
+          name: http
+          protocol: TCP
+        resources:
+          requests:
+            cpu: 500m
+            memory: 500Mi
+          limits:
+            cpu: 1000m
+            memory: 1000Mi
+        livenessProbe:
+          exec:
+            command:
+            - /usr/bin/healthcheck
+          initialDelaySeconds: 30
+          periodSeconds: 30
+          timeoutSeconds: 10
+          failureThreshold: 5
+        readinessProbe:
+          exec:
+            command:
+            - /usr/bin/healthcheck
+          initialDelaySeconds: 30
+          periodSeconds: 30
+          timeoutSeconds: 10
+          failureThreshold: 5
+        volumeMounts:
+        - mountPath: /mnt/data
+          name: storage-data
+      volumes:
+      - name: storage-data
+        persistentVolumeClaim:
+          claimName: owncloud-server-volume
