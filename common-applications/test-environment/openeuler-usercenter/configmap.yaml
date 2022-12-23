@@ -38,10 +38,10 @@ data:
         #   error_page 404 /404.html;
       }
     }
-    # opengauss-usercenter.test.osinfra.cn
+    # id-test.opengauss.org
     server {
       # listen 443 ssl;
-      server_name opengauss-usercenter.test.osinfra.cn;
+      server_name id-test.opengauss.org;
       # charset utf-8;
 
       listen 80;

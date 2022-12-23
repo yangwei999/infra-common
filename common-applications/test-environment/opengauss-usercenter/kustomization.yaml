@@ -1,0 +1,16 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+images:
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/opengauss/usercenter-docs
+  newTag: v1.0.20221223113210
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/opengauss/usercenter-website
+  newTag: v1.0.20221223111107
+kind: Kustomization
+namespace: opengauss-usercenter
+resources:
+- namespace.yaml
+- opengauss-docs-ingress.yaml
+- opengauss-docs-service.yaml
+- opengauss-docs-deployment.yaml
+- opengauss-website-ingress.yaml
+- opengauss-website-service.yaml
+- opengauss-website-deployment.yaml
