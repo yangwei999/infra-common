@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    kubernetes.io/ingress.class: nginx
+  name: openeuler-summary-ingress
+  namespace: community-summary
+spec:
+  rules:
+  - host: summary-openeuler.test.osinfra.cn
+    http:
+      paths:
+      - backend:
+          serviceName: openeuler-oauth2-proxy
+          servicePort: 4180
+        path: /
+  tls:
+  - hosts:
+    - summary-openeuler.test.osinfra.cn
+    secretName: openeuler-summary-tls
