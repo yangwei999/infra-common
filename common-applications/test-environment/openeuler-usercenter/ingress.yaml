@@ -39,7 +39,7 @@ spec:
       http:
         paths:
         - backend:
-            serviceName: openeuler-usercenter-service
+            serviceName: opengauss-usercenter-service
             servicePort: 80
           path: /
 

@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: openeuler-usercenter
+  name: opengauss-usercenter
   namespace: openeuler-usercenter
 spec:
   replicas: 1
@@ -13,17 +13,17 @@ spec:
     type: RollingUpdate
   selector:
     matchLabels:
-      app: openeuler-usercenter
+      app: opengauss-usercenter
   template:
     metadata:
       labels:
-        app: openeuler-usercenter
+        app: opengauss-usercenter
     spec:
       imagePullSecrets:
       - name: huawei-swr-image-pull-secret
       containers:
-      - name: openeuler-usercenter
-        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openeuler-usercenter-test:e712c3c7c79c610f6b615a4c018929d73e3d277c
+      - name: opengauss-usercenter
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/opengauss/opengauss-usercenter-test:659d9b3eb9db1aa70032e8fcfbb3fac9c3adf154
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 80
