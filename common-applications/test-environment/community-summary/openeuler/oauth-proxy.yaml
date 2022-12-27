@@ -37,10 +37,10 @@ spec:
       - args:
         - --provider=gitee
         - --email-domain=*
-        - --proxy-prefix=/oauth2
+        - --proxy-prefix=/zh/oauth2
         - --skip-validate-email=true
-        - --skip-auth-regex=^/agreement_ch.html
-        - --skip-auth-regex=^/agreement_en.html
+        - --skip-auth-regex=^/zh/agreement_ch.html
+        - --skip-auth-regex=^/zh/agreement_en.html
         - --upstream=http://openeuler-summary-service.community-summary.svc.cluster.local
         - --http-address=0.0.0.0:4180
         - --cookie-expire=6h0m0s
@@ -63,7 +63,7 @@ spec:
             secretKeyRef:
               key: openeuler_cookie_secret
               name: openeuler-oauth-secrets
-        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/oauth2-proxy:1091a11b4b3a3ce5895296ed6613b5bd2e14867a
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/oauth2-proxy:ad4bd4e8d03cd33395c19483bc4370464db5c311
         imagePullPolicy: Always
         name: oauth2-proxy
         ports:
@@ -88,3 +88,84 @@ spec:
     openeuler_cookie_secret:
       path: secrets/data/infra-test/community-summary
       key: openeuler_cookie_secret
+    openeuler_en_client_id:
+      path: secrets/data/infra-test/community-summary
+      key: openeuler_en_client_id
+    openeuler_en_client_secret:
+      path: secrets/data/infra-test/community-summary
+      key: openeuler_en_client_secret
+    openeuler_en_cookie_secret:
+      path: secrets/data/infra-test/community-summary
+      key: openeuler_en_cookie_secret
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: openeuler-en-oauth2-proxy
+  namespace: community-summary
+spec:
+  selector:
+    k8s-app: openeuler-en-oauth2-proxy
+  ports:
+  - name: http
+    port: 4180
+    protocol: TCP
+    targetPort: 4180
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    k8s-app: openeuler-en-oauth2-proxy
+  name: openeuler-en-oauth2-proxy
+  namespace: community-summary
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      k8s-app: openeuler-en-oauth2-proxy
+  template:
+    metadata:
+      labels:
+        k8s-app: openeuler-en-oauth2-proxy
+    spec:
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
+      containers:
+      - args:
+        - --provider=gitee
+        - --email-domain=*
+        - --proxy-prefix=/en/oauth2
+        - --skip-validate-email=true
+        - --skip-auth-regex=^/en/agreement_ch.html
+        - --skip-auth-regex=^/en/agreement_en.html
+        - --upstream=http://openeuler-summary-service.community-summary.svc.cluster.local
+        - --http-address=0.0.0.0:4180
+        - --cookie-expire=6h0m0s
+        - --set-xauthrequest=true
+        - --custom-templates-dir=/bin/static/login
+        - --custom-templates-sign-in=euler-en.html
+        env:
+        - name: OAUTH2_PROXY_CLIENT_ID
+          valueFrom:
+            secretKeyRef:
+              key: openeuler_en_client_id
+              name: openeuler-oauth-secrets
+        - name: OAUTH2_PROXY_CLIENT_SECRET
+          valueFrom:
+            secretKeyRef:
+              key: openeuler_en_client_secret
+              name: openeuler-oauth-secrets
+        - name: OAUTH2_PROXY_COOKIE_SECRET
+          valueFrom:
+            secretKeyRef:
+              key: openeuler_en_cookie_secret
+              name: openeuler-oauth-secrets
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/oauth2-proxy:ad4bd4e8d03cd33395c19483bc4370464db5c311
+        imagePullPolicy: Always
+        name: oauth2-proxy
+        ports:
+        - containerPort: 4180
+          protocol: TCP

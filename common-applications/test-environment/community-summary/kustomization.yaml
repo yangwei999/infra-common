@@ -8,6 +8,8 @@ images:
   newTag: v1.0.20221224141218
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/mindspore/summary-test
   newTag: v1.0.20221224144339
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/oauth2-proxy
+  newTag: ad4bd4e8d03cd33395c19483bc4370464db5c311
 kind: Kustomization
 namespace: community-summary
 resources:

@@ -37,10 +37,10 @@ spec:
       - args:
         - --provider=gitee
         - --email-domain=*
-        - --proxy-prefix=/oauth2
+        - --proxy-prefix=/zh/oauth2
         - --skip-validate-email=true
-        - --skip-auth-regex=^/agreement_ch.html
-        - --skip-auth-regex=^/agreement_en.html
+        - --skip-auth-regex=^/zh/agreement_ch.html
+        - --skip-auth-regex=^/zh/agreement_en.html
         - --upstream=http://opengauss-summary-service.community-summary.svc.cluster.local
         - --http-address=0.0.0.0:4180
         - --cookie-expire=6h0m0s
@@ -63,7 +63,7 @@ spec:
             secretKeyRef:
               key: opengauss_cookie_secret
               name: opengauss-oauth-secrets
-        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/oauth2-proxy:1091a11b4b3a3ce5895296ed6613b5bd2e14867a
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/oauth2-proxy:ad4bd4e8d03cd33395c19483bc4370464db5c311
         imagePullPolicy: Always
         name: oauth2-proxy
         ports:
