@@ -1,7 +1,7 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/opengauss/usercenter-docs
-  newTag: v1.0.20221223113210
+  newTag: v1.0.20221227114739
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/opengauss/usercenter-website
   newTag: v1.0.20221227115123
 kind: Kustomization
