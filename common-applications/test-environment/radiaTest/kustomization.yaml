@@ -11,25 +11,25 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/casefile_resolver
-  newTag: d6dfbb4e866222b805c059c0bddc2c3832b5ebd4
+  newTag: 6966f6ab22bb0d7be8c4fe4d980b167b36969496
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/celerybeat
-  newTag: d6dfbb4e866222b805c059c0bddc2c3832b5ebd4
+  newTag: 6966f6ab22bb0d7be8c4fe4d980b167b36969496
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/database_updator
-  newTag: d6dfbb4e866222b805c059c0bddc2c3832b5ebd4
+  newTag: 6966f6ab22bb0d7be8c4fe4d980b167b36969496
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/gunicorn
-  newTag: d6dfbb4e866222b805c059c0bddc2c3832b5ebd4
+  newTag: 6966f6ab22bb0d7be8c4fe4d980b167b36969496
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/issuerate_updator
-  newTag: d6dfbb4e866222b805c059c0bddc2c3832b5ebd4
+  newTag: 6966f6ab22bb0d7be8c4fe4d980b167b36969496
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/nginx
   newName: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/nginx
   newTag: d20cb12c27968da218bd65e3feae9c84be3b2f0a
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/openqa_reader
-  newTag: d6dfbb4e866222b805c059c0bddc2c3832b5ebd4
+  newTag: 6966f6ab22bb0d7be8c4fe4d980b167b36969496
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/periodic_worker
-  newTag: d6dfbb4e866222b805c059c0bddc2c3832b5ebd4
+  newTag: 6966f6ab22bb0d7be8c4fe4d980b167b36969496
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/rabbitmq
   newTag: v1.0.1
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/root_resolver
-  newTag: d6dfbb4e866222b805c059c0bddc2c3832b5ebd4
+  newTag: 6966f6ab22bb0d7be8c4fe4d980b167b36969496
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/scripts_loader
-  newTag: d6dfbb4e866222b805c059c0bddc2c3832b5ebd4
+  newTag: 6966f6ab22bb0d7be8c4fe4d980b167b36969496
