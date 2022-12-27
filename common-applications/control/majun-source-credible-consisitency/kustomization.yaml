@@ -10,3 +10,4 @@ resources:
 - source-credible-consistency-service.yaml
 - source-credible-consistency-secret.yaml
 - source-credible-consistency-deployment.yaml
+- pvc.yaml
