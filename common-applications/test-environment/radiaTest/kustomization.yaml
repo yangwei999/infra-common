@@ -11,25 +11,25 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/casefile_resolver
-  newTag: 39c0f85725a7d0e0552bc9cbba1a544f6a1efffb
+  newTag: fb2d6fe433a12952bf74033afdc2ee6eb41c8917
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/celerybeat
-  newTag: 39c0f85725a7d0e0552bc9cbba1a544f6a1efffb
+  newTag: fb2d6fe433a12952bf74033afdc2ee6eb41c8917
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/database_updator
-  newTag: 39c0f85725a7d0e0552bc9cbba1a544f6a1efffb
+  newTag: fb2d6fe433a12952bf74033afdc2ee6eb41c8917
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/gunicorn
-  newTag: 39c0f85725a7d0e0552bc9cbba1a544f6a1efffb
+  newTag: fb2d6fe433a12952bf74033afdc2ee6eb41c8917
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/issuerate_updator
-  newTag: 39c0f85725a7d0e0552bc9cbba1a544f6a1efffb
+  newTag: fb2d6fe433a12952bf74033afdc2ee6eb41c8917
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/nginx
   newName: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/nginx
   newTag: d20cb12c27968da218bd65e3feae9c84be3b2f0a
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/openqa_reader
-  newTag: 39c0f85725a7d0e0552bc9cbba1a544f6a1efffb
+  newTag: fb2d6fe433a12952bf74033afdc2ee6eb41c8917
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/periodic_worker
-  newTag: 39c0f85725a7d0e0552bc9cbba1a544f6a1efffb
+  newTag: fb2d6fe433a12952bf74033afdc2ee6eb41c8917
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/rabbitmq
   newTag: v1.0.1
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/root_resolver
-  newTag: 39c0f85725a7d0e0552bc9cbba1a544f6a1efffb
+  newTag: fb2d6fe433a12952bf74033afdc2ee6eb41c8917
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/scripts_loader
-  newTag: 39c0f85725a7d0e0552bc9cbba1a544f6a1efffb
+  newTag: fb2d6fe433a12952bf74033afdc2ee6eb41c8917
