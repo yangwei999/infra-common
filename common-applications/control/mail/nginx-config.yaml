@@ -10,11 +10,11 @@ data:
     server {
         listen 80 default_server;
 
-        root /opt/mailman-web-data;
+        root /opt/mailman-web-static;
         index index.html;
 
         location /static {
-          alias /opt/mailman-web-data/static;
+          alias /opt/mailman-web-static/static;
         }
 
         location / {
