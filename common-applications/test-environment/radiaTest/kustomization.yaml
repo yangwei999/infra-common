@@ -11,25 +11,25 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/casefile_resolver
-  newTag: 882aa24e1ba2dfbe0334080e68d8c2c2a0fab50b
+  newTag: 39c0f85725a7d0e0552bc9cbba1a544f6a1efffb
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/celerybeat
-  newTag: 882aa24e1ba2dfbe0334080e68d8c2c2a0fab50b
+  newTag: 39c0f85725a7d0e0552bc9cbba1a544f6a1efffb
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/database_updator
-  newTag: 882aa24e1ba2dfbe0334080e68d8c2c2a0fab50b
+  newTag: 39c0f85725a7d0e0552bc9cbba1a544f6a1efffb
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/gunicorn
-  newTag: 882aa24e1ba2dfbe0334080e68d8c2c2a0fab50b
+  newTag: 39c0f85725a7d0e0552bc9cbba1a544f6a1efffb
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/issuerate_updator
-  newTag: 882aa24e1ba2dfbe0334080e68d8c2c2a0fab50b
+  newTag: 39c0f85725a7d0e0552bc9cbba1a544f6a1efffb
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/nginx
   newName: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/nginx
   newTag: d20cb12c27968da218bd65e3feae9c84be3b2f0a
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/openqa_reader
-  newTag: 882aa24e1ba2dfbe0334080e68d8c2c2a0fab50b
+  newTag: 39c0f85725a7d0e0552bc9cbba1a544f6a1efffb
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/periodic_worker
-  newTag: 882aa24e1ba2dfbe0334080e68d8c2c2a0fab50b
+  newTag: 39c0f85725a7d0e0552bc9cbba1a544f6a1efffb
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/rabbitmq
   newTag: v1.0.1
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/root_resolver
-  newTag: 882aa24e1ba2dfbe0334080e68d8c2c2a0fab50b
+  newTag: 39c0f85725a7d0e0552bc9cbba1a544f6a1efffb
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/scripts_loader
-  newTag: 882aa24e1ba2dfbe0334080e68d8c2c2a0fab50b
+  newTag: 39c0f85725a7d0e0552bc9cbba1a544f6a1efffb
