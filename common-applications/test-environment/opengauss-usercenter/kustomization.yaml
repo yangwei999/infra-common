@@ -3,7 +3,7 @@ images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/opengauss/usercenter-docs
   newTag: v1.0.20221227160035
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/opengauss/usercenter-website
-  newTag: v1.0.20221228114828
+  newTag: v1.0.20221228150924
 kind: Kustomization
 namespace: opengauss-usercenter
 resources:
