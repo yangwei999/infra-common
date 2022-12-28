@@ -41,7 +41,7 @@ spec:
       containers:
         - name: mailman-web
           # We modified the mail-web image to add static folder.
-          image: swr.cn-north-4.myhuaweicloud.com/opensourceway/app-mailman/mailman-web-new-build:3d97dff8206e4262c0fa2e218cdacb40e168c56a1672141380
+          image: swr.cn-north-4.myhuaweicloud.com/opensourceway/app-mailman/mailman-web-new-build:9757a0f54ef78028731eb44f18abd9c5a548e2211672195591
           imagePullPolicy: "Always"
           ports:
             - containerPort: 8000
