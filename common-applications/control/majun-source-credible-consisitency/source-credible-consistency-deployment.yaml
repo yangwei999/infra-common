@@ -4,7 +4,7 @@ metadata:
   name: source-credible-consistency-deployment
   namespace: majun-source-credible-consistency
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: source-credible-consistency
@@ -77,3 +77,10 @@ spec:
           requests:
             cpu: 1000m
             memory: 2000Mi
+        volumeMounts:
+        - mountPath: /root/source_clean
+          name: data-volume
+      volumes:
+      - name: data-volume
+        persistentVolumeClaim:
+          claimName: source-clean-data-volume

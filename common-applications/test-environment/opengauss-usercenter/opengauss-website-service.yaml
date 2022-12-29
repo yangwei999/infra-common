@@ -12,3 +12,13 @@ spec:
   selector:
     app: opengauss-website
   type: ClusterIP
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: opengauss-meeting-service
+  namespace: opengauss-usercenter
+spec:
+  type: ExternalName
+  externalName: meetingserver-service.opengauss-website-revision.svc.cluster.local

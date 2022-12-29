@@ -3,14 +3,16 @@ resources:
 - ingress.yaml
 - service.yaml
 - deployment.yaml
-- configmap.yaml
 - server.yaml
 - secret.yaml
+- opengauss-usercenter.yaml
 namespace: openeuler-usercenter
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openeuler-usercenter-server-test
-  newTag: 03087db96031837014de1052888394f460b333cc
+  newTag: a6744feb781ab7c89345b9fad8d8aced004626b7
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openeuler-usercenter-test
-  newTag: f40eac69feaabe9d4098a4750242f309b9cf94d3
+  newTag: dd9c259653cb3b1fa2cbdb32978bf4d6baad7bff
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/opengauss/opengauss-usercenter-test
+  newTag: 73d9acda0d3181481f4e38abb285eadf3263b8b9

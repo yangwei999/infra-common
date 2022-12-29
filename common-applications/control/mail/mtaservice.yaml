@@ -50,7 +50,7 @@ spec:
     spec:
       containers:
         - name: mailman-exim4
-          image: swr.cn-north-4.myhuaweicloud.com/opensourceway/app-mailman/mailman-exim-new-build:63c2285b5da07988115dc13a72fc6b80e180dca21671435192
+          image: swr.cn-north-4.myhuaweicloud.com/opensourceway/app-mailman/mailman-exim-new-build:3d97dff8206e4262c0fa2e218cdacb40e168c56a1672141405
           imagePullPolicy: "IfNotPresent"
           volumeMounts:
             - mountPath: /opt/mailman/

@@ -11,25 +11,25 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/casefile_resolver
-  newTag: 78ecd49c696e6c2e7e00421b63873e777caceb0f
+  newTag: 934f4a9d308e5f35c82388b232a4cbb796883235
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/celerybeat
-  newTag: 78ecd49c696e6c2e7e00421b63873e777caceb0f
+  newTag: 934f4a9d308e5f35c82388b232a4cbb796883235
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/database_updator
-  newTag: 78ecd49c696e6c2e7e00421b63873e777caceb0f
+  newTag: 934f4a9d308e5f35c82388b232a4cbb796883235
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/gunicorn
-  newTag: 78ecd49c696e6c2e7e00421b63873e777caceb0f
+  newTag: 934f4a9d308e5f35c82388b232a4cbb796883235
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/issuerate_updator
-  newTag: 78ecd49c696e6c2e7e00421b63873e777caceb0f
+  newTag: 934f4a9d308e5f35c82388b232a4cbb796883235
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/nginx
   newName: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/nginx
-  newTag: 8674b45d8745962c5f71fc1a929aacf82b46d8bb
+  newTag: 934f4a9d308e5f35c82388b232a4cbb796883235
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/openqa_reader
-  newTag: 78ecd49c696e6c2e7e00421b63873e777caceb0f
+  newTag: 934f4a9d308e5f35c82388b232a4cbb796883235
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/periodic_worker
-  newTag: 78ecd49c696e6c2e7e00421b63873e777caceb0f
+  newTag: 934f4a9d308e5f35c82388b232a4cbb796883235
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/rabbitmq
   newTag: v1.0.1
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/root_resolver
-  newTag: 78ecd49c696e6c2e7e00421b63873e777caceb0f
+  newTag: 934f4a9d308e5f35c82388b232a4cbb796883235
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/scripts_loader
-  newTag: 78ecd49c696e6c2e7e00421b63873e777caceb0f
+  newTag: 934f4a9d308e5f35c82388b232a4cbb796883235
