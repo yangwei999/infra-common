@@ -29,4 +29,20 @@ spec:
     app: oneid-server
   type: ClusterIP
 
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: opengauss-usercenter-service
+  namespace: openeuler-usercenter
+spec:
+  ports:
+  - name: https-port
+    protocol: TCP
+    port: 80
+    targetPort: 80
+  selector:
+    app: opengauss-usercenter
+  type: ClusterIP
+
   

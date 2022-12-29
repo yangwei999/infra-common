@@ -1,0 +1,20 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+images:
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/oauth2-proxy
+  newTag: ad4bd4e8d03cd33395c19483bc4370464db5c311
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/mindspore/summary-test
+  newTag: v1.0.20221224144339
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/summary-test
+  newTag: v1.0.20221229121956
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/opengauss/summary-test
+  newTag: v1.0.20221224140528
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openlookeng/summary-test
+  newTag: v1.0.20221224141218
+kind: Kustomization
+namespace: community-summary
+resources:
+- namespace.yaml
+- openeuler
+- mindspore
+- opengauss
+- openlookeng
