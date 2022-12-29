@@ -11,25 +11,25 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/casefile_resolver
-  newTag: fb2d6fe433a12952bf74033afdc2ee6eb41c8917
+  newTag: 934f4a9d308e5f35c82388b232a4cbb796883235
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/celerybeat
-  newTag: fb2d6fe433a12952bf74033afdc2ee6eb41c8917
+  newTag: 934f4a9d308e5f35c82388b232a4cbb796883235
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/database_updator
-  newTag: fb2d6fe433a12952bf74033afdc2ee6eb41c8917
+  newTag: 934f4a9d308e5f35c82388b232a4cbb796883235
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/gunicorn
-  newTag: fb2d6fe433a12952bf74033afdc2ee6eb41c8917
+  newTag: 934f4a9d308e5f35c82388b232a4cbb796883235
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/issuerate_updator
-  newTag: fb2d6fe433a12952bf74033afdc2ee6eb41c8917
+  newTag: 934f4a9d308e5f35c82388b232a4cbb796883235
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/nginx
   newName: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/nginx
   newTag: 39c0f85725a7d0e0552bc9cbba1a544f6a1efffb
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/openqa_reader
-  newTag: fb2d6fe433a12952bf74033afdc2ee6eb41c8917
+  newTag: 934f4a9d308e5f35c82388b232a4cbb796883235
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/periodic_worker
-  newTag: fb2d6fe433a12952bf74033afdc2ee6eb41c8917
+  newTag: 934f4a9d308e5f35c82388b232a4cbb796883235
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/rabbitmq
   newTag: v1.0.1
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/root_resolver
-  newTag: fb2d6fe433a12952bf74033afdc2ee6eb41c8917
+  newTag: 934f4a9d308e5f35c82388b232a4cbb796883235
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/scripts_loader
-  newTag: fb2d6fe433a12952bf74033afdc2ee6eb41c8917
+  newTag: 934f4a9d308e5f35c82388b232a4cbb796883235
