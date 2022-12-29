@@ -14,7 +14,7 @@ spec:
       - backend:
           serviceName: openlookeng-oauth2-proxy
           servicePort: 4180
-        path: /zh
+        path: /
   tls:
   - hosts:
     - summary-openlookeng.test.osinfra.cn

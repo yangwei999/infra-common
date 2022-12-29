@@ -14,7 +14,7 @@ spec:
       - backend:
           serviceName: mindspore-oauth2-proxy
           servicePort: 4180
-        path: /zh
+        path: /
   tls:
   - hosts:
     - summary-mindspore.test.osinfra.cn
