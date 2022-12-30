@@ -17,7 +17,7 @@ spec:
       - name: huawei-swr-image-pull-secret
       containers:
         - name: om-webserver
-          image: swr.cn-north-4.myhuaweicloud.com/om/om-webserver:0.3.2
+          image: swr.cn-north-4.myhuaweicloud.com/om/om-webserver:0.3.3
           resources:
             requests:
               memory: 100Mi
