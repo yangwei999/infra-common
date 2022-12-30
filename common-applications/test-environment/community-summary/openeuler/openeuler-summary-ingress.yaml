@@ -14,7 +14,7 @@ spec:
       - backend:
           serviceName: openeuler-oauth2-proxy
           servicePort: 4180
-        path: /zh
+        path: /
   tls:
   - hosts:
     - summary-openeuler.test.osinfra.cn

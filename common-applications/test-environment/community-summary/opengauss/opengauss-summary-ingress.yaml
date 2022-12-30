@@ -14,7 +14,7 @@ spec:
       - backend:
           serviceName: opengauss-oauth2-proxy
           servicePort: 4180
-        path: /zh
+        path: /
   tls:
   - hosts:
     - summary-opengauss.test.osinfra.cn

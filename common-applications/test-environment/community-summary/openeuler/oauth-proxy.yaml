@@ -37,10 +37,10 @@ spec:
       - args:
         - --provider=gitee
         - --email-domain=*
-        - --proxy-prefix=/zh/oauth2
+        - --proxy-prefix=/oauth2
         - --skip-validate-email=true
-        - --skip-auth-regex=^/zh/agreement_ch.html
-        - --skip-auth-regex=^/zh/agreement_en.html
+        - --skip-auth-regex=^/agreement_ch.html
+        - --skip-auth-regex=^/agreement_en.html
         - --upstream=http://openeuler-summary-service.community-summary.svc.cluster.local
         - --http-address=0.0.0.0:4180
         - --cookie-expire=6h0m0s
