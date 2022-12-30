@@ -9,7 +9,7 @@ images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/opengauss/summary-test
   newTag: v1.0.20221230100622
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openlookeng/summary-test
-  newTag: v1.0.20221224141218
+  newTag: v1.0.20221230104218
 kind: Kustomization
 namespace: community-summary
 resources:
