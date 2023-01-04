@@ -18,6 +18,39 @@ metadata:
       if ($http_origin ~ '^https:\/\/www\.mindspore\.cn$') {
         set $allow_origin $http_origin;  
       }
+      if ($http_origin ~ '^https:\/\/summary-openeuler\.test\.osinfra.cn$') {
+        set $allow_origin $http_origin;  
+      }
+      if ($http_origin ~ '^https:\/\/summary-mindspore\.test\.osinfra\.cn$') {
+        set $allow_origin $http_origin;  
+      }
+      if ($http_origin ~ '^https:\/\/summary-opengauss\.test\.osinfra\.cn$') {
+        set $allow_origin $http_origin;  
+      }
+      if ($http_origin ~ '^https:\/\/summary-openlookeng\.test\.osinfra\.cn$') {
+        set $allow_origin $http_origin;  
+      }
+      if ($http_origin ~ '^https:\/\/summary\.openeuler\.org$') {
+        set $allow_origin $http_origin;  
+      }
+      if ($http_origin ~ '^https:\/\/summary-en\.openeuler\.org$') {
+        set $allow_origin $http_origin;  
+      }
+      if ($http_origin ~ '^https:\/\/summary\.mindspore\.cn$') {
+        set $allow_origin $http_origin;  
+      }
+      if ($http_origin ~ '^https:\/\/summary-en\.mindspore\.cn$') {
+        set $allow_origin $http_origin;  
+      }
+      if ($http_origin ~ '^https:\/\/summary\.opengauss\.org$') {
+        set $allow_origin $http_origin;  
+      }
+      if ($http_origin ~ '^https:\/\/summary\.openlookeng\.io$') {
+        set $allow_origin $http_origin;  
+      }
+      if ($http_origin ~ '^https:\/\/summary-en\.openlookeng\.io$') {
+        set $allow_origin $http_origin;  
+      }
       more_set_headers "Access-Control-Allow-Origin: $allow_origin";
       more_set_headers "Access-Control-Allow-Credentials: true";
       more_set_headers "Access-Control-Allow-Methods: GET, PUT, POST, DELETE,PATCH, OPTIONS";
