@@ -1,3 +1,0 @@
-[
-    { "op": "add", "path": "/data", "value": { "2222": "jumpserver-ingress/jumpserver-service-2222:2222", "9443": "jumpserver-ingress/jumpserver-service-9443:9443"}}
-]
