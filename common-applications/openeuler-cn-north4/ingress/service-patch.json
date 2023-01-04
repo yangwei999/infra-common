@@ -1,4 +1,0 @@
-[
-    { "op": "add", "path": "/spec/ports/2", "value": {"name": "jumpserver-port-1", "port": "2222", "protocol": "TCP", "targetPort": "2222"}},
-    { "op": "add", "path": "/spec/ports/3", "value": {"name": "jumpserver-port-2", "port": "9443", "protocol": "TCP", "targetPort": "9443"}}
-]

@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
         - name: mailman-core
-          image: swr.cn-north-4.myhuaweicloud.com/opensourceway/app-mailman/mailman-core-new-build:3d97dff8206e4262c0fa2e218cdacb40e168c56a1672141400
+          image: swr.cn-north-4.myhuaweicloud.com/opensourceway/app-mailman/mailman-core-new-build:993e326773627c625602f93429a7645537362b8c1672803306
           imagePullPolicy: "IfNotPresent"
           volumeMounts:
             - mountPath: /opt/mailman/
