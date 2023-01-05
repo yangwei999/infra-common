@@ -11,25 +11,25 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/casefile_resolver
-  newTag: c5cd53764f22e471698b7f9e0e500d64cc21cdb5
+  newTag: 724d14f470d847dc4355953bab5c4024069a9905
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/celerybeat
-  newTag: c5cd53764f22e471698b7f9e0e500d64cc21cdb5
+  newTag: 724d14f470d847dc4355953bab5c4024069a9905
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/database_updator
-  newTag: c5cd53764f22e471698b7f9e0e500d64cc21cdb5
+  newTag: 724d14f470d847dc4355953bab5c4024069a9905
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/gunicorn
-  newTag: c5cd53764f22e471698b7f9e0e500d64cc21cdb5
+  newTag: 724d14f470d847dc4355953bab5c4024069a9905
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/issuerate_updator
-  newTag: c5cd53764f22e471698b7f9e0e500d64cc21cdb5
+  newTag: 724d14f470d847dc4355953bab5c4024069a9905
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/nginx
   newName: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/nginx
   newTag: c5cd53764f22e471698b7f9e0e500d64cc21cdb5
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/openqa_reader
-  newTag: c5cd53764f22e471698b7f9e0e500d64cc21cdb5
+  newTag: 724d14f470d847dc4355953bab5c4024069a9905
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/periodic_worker
-  newTag: c5cd53764f22e471698b7f9e0e500d64cc21cdb5
+  newTag: 724d14f470d847dc4355953bab5c4024069a9905
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/rabbitmq
   newTag: v1.0.1
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/root_resolver
-  newTag: c5cd53764f22e471698b7f9e0e500d64cc21cdb5
+  newTag: 724d14f470d847dc4355953bab5c4024069a9905
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/scripts_loader
-  newTag: c5cd53764f22e471698b7f9e0e500d64cc21cdb5
+  newTag: 724d14f470d847dc4355953bab5c4024069a9905
