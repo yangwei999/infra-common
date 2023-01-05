@@ -22,7 +22,7 @@ images:
   newTag: 2b166c6d81771be72087582304012922ca6ff682
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/nginx
   newName: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/nginx
-  newTag: 215e342b6531c119ff79b95e480319ccdfeea93b
+  newTag: c5cd53764f22e471698b7f9e0e500d64cc21cdb5
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/openqa_reader
   newTag: 2b166c6d81771be72087582304012922ca6ff682
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/periodic_worker
