@@ -63,7 +63,10 @@ spec:
             timeoutSeconds: 1
           env:
             - name: DATABASE_TYPE
-              value: mysql
+              valueFrom:
+                secretKeyRef:
+                  name: mailman-secrets
+                  key: database_type
             - name: HYPERKITTY_API_KEY
               valueFrom:
                 secretKeyRef:
