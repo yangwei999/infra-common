@@ -11,25 +11,25 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/casefile_resolver
-  newTag: 729f8731cc7697a76af8fcc549c2f5b613fdbed2
+  newTag: e3c85f5469addebfe09b4962f2b3f24c3faec91c
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/celerybeat
-  newTag: 729f8731cc7697a76af8fcc549c2f5b613fdbed2
+  newTag: e3c85f5469addebfe09b4962f2b3f24c3faec91c
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/database_updator
-  newTag: 729f8731cc7697a76af8fcc549c2f5b613fdbed2
+  newTag: e3c85f5469addebfe09b4962f2b3f24c3faec91c
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/gunicorn
-  newTag: 729f8731cc7697a76af8fcc549c2f5b613fdbed2
+  newTag: e3c85f5469addebfe09b4962f2b3f24c3faec91c
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/issuerate_updator
-  newTag: 729f8731cc7697a76af8fcc549c2f5b613fdbed2
+  newTag: e3c85f5469addebfe09b4962f2b3f24c3faec91c
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/nginx
   newName: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/nginx
   newTag: 729f8731cc7697a76af8fcc549c2f5b613fdbed2
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/openqa_reader
-  newTag: 729f8731cc7697a76af8fcc549c2f5b613fdbed2
+  newTag: e3c85f5469addebfe09b4962f2b3f24c3faec91c
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/periodic_worker
-  newTag: 729f8731cc7697a76af8fcc549c2f5b613fdbed2
+  newTag: e3c85f5469addebfe09b4962f2b3f24c3faec91c
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/rabbitmq
   newTag: v1.0.1
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/root_resolver
-  newTag: 729f8731cc7697a76af8fcc549c2f5b613fdbed2
+  newTag: e3c85f5469addebfe09b4962f2b3f24c3faec91c
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/scripts_loader
-  newTag: 729f8731cc7697a76af8fcc549c2f5b613fdbed2
+  newTag: e3c85f5469addebfe09b4962f2b3f24c3faec91c
