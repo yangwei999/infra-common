@@ -30,9 +30,15 @@ spec:
               name: mailman-core-volume
           env:
             - name: DATABASE_TYPE
-              value: mysql
+              valueFrom:
+                secretKeyRef:
+                  name: mailman-secrets
+                  key: database_type
             - name: DATABASE_CLASS
-              value: mailman.database.mysql.MySQLDatabase
+              valueFrom:
+                secretKeyRef:
+                  name: mailman-secrets
+                  key: database_class
             - name: MAILMAN_REST_USER
               valueFrom:
                 secretKeyRef:
