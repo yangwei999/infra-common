@@ -21,6 +21,6 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/app-mailman/mailman-core-new-build
-  newTag: e021259b69a5b8d86eba178d81a9fc8e6a9afbd01672911876
+  newTag: 291336826605a3042b214075bb9037a52f97058c1673253323
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/app-mailman/mailman-web-new-build
   newTag: 291336826605a3042b214075bb9037a52f97058c1673252910
