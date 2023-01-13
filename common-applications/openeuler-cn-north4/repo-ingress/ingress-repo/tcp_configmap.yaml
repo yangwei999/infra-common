@@ -3,3 +3,5 @@ kind: ConfigMap
 metadata:
   name: tcp-services
   namespace: ingress-nginx
+data:
+  873: "repo2/openeuler-service:873"
