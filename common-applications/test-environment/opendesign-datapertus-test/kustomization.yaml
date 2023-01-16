@@ -1,12 +1,9 @@
 resources:
-- deployment.yaml
 - namespace.yaml
-- service.yaml
-- ingress.yaml
+- openeuler
+- mindspore
+- opengauss
+- openlookeng
 namespace: opendesign-datapertus-test
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-images:
-- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/dataset-test
-  newName: swr.cn-north-4.myhuaweicloud.com/opensourceway/dataset-test
-  newTag: 35ae9a002aa26864b4124e129f5abc084f135b0b

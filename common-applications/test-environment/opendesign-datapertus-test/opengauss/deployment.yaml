@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: opengauss-deployment
+  namespace: opendesign-datapertus-test
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 1
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: opengauss
+  template:
+    metadata:
+      labels:
+        app: opengauss
+    spec:
+      containers:
+      - name: opengauss
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/datastat/opengauss-test:2aa2f79321f318912043b3949920e96bd43f2a80
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+        - mountPath: /etc/nginx/conf.d
+          name: datastat-nginx-volume
+        ports:
+        - containerPort: 8080
+          name: http
+          protocol: TCP
+        resources:
+          requests:
+            cpu: 200m
+            memory: 200Mi
+          limits:
+            cpu: 500m
+            memory: 500Mi
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
+      volumes:
+      - configMap:
+          defaultMode: 420
+          name: opengauss-configmap
+        name: datastat-nginx-volume
