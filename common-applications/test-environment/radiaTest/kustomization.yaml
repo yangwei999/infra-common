@@ -11,25 +11,25 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/casefile_resolver
-  newTag: e3c85f5469addebfe09b4962f2b3f24c3faec91c
+  newTag: 563ce7aee252f97d43040b656ab69178e2505287
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/celerybeat
-  newTag: e3c85f5469addebfe09b4962f2b3f24c3faec91c
+  newTag: 563ce7aee252f97d43040b656ab69178e2505287
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/database_updator
-  newTag: e3c85f5469addebfe09b4962f2b3f24c3faec91c
+  newTag: 563ce7aee252f97d43040b656ab69178e2505287
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/gunicorn
-  newTag: e3c85f5469addebfe09b4962f2b3f24c3faec91c
+  newTag: 563ce7aee252f97d43040b656ab69178e2505287
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/issuerate_updator
-  newTag: e3c85f5469addebfe09b4962f2b3f24c3faec91c
+  newTag: 563ce7aee252f97d43040b656ab69178e2505287
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/nginx
   newName: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/nginx
   newTag: 563ce7aee252f97d43040b656ab69178e2505287
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/openqa_reader
-  newTag: e3c85f5469addebfe09b4962f2b3f24c3faec91c
+  newTag: 563ce7aee252f97d43040b656ab69178e2505287
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/periodic_worker
-  newTag: e3c85f5469addebfe09b4962f2b3f24c3faec91c
+  newTag: 563ce7aee252f97d43040b656ab69178e2505287
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/rabbitmq
   newTag: v1.0.1
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/root_resolver
-  newTag: e3c85f5469addebfe09b4962f2b3f24c3faec91c
+  newTag: 563ce7aee252f97d43040b656ab69178e2505287
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/scripts_loader
-  newTag: e3c85f5469addebfe09b4962f2b3f24c3faec91c
+  newTag: 563ce7aee252f97d43040b656ab69178e2505287
