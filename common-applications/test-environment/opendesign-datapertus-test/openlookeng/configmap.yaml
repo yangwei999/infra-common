@@ -28,7 +28,7 @@ data:
         location /openlookeng {
           add_header Cache-Control no-cache;
         }
-        root /usr/share/nginx/html/openlookeng;
+        root /usr/share/nginx/html;
         index index.html;
         #   error_page 404 /404.html;
       }
