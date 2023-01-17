@@ -316,7 +316,7 @@ spec:
             memory: 1500Mi
           limits:
             cpu: 1000m
-            memory: 2500Mi
+            memory: 3500Mi
       volumes:
       - configMap:
           defaultMode: 420
