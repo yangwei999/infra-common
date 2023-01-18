@@ -1,0 +1,22 @@
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-issuer
+  name: opendesign-datapertus-openlookeng-ingress
+  namespace: opendesign-datapertus
+spec:
+  tls:
+    - hosts:
+        - datastat.openlookeng.io
+      secretName: datastat-openlookeng-tls
+  rules:
+    - host: datastat.openlookeng.io
+      http:
+        paths:
+          - backend:
+              serviceName: openlookeng-service
+              servicePort: 80
+            path: /
