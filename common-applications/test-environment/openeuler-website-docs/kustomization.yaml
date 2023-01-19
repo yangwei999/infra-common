@@ -13,4 +13,4 @@ images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openeuler-website-docs-zh-test
   newTag: v1.0.20230119113939
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/website-docs-preview
-  newTag: v1.0.20230117152540
+  newTag: v1.0.20230119114131
