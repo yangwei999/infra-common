@@ -11,25 +11,25 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/casefile_resolver
-  newTag: 563ce7aee252f97d43040b656ab69178e2505287
+  newTag: 9dfb22000024487c8d028567cb07e7c57b70a400
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/celerybeat
-  newTag: 563ce7aee252f97d43040b656ab69178e2505287
+  newTag: 9dfb22000024487c8d028567cb07e7c57b70a400
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/database_updator
-  newTag: 563ce7aee252f97d43040b656ab69178e2505287
+  newTag: 9dfb22000024487c8d028567cb07e7c57b70a400
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/gunicorn
-  newTag: 563ce7aee252f97d43040b656ab69178e2505287
+  newTag: 9dfb22000024487c8d028567cb07e7c57b70a400
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/issuerate_updator
-  newTag: 563ce7aee252f97d43040b656ab69178e2505287
+  newTag: 9dfb22000024487c8d028567cb07e7c57b70a400
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/nginx
   newName: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/nginx
   newTag: 563ce7aee252f97d43040b656ab69178e2505287
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/openqa_reader
-  newTag: 563ce7aee252f97d43040b656ab69178e2505287
+  newTag: 9dfb22000024487c8d028567cb07e7c57b70a400
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/periodic_worker
-  newTag: 563ce7aee252f97d43040b656ab69178e2505287
+  newTag: 9dfb22000024487c8d028567cb07e7c57b70a400
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/rabbitmq
   newTag: v1.0.1
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/root_resolver
-  newTag: 563ce7aee252f97d43040b656ab69178e2505287
+  newTag: 9dfb22000024487c8d028567cb07e7c57b70a400
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/scripts_loader
-  newTag: 563ce7aee252f97d43040b656ab69178e2505287
+  newTag: 9dfb22000024487c8d028567cb07e7c57b70a400
