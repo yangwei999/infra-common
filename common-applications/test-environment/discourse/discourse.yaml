@@ -134,7 +134,7 @@ spec:
             memory: 1500Mi
           limits:
             cpu: 2
-            memory: 2000Mi
+            memory: 3000Mi
         imagePullPolicy: IfNotPresent
         volumeMounts:
         - name: discourse-storage
