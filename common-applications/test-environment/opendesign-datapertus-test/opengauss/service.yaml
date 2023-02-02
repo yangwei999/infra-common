@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: opendesign-datapertus-test-service
+  name: opengauss-service
   namespace: opendesign-datapertus-test
 spec:
   ports:
@@ -10,5 +10,5 @@ spec:
       port: 80
       targetPort: 8080
   selector:
-    app: opendesign-datapertus-test
+    app: opengauss
   type: ClusterIP

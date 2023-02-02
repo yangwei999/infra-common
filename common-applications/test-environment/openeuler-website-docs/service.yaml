@@ -28,4 +28,20 @@ spec:
   selector:
     app: openeuler-website-docs-ru
   type: ClusterIP
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: openeuler-website-docs-preview
+  namespace: openeuler-website-docs
+spec:
+  ports:
+  - name: https-port
+    protocol: TCP
+    port: 80
+    targetPort: 80
+  selector:
+    app: openeuler-website-docs-preview
+  type: ClusterIP
   

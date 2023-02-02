@@ -1,0 +1,12 @@
+resources:
+- ingress.yaml
+- configmap.yaml
+- deployment.yaml
+- service.yaml
+- secret.yaml
+namespace: opendesign-datapertus-test
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+images:
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/datastat/openeuler-test
+  newTag: 2aa2f79321f318912043b3949920e96bd43f2a80

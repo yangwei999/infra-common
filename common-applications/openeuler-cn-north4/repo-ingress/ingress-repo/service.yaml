@@ -1,0 +1,16 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: ingress-nginx
+  namespace: ingress-nginx
+  annotations:
+    kubernetes.io/elb.class: union
+    kubernetes.io/elb.id: c265a698-1b73-4e3b-8ec0-aa30398bccb0
+    kubernetes.io/elb.lb-algorithm: ROUND_ROBIN
+spec:
+  #We need set this into 'Local' since we need get the client IP of elb.
+  externalTrafficPolicy: Local
+  ports:
+  - port: 873
+    name: rsync-repo
+    targetPort: 873
