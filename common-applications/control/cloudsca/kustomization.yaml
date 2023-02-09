@@ -27,6 +27,6 @@ images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/sca-eureka
   newTag: 7785afa2e29f6af85f13d069eae157781f3f5c43
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/sca-gateway
-  newTag: 884701c7bffc09f41327681585125b6c6bd854e8
+  newTag: 3023009b9e9e95601eaddb429470297a3b659e6f
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/sca-web
   newTag: 7785afa2e29f6af85f13d069eae157781f3f5c43
