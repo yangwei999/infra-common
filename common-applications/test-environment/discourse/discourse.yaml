@@ -133,6 +133,11 @@ spec:
             secretKeyRef:
               name: discourse-secret
               key: unicorn_sidekiqs
+        - name: DISCOURSE_MAXMIND_LICENSE_KEY
+          valueFrom:
+            secretKeyRef:
+              name: discourse-secret
+              key: discourse_maxmind_license_key
         resources:
           requests:
             cpu: 500m

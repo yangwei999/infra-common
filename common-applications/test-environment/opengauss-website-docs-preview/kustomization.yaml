@@ -1,0 +1,11 @@
+resources:
+- namespace.yaml
+- ingress.yaml
+- service.yaml
+- deployment.yaml
+namespace: opengauss-website-docs-preview
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+images:
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/opengauss/website-docs-preview
+  newTag: v1.0.20230209144019
