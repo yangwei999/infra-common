@@ -38,7 +38,7 @@ spec:
             memory: 200Mi
         volumeMounts:
         - name: cdn-html
-          mountPath: /usr/share/nginx/html/
+          mountPath: /usr/share/nginx/html/sureroute-test-object.html
           subPath: sureroute-test-object.html
       volumes:
       - name: cdn-html
