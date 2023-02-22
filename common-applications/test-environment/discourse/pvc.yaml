@@ -16,14 +16,14 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: web-share-volume
-  labels:
-    app: web-server
+  name: discourse-share-volume-sfs-turbo
   namespace: discourse
 spec:
   accessModes:
     - ReadWriteMany
   resources:
     requests:
-        storage: 10Gi
-  storageClassName: csi-nas
+        storage: 500Gi
+  storageClassName: csi-sfsturbo
+  volumeMode: Filesystem
+  volumeName: pv-efs-turbo-discourse-share
