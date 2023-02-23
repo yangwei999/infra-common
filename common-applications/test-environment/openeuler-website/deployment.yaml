@@ -5,11 +5,11 @@ metadata:
   name: openeuler-website
   namespace: openeuler-website
 spec:
-  replicas: 8
+  replicas: 4
   strategy:
     rollingUpdate:
-      maxSurge: 4
-      maxUnavailable: 4
+      maxSurge: 2
+      maxUnavailable: 2
     type: RollingUpdate
   selector:
     matchLabels:
@@ -36,3 +36,11 @@ spec:
           limits:
             cpu: 200m
             memory: 200Mi
+        volumeMounts:
+        - name: cdn-html
+          mountPath: /usr/share/nginx/html/sureroute-test-object.html
+          subPath: sureroute-test-object.html
+      volumes:
+      - name: cdn-html
+        configMap:
+          name: website-cdn-configmap
