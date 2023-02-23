@@ -21,8 +21,10 @@ spec:
                 secretKeyRef:
                   key: jenkins-admin-user
                   name: osinfra-jenkins
+          image: swr.cn-north-4.myhuaweicloud.com/openeuler/jenkins:2.361.4-lts-jdk11
       initContainers:
         - name: copy-default-config
+          image: swr.cn-north-4.myhuaweicloud.com/openeuler/jenkins:2.361.4-lts-jdk11
           env:
             - name: JENKINS_UC_DOWNLOAD
               value: "https://mirrors.tuna.tsinghua.edu.cn/jenkins"

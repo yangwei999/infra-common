@@ -4,11 +4,12 @@ resources:
 - service.yaml
 - deployment.yaml
 - secret.yaml
+- configmap.yaml
 namespace: openeuler-website
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler-website-test
-  newTag: 629a95cec98ef3413bff23d66370a2db7d1cd4e4
+  newTag: ba6f74cd502603dd039ba5e6ae7327e3a41acae1
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openeuler-website-portal
   newTag: 5bc8e56f3c40bdd1986183d006c3ea00206f02cf
