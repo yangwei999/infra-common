@@ -1,0 +1,12 @@
+resources:
+  - ../ingress-repo-base
+commonLabels:
+  app: openeuler-cn4-ingress-archives-repo
+namespace: ingress-nginx-archives-repo
+commonAnnotations:
+  owner: liuyang
+  email: "747802914@qq.com"
+patchesStrategicMerge:
+  - service.yaml
+  - deployment.yaml
+  - tcp_configmap.yaml
