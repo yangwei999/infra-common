@@ -153,5 +153,5 @@ spec:
               port: 8000
       volumes:
         - name: patchwork-file-volume
-          persistentVolumClaim:
+          persistentVolumeClaim:
             claimName: patchwork-file-data
