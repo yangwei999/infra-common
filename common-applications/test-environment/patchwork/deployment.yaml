@@ -20,6 +20,8 @@ spec:
         app: patchwork
         component: patchwork
     spec:
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
       containers:
         - name: patchwork
           image: swr.cn-north-4.myhuaweicloud.com/opensourceway/patchwork/patchwork:main-f3d54a3
@@ -34,25 +36,25 @@ spec:
               cpu: 3000m
               memory: 3000Mi
           env:
-            - name: DB_HOST
+            - name: DATABASE_HOST
               valueFrom:
                 secretKeyRef:
-                  key: DB_HOST
+                  key: DATABASE_HOST
                   name: patchwork-secrets
-            - name: DB_USER
+            - name: DATABASE_USER
               valueFrom:
                 secretKeyRef:
-                  key: DB_USER
+                  key: DATABASE_USER
                   name: patchwork-secrets
-            - name: DB_PASSWORD
+            - name: DATABASE_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  key: DB_PASSWORD
+                  key: DATABASE_PASSWORD
                   name: patchwork-secrets
-            - name: DB_PORT
+            - name: DATABASE_PORT
               valueFrom:
                 secretKeyRef:
-                  key: DB_PORT
+                  key: DATABASE_PORT
                   name: patchwork-secrets
             - name: EMAIL_HOST
               valueFrom:
