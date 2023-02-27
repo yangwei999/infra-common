@@ -26,7 +26,7 @@ spec:
         - name: patchwork
           image: swr.cn-north-4.myhuaweicloud.com/opensourceway/patchwork/patchwork:main-f3d54a3
           volumeMounts:
-            - mountPath: /home
+            - mountPath: /home/patches
               name: patchwork-file-volume
           resources:
             requests:
