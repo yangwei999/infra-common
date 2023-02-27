@@ -36,6 +36,11 @@ spec:
               cpu: 3000m
               memory: 3000Mi
           env:
+            - name: DATABASE_NAME
+              valueFrom:
+                secretKeyRef:
+                  key: DATABASE_NAME
+                  name: patchwork-secrets
             - name: DATABASE_HOST
               valueFrom:
                 secretKeyRef:
