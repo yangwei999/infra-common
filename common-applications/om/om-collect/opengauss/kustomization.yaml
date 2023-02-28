@@ -23,6 +23,7 @@ resources:
   - gitee-metrics
   - ndcg
   - tidb_github_pr_issue
+  - docker-hub
 commonAnnotations:
   owner: zhongjun
   email: "jun.zhongjun2@gmail.com"
