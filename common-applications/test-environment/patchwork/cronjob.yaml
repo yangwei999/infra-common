@@ -5,6 +5,7 @@ metadata:
 spec:
   schedule: "0 * * * *"
   concurrencyPolicy: Forbid
+  startingDeadlineSeconds: 180
   jobTemplate:
     spec:
       template:
@@ -19,6 +20,11 @@ spec:
                 - mountPath: /home/patches
                   name: patchwork-file-volume
               env:
+                - name: DATABASE_NAME
+                  valueFrom:
+                    secretKeyRef:
+                      key: DATABASE_NAME
+                      name: patchwork-secrets
                 - name: DATABASE_HOST
                   valueFrom:
                     secretKeyRef:
