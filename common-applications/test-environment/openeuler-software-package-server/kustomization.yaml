@@ -1,0 +1,19 @@
+resources:
+- namespace.yaml
+- deployment.yaml
+- service.yaml
+- secret.yaml
+- ingress.yaml
+- configmap.yaml
+commonAnnotations:
+  kubernetes.ops.email: zjm.514@qq.com
+  kubernetes.ops.owner: zhaojiaming
+  kubernetes.ops.cluster: test
+  kubernetes.ops.os.base: Alpine
+  kubernetes.ops.region: hk
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: openeuler-software-pkg
+images:
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/software-package-server-test
+  newTag: 5900d0f534418cb33c65768182b7da7d7a68fea6

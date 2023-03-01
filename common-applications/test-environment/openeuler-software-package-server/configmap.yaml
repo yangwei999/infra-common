@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: server-configmap
+  namespace: openeuler-software-pkg
+data:
+  config.yaml: |
+    postgresql:
+      host: "${DB_HOST}"
+      port: 5432
+      user: "${DB_USER}"
+      pwd: "${DB_PWD}"
+      name: "${DB_NAME}"
+      table:
+        software_pkg: software_pkg
