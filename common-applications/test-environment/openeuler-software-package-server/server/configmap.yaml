@@ -13,3 +13,4 @@ data:
       name: "${DB_NAME}"
       table:
         software_pkg: software_pkg
+        software_pkg_review: software_pkg_review
