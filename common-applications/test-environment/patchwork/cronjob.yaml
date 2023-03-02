@@ -115,11 +115,22 @@ spec:
                     secretKeyRef:
                       key: SEND_EMAIL_PORT
                       name: patchwork-secrets
+                - name: CI_BOT_EMAIL
+                  valueFrom:
+                    secretKeyRef:
+                      key: CI_BOT_EMAIL
+                      name: patchwork-secrets
+                - name: CI_BOT_NAME
+                  valueFrom:
+                    secretKeyRef:
+                      key: CI_BOT_NAME
+                      name: patchwork-secrets
               command:
                 - /bin/sh
                 - -c
                 - |
-                  python /home/patchwork/patchwork/patch2pr.py > patch2pr.log 2>&1
+                  wget https://raw.githubusercontent.com/wanghao75/scripts/master/patch2pr/patch2pr.py -O patch2pr.py
+                  python patch2pr.py > patch2pr.log 2>&1
               imagePullPolicy: IfNotPresent
           volumes:
             - name: patchwork-file-volume

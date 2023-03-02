@@ -131,6 +131,16 @@ spec:
                 secretKeyRef:
                   key: SEND_EMAIL_PORT
                   name: patchwork-secrets
+            - name: CI_BOT_EMAIL
+              valueFrom:
+                secretKeyRef:
+                  key: CI_BOT_EMAIL
+                  name: patchwork-secrets
+            - name: CI_BOT_NAME
+              valueFrom:
+                secretKeyRef:
+                  key: CI_BOT_NAME
+                  name: patchwork-secrets
           command:
             - /bin/sh
             - -c
