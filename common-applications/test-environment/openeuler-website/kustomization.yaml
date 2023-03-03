@@ -6,6 +6,12 @@ resources:
 - secret.yaml
 - configmap.yaml
 namespace: openeuler-website
+commonAnnotations:
+  kubernetes.ops.cluster: test
+  kubernetes.ops.email: 845831435@qq.com
+  kubernetes.ops.os.base: openEuler
+  kubernetes.ops.owner: wangxing
+  kubernetes.ops.region: hk
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
