@@ -7,7 +7,8 @@ resources:
 - service.yaml
 - namespace.yaml
 - pvc.yaml
+- cronjob.yaml
 namespace: patchwork
 images:
-- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/patchwork/patchwork:main-0caa961
-  newTag: main-0caa961
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/patchwork/patchwork
+  newTag: main-db25a16
