@@ -1,0 +1,70 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gunicorn
+  namespace: radia-test-beta
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: gunicorn
+  template:
+    metadata:
+      labels:
+        app: gunicorn
+    spec:
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
+      containers:
+      - name: gunicorn
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/gunicorn-beta:v1.0.20230302191356
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+        - mountPath: /opt/radiaTest/radiaTest-server/migrations
+          name: radiatest-server
+        - mountPath: /etc/radiaTest/casbinmodel.conf
+          name: radiatest-secret
+          subPath: casbinmodel.conf
+        - mountPath: /etc/radiaTest/server.ini
+          name: radiatest-secret
+          subPath: server.ini
+        - mountPath: /opt/radiaTest/radiaTest-server/gunicorn/gunicorn.conf.py
+          name: radiatest-secret
+          subPath: gunicorn.conf.py
+        - mountPath: /var/lib/messengers_certifi
+          name: messengers-certifi-storage
+        - mountPath: /etc/radiaTest_ssl
+          name: ssl-data
+        - mountPath: /tmp
+          name: gunicorn-share
+        - mountPath: /var/radiaTest/pkglist
+          name: pkglist-storage
+        resources:
+          requests:
+            cpu: 4000m
+            memory: 4000Mi
+          limits:
+            cpu: 4000m
+            memory: 4000Mi
+      volumes:
+      - name: ssl-data
+        persistentVolumeClaim:
+          claimName: radiatest-ssl-data-volume
+      - name: gunicorn-share
+        persistentVolumeClaim:
+          claimName: radiatest-server-volume
+      - name: radiatest-server
+        persistentVolumeClaim:
+          claimName: radiatest-tmp-share-volume
+      - name: messengers-certifi-storage
+        persistentVolumeClaim:
+          claimName: radiatest-message-certifi-volume
+      - name: pkglist-storage
+        persistentVolumeClaim:
+          claimName: radiatest-pkg-volume
+      - name: radiatest-secret
+        secret:
+          secretName: radiatest-secret

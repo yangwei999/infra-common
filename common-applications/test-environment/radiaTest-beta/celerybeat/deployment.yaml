@@ -1,0 +1,42 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: celerybeat
+  namespace: radia-test
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: celerybeat
+  template:
+    metadata:
+      labels:
+        app: celerybeat
+    spec:
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
+      containers:
+      - name: celerybeat
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/celerybeat-beta:v1.0.20230302191356
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+        - mountPath: /etc/radiaTest/casbinmodel.conf
+          name: radiatest-secret
+          subPath: casbinmodel.conf
+        - mountPath: /etc/radiaTest/server.ini
+          name: radiatest-secret
+          subPath: server.ini
+        resources:
+          requests:
+            cpu: 1000m
+            memory: 1000Mi
+          limits:
+            cpu: 1000m
+            memory: 1000Mi
+      volumes:
+      - name: radiatest-secret
+        secret:
+          secretName: radiatest-secret

@@ -12,6 +12,7 @@ resources:
 - secret.yaml
 - oauth-proxy.yaml
 - uptime-status-deployment.yaml
+- grafana.yaml
 namespace: infra-monitor
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization

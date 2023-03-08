@@ -1,0 +1,52 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: root-resolver
+  namespace: radia-test
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: root-resolver
+  template:
+    metadata:
+      labels:
+        app: root-resolver
+    spec:
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
+      containers:
+      - name: root-resolver
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/root-resolver-beta:v1.0.20230302191356
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+        - mountPath: /etc/radiaTest/casbinmodel.conf
+          name: radiatest-secret
+          subPath: casbinmodel.conf
+        - mountPath: /etc/radiaTest/server.ini
+          name: radiatest-secret
+          subPath: server.ini
+        - mountPath: /tmp
+          name: root-resolver-share
+        - mountPath: /var/radiaTest/pkglist
+          name: pkglist-share
+        resources:
+          requests:
+            cpu: 1000m
+            memory: 1000Mi
+          limits:
+            cpu: 1000m
+            memory: 2000Mi
+      volumes:
+      - name: radiatest-secret
+        secret:
+          secretName: radiatest-secret
+      - name: root-resolver-share
+        persistentVolumeClaim:
+          claimName: radiatest-tmp-share-volume
+      - name: pkglist-share
+        persistentVolumeClaim:
+          claimName: radiatest-pkg-volume

@@ -11,3 +11,5 @@ namespace: heliosserver
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/helios-server/helios-voting
   newTag: test-enviorment-4131a2c
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/patchwork/patchwork
+  newTag: main-6bae528

@@ -1,0 +1,47 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: periodic-worker
+  namespace: radia-test
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: periodic-worker
+  template:
+    metadata:
+      labels:
+        app: periodic-worker
+    spec:
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
+      containers:
+      - name: periodic-worker
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/periodic-worker-beta:v1.0.20230302191356
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+        - mountPath: /etc/radiaTest/casbinmodel.conf
+          name: radiatest-secret
+          subPath: casbinmodel.conf
+        - mountPath: /etc/radiaTest/server.ini
+          name: radiatest-secret
+          subPath: server.ini
+        - mountPath: /tmp
+          name: periodic-worker-share
+        resources:
+          requests:
+            cpu: 1000m
+            memory: 1000Mi
+          limits:
+            cpu: 1000m
+            memory: 1000Mi
+      volumes:
+      - name: radiatest-secret
+        secret:
+          secretName: radiatest-secret
+      - name: periodic-worker-share
+        persistentVolumeClaim:
+          claimName: radiatest-tmp-share-volume
