@@ -1,0 +1,47 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: script-loader
+  namespace: radia-test
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: script-loader
+  template:
+    metadata:
+      labels:
+        app: script-loader
+    spec:
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
+      containers:
+      - name: script-loader
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/scripts-loader-beta:v1.0.20230302191356
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+        - mountPath: /etc/radiaTest/casbinmodel.conf
+          name: radiatest-secret
+          subPath: casbinmodel.conf
+        - mountPath: /etc/radiaTest/server.ini
+          name: radiatest-secret
+          subPath: server.ini
+        - mountPath: /tmp
+          name: script-loader-share
+        resources:
+          requests:
+            cpu: 1000m
+            memory: 1000Mi
+          limits:
+            cpu: 1000m
+            memory: 2000Mi
+      volumes:
+      - name: radiatest-secret
+        secret:
+          secretName: radiatest-secret
+      - name: script-loader-share
+        persistentVolumeClaim:
+          claimName: radiatest-tmp-share-volume
