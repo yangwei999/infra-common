@@ -12,4 +12,4 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/gunicorn-beta
-  newTag: v1.0.20230310123106
+  newTag: v1.0.20230310150348
