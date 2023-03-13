@@ -1,0 +1,84 @@
+---
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: frontend-cronjob-hourly
+spec:
+  schedule: "0 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          affinity:
+            podAffinity:
+              requiredDuringSchedulingIgnoredDuringExecution:
+              - labelSelector:
+                  matchExpressions:
+                  - key: component
+                    operator: In
+                    values:
+                    - copr-frontend
+                topologyKey: kubernetes.io/hostname
+          containers:
+          - image: swr.cn-north-4.myhuaweicloud.com/opensourceway/copr/frontend-test:v1.0.20230310174025
+            name: frontend-cronjob
+            command:
+            - /bin/sh
+            - -c
+            - sudo /etc/cron.hourly/copr-frontend; sudo /etc/cron.hourly/copr-frontend-optional
+            volumeMounts:
+            - mountPath: /usr/share/copr/data
+              name: copr-frontend-search-data
+            - mountPath: /etc/copr/copr.conf
+              name: copr-secrets
+              subPath: frontend_copr.conf
+          volumes:
+            - name: copr-frontend-search-data
+              persistentVolumeClaim:
+                claimName: copr-frontend-search-data
+            - name: copr-secrets
+              secret:
+                secretName: copr-secrets
+          restartPolicy: OnFailure
+---
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: frontend-cronjob-daily
+spec:
+  schedule: "0 0 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          affinity:
+            podAffinity:
+              requiredDuringSchedulingIgnoredDuringExecution:
+              - labelSelector:
+                  matchExpressions:
+                  - key: component
+                    operator: In
+                    values:
+                    - copr-frontend
+                topologyKey: kubernetes.io/hostname
+          containers:
+          - image: swr.cn-north-4.myhuaweicloud.com/opensourceway/copr/frontend-test:v1.0.20230310174025
+            name: frontend-cronjob
+            command:
+            - /bin/sh
+            - -c
+            - sudo /etc/cron.daily/copr-frontend; sudo /etc/cron.daily/copr-frontend-optional
+            volumeMounts:
+            - mountPath: /usr/share/copr/data
+              name: copr-frontend-search-data
+            - mountPath: /etc/copr/copr.conf
+              name: copr-secrets
+              subPath: frontend_copr.conf
+          volumes:
+            - name: copr-frontend-search-data
+              persistentVolumeClaim:
+                claimName: copr-frontend-search-data
+            - name: copr-secrets
+              secret:
+                secretName: copr-secrets
+          restartPolicy: OnFailure

@@ -1,0 +1,15 @@
+resources:
+- namespace.yaml
+- ingress.yaml
+- pvc.yaml
+- secrets.yaml
+- configmap.yaml
+- backend
+- database
+- distgit
+- frontend
+- keygen
+- resalloc
+namespace: fedora-copr
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
