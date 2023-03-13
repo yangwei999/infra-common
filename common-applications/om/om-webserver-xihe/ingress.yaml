@@ -9,46 +9,10 @@ metadata:
       add_header X-XSS-Protection "1; mode=block";
       add_header Strict-Transport-Security "max-age=31536000";
       add_header Content-Security-Policy "script-src 'self' *.baidu.com *.googleapis.com ers.baidu.com 'unsafe-eval' 'unsafe-inline';object-src 'none';frame-ancestors 'self'";
-      if ($http_origin ~ '^http:\/\/localhost:3500$') {
+      if ($http_origin ~ '^https:\/\/xihe\.mindspore\.cn$') {
         set $allow_origin $http_origin;  
       }
-      if ($http_origin ~ '^http:\/\/114\.116\.235\.161$') {
-        set $allow_origin $http_origin;  
-      }
-      if ($http_origin ~ '^https:\/\/www\.mindspore\.cn$') {
-        set $allow_origin $http_origin;  
-      }
-      if ($http_origin ~ '^https:\/\/summary-openeuler\.test\.osinfra.cn$') {
-        set $allow_origin $http_origin;  
-      }
-      if ($http_origin ~ '^https:\/\/summary-mindspore\.test\.osinfra\.cn$') {
-        set $allow_origin $http_origin;  
-      }
-      if ($http_origin ~ '^https:\/\/summary-opengauss\.test\.osinfra\.cn$') {
-        set $allow_origin $http_origin;  
-      }
-      if ($http_origin ~ '^https:\/\/summary-openlookeng\.test\.osinfra\.cn$') {
-        set $allow_origin $http_origin;  
-      }
-      if ($http_origin ~ '^https:\/\/summary\.openeuler\.org$') {
-        set $allow_origin $http_origin;  
-      }
-      if ($http_origin ~ '^https:\/\/summary-en\.openeuler\.org$') {
-        set $allow_origin $http_origin;  
-      }
-      if ($http_origin ~ '^https:\/\/summary\.mindspore\.cn$') {
-        set $allow_origin $http_origin;  
-      }
-      if ($http_origin ~ '^https:\/\/summary-en\.mindspore\.cn$') {
-        set $allow_origin $http_origin;  
-      }
-      if ($http_origin ~ '^https:\/\/summary\.opengauss\.org$') {
-        set $allow_origin $http_origin;  
-      }
-      if ($http_origin ~ '^https:\/\/summary\.openlookeng\.io$') {
-        set $allow_origin $http_origin;  
-      }
-      if ($http_origin ~ '^https:\/\/summary-en\.openlookeng\.io$') {
+      if ($http_origin ~ '^https:\/\/xihe2\.test\.osinfra\.cn$') {
         set $allow_origin $http_origin;  
       }
       more_set_headers "Access-Control-Allow-Origin: $allow_origin";

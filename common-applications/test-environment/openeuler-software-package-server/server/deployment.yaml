@@ -1,0 +1,82 @@
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: server
+  namespace: openeuler-software-pkg
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: server
+  template:
+    metadata:
+      labels:
+        app: server
+    spec:
+      imagePullSecrets:
+        - name: huawei-swr-image-pull-secret
+      containers:
+      - name: server
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/software-package-server-test:5900d0f534418cb33c65768182b7da7d7a68fea6
+        args:
+        - --port=8080
+        - --config-file=/opt/app/config/config.yaml
+        resources:
+          requests:
+            cpu: 200m
+            memory: 200Mi
+          limits:
+            cpu: 500m
+            memory: 500Mi
+        livenessProbe:
+          httpGet:
+            path: /swagger/doc.json
+            port: 8080
+          initialDelaySeconds: 5    #延迟加载时间
+          periodSeconds: 5           #重试时间间隔
+          timeoutSeconds: 5          #超时时间设置
+          failureThreshold: 3
+        readinessProbe:              #就绪探针
+          initialDelaySeconds: 5    #延迟加载时间
+          periodSeconds: 5           #重试时间间隔
+          timeoutSeconds: 5         #超时时间设置
+          failureThreshold: 3        #探测失败的重试次数
+          httpGet:
+            path: /swagger/doc.json
+            port: 8080
+        env:
+        - name: DB_HOST
+          valueFrom:
+            secretKeyRef:
+              name: software-pkg-secret
+              key: db_host
+        - name: DB_USER
+          valueFrom:
+            secretKeyRef:
+              name: software-pkg-secret
+              key: db_user
+        - name: DB_PWD
+          valueFrom:
+            secretKeyRef:
+              name: software-pkg-secret
+              key: db_pwd
+        - name: DB_NAME
+          valueFrom:
+            secretKeyRef:
+              name: software-pkg-secret
+              key: db_name
+        volumeMounts:
+        - mountPath: /opt/app/config/config.yaml
+          name: server-configmap
+          subPath: config.yaml
+      volumes:
+      - configMap:
+          defaultMode: 420
+          name: server-configmap
+        name: server-configmap
+        
+      
+

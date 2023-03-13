@@ -51,6 +51,16 @@ spec:
             secretKeyRef:
               key: sourceclean.authentication.token
               name: source-credible-consistency-secret
+        - name: spring.security.user.name
+          valueFrom:
+            secretKeyRef:
+              key: spring.security.user.name
+              name: source-credible-consistency-secret
+        - name: spring.security.user.password
+          valueFrom:
+            secretKeyRef:
+              key: spring.security.user.password
+              name: source-credible-consistency-secret
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/majun/source-credible-consisitency-test:fd4043bb0c586667eec80ae4e349169a8a399a5b
         imagePullPolicy: IfNotPresent
         livenessProbe:
