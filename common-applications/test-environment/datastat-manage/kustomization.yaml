@@ -14,4 +14,4 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/datastast/manage-website-test
-  newTag: v1.0.20230315095209
+  newTag: v1.0.20230315100105
