@@ -2,7 +2,7 @@
 kind: Deployment
 apiVersion: apps/v1
 metadata:
-  name: server
+  name: robot
   namespace: openeuler-software-pkg
 spec:
   replicas: 1
@@ -19,7 +19,7 @@ spec:
       imagePullSecrets:
         - name: huawei-swr-image-pull-secret
       containers:
-        - name: server
+        - name: robot
           image: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/software-package-server-test:5900d0f534418cb33c65768182b7da7d7a68fea6
           args:
             - --port=8888
