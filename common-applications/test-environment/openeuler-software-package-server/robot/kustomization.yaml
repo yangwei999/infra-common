@@ -3,6 +3,7 @@ resources:
   - service.yaml
   - configmap.yaml
   - msgconfigmap.yaml
+  - oauth.yaml
 commonAnnotations:
   kubernetes.ops.cluster: test
   kubernetes.ops.email: zjm.514@qq.com

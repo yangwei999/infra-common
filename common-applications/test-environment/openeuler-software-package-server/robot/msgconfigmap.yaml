@@ -4,7 +4,7 @@ metadata:
   name: robot-msgconfigmap
   namespace: openeuler-software-pkg
 data:
-  config.yaml: |
+  msgconfig.yaml: |
     mq:
       address: "${KAFKA_ADDRESS}"
 

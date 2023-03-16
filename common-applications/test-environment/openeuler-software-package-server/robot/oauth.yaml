@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: robot-oauth
+  namespace: openeuler-software-pkg
+data:
+  oauth: |
+    82bff85208414136c0ef726f6e76d0dc

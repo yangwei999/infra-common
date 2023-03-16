@@ -25,6 +25,7 @@ spec:
             - --port=8888
             - --config-file=/opt/app/config/config.yaml
             - --msg-config-file=/opt/app/config/msgconfig.yaml
+            - --gitee-token-path=/opt/app/config/oauth
           resources:
             requests:
               cpu: 200m
@@ -65,6 +66,9 @@ spec:
             - mountPath: /opt/app/config/msgconfig.yaml
               name: robot-msgconfigmap
               subPath: msgconfig.yaml
+            - mountPath: /opt/app/config/oauth
+              name: robot-oauth
+              subPath: oauth
       volumes:
         - configMap:
             defaultMode: 420
@@ -74,5 +78,8 @@ spec:
             defaultMode: 420
             name: robot-msgconfigmap
           name: robot-msgconfigmap
-
+        - configMap:
+            defaultMode: 420
+            name: robot-oauth
+          name: robot-oauth
 
