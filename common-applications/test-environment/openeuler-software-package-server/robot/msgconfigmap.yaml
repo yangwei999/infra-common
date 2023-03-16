@@ -1,0 +1,45 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: robot-msgconfigmap
+  namespace: openeuler-software-pkg
+data:
+  config.yaml: |
+    mq:
+      address: "${KAFKA_ADDRESS}"
+
+    message_server:
+      group_name: software-package
+      topics:
+        new_pkg: software_pkg_new_test
+        approved_pkg: software_pkg_approved_test
+        rejected_pkg: software_pkg_rejected_test
+        abandoned_pkg: software_pkg_abandoned_test
+        ci_passed: software_pkg_pr_ci_checked_test
+        created_repo: software_pkg_repo_created_test
+        closed_pr: software_pkg_pr_closed_test
+        merged_pr: software_pkg_pr_merged_test
+
+    email:
+      maintainer_email: 348134071@qq.com
+      email:
+        auth_code: vvpvcjsrpgrbbici
+        from: 176910957@qq.com
+        host: smtp.qq.com
+        port: 465
+
+    pull_request:
+      robot:
+        username: weiwei123444
+        password: yang111111
+        email: 348134071@qq.com
+        
+    postgresql:
+      db:
+        host: "${DB_HOST}"
+        port: 5432
+        user: "${DB_USER}"
+        pwd: "${DB_PWD}"
+        name: "${DB_NAME}"
+      table:
+        software_pkg_pr: software_pkg_pr
