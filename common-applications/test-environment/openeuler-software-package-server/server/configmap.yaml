@@ -15,3 +15,23 @@ data:
       table:
         software_pkg_basic: software_pkg_basic
         review_comment: review_comment
+        translation_comment: translation_comment
+    mq:
+      address: "${KAFKA_ADDRESS}"
+      topics:
+        new_software_pkg: software_pkg_new_test
+        approved_software_pkg: software_pkg_approved_test
+        rejected_software_pkg: software_pkg_rejected_test
+        abandoned_software_pkg: software_pkg_abandoned_test
+        already_closed_software_pkg: software_pkg_already_closed_test
+        indirectly_approved_software_pkg: software_pkg_indirectly_approved_test
+    middleware:
+      user_info_url: https://omapi.osinfra.cn/oneid/personal/center/user
+    maintainer:
+      permission_url: https://omapi.test.osinfra.cn/query/user/ownertype?community=openeuler
+    translation:
+      access_key: "${OBS_AK}"
+      secret_key: "${OBS_SK}"
+      project: "${OBS_PROJECT}"
+      region: cn-north-4
+      auth_endpoint: nlp-ext.cn-north-4.myhuaweicloud.com
