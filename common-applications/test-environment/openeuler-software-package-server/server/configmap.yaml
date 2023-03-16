@@ -26,7 +26,7 @@ data:
         already_closed_software_pkg: software_pkg_already_closed_test
         indirectly_approved_software_pkg: software_pkg_indirectly_approved_test
     middleware:
-      user_info_url: https://omapi.osinfra.cn/oneid/personal/center/user
+      user_info_url: https://omapi.test.osinfra.cn/oneid/personal/center/user
     maintainer:
       permission_url: https://omapi.test.osinfra.cn/query/user/ownertype?community=openeuler
     translation:
