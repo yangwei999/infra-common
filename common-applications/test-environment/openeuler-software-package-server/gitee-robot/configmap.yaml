@@ -39,7 +39,7 @@ data:
         auth_code: "${EMAIL_AUTH_CODE}"
         from: "${EMAIL_FROM}"
         host: "${EMAIL_HOST}"
-        port: "${EMAIL_PORT}"
+        port: ${EMAIL_PORT}
     pull_request:
       robot:
         username: "${ROBOT_USERNAME}"
