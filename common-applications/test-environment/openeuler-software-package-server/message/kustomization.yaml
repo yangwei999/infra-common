@@ -1,7 +1,7 @@
 resources:
-  - deployment.yaml
-  - configmap.yaml
-  - service.yaml
+- deployment.yaml
+- configmap.yaml
+- service.yaml
 commonAnnotations:
   kubernetes.ops.cluster: test
   kubernetes.ops.email: zjm.514@qq.com
@@ -13,4 +13,4 @@ kind: Kustomization
 namespace: openeuler-software-pkg
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/software-package-message-server-test
-  newTag: v1.0.20230317100349
+  newTag: v1.0.20230317143227
