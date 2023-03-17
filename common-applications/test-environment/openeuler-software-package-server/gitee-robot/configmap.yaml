@@ -6,7 +6,7 @@ metadata:
 data:
   config.yaml: |
     config_items:
-      repos:
+    - repos:
         - weiwei123444/community
       ci_label:
         success: ci_successful
