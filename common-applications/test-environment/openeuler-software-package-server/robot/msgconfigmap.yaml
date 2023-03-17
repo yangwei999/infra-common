@@ -21,18 +21,18 @@ data:
         merged_pr: software_pkg_pr_merged_test
 
     email:
-      maintainer_email: 348134071@qq.com
+      maintainer_email: "${MAINTAINER_EMAIL}"
       email:
-        auth_code: vvpvcjsrpgrbbici
-        from: 176910957@qq.com
-        host: smtp.qq.com
-        port: 465
+        auth_code: "${EMAIL_AUTH_CODE}"
+        from: "${EMAIL_FROM}"
+        host: "${EMAIL_HOST}"
+        port: "${EMAIL_PORT}"
 
     pull_request:
       robot:
-        username: weiwei123444
-        password: yang111111
-        email: 348134071@qq.com
+        username: "${ROBOT_USERNAME}"
+        password: "${ROBOT_PASSWORD}"
+        email: "${ROBOT_EMAIL}"
         
     postgresql:
       db:
