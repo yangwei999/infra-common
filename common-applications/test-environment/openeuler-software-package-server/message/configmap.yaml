@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: message-server-configmap
+  namespace: openeuler-software-pkg
+data:
+  config.yaml: |
+    address: "${KAFKA_ADDRESS}"
+    group_name: software-package
+    topics_to_subscribe:
+      software_pkg_pr_closed: software_pkg_pr_closed_test
+      software_pkg_pr_merged: software_pkg_pr_merged_test
+      software_pkg_repo_created: software_pkg_repo_created_test
+      software_pkg_pr_ci_checked: software_pkg_pr_ci_checked_test
+    topics_to_notify:
+      already_closed_software_pkg: software_pkg_already_closed_test
+      indirectly_approved_software_pkg: software_pkg_indirectly_approved_test
+    postgresql:
+      db:
+        host: "${DB_HOST}"
+        port: 5432
+        user: "${DB_USER}"
+        pwd: "${DB_PWD}"
+        name: "${DB_NAME}"
+        life: 2
+        max_conn: 500
+        max_idle: 250
+      table:
+        software_pkg_basic: software_pkg_basic
+        review_comment: review_comment
+        translation_comment: translation_comment
+    maintainer:
+      permission_url: https://omapi.test.osinfra.cn/query/user/ownertype?community=openeuler

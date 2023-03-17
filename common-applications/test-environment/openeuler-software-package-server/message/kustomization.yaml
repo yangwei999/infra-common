@@ -1,8 +1,7 @@
 resources:
-- deployment.yaml
-- service.yaml
-- ingress.yaml
-- configmap.yaml
+  - deployment.yaml
+  - configmap.yaml
+  - service.yaml
 commonAnnotations:
   kubernetes.ops.cluster: test
   kubernetes.ops.email: zjm.514@qq.com
@@ -13,5 +12,5 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: openeuler-software-pkg
 images:
-- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/software-package-server-test
-  newTag: 529a81c03d279cb927f8fc261d95779fbe48b628
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/software-package-message-server-test
+  newTag: v1.0.20230317100349
