@@ -7,7 +7,7 @@ data:
   config.yaml: |
     config_items:
     - repos:
-        - weiwei123444/community
+      - weiwei123444/community
       ci_label:
         success: ci_successful
         fail: ci_failed
