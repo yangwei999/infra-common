@@ -1,8 +1,8 @@
 resources:
-  - deployment.yaml
-  - configmap.yaml
-  - service.yaml
-  - ingress.yaml
+- deployment.yaml
+- configmap.yaml
+- service.yaml
+- ingress.yaml
 commonAnnotations:
   kubernetes.ops.cluster: test
   kubernetes.ops.email: 348134071@qq.com
@@ -14,4 +14,4 @@ kind: Kustomization
 namespace: openeuler-software-pkg
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/software-package-gitee-robot-test
-  newTag: v1.0.20230317101924
+  newTag: v1.0.20230317171546
