@@ -5,7 +5,8 @@ metadata:
   namespace: openeuler-software-pkg
 data:
   config.yaml: |
-    address: "${KAFKA_ADDRESS}"
+    kafka:
+      address: "${KAFKA_ADDRESS}"
     group_name: software-package
     topics_to_subscribe:
       software_pkg_pr_closed: software_pkg_pr_closed_test
