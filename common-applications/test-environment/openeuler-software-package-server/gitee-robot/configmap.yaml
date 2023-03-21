@@ -33,6 +33,7 @@ data:
         created_repo: software_pkg_repo_created_test
         closed_pr: software_pkg_pr_closed_test
         merged_pr: software_pkg_pr_merged_test
+        already_closed_pkg: software_pkg_already_closed_test
     email:
       maintainer_email: ${MAINTAINER_EMAIL}
       email:
