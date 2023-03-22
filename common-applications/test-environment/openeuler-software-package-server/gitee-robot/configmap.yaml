@@ -29,11 +29,14 @@ data:
         approved_pkg: software_pkg_approved_test
         rejected_pkg: software_pkg_rejected_test
         abandoned_pkg: software_pkg_abandoned_test
-        ci_passed: software_pkg_pr_ci_checked_test
-        created_repo: software_pkg_repo_created_test
-        closed_pr: software_pkg_pr_closed_test
-        merged_pr: software_pkg_pr_merged_test
         already_closed_pkg: software_pkg_already_closed_test
+      message:  
+        topics_to_notify:
+          ci_passed: software_pkg_pr_ci_checked_test
+          created_repo: software_pkg_repo_created_test
+          closed_pr: software_pkg_pr_closed_test
+          merged_pr: software_pkg_pr_merged_test
+          
     email:
       maintainer_email: ${MAINTAINER_EMAIL}
       email:
