@@ -6,6 +6,7 @@ resources:
 - ingress.yaml
 - secret.yaml
 - oauth-proxy.yaml
+- pvc.yaml
 namespace: scan-tools
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization

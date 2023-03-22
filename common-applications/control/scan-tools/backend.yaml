@@ -130,6 +130,8 @@ spec:
           name: static-log-data
         - mountPath: /var/lib/open-infra
           name: static-lib-data
+        - mountPath: /opt/open_infra/open_infra/static
+          name: website-statics-data
         - mountPath: /opt/open_infra/open_infra/config/kubeconfig/cluster-kubeconfig
           name: kubeconfig-secret
       volumes:
@@ -139,6 +141,9 @@ spec:
       - name: static-lib-data
         persistentVolumeClaim:
           claimName: cce-evs-lib-data
+      - name: website-statics-data
+        persistentVolumeClaim:
+          claimName: statics-share-volume
       - name: kubeconfig-secret
         secret:
           secretName: kubeconfig-secret
