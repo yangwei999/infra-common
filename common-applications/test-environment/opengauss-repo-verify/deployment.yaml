@@ -49,6 +49,16 @@ spec:
             secretKeyRef:
               key: bucketname
               name: post-verification-secrets
+        - name: jasypt.encryptor.password
+          valueFrom:
+            secretKeyRef:
+              key: jasypt.encryptor.password
+              name: post-verification-secrets
+        - name: access_token
+          valueFrom:
+            secretKeyRef:
+              key: access_token
+              name: post-verification-secrets
         livenessProbe:
           httpGet:
             path: /publish/heartbeat
