@@ -23,8 +23,6 @@ data:
         approved_software_pkg: software_pkg_approved_test
         rejected_software_pkg: software_pkg_rejected_test
         abandoned_software_pkg: software_pkg_abandoned_test
-        already_closed_software_pkg: software_pkg_already_closed_test
-        indirectly_approved_software_pkg: software_pkg_indirectly_approved_test
     middleware:
       user_info_url: https://omapi.test.osinfra.cn/oneid/personal/center/user
     maintainer:
@@ -34,4 +32,10 @@ data:
       secret_key: "${OBS_SK}"
       project: "${OBS_PROJECT}"
       region: cn-north-4
-      auth_endpoint: nlp-ext.cn-north-4.myhuaweicloud.com
+      endpoint: nlp-ext.cn-north-4.myhuaweicloud.com
+    sensitive_words:
+      endpoint: https://moderation.cn-north-4.myhuaweicloud.com
+      access_key: "${OBS_AK}"
+      secret_key: "${OBS_SK}"
+      region: cn-north-4
+      iam_endpoint: https://iam.cn-north-4.myhuaweicloud.com
