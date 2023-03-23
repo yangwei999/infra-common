@@ -34,6 +34,7 @@ resources:
   - docker-hub
   - ecosystem-repo
   - sig-maintainer
+  - github_mindspore_lab_pr_issue
 commonAnnotations:
   owner: zhongjun
   email: "jun.zhongjun2@gmail.com"
