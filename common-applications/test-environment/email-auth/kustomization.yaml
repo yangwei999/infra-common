@@ -6,6 +6,13 @@ resources:
 - secrets.yaml
 - service.yaml
 - namespace.yaml
+- autoscaler.yaml
+commonAnnotations:
+  kubernetes.ops.cluster: test
+  kubernetes.ops.email: shalldows@163.com
+  kubernetes.ops.os.base: ubuntu
+  kubernetes.ops.owner: wanghao
+  kubernetes.ops.region: hk
 namespace: email-auth
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/email-auth/email-auth-api

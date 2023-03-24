@@ -1,8 +1,15 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+commonAnnotations:
+  kubernetes.ops.cluster: test
+  kubernetes.ops.email: ilong8@qq.com
+  kubernetes.ops.os.base: debian
+  kubernetes.ops.owner: ailong
+  kubernetes.ops.region: hk
 namespace: community-summary
 resources:
 - mindspore-summary-deployment.yaml
 - mindspore-summary-ingress.yaml
 - mindspore-summary-service.yaml
 - oauth-proxy.yaml
+- autoscaler.yaml

@@ -23,12 +23,6 @@ metadata:
   name: web-server
   namespace: discourse
 spec:
-  replicas: 2
-  strategy:
-    rollingUpdate:
-      maxSurge: 0
-      maxUnavailable: 1
-    type: RollingUpdate
   selector:
     matchLabels:
       app: web-server

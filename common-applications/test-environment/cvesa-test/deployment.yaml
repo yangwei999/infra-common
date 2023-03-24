@@ -4,11 +4,6 @@ metadata:
   name: cvesa-test-deployment
   namespace: cvesa-test
 spec:
-  replicas: 2
-  strategy:
-    rollingUpdate:
-      maxUnavailable: 1
-    type: RollingUpdate
   selector:
     matchLabels:
       app: cvesa-test

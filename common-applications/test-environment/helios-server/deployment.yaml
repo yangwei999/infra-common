@@ -4,7 +4,6 @@ metadata:
   name: deployment
   namespace: heliosserver
 spec:
-  replicas: 1
   selector:
     matchLabels:
       app: helios-server
