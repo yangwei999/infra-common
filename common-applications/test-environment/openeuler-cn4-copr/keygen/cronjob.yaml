@@ -9,9 +9,16 @@ spec:
     spec:
       template:
         spec:
-          nodeSelector:
-            usage: test
-            os.architecture: amd64
+          affinity:
+            podAffinity:
+              requiredDuringSchedulingIgnoredDuringExecution:
+              - labelSelector:
+                  matchExpressions:
+                  - key: component
+                    operator: In
+                    values:
+                    - copr-keygen
+                topologyKey: kubernetes.io/hostname
           containers:
           - image: swr.cn-north-4.myhuaweicloud.com/opensourceway/copr/keygen-signd-test:v1.0.20230310165958
             name: keygen-cronjob
