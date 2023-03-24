@@ -1,11 +1,11 @@
 apiVersion: keda.sh/v1alpha1
 kind: ScaledObject
 metadata:
-  name: cvesa-test-autoscaler
-  namespace: cvesa-test
+  name: source-credible-consistency-autoscaler
+  namespace: majun-source-credible-consistency
 spec:
   scaleTargetRef:
-    name: cvesa-test-deployment
+    name: source-credible-consistency-deployment
   triggers:
   - type: cron
     metadata:

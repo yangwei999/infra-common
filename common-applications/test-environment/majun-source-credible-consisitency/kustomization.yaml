@@ -3,6 +3,12 @@ images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/majun/source-credible-consisitency-test
   newTag: v1.0.20230322103020
 kind: Kustomization
+commonAnnotations:
+  kubernetes.ops.cluster: test
+  kubernetes.ops.email: openlibing@163.com
+  kubernetes.ops.os.base: openeuler
+  kubernetes.ops.owner: qiutangke
+  kubernetes.ops.region: hk
 namespace: majun-source-credible-consistency
 resources:
 - namespace.yaml
@@ -11,3 +17,4 @@ resources:
 - source-credible-consistency-secret.yaml
 - source-credible-consistency-deployment.yaml
 - pvc.yaml
+- autoscaler.yaml

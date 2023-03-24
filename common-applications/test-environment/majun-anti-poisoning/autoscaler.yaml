@@ -1,11 +1,11 @@
 apiVersion: keda.sh/v1alpha1
 kind: ScaledObject
 metadata:
-  name: cvesa-test-autoscaler
-  namespace: cvesa-test
+  name: anti-poisoning-autoscaler
+  namespace: majun-anti-poisoning
 spec:
   scaleTargetRef:
-    name: cvesa-test-deployment
+    name: anti-poisoning
   triggers:
   - type: cron
     metadata:

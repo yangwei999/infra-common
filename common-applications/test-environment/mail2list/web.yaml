@@ -20,7 +20,7 @@ metadata:
   name: mailweb
   namespace: mail2list
 spec:
-  replicas: 1
+  replicas: 0
   strategy:
     type: RollingUpdate
     rollingUpdate:

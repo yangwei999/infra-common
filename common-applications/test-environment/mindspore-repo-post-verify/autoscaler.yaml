@@ -1,11 +1,11 @@
 apiVersion: keda.sh/v1alpha1
 kind: ScaledObject
 metadata:
-  name: cvesa-test-autoscaler
-  namespace: cvesa-test
+  name: mindspore-repo-post-verify-autoscaler
+  namespace: mindspore-repo-post-verify
 spec:
   scaleTargetRef:
-    name: cvesa-test-deployment
+    name: repo-post-verify-deployment
   triggers:
   - type: cron
     metadata:
