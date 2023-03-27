@@ -87,6 +87,12 @@ spec:
             secretKeyRef:
               name: software-pkg-secret
               key: obs_project
+        - name: ACCESS_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: software-pkg-secret
+              key: access_token
+
         volumeMounts:
         - mountPath: /opt/app/config/config.yaml
           name: server-configmap
