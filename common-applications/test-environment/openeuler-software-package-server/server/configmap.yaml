@@ -43,6 +43,9 @@ data:
     sig:
       read_url: https://omapi.osinfra.cn/query/sig/scoreAll?community=openeuler
       interval: 1
+    pkg_manager:
+      access_token: "${ACCESS_TOKEN}"
+      org: src-openeuler
     software_pkg:
       supported_platforms:
         - gitee
