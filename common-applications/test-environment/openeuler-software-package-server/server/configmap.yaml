@@ -23,6 +23,7 @@ data:
         approved_software_pkg: software_pkg_approved_test
         rejected_software_pkg: software_pkg_rejected_test
         abandoned_software_pkg: software_pkg_abandoned_test
+        already_existed_software_pkg: software_pkg_already_existed_test
     middleware:
       user_info_url: https://omapi.test.osinfra.cn/oneid/personal/center/user
     maintainer:
