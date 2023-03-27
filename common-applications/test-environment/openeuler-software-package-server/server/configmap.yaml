@@ -42,3 +42,8 @@ data:
     sig:
       read_url: https://omapi.osinfra.cn/query/sig/scoreAll?community=openeuler
       interval: 1
+    software_pkg:
+      supported_platforms:
+        - gitee
+        - github
+      local_platform: gitee
