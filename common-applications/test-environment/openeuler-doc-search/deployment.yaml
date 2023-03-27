@@ -5,7 +5,6 @@ metadata:
   name: doc-search
   namespace: openeuler-doc-search
 spec:
-  replicas: 1
   strategy:
     type: Recreate
   selector:

@@ -31,8 +31,6 @@ spec:
       labels:
         app: web-server
     spec:
-      nodeSelector:
-        discourse: "true"
       imagePullSecrets:
       - name: huawei-swr-image-pull-secret
       containers:

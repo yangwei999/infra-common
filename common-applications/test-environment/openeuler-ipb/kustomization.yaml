@@ -4,7 +4,14 @@ resources:
 - service.yaml
 - deployment.yaml
 - secret.yaml
+- autoscaler.yaml
 namespace: openeuler-ipb
+commonAnnotations:
+  kubernetes.ops.cluster: test
+  kubernetes.ops.email: nicliuqi@gmail.com
+  kubernetes.ops.os.base: openEuler
+  kubernetes.ops.owner: liuqi
+  kubernetes.ops.region: hk
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:

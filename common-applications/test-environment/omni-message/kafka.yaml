@@ -206,7 +206,6 @@ metadata:
     app.kubernetes.io/component: zookeeper
     role: zookeeper
 spec:
-  replicas: 2
   podManagementPolicy: Parallel
   selector:
     matchLabels:
@@ -367,7 +366,6 @@ metadata:
     app.kubernetes.io/component: kafka
 spec:
   podManagementPolicy: Parallel
-  replicas: 2
   selector:
     matchLabels:
       app.kubernetes.io/name: kafka

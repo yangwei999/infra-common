@@ -3,6 +3,7 @@ resources:
 - service.yaml
 - secret.yaml
 - ingress.yaml
+- autoscaler.yaml
 commonAnnotations:
   kubernetes.ops.cluster: test
   kubernetes.ops.email: jun.zhongjun2@gmail.com

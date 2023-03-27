@@ -1,0 +1,15 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: openeuler-ipb-deployment-autoscaler
+  namespace: openeuler-ipb
+spec:
+  scaleTargetRef:
+    name: openeuler-ipb-deployment
+  triggers:
+  - type: cron
+    metadata:
+      timezone: Asia/Shanghai
+      start: 30 8 * * *
+      end: 55 23 * * *
+      desiredReplicas: "1"

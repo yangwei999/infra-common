@@ -5,6 +5,7 @@ resources:
 - secrets.yaml
 - ingress.yaml
 - pvc.yaml
+- autoscaler.yaml
 commonAnnotations:
   kubernetes.ops.cluster: test
   kubernetes.ops.email: chenyang244@h-partners.com

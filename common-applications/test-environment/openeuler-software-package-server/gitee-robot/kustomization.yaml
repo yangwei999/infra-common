@@ -3,6 +3,7 @@ resources:
 - configmap.yaml
 - service.yaml
 - ingress.yaml
+- autoscaler.yaml
 commonAnnotations:
   kubernetes.ops.cluster: test
   kubernetes.ops.email: 348134071@qq.com

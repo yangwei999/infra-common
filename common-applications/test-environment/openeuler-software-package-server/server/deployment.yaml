@@ -5,7 +5,6 @@ metadata:
   name: server
   namespace: openeuler-software-pkg
 spec:
-  replicas: 1
   strategy:
     type: Recreate
   selector:

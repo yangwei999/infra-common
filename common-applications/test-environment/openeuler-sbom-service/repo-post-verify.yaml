@@ -24,13 +24,10 @@ metadata:
   name: post-verification-deployment
   namespace: openeuler-sbom-service
 spec:
-  replicas: 1
   revisionHistoryLimit: 10
   selector:
     matchLabels:
       app: post-verification
-  strategy:
-    type: RollingUpdate
   template:
     metadata:
       labels:
