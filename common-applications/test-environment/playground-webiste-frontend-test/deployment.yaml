@@ -3,8 +3,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: playground-website-frontend
+  namespace: playground-website-frontend
 spec:
-  replicas: 1
   selector:
     matchLabels:
       app: playground-website-frontend

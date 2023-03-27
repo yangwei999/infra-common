@@ -1,6 +1,7 @@
 resources:
 - service.yaml
 - deployment.yaml
+- autoscaler.yaml
 commonAnnotations:
   kubernetes.ops.cluster: test
   kubernetes.ops.email: 377075038@qq.com

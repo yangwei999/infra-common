@@ -5,6 +5,7 @@ resources:
 - deployment.yaml
 - secret.yaml
 - configmap.yaml
+- autoscaler.yaml
 namespace: openeuler-website
 commonAnnotations:
   kubernetes.ops.cluster: test

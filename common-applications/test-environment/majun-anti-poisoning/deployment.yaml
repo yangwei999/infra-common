@@ -5,6 +5,8 @@ metadata:
   name: anti-poisoning
   namespace: majun-anti-poisoning
 spec:
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
       app: anti-poisoning

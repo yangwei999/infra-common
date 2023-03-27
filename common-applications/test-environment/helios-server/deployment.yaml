@@ -4,6 +4,8 @@ metadata:
   name: deployment
   namespace: heliosserver
 spec:
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
       app: helios-server
@@ -14,8 +16,6 @@ spec:
         app: helios-server
         component: vote-server
     spec:
-      nodeSelector:
-        helios: "true"
       containers:
         - name: helios-server
           image: swr.cn-north-4.myhuaweicloud.com/opensourceway/helios-server/helios-voting:master-03939c7

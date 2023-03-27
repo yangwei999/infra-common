@@ -1,0 +1,15 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: opengauss-website-autoscaler
+  namespace: opengauss-website
+spec:
+  scaleTargetRef:
+    name: opengauss-website
+  triggers:
+  - type: cron
+    metadata:
+      timezone: Asia/Shanghai
+      start: 30 8 * * *
+      end: 55 23 * * *
+      desiredReplicas: "1"

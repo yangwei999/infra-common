@@ -5,12 +5,6 @@ metadata:
   name: website
   namespace: opengauss-website-docs-preview
 spec:
-  replicas: 1
-  strategy:
-    rollingUpdate:
-      maxSurge: 1
-      maxUnavailable: 0
-    type: RollingUpdate
   selector:
     matchLabels:
       app: website
