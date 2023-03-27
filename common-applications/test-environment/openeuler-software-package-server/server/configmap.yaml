@@ -39,3 +39,6 @@ data:
       secret_key: "${OBS_SK}"
       region: cn-north-4
       iam_endpoint: https://iam.cn-north-4.myhuaweicloud.com
+    sig:
+      read_url: https://omapi.osinfra.cn/query/sig/scoreAll?community=openeuler
+      interval: 1
