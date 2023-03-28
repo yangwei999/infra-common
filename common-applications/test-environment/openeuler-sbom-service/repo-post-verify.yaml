@@ -24,6 +24,8 @@ metadata:
   name: post-verification-deployment
   namespace: openeuler-sbom-service
 spec:
+  strategy:
+    type: Recreate
   revisionHistoryLimit: 10
   selector:
     matchLabels:
@@ -35,8 +37,6 @@ spec:
     spec:
       imagePullSecrets:
       - name: huawei-swr-image-pull-secret
-      nodeSelector:
-        post-verify: "true"
       containers:
       - image: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/repo-post-verification-test:b28d7034dfdc1264e659e43a465d21b08ed25df9
         imagePullPolicy: Always
