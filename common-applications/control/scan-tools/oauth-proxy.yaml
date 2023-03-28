@@ -24,6 +24,7 @@ spec:
           - --provider-display-name=authing
           - --cookie-expire=12h0m0s
           - --skip-auth-regex=^/api/
+          - --skip-auth-regex=^/static/
           - --redirect-url=https://ops.osinfra.cn/oauth2/callback
           - --oidc-issuer-url=https://scan-tool.authing.cn/oidc
           - --insecure-oidc-allow-unverified-email=true

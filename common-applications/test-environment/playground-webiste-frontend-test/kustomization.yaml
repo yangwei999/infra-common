@@ -3,10 +3,15 @@ resources:
 - deployment.yaml
 - namespace.yaml
 - service.yaml
+- autoscaler.yaml
 commonLabels:
   app: playground-website-frontend
 commonAnnotations:
-  owner: Caowendong
+  kubernetes.ops.cluster: test
+  kubernetes.ops.email: 15622356989@163.com
+  kubernetes.ops.os.base: debian
+  kubernetes.ops.owner: gongzhuangbang
+  kubernetes.ops.region: hk
 namespace: playground-website-frontend
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization

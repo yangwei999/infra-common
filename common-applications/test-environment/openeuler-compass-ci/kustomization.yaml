@@ -1,0 +1,19 @@
+resources:
+- namespace.yaml
+- deployment.yaml
+- service.yaml
+- ingress.yaml
+- configmap.yaml
+- pvc.yaml
+commonAnnotations:
+  kubernetes.ops.cluster: openeuler-x86-cn4
+  kubernetes.ops.email: duanpengjie@huawei.com
+  kubernetes.ops.os.base: openeuler
+  kubernetes.ops.owner: duanpengjie
+  kubernetes.ops.region: beijing
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: openeuler-compass-ci-beta
+images:
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/compassciweb-beta
+  newTag: v1.1679033642

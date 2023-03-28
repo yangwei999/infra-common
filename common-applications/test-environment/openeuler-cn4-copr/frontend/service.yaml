@@ -1,0 +1,14 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: copr-frontend
+spec:
+  ports:
+    - name: httpd
+      port: 5000
+      protocol: TCP
+      targetPort: 5000
+  selector:
+    component: copr-frontend
+  type: ClusterIP

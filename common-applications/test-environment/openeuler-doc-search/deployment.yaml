@@ -5,11 +5,8 @@ metadata:
   name: doc-search
   namespace: openeuler-doc-search
 spec:
-  replicas: 1
   strategy:
-    rollingUpdate:
-      maxUnavailable: 1
-    type: RollingUpdate
+    type: Recreate
   selector:
     matchLabels:
       app: doc-search
@@ -91,4 +88,21 @@ spec:
             secretKeyRef:
               name: doc-search-secrets
               key: kgroup
+        - name: GIT_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: doc-search-secrets
+              key: GIT_USERNAME
+        - name: GIT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: doc-search-secrets
+              key: GIT_PASSWORD
+        volumeMounts:
+        - mountPath: /usr/local/docs/source
+          name: data-volume
+      volumes:
+      - name: data-volume
+        persistentVolumeClaim:
+          claimName: search-data-volume
 

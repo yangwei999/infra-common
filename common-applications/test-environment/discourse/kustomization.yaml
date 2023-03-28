@@ -8,6 +8,13 @@ resources:
 - namespace.yaml
 - pvc.yaml
 - redis.yaml
+- autoscaler.yaml
+commonAnnotations:
+  kubernetes.ops.cluster: test
+  kubernetes.ops.email: wangweifeng21@huawei.com
+  kubernetes.ops.os.base: debian
+  kubernetes.ops.owner: wangweifeng
+  kubernetes.ops.region: hk
 namespace: discourse
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/discourse

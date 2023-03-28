@@ -3,6 +3,13 @@ resources:
 - ingress.yaml
 - service.yaml
 - deployment.yaml
+- autoscaler.yaml
+commonAnnotations:
+  kubernetes.ops.cluster: test
+  kubernetes.ops.email: duyiwei@kylinos.cn
+  kubernetes.ops.os.base: openeuler
+  kubernetes.ops.owner: duyiwei
+  kubernetes.ops.region: hk
 namespace: nestos
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization

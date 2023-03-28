@@ -1,0 +1,38 @@
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    kubernetes.io/ingress.class: nginx
+  name: copr-ingress
+  namespace: fedora-copr
+spec:
+  rules:
+  - host: packages.test.osinfra.cn
+    http:
+      paths:
+      - backend:
+          serviceName: copr-distgit
+          servicePort: 5001
+        path: /cgit/
+      - backend:
+          serviceName: copr-distgit
+          servicePort: 5001
+        path: /cgit-data/
+      - backend:
+          serviceName: copr-backend
+          servicePort: 5002
+        path: /results/
+      - backend:
+          serviceName: copr-distgit
+          servicePort: 5001
+        path: /per-task-logs/
+      - backend:
+          serviceName: copr-frontend
+          servicePort: 5000
+        path: /
+  tls:
+  - hosts:
+    - packages.test.osinfra.cn
+    secretName: copr-frontend-tls

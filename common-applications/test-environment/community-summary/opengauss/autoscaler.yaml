@@ -1,0 +1,15 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: opengauss-summary-autoscaler
+  namespace: community-summary
+spec:
+  scaleTargetRef:
+    name: opengauss-summary-deployment
+  triggers:
+  - type: cron
+    metadata:
+      timezone: Asia/Shanghai
+      start: 30 8 * * 1-5
+      end: 55 23 * * 1-5
+      desiredReplicas: "1"

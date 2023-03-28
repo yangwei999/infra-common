@@ -1,0 +1,66 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: sbom-deployment-autoscaler
+  namespace: openeuler-sbom-service
+spec:
+  scaleTargetRef:
+    name: sbom-deployment
+  triggers:
+  - type: cron
+    metadata:
+      timezone: Asia/Shanghai
+      start: 30 8 * * *
+      end: 55 23 * * *
+      desiredReplicas: "1"
+
+---
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: post-verification-deployment-autoscaler
+  namespace: openeuler-sbom-service
+spec:
+  scaleTargetRef:
+    name: post-verification-deployment
+  triggers:
+  - type: cron
+    metadata:
+      timezone: Asia/Shanghai
+      start: 30 8 * * *
+      end: 55 23 * * *
+      desiredReplicas: "1"
+
+---
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: sbom-repo-service-autoscaler
+  namespace: openeuler-sbom-service
+spec:
+  scaleTargetRef:
+    name: sbom-repo-service
+  triggers:
+  - type: cron
+    metadata:
+      timezone: Asia/Shanghai
+      start: 30 8 * * *
+      end: 55 23 * * *
+      desiredReplicas: "1"
+
+---
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: sbom-website-deployment-autoscaler
+  namespace: openeuler-sbom-service
+spec:
+  scaleTargetRef:
+    name: sbom-website-deployment
+  triggers:
+  - type: cron
+    metadata:
+      timezone: Asia/Shanghai
+      start: 30 8 * * *
+      end: 55 23 * * *
+      desiredReplicas: "1"

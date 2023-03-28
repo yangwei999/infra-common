@@ -4,11 +4,6 @@ metadata:
   name: omni-manager
   namespace: omni-manager-backend
 spec:
-  replicas: 2
-  strategy:
-    rollingUpdate:
-      maxUnavailable: 1
-    type: RollingUpdate
   selector:
     matchLabels:
       app: omni-manager

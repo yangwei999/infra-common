@@ -6,7 +6,14 @@ resources:
 - secret.yaml
 - redis.yaml
 - pvc.yaml
+- autoscaler.yaml
 namespace: owncloud-server
+commonAnnotations:
+  kubernetes.ops.cluster: test
+  kubernetes.ops.email: 747802914@qq.com
+  kubernetes.ops.os.base: ubuntu
+  kubernetes.ops.owner: liuyang
+  kubernetes.ops.region: hk
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
