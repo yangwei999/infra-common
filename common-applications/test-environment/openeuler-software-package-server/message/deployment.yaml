@@ -57,6 +57,16 @@ spec:
                 secretKeyRef:
                   name: software-pkg-secret
                   key: kafka_address
+            - name: ENCRYPTION_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: software-pkg-secret
+                  key: encryption_key
+            - name: ACCESS_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: software-pkg-secret
+                  key: access_token
           ports:
           - containerPort: 8000
             name: http

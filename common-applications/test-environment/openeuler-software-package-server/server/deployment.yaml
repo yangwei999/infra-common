@@ -92,7 +92,11 @@ spec:
             secretKeyRef:
               name: software-pkg-secret
               key: access_token
-
+        - name: ENCRYPTION_KEY
+          valueFrom:
+            secretKeyRef:
+              name: software-pkg-secret
+              key: encryption_key
         volumeMounts:
         - mountPath: /opt/app/config/config.yaml
           name: server-configmap

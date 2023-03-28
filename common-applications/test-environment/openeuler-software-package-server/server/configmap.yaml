@@ -46,8 +46,16 @@ data:
     pkg_manager:
       access_token: "${ACCESS_TOKEN}"
       org: src-openeuler
+      base:
+        org: openeuler
+        repo: community
+        branch: master
     software_pkg:
       supported_platforms:
         - gitee
         - github
       local_platform: gitee
+    encryption:
+      encryption_key: "${ENCRYPTION_KEY}"
+    cla:
+      check_url: https://clasign.osinfra.cn/api/v1/individual-signing/gitee/openeuler
