@@ -5,11 +5,6 @@ metadata:
   name: website
   namespace: community-talent-certification-it-system
 spec:
-  replicas: 1
-  strategy:
-    rollingUpdate:
-      maxUnavailable: 1
-    type: RollingUpdate
   selector:
     matchLabels:
       app: website

@@ -5,9 +5,16 @@ resources:
 - ingress.yaml
 - pvc.yaml
 - job.yaml
+- autoscaler.yaml
+commonAnnotations:
+  kubernetes.ops.cluster: test
+  kubernetes.ops.email: 15622356989@163.com
+  kubernetes.ops.os.base: debian
+  kubernetes.ops.owner: gongzhuangbang
+  kubernetes.ops.region: hk
 namespace: mindspore-website
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: swr.ap-southeast-1.myhuaweicloud.com/opensourceway/mindspore-website-test
-  newTag: e38e56f018eb6432b8a0b442b010e884a70aecc5
+  newTag: 99dce2e9929bb87da783c96090990a1e8db9c19c

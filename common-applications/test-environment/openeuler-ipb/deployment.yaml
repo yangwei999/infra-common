@@ -5,11 +5,6 @@ metadata:
   name: openeuler-ipb-deployment
   namespace: openeuler-ipb
 spec:
-  replicas: 1
-  strategy:
-    rollingUpdate:
-      maxUnavailable: 1
-    type: RollingUpdate
   selector:
     matchLabels:
       app: openeuler-ipb

@@ -5,6 +5,7 @@ commonLabels:
 commonAnnotations:
   owner: zhongjun
   email: "jun.zhongjun2@gmail.com"
+namespace: ingress-nginx
 patchesStrategicMerge:
   - service.yaml
   - deployment.yaml

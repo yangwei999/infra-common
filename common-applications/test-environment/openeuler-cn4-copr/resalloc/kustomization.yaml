@@ -1,0 +1,13 @@
+resources:
+- rbac.yaml
+- deployment.yaml
+- service.yaml
+namespace: fedora-copr
+commonAnnotations:
+  kubernetes.ops.cluster: openeuler-cn4-jenkins-mix
+  kubernetes.ops.email: pkwarcraft@gmail.com
+  kubernetes.ops.os.base: fedora
+  kubernetes.ops.owner: lichaoran
+  kubernetes.ops.region: beijing
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization

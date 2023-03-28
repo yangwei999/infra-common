@@ -4,11 +4,8 @@ metadata:
   name: opengauss-playground-backend
   namespace: opengauss-playground-backend-test
 spec:
-  replicas: 1
   strategy:
-    rollingUpdate:
-      maxUnavailable: 1
-    type: RollingUpdate
+    type: Recreate
   selector:
     matchLabels:
       app: opengauss-playground-backend

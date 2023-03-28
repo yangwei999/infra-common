@@ -5,6 +5,7 @@ commonLabels:
 commonAnnotations:
   owner: tommylike
   email: "tommylikehu@gmail.com"
+namespace: ingress-nginx
 patchesStrategicMerge:
   - service.yaml
   - deployment.yaml

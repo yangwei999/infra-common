@@ -5,11 +5,6 @@ metadata:
   name: openlookeng-website-docs
   namespace: openlookeng-docs
 spec:
-  replicas: 1
-  strategy:
-    rollingUpdate:
-      maxUnavailable: 1
-    type: RollingUpdate
   selector:
     matchLabels:
       app: openlookeng-website-docs

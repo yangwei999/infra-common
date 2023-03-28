@@ -1,0 +1,15 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: anti-poisoning-autoscaler
+  namespace: majun-anti-poisoning
+spec:
+  scaleTargetRef:
+    name: anti-poisoning
+  triggers:
+  - type: cron
+    metadata:
+      timezone: Asia/Shanghai
+      start: 30 8 * * *
+      end: 55 23 * * *
+      desiredReplicas: "1"

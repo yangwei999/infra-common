@@ -3,13 +3,20 @@ resources:
 - ingress.yaml
 - service.yaml
 - deployment.yaml
+- autoscaler.yaml
 namespace: openeuler-login-feature
+commonAnnotations:
+  kubernetes.ops.cluster: test
+  kubernetes.ops.email: 377075038@qq.com
+  kubernetes.ops.os.base: openEuler
+  kubernetes.ops.owner: chenqi
+  kubernetes.ops.region: hk
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openeuler-login-feature-docs-ru-test
-  newTag: b2c86b86442c172d10c3911c9388b98c4dcf657a
+  newTag: v1.0.20230328114225
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openeuler-login-feature-docs-zh-test
-  newTag: b2c86b86442c172d10c3911c9388b98c4dcf657a
+  newTag: v1.0.20230328114225
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openeuler-login-feature-website-test
-  newTag: 09ff6603ca906ab516a72748a323ceed49f1dfa7
+  newTag: a2f6ca7e66b6aad628b86b302dbb69cfd664d139

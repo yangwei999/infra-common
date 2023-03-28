@@ -5,9 +5,16 @@ resources:
 - deployment.yaml
 - secret.yaml
 - pvc.yaml
+- autoscaler.yaml
+commonAnnotations:
+  kubernetes.ops.cluster: test
+  kubernetes.ops.email: openlibing@163.com
+  kubernetes.ops.os.base: openeuler
+  kubernetes.ops.owner: zhangyaxiong
+  kubernetes.ops.region: hk
 namespace: majun-anti-poisoning
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/majun/anti-poisoning-test
-  newTag: fa1f7feb919f9a9dde1caafc2c48c915223d333c
+  newTag: 29cfae6fcad4824f1f1c3ac50b98ebccf718286b

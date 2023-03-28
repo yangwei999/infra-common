@@ -1,9 +1,9 @@
 resources:
 - deployment.yaml
 - service.yaml
-- secret.yaml
 - ingress.yaml
 - configmap.yaml
+- autoscaler.yaml
 commonAnnotations:
   kubernetes.ops.cluster: test
   kubernetes.ops.email: zjm.514@qq.com
@@ -15,4 +15,4 @@ kind: Kustomization
 namespace: openeuler-software-pkg
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/software-package-server-test
-  newTag: 39be615a54a45e1f3400c9cc6f3fe5d09bde894c
+  newTag: 073fd6a90b5f0fc75a4b536ba5ac562639cce04c

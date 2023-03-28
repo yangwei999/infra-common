@@ -5,11 +5,6 @@ metadata:
   name: repo-post-verify-deployment
   namespace: mindspore-repo-post-verify
 spec:
-  replicas: 1
-  strategy:
-    rollingUpdate:
-      maxUnavailable: 1
-    type: RollingUpdate
   selector:
     matchLabels:
       app: repo-post-verify
@@ -45,6 +40,16 @@ spec:
           valueFrom:
             secretKeyRef:
               key: endpoint
+              name: repo-post-verify-secrets
+        - name: jasypt.encryptor.password
+          valueFrom:
+            secretKeyRef:
+              key: jasypt.encryptor.password
+              name: repo-post-verify-secrets
+        - name: access_token
+          valueFrom:
+            secretKeyRef:
+              key: access_token
               name: repo-post-verify-secrets
         volumeMounts:
         - mountPath: /var/log

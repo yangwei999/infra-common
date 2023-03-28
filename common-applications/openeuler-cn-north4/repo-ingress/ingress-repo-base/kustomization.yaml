@@ -5,6 +5,7 @@ resources:
 - nginx-purger.yaml
 commonLabels:
   common-app: nginx-ingress
+namespace: ingress-nginx-repo
 patchesStrategicMerge:
 - configmap.yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
