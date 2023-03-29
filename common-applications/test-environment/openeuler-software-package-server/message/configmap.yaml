@@ -51,3 +51,6 @@ data:
       local_platform: gitee
     encryption:
       encryption_key: "${ENCRYPTION_KEY}"
+    ci:
+      ci_endpoint: https://omapi.test.osinfra.cn/query/user/ownertype?community=openeuler
+      common_test_body_file: /opt/app/payload.json
