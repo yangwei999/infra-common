@@ -46,6 +46,8 @@ metadata:
   name: sbom-repo-service
   namespace: openeuler-sbom-service
 spec:
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
       app: sbom-repo-service
