@@ -1,0 +1,32 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: opengauss-docs-deployment-autoscaler
+  namespace: opengauss-usercenter
+spec:
+  scaleTargetRef:
+    name: opengauss-docs-deployment
+  triggers:
+  - type: cron
+    metadata:
+      timezone: Asia/Shanghai
+      start: 30 8 * * *
+      end: 55 23 * * *
+      desiredReplicas: "1"
+
+---
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: opengauss-website-deployment-autoscaler
+  namespace: opengauss-usercenter
+spec:
+  scaleTargetRef:
+    name: opengauss-website-deployment
+  triggers:
+  - type: cron
+    metadata:
+      timezone: Asia/Shanghai
+      start: 30 8 * * *
+      end: 55 23 * * *
+      desiredReplicas: "1"

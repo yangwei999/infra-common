@@ -4,12 +4,17 @@ resources:
 - service.yaml
 - secrets.yaml
 - ingress.yaml
+- pvc.yaml
+- autoscaler.yaml
 commonAnnotations:
-  email: chenyang244@h-partners.com
-  owner: chenyang
+  kubernetes.ops.cluster: test
+  kubernetes.ops.email: chenyang244@h-partners.com
+  kubernetes.ops.os.base: debian
+  kubernetes.ops.owner: chenyang
+  kubernetes.ops.region: hk
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: openeuler-doc-search
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/doc-search-test
-  newTag: a2fb8642123b799767fbd9a5a91f3b9aa5fcd72a
+  newTag: bec99145c8faeef1143500983c34874fa5fbbadb

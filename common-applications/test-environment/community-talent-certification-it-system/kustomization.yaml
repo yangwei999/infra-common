@@ -4,6 +4,13 @@ resources:
 - service.yaml
 - deployment.yaml
 - secret.yaml
+- autoscaler.yaml
+commonAnnotations:
+  kubernetes.ops.cluster: test
+  kubernetes.ops.email: 15622356989@163.com
+  kubernetes.ops.os.base: openeuler
+  kubernetes.ops.owner: gongzhuangbang
+  kubernetes.ops.region: hk
 namespace: community-talent-certification-it-system
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization

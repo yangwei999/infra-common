@@ -3,6 +3,7 @@ resources:
 - ingress.yaml
 - service.yaml
 - deployment.yaml
+- autoscaler.yaml
 namespace: datastat-manage
 commonAnnotations:
   kubernetes.ops.cluster: test
@@ -14,4 +15,4 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/datastast/manage-website-test
-  newTag: v1.0.20230308162915
+  newTag: v1.0.20230330100056

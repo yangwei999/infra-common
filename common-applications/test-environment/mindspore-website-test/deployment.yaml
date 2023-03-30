@@ -5,11 +5,6 @@ metadata:
   name: mindspore-website
   namespace: mindspore-website
 spec:
-  replicas: 2
-  strategy:
-    rollingUpdate:
-      maxUnavailable: 1
-    type: RollingUpdate
   selector:
     matchLabels:
       app: mindspore-website

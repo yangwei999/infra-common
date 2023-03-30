@@ -5,7 +5,6 @@ metadata:
   name: playground-manager
   namespace: playground-manager
 spec:
-  replicas: 1
   selector:
     matchLabels:
       app: playground-manager

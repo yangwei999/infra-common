@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: search-data-volume
+  namespace: openeuler-doc-search
+  annotations:
+    everest.io/disk-volume-type: SSD
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi
+  storageClassName: csi-disk
+  volumeMode: Filesystem

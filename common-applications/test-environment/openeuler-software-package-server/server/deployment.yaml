@@ -5,7 +5,6 @@ metadata:
   name: server
   namespace: openeuler-software-pkg
 spec:
-  replicas: 1
   strategy:
     type: Recreate
   selector:
@@ -68,6 +67,36 @@ spec:
             secretKeyRef:
               name: software-pkg-secret
               key: db_name
+        - name: KAFKA_ADDRESS
+          valueFrom:
+            secretKeyRef:
+              name: software-pkg-secret
+              key: kafka_address
+        - name: OBS_AK
+          valueFrom:
+            secretKeyRef:
+              name: software-pkg-secret
+              key: obs_ak
+        - name: OBS_SK
+          valueFrom:
+            secretKeyRef:
+              name: software-pkg-secret
+              key: obs_sk
+        - name: OBS_PROJECT
+          valueFrom:
+            secretKeyRef:
+              name: software-pkg-secret
+              key: obs_project
+        - name: ACCESS_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: software-pkg-secret
+              key: access_token
+        - name: ENCRYPTION_KEY
+          valueFrom:
+            secretKeyRef:
+              name: software-pkg-secret
+              key: encryption_key
         volumeMounts:
         - mountPath: /opt/app/config/config.yaml
           name: server-configmap

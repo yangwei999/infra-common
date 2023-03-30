@@ -5,7 +5,6 @@ metadata:
   name: website
   namespace: openeuler-software-pkg
 spec:
-  replicas: 1
   strategy:
     type: Recreate
   selector:
@@ -34,7 +33,7 @@ spec:
           periodSeconds: 10
           successThreshold: 1
           tcpSocket:
-            port: 8080
+            port: 80
           timeoutSeconds: 5
         readinessProbe:
           failureThreshold: 3
@@ -42,7 +41,7 @@ spec:
           periodSeconds: 10
           successThreshold: 1
           tcpSocket:
-            port: 8080
+            port: 80
           timeoutSeconds: 5
         
       

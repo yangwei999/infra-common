@@ -15,7 +15,7 @@ spec:
     - host: software.test.osinfra.cn
       http:
         paths:
-          - backend:
-              serviceName: backend-service
-              servicePort: 80
-            path: /
+        - backend:
+            serviceName: backend-service
+            servicePort: 80
+          path: /

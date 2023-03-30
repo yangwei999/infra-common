@@ -5,12 +5,8 @@ metadata:
   name: post-verification-deployment
   namespace: opengauss-repo-verify
 spec:
-  replicas: 1
   strategy:
-    rollingUpdate:
-      maxSurge: 1
-      maxUnavailable: 0
-    type: RollingUpdate
+    type: Recreate
   revisionHistoryLimit: 10
   selector:
     matchLabels:
@@ -22,8 +18,6 @@ spec:
     spec:
       imagePullSecrets:
       - name: huawei-swr-image-pull-secret
-      nodeSelector:
-        post-verify: "true"
       containers:
       - image: swr.cn-north-4.myhuaweicloud.com/opensourceway/opengauss/opengauss-repo-verify-test:v1.0.20221017153633
         imagePullPolicy: Always
@@ -48,6 +42,16 @@ spec:
           valueFrom:
             secretKeyRef:
               key: bucketname
+              name: post-verification-secrets
+        - name: jasypt.encryptor.password
+          valueFrom:
+            secretKeyRef:
+              key: jasypt.encryptor.password
+              name: post-verification-secrets
+        - name: access_token
+          valueFrom:
+            secretKeyRef:
+              key: access_token
               name: post-verification-secrets
         livenessProbe:
           httpGet:

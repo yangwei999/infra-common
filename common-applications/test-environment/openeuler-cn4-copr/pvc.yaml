@@ -1,0 +1,134 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: copr-backend-data
+  labels:
+    failure-domain.beta.kubernetes.io/zone: cn-north-4a
+  annotations:
+    everest.io/disk-volume-type: SSD
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 500Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: copr-database-data
+  labels:
+    failure-domain.beta.kubernetes.io/zone: cn-north-4a
+  annotations:
+    everest.io/disk-volume-type: SSD
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: copr-redis-data
+  labels:
+    failure-domain.beta.kubernetes.io/zone: cn-north-4a
+  annotations:
+    everest.io/disk-volume-type: SSD
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: copr-distgit-data
+  labels:
+    failure-domain.beta.kubernetes.io/zone: cn-north-4a
+  annotations:
+    everest.io/disk-volume-type: SSD
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: copr-distgit-logs
+  labels:
+    failure-domain.beta.kubernetes.io/zone: cn-north-4a
+  annotations:
+    everest.io/disk-volume-type: SSD
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: "10Gi"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: copr-distgit-locks
+  labels:
+    failure-domain.beta.kubernetes.io/zone: cn-north-4a
+  annotations:
+    everest.io/disk-volume-type: SSD
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: "10M"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: copr-frontend-search-data
+  labels:
+    failure-domain.beta.kubernetes.io/zone: cn-north-4a
+spec:
+  storageClassName: csi-nas
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 10Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: copr-keygen-data
+  labels:
+    failure-domain.beta.kubernetes.io/zone: cn-north-4a
+  annotations:
+    everest.io/disk-volume-type: SSD
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: resalloc-data
+  labels:
+    failure-domain.beta.kubernetes.io/zone: cn-north-4a
+  annotations:
+    everest.io/disk-volume-type: SSD
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi

@@ -6,13 +6,20 @@ resources:
 - server.yaml
 - secret.yaml
 - opengauss-usercenter.yaml
+- autoscaler.yaml
 namespace: openeuler-usercenter
+commonAnnotations:
+  kubernetes.ops.cluster: test
+  kubernetes.ops.email: 377075038@qq.com
+  kubernetes.ops.os.base: openEuler
+  kubernetes.ops.owner: chenqi
+  kubernetes.ops.region: hk
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openeuler-usercenter-server-test
-  newTag: d2d541324124b460e4198cc06b2a9d255271743e
+  newTag: 5d379dd2efadb3cf408b73bc8777ce9f47cfaa47
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openeuler-usercenter-test
-  newTag: de9dbd2063783ec8c2457fd09e3433d8104438e2
+  newTag: 2d5778f877d2c878e174bc4852f3b2cdc90a0017
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/opengauss/opengauss-usercenter-test
   newTag: ef3209362e9290ab980b12e18de73c096a02b194

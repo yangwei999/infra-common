@@ -6,7 +6,6 @@ metadata:
   name: etherpad
   namespace: etherpad
 spec:
-  replicas: 1
   revisionHistoryLimit: 5
   selector:
     matchLabels:
