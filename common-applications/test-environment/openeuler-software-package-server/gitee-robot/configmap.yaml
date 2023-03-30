@@ -26,17 +26,12 @@ data:
       group_name: software-package
       topics:
         new_pkg: software_pkg_new_test
-        approved_pkg: software_pkg_approved_test
-        rejected_pkg: software_pkg_rejected_test
-        abandoned_pkg: software_pkg_abandoned_test
-        already_closed_pkg: software_pkg_already_closed_test
       message:  
         topics_to_notify:
           ci_passed: software_pkg_pr_ci_checked_test
           created_repo: software_pkg_repo_created_test
-          closed_pr: software_pkg_pr_closed_test
-          merged_pr: software_pkg_pr_merged_test
-          
+          pushed_code: software_pkg_push_code_test
+        
     email:
       maintainer_email: ${MAINTAINER_EMAIL}
       email:
@@ -44,12 +39,18 @@ data:
         from: "${EMAIL_FROM}"
         host: "${EMAIL_HOST}"
         port: ${EMAIL_PORT}
+  
     pull_request:
       robot:
         username: "${ROBOT_USERNAME}"
-        password: "${ROBOT_PASSWORD}"
+        token: "${ROBOT_PASSWORD}"
         email: "${ROBOT_EMAIL}"
-        
+    code:
+      robot:
+        username: "${ROBOT_USERNAME}"
+        token: "${ROBOT_PASSWORD}"
+    encryption:
+      encryption_key: fskj123kjsfi999fj$553
     postgresql:
       db:
         host: "${DB_HOST}"
