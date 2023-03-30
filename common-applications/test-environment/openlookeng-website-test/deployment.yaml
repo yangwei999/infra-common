@@ -7,11 +7,6 @@ metadata:
   labels: 
     app: openlookeng-website
 spec:
-  replicas: 2
-  strategy:
-    rollingUpdate:
-      maxUnavailable: 1
-    type: RollingUpdate
   selector:
     matchLabels:
       app: openlookeng-website 

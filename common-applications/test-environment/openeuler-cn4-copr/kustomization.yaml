@@ -1,0 +1,20 @@
+resources:
+- namespace.yaml
+- ingress.yaml
+- pvc.yaml
+- secrets.yaml
+- configmap.yaml
+- backend
+- database
+- distgit
+- frontend
+- keygen
+- resalloc
+namespace: fedora-copr
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+images:
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/copr/backend-test
+  newTag: v1.0.20230323163713
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/copr/frontend-test
+  newTag: v1.0.20230316172047

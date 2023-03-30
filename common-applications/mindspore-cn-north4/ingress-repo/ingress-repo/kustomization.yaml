@@ -4,8 +4,11 @@ commonLabels:
   app: openeuler-hk-ingress-repo
 namespace: ingress-nginx-repo
 commonAnnotations:
-  owner: tommylike
-  email: "tommylikehu@gmail.com"
+  kubernetes.ops.cluster: mindspore-x86
+  kubernetes.ops.email: 747802914@qq.com
+  kubernetes.ops.os.base: Alpine
+  kubernetes.ops.owner: liuyang
+  kubernetes.ops.region: beijing
 patchesStrategicMerge:
   - service.yaml
   - deployment.yaml

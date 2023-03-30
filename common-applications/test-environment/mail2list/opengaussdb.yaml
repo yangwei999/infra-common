@@ -25,7 +25,7 @@ spec:
     matchLabels:
       app: opengaussdb-service
   serviceName: opengaussdb-service
-  replicas: 1
+  replicas: 0
   template:
     metadata:
       labels:

@@ -5,7 +5,6 @@ metadata:
   name: casefile-resolver
   namespace: radia-test
 spec:
-  replicas: 1
   strategy:
     type: Recreate
   selector:

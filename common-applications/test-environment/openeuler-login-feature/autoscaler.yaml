@@ -1,0 +1,49 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: openeuler-website-autoscaler
+  namespace: openeuler-login-feature
+spec:
+  scaleTargetRef:
+    name: openeuler-website
+  triggers:
+  - type: cron
+    metadata:
+      timezone: Asia/Shanghai
+      start: 30 8 * * *
+      end: 55 23 * * *
+      desiredReplicas: "1"
+
+---
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: website-docs-zh-service-autoscaler
+  namespace: openeuler-login-feature
+spec:
+  scaleTargetRef:
+    name: website-docs-zh-service
+  triggers:
+  - type: cron
+    metadata:
+      timezone: Asia/Shanghai
+      start: 30 8 * * *
+      end: 55 23 * * *
+      desiredReplicas: "1"
+
+---
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: website-docs-ru-service-autoscaler
+  namespace: openeuler-login-feature
+spec:
+  scaleTargetRef:
+    name: website-docs-ru-service
+  triggers:
+  - type: cron
+    metadata:
+      timezone: Asia/Shanghai
+      start: 30 8 * * *
+      end: 55 23 * * *
+      desiredReplicas: "1"

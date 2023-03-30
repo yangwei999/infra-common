@@ -1,0 +1,79 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: copr-keygen
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      component: copr-keygen
+  template:
+    metadata:
+      labels:
+        component: copr-keygen
+    spec:
+      nodeSelector:
+        usage: test
+        os.architecture: amd64
+      containers:
+        - image: swr.cn-north-4.myhuaweicloud.com/opensourceway/copr/keygen-signd-test:v1.0.20230310165958
+          imagePullPolicy: IfNotPresent
+          args: ["/signd-entrypoint", "0.0.0.0/0"]
+          name: copr-keygen-signer
+          livenessProbe:
+            tcpSocket:
+              port: 5167
+            initialDelaySeconds: 30
+            timeoutSeconds: 5
+          readinessProbe:
+            tcpSocket:
+              port: 5167
+            initialDelaySeconds: 5
+            timeoutSeconds: 5
+          resources:
+            requests:
+              cpu: 200m
+              memory: 200Mi
+          ports:
+            - containerPort: 5167
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /var/lib/copr-keygen
+              name: copr-keygen-data
+        - image: swr.cn-north-4.myhuaweicloud.com/opensourceway/copr/keygen-signd-test:v1.0.20230310165958
+          imagePullPolicy: IfNotPresent
+          name: copr-keygen-httpd
+          livenessProbe:
+            tcpSocket:
+              port: 5003
+            initialDelaySeconds: 30
+            timeoutSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /ping
+              port: 5003
+            initialDelaySeconds: 5
+            timeoutSeconds: 5
+          resources:
+            requests:
+              cpu: 200m
+              memory: 200Mi
+          ports:
+            - containerPort: 5003
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /var/lib/copr-keygen
+              name: copr-keygen-data
+            - mountPath: /etc/httpd/conf.d/copr-keygen.conf
+              name: copr-keygen
+              subPath: copr-keygen.conf
+      volumes:
+        - name: copr-keygen-data
+          persistentVolumeClaim:
+            claimName: copr-keygen-data
+        - name: copr-keygen
+          configMap:
+            name: copr-keygen
+

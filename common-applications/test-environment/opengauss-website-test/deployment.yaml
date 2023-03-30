@@ -10,12 +10,6 @@ metadata:
     flux.weave.works/automated: "true"
     flux.weave.works/tag.websiteinfod: semver:~1.0
 spec:
-  replicas: 1
-  strategy:
-    rollingUpdate:
-      maxSurge: 1
-      maxUnavailable: 1
-    type: RollingUpdate
   selector:
     matchLabels:
       app: opengauss-website
@@ -26,8 +20,6 @@ spec:
     spec:
       imagePullSecrets:
         - name: huawei-swr-image-pull-secret
-      nodeSelector:
-        opengauss-website: "true"
       containers:
       - name: websiteinfod
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/opengauss/test_opengauss_website:v1.0.20220621112656

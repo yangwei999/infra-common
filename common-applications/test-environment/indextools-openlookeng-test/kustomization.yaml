@@ -4,6 +4,13 @@ resources:
 - service.yaml
 - ingress.yaml
 - secret.yaml
+- autoscaler.yaml
+commonAnnotations:
+  kubernetes.ops.cluster: test
+  kubernetes.ops.email: 775517776@qq.com
+  kubernetes.ops.os.base: debian
+  kubernetes.ops.owner: chenyang
+  kubernetes.ops.region: hk
 namespace: openlookeng-indextool
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization

@@ -1,0 +1,102 @@
+---
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: backend-cronjob-week
+spec:
+  schedule: "0 0 * * 0"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          affinity:
+            podAffinity:
+              requiredDuringSchedulingIgnoredDuringExecution:
+              - labelSelector:
+                  matchExpressions:
+                  - key: component
+                    operator: In
+                    values:
+                    - copr-backend
+                topologyKey: kubernetes.io/hostname
+          containers:
+          - image: swr.cn-north-4.myhuaweicloud.com/opensourceway/copr/backend-test:v1.0.20230310164803
+            name: backend-cronjob
+            args: ["sudo", "/etc/cron.weekly/copr-backend"]
+            volumeMounts:
+              - mountPath: /home/copr/.ssh/builder_config
+                name: copr-backend
+                subPath: builder_config
+              - mountPath: /home/copr/.ssh/id_rsa
+                name: copr-secrets
+                subPath: backend_id_rsa
+              - mountPath: /home/copr/.ssh/id_rsa.pub
+                name: copr-secrets
+                subPath: backend_id_rsa.pub
+              - mountPath: /var/lib/copr/public_html/results
+                name: copr-backend-data
+              - mountPath: /etc/copr/copr-be.conf
+                name: copr-secrets
+                subPath: backend_copr-be.conf
+          volumes:
+            - name: copr-backend
+              configMap:
+                name: copr-backend
+            - name: copr-backend-data
+              persistentVolumeClaim:
+                claimName: copr-backend-data
+            - name: copr-secrets
+              secret:
+                secretName: copr-secrets
+          restartPolicy: OnFailure
+---
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: backend-cronjob-daily
+spec:
+  schedule: "0 0 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          affinity:
+            podAffinity:
+              requiredDuringSchedulingIgnoredDuringExecution:
+              - labelSelector:
+                  matchExpressions:
+                  - key: component
+                    operator: In
+                    values:
+                    - copr-backend
+                topologyKey: kubernetes.io/hostname
+          containers:
+          - image: swr.cn-north-4.myhuaweicloud.com/opensourceway/copr/backend-test:v1.0.20230310164803
+            name: backend-cronjob
+            args: ["sudo", "/etc/cron.daily/copr-backend"]
+            volumeMounts:
+              - mountPath: /home/copr/.ssh/builder_config
+                name: copr-backend
+                subPath: builder_config
+              - mountPath: /home/copr/.ssh/id_rsa
+                name: copr-secrets
+                subPath: backend_id_rsa
+              - mountPath: /home/copr/.ssh/id_rsa.pub
+                name: copr-secrets
+                subPath: backend_id_rsa.pub
+              - mountPath: /var/lib/copr/public_html/results
+                name: copr-backend-data
+              - mountPath: /etc/copr/copr-be.conf
+                name: copr-secrets
+                subPath: backend_copr-be.conf
+          volumes:
+            - name: copr-backend
+              configMap:
+                name: copr-backend
+            - name: copr-backend-data
+              persistentVolumeClaim:
+                claimName: copr-backend-data
+            - name: copr-secrets
+              secret:
+                secretName: copr-secrets
+          restartPolicy: OnFailure

@@ -3,6 +3,7 @@ resources:
 - ingress.yaml
 - service.yaml
 - deployment.yaml
+- autoscaler.yaml
 namespace: mindspore-website-revision
 commonAnnotations:
   kubernetes.ops.cluster: test

@@ -8,7 +8,14 @@ resources:
 - namespace.yaml
 - pvc.yaml
 - cronjob.yaml
+- autoscaler.yaml
+commonAnnotations:
+  kubernetes.ops.cluster: test
+  kubernetes.ops.email: shalldows@163.com
+  kubernetes.ops.os.base: ubuntu
+  kubernetes.ops.owner: wanghao
+  kubernetes.ops.region: hk
 namespace: patchwork
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/patchwork/patchwork
-  newTag: main-db25a16
+  newTag: main-edbdbab

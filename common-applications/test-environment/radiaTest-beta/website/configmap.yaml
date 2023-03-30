@@ -19,21 +19,21 @@ data:
     }
 
     location /api {
-        proxy_pass http://supervisor-service.radia-test.svc.cluster.local:21500;
+        proxy_pass http://supervisor-service.radia-test-beta.svc.cluster.local:21500;
         proxy_set_header X-Real-Ip $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_read_timeout 1800;
     }
 
     location /static {
-        proxy_pass http://supervisor-service.radia-test.svc.cluster.local:21500;
+        proxy_pass http://supervisor-service.radia-test-beta.svc.cluster.local:21500;
         proxy_set_header X-Real-Ip $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     }
 
     location ^~/socket.io {
         include uwsgi_params;
-        proxy_pass http://supervisor-service.radia-test.svc.cluster.local:21500;
+        proxy_pass http://supervisor-service.radia-test-beta.svc.cluster.local:21500;
         proxy_set_header Host $host;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_read_timeout 600s;

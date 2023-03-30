@@ -1,0 +1,14 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: copr-resalloc
+spec:
+  ports:
+    - name: resalloc
+      port: 49100
+      protocol: TCP
+      targetPort: 49100
+  selector:
+    component: copr-resalloc
+  type: ClusterIP

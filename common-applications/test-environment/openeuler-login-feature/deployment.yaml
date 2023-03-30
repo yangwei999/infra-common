@@ -5,11 +5,6 @@ metadata:
   name: openeuler-website
   namespace: openeuler-login-feature
 spec:
-  replicas: 1
-  strategy:
-    rollingUpdate:
-      maxUnavailable: 1
-    type: RollingUpdate
   selector:
     matchLabels:
       app: website
@@ -43,11 +38,6 @@ metadata:
   name: website-docs-zh-service
   namespace: openeuler-login-feature
 spec:
-  replicas: 1
-  strategy:
-    rollingUpdate:
-      maxUnavailable: 1
-    type: RollingUpdate
   selector:
     matchLabels:
       app: docs-zh
@@ -81,11 +71,6 @@ metadata:
   name: website-docs-ru-service
   namespace: openeuler-login-feature
 spec:
-  replicas: 1
-  strategy:
-    rollingUpdate:
-      maxUnavailable: 1
-    type: RollingUpdate
   selector:
     matchLabels:
       app: docs-ru

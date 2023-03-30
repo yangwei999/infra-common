@@ -4,7 +4,14 @@ resources:
 - service.yaml
 - deployment.yaml
 - secret.yaml
+- autoscaler.yaml
 namespace: opengauss-tryme-website
+commonAnnotations:
+  kubernetes.ops.cluster: test
+  kubernetes.ops.email: 15622356989@163.com
+  kubernetes.ops.os.base: debian
+  kubernetes.ops.owner: gongzhuangbang
+  kubernetes.ops.region: hk
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
