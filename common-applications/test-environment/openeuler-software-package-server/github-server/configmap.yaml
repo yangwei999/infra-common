@@ -16,6 +16,8 @@ data:
               created_repo: software_pkg_repo_created_test
               pushed_code: software_pkg_code_saved_test
 
+    encryption:
+          encryption_key: "${ENCRYPTION_KEY}"
     code:
           robot:
             username: "${ROBOT_USERNAME}"

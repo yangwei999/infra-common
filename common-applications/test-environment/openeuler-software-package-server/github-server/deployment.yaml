@@ -24,7 +24,7 @@ spec:
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/software-package-github-server-test:1ff44243ce5364d6d5068e1db6c236d47508582b
         args:
         - --config-file=/opt/app/config/config.yaml
-        - --gitee-token-path=/opt/app/config/oauth
+        - --github-token-path=/opt/app/config/oauth
         resources:
           requests:
             cpu: 200m
@@ -68,6 +68,11 @@ spec:
             secretKeyRef:
               name: software-pkg-secret
               key: robot_password
+        - name: ENCRYPTION_KEY
+          valueFrom:
+            secretKeyRef:
+              name: software-pkg-secret
+              key: encryption_key
         volumeMounts:
         - mountPath: /opt/app/config/config.yaml
           name: server-configmap
