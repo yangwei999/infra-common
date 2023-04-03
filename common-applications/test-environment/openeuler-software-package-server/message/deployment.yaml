@@ -16,7 +16,9 @@ spec:
         app: message-server
     spec:
       imagePullSecrets:
-        - name: huawei-swr-image-pull-secret
+      - name: huawei-swr-image-pull-secret
+      nodeSelector:
+        autoscaler: "true"
       containers:
         - name: message-server
           image: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/software-package-message-server-test:v1.0.20230317100349
