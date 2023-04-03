@@ -16,7 +16,9 @@ spec:
         app: message-server
     spec:
       imagePullSecrets:
-        - name: huawei-swr-image-pull-secret
+      - name: huawei-swr-image-pull-secret
+      nodeSelector:
+        autoscaler: "true"
       containers:
         - name: message-server
           image: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/software-package-message-server-test:v1.0.20230317100349
@@ -57,6 +59,16 @@ spec:
                 secretKeyRef:
                   name: software-pkg-secret
                   key: kafka_address
+            - name: ENCRYPTION_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: software-pkg-secret
+                  key: encryption_key
+            - name: ACCESS_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: software-pkg-secret
+                  key: access_token
           ports:
           - containerPort: 8000
             name: http

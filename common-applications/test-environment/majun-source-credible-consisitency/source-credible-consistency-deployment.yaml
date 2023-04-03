@@ -4,6 +4,8 @@ metadata:
   name: source-credible-consistency-deployment
   namespace: majun-source-credible-consistency
 spec:
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
       app: source-credible-consistency
