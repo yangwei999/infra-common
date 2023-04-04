@@ -5,6 +5,8 @@ metadata:
   name: repo-post-verify-deployment
   namespace: mindspore-repo-post-verify
 spec:
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
       app: repo-post-verify

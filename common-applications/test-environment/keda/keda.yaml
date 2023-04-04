@@ -8830,7 +8830,7 @@ spec:
           value: ""
         - name: KEDA_HTTP_DEFAULT_TIMEOUT
           value: ""
-        image: ghcr.io/kedacore/keda-metrics-apiserver:2.8.1
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/kedacore/keda-metrics-apiserver:v2.8.1
         imagePullPolicy: Always
         livenessProbe:
           httpGet:
@@ -8912,7 +8912,7 @@ spec:
           value: ""
         - name: KEDA_HTTP_DEFAULT_TIMEOUT
           value: ""
-        image: ghcr.io/kedacore/keda:2.8.1
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/kedacore/keda:v2.8.1
         imagePullPolicy: Always
         livenessProbe:
           httpGet:
