@@ -17,6 +17,8 @@ spec:
     spec:
       imagePullSecrets:
         - name: huawei-swr-image-pull-secret
+      nodeSelector:
+        autoscaler: "true"
       containers:
       - name: repo-post-verify
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/mindspore/mindspore-repo-post-verify-test:0d9744911c06ea3d2d1055c35ce3f03615baa489

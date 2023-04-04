@@ -20,6 +20,8 @@ spec:
     spec:
       imagePullSecrets:
         - name: huawei-swr-image-pull-secret
+      nodeSelector:
+        autoscaler: "true"
       containers:
       - name: websiteinfod
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/opengauss/test_opengauss_website:v1.0.20220621112656

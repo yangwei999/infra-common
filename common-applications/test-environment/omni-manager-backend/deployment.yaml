@@ -14,6 +14,8 @@ spec:
     spec:
       imagePullSecrets:
       - name: huawei-swr-image-pull-secret
+      nodeSelector:
+        autoscaler: "true"
       containers:
       - name: omni-manager
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/omni-manager-backend/omni-manager:24f5f4f8d327c70022f9df07a998b6b9b4c2bbe2

@@ -15,6 +15,8 @@ spec:
     spec:
       imagePullSecrets:
       - name: huawei-swr-image-pull-secret
+      nodeSelector:
+        autoscaler: "true"
       containers:
       - name: nestos
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/nestos-website-test:0b12381abff528522761d1f9926e5315349dbe4f

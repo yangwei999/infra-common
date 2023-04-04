@@ -17,6 +17,8 @@ spec:
     spec:
       imagePullSecrets:
       - name: huawei-swr-image-pull-secret
+      nodeSelector:
+        autoscaler: "true"
       containers:
       - name: anti-poisoning
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/majun/anti-poisoning-test:bb9c06c0fc149693db759b9f0fd9067bc3cd1069
