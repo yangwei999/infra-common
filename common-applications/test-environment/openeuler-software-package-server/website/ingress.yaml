@@ -9,10 +9,10 @@ metadata:
 spec:
   tls:
     - hosts:
-        - software-package.test.osinfra.cn
+        - software-pkg.test.osinfra.cn
       secretName: website-tls
   rules:
-    - host: software-package.test.osinfra.cn
+    - host: software-pkg.test.osinfra.cn
       http:
         paths:
           - backend:

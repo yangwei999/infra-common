@@ -17,6 +17,8 @@ spec:
     spec:
       imagePullSecrets:
       - name: huawei-swr-image-pull-secret
+      nodeSelector:
+        autoscaler: "true"
       containers:
       - name: website
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/software-package-website-test:ec2fcf5f946d350ce12487a1605593e9e5a66238

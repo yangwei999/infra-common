@@ -13,6 +13,8 @@ spec:
       labels:
         app: website
     spec:
+      nodeSelector:
+        autoscaler: "true"
       imagePullSecrets:
       - name: huawei-swr-image-pull-secret
       containers:

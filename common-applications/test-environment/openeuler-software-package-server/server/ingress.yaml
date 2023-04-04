@@ -9,13 +9,17 @@ metadata:
 spec:
   tls:
     - hosts:
-        - software.test.osinfra.cn
+        - software-pkg.test.osinfra.cn
       secretName: server-tls
   rules:
-    - host: software.test.osinfra.cn
+    - host: software-pkg.test.osinfra.cn
       http:
         paths:
         - backend:
             serviceName: backend-service
             servicePort: 80
-          path: /
+          path: /api/v1
+        - backend:
+            serviceName: backend-service
+            servicePort: 80
+          path: /swagger

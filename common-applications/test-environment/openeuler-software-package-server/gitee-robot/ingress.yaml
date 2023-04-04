@@ -9,10 +9,10 @@ metadata:
 spec:
   tls:
     - hosts:
-        - software.test.osinfra.cn
+        - software-pkg.test.osinfra.cn
       secretName: gitee-robot-tls
   rules:
-    - host: software.test.osinfra.cn
+    - host: software-pkg.test.osinfra.cn
       http:
         paths:
         - backend:
