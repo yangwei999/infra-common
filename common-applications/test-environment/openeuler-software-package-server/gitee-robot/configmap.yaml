@@ -62,4 +62,4 @@ data:
         max_conn: 500
         max_idle: 250
       table:
-        software_pkg_pr: software_pkg_pr
+        software_pkg_pr: software_pkg_watch_gitee
