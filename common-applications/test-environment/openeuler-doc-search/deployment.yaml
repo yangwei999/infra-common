@@ -15,8 +15,10 @@ spec:
       labels:
         app: doc-search
     spec:
+      nodeSelector:
+        autoscaler: "true"
       imagePullSecrets:
-        - name: huawei-swr-image-pull-secret
+      - name: huawei-swr-image-pull-secret
       containers:
       - name: doc-search
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/doc-search-test:19998e269f5c6a35c6fc106887d80d0d3b773942
@@ -98,11 +100,4 @@ spec:
             secretKeyRef:
               name: doc-search-secrets
               key: GIT_PASSWORD
-        volumeMounts:
-        - mountPath: /usr/local/docs/source
-          name: data-volume
-      volumes:
-      - name: data-volume
-        persistentVolumeClaim:
-          claimName: search-data-volume
 
