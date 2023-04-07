@@ -5,7 +5,7 @@ metadata:
   namespace: openeuler-software-pkg
 data:
   config.yaml: |
-    topic: openeuler-community
+    topic: openeuler-community_test
     user_agent: software-pkg
     kafka:
       address: "${KAFKA_ADDRESS}"
