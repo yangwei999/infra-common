@@ -8819,6 +8819,8 @@ spec:
         app: keda-metrics-apiserver
       name: keda-metrics-apiserver
     spec:
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
       containers:
       - args:
         - /usr/local/bin/keda-adapter
@@ -8869,6 +8871,7 @@ spec:
           name: temp-vol
       nodeSelector:
         kubernetes.io/os: linux
+        infra: true
       securityContext:
         runAsNonRoot: true
       serviceAccountName: keda-operator
@@ -8899,6 +8902,8 @@ spec:
         name: keda-operator
       name: keda-operator
     spec:
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
       containers:
       - args:
         - --leader-elect
@@ -8944,6 +8949,7 @@ spec:
           readOnlyRootFilesystem: true
       nodeSelector:
         kubernetes.io/os: linux
+        infra: true
       securityContext:
         runAsNonRoot: true
       serviceAccountName: keda-operator
