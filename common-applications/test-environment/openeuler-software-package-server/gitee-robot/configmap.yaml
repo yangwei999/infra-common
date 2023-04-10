@@ -20,7 +20,7 @@ data:
         host: "${EMAIL_HOST}"
         port: ${EMAIL_PORT}
     watch:
-      org: euler-ttttt
+      pkg_org: euler-ttttt
       robot_token: "${ROBOT_TOKEN}"
     community:
       pkg_org: euler-ttttt
