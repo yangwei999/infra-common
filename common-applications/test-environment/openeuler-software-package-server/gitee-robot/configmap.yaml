@@ -53,6 +53,8 @@ data:
         repo: community
       robot_to_merge_pr:
         token: "${ROBOT_MERGE_PR_TOKEN}"
+      software_pkg:
+        endpoint: https://software-pkg.test.osinfra.cn/zh/package-detail/
     message_server:
       user_agent: software-pkg
       group_name: software-package
