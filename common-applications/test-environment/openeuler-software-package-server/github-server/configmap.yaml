@@ -18,10 +18,13 @@ data:
 
     encryption:
           encryption_key: "${ENCRYPTION_KEY}"
+    repo:
+      org: orgfsdfsd
     code:
           robot:
             username: "${GITHUB_ROBOT_USERNAME}"
             token: "${GITHUB_ROBOT_TOKEN}"
+          org: orgfsdfsd
           
     postgresql:
           table:
