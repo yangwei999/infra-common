@@ -20,6 +20,8 @@ spec:
     spec:
       imagePullSecrets:
       - name: huawei-swr-image-pull-secret
+      nodeSelector:
+        autoscaler: "true"
       containers:
       - name: indextoolinfo
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/openlookeng/index-tools-test:23c753cedc2803575a57080ce994c6d8f004facb

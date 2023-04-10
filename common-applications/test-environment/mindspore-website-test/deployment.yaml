@@ -15,6 +15,8 @@ spec:
     spec:
       imagePullSecrets:
       - name: huawei-southeast-swr-image-pull-secret
+      nodeSelector:
+        autoscaler: "true"
       containers:
       - name: mindspore-website
         image: swr.ap-southeast-1.myhuaweicloud.com/opensourceway/mindspore-website-test:b64a6fce353871e366cb42fda03221a97d3fc993

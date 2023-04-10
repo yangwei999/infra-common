@@ -25,8 +25,6 @@ spec:
         args:
         - --port=8888
         - --config-file=/opt/app/config/config.yaml
-        - --msg-config-file=/opt/app/config/msgconfig.yaml
-        - --gitee-token-path=/opt/app/config/oauth
         resources:
           requests:
             cpu: 200m
@@ -90,7 +88,7 @@ spec:
             secretKeyRef:
               name: software-pkg-secret
               key: robot_username
-        - name: ROBOT_PASSWORD
+        - name: ROBOT_TOKEN
           valueFrom:
             secretKeyRef:
               name: software-pkg-secret
@@ -105,25 +103,20 @@ spec:
             secretKeyRef:
               name: software-pkg-secret
               key: encryption_key
+        - name: ROBOT_MERGE_PR_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: software-pkg-secret
+              key: robot_merge_pr_token
         volumeMounts:
         - mountPath: /opt/app/config/config.yaml
           name: robot-configmap
           subPath: config.yaml
-        - mountPath: /opt/app/config/msgconfig.yaml
-          name: robot-msgconfigmap
-          subPath: msgconfig.yaml
-        - mountPath: /opt/app/config/oauth
-          name: software-pkg-secret
-          subPath: oauth
       volumes:
       - configMap:
           defaultMode: 420
           name: robot-configmap
         name: robot-configmap
-      - configMap:
-          defaultMode: 420
-          name: robot-msgconfigmap
-        name: robot-msgconfigmap
       - name: software-pkg-secret
         secret:
           secretName: software-pkg-secret

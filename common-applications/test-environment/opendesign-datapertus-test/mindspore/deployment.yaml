@@ -12,6 +12,8 @@ spec:
       labels:
         app: mindspore
     spec:
+      nodeSelector:
+        autoscaler: "true"
       containers:
       - name: mindspore
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/datastat/mindspore-test:2aa2f79321f318912043b3949920e96bd43f2a80
