@@ -13,6 +13,8 @@ spec:
           restartPolicy: OnFailure
           imagePullSecrets:
           - name: huawei-swr-image-pull-secret
+          nodeSelector:
+            autoscaler: "true"
           containers:
             - name: patchwork
               image: swr.cn-north-4.myhuaweicloud.com/opensourceway/patchwork/patchwork:main-f3d54a3

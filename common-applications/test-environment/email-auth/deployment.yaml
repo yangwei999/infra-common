@@ -16,6 +16,8 @@ spec:
     spec:
       imagePullSecrets:
       - name: huawei-swr-image-pull-secret
+      nodeSelector:
+        autoscaler: "true"
       containers:
         - name: email-auth
           image: swr.cn-north-4.myhuaweicloud.com/opensourceway/email-auth/email-auth-api:master-3c35b46

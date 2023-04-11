@@ -15,6 +15,8 @@ spec:
     spec:
       imagePullSecrets:
       - name: huawei-swr-image-pull-secret
+      nodeSelector:
+        autoscaler: "true"
       containers:
       - name: website
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openeuler-login-feature-website-test:d0b4560271795eab4f2939e7911721cca6fbe274 
@@ -48,6 +50,8 @@ spec:
     spec:
       imagePullSecrets:
       - name: huawei-swr-image-pull-secret
+      nodeSelector:
+        autoscaler: "true"
       containers:
       - name: docs
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openeuler-login-feature-docs-zh-test:6d079a49b7017559cb32c7a3275e19404c34b37e
@@ -81,6 +85,8 @@ spec:
     spec:
       imagePullSecrets:
       - name: huawei-swr-image-pull-secret
+      nodeSelector:
+        autoscaler: "true"
       containers:
       - name: docs
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openeuler-login-feature-docs-ru-test:6d079a49b7017559cb32c7a3275e19404c34b37e

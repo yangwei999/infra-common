@@ -15,6 +15,8 @@ spec:
     spec:
       imagePullSecrets:
         - name: huawei-swr-image-pull-secret
+      nodeSelector:
+        autoscaler: "true"
       containers:
       - name: sbom-service
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openeuler-sbom-service-test:0bc3b1e0704882bb631bd778f9939439569b26b0

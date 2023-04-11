@@ -18,6 +18,8 @@ spec:
     spec:
       imagePullSecrets:
       - name: huawei-swr-image-pull-secret
+      nodeSelector:
+        autoscaler: "true"
       containers:
       - name: rabbitmq
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/rabbitmq:v1.0.1

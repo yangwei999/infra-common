@@ -22,7 +22,6 @@ metadata:
   name: openeuler-oauth2-proxy
   namespace: community-summary
 spec:
-  replicas: 1
   selector:
     matchLabels:
       k8s-app: openeuler-oauth2-proxy

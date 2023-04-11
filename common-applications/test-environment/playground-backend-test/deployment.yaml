@@ -15,6 +15,8 @@ spec:
     spec:
       imagePullSecrets:
       - name: huawei-swr-image-pull-secret
+      nodeSelector:
+        autoscaler: "true"
       containers:
       - name: playground-manager
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/playground/playground-manager:1b69af050ea274866238e76f60ce5ca8519b942a

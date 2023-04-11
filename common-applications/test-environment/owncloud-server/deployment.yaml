@@ -17,6 +17,8 @@ spec:
     spec:
       imagePullSecrets:
       - name: huawei-swr-image-pull-secret
+      nodeSelector:
+        autoscaler: "true"
       containers:
       - name: server
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/owncloud/server:v10.11

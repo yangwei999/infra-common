@@ -12,6 +12,6 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/infra-common/scan-tools-backend
-  newTag: fcf414a2307ba479dbc8a3be87a888649ee93456
+  newTag: 97aa31b732d1042f6d0134e11fdba1e879b7c474
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/infra-common/scan-tools-website
-  newTag: fcf414a2307ba479dbc8a3be87a888649ee93456
+  newTag: 00fd112a6b2fd35bf06d07a66cd5791662b829aa

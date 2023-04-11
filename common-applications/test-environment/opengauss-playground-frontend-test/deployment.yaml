@@ -15,6 +15,8 @@ spec:
     spec:
       imagePullSecrets:
       - name: huawei-swr-image-pull-secret
+      nodeSelector:
+        autoscaler: "true"
       containers:
       - name: opengauss-playground-frontend
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/playground/opengauss-playground-frontend-test:a6fb6c2d84bfb67622695b77c8c6fe9cc12376e3

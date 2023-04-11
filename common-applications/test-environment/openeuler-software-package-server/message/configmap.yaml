@@ -42,8 +42,8 @@ data:
         org_of_pkg_repo: src-openeuler
         default_info:
           platform: gitee
-          importer_name: software-package-robot
-          importer_email: software@openeuler.org
+          importer_name: software-pkg-robot
+          importer_email: software-pkg-robot@openeuler.org
           reason_to_import: "add software package to openeuler"
     software_pkg:
       domain_primitive:
@@ -51,9 +51,10 @@ data:
           - gitee
           - github
         local_platform: gitee
-        max_length_of_review_comment: 1000
+        max_length_of_review_comment: 2000
       min_num_of_approvers: 1
     encryption:
       encryption_key: "${ENCRYPTION_KEY}"
     ci:
-      ci_endpoint: https://openeulerjenkins.osinfra.cn/generic-webhook-trigger/invoke
+      ci_endpoint: https://jenkins.openeuler.openatom.cn/generic-webhook-trigger/invoke
+      ci_service: software-pkg-service-test

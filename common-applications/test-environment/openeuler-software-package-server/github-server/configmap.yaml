@@ -20,12 +20,12 @@ data:
           encryption_key: "${ENCRYPTION_KEY}"
     code:
           robot:
-            username: "${ROBOT_USERNAME}"
-            token: "${ROBOT_PASSWORD}"
+            username: "${GITHUB_ROBOT_USERNAME}"
+            token: "${GITHUB_ROBOT_TOKEN}"
           
     postgresql:
           table:
-            software_pkg_pr: software:pkg_github
+            software_pkg_pr: software_pkg_watch_github
           db:
             host: "${DB_HOST}"
             port: 5432

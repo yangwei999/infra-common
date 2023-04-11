@@ -12,6 +12,8 @@ spec:
       labels:
         app: openlookeng
     spec:
+      nodeSelector:
+        autoscaler: "true"
       containers:
       - name: openlookeng
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/datastat/openlookeng-test:2aa2f79321f318912043b3949920e96bd43f2a80

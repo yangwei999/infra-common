@@ -17,6 +17,8 @@ spec:
     spec:
       imagePullSecrets:
       - name: huawei-swr-image-pull-secret
+      nodeSelector:
+        autoscaler: "true"
       containers:
       - name: root-resolver
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/root-resolver-beta:v1.0.20230302191356
