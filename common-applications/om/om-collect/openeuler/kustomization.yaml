@@ -47,6 +47,7 @@ resources:
   - qinghua-down
   - city-location
   - gitee-repo
+  - gitee-pr-version
 commonAnnotations:
   owner: zhongjun
   email: "jun.zhongjun2@gmail.com"
