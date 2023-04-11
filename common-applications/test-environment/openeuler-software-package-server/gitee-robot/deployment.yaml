@@ -92,7 +92,7 @@ spec:
           valueFrom:
             secretKeyRef:
               name: software-pkg-secret
-              key: robot_password
+              key: robot_token
         - name: ROBOT_EMAIL
           valueFrom:
             secretKeyRef:
