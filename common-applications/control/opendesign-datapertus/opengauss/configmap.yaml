@@ -37,7 +37,7 @@ data:
         proxy_pass https://omapi.osinfra.cn ;
       }
 
-      location /query {
+      location /query/ {
         proxy_pass https://dsapi.osinfra.cn/query/ ;
       }
 
