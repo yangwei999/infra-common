@@ -1,0 +1,35 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mirror-manage-deployment
+  namespace: mirror-manage
+spec:
+  selector:
+    matchLabels:
+      app: mirror-manage
+  template:
+    metadata:
+      labels:
+        app: mirror-manage
+    spec:
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
+      nodeSelector:
+        autoscaler: "true"
+      containers:
+      - name: mirror-manage
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/fedora:39
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 5000
+          name: http
+          protocol: TCP
+        resources:
+          requests:
+            cpu: 1000m
+            memory: 1000Mi
+          limits:
+            cpu: 1000m
+            memory: 1000Mi
+
