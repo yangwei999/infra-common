@@ -9,10 +9,10 @@ metadata:
 spec:
   tls:
     - hosts:
-      - mirror-manage.test.osinfra.cn
+      - mirror-manager.test.osinfra.cn
       secretName: mirror-manage-tls
   rules:
-    - host: mirror-manage.test.osinfra.cn
+    - host: mirror-manager.test.osinfra.cn
       http:
         paths:
         - backend:
