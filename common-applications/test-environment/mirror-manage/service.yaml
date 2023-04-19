@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mirror-manage-service
+  namespace: mirror-manage
+spec:
+  ports:
+  - name: https-port
+    protocol: TCP
+    port: 80
+    targetPort: 5000
+  selector:
+    app: mirror-manage
+  type: ClusterIP
+
+  

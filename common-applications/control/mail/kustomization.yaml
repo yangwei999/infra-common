@@ -12,6 +12,7 @@ resources:
 - ingress.yaml
 - maildatabase.yaml
 - scan_subscribe_pending.yaml
+- exim-configmap.yaml
 commonAnnotations:
   email: tommylikehu@gmail.com
   owner: tommylike

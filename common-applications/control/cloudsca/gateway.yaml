@@ -47,6 +47,16 @@ spec:
               secretKeyRef:
                 name: sca-secret
                 key: app-init-key
+          - name: jasypt.encryptor.algorithm
+            valueFrom:
+              secretKeyRef:
+                name: sca-secret
+                key: jasypt_encryptor_algorithm
+          - name: jasypt.encryptor.password
+            valueFrom:
+              secretKeyRef:
+                name: sca-secret
+                key: jasypt_encryptor_password
         resources:
           requests:
             cpu: 200m
