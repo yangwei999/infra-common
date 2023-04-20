@@ -1,0 +1,26 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: etherpad-lite
+  labels:
+    service: etherpad-lite
+spec:
+  selector:
+    matchLabels:
+      service: etherpad-lite
+  template:
+    metadata:
+      labels:
+        service: etherpad-lite
+    spec:
+      containers:
+        - name: etherpad-lite
+          image: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/etherpad:1.8.6
+          resources:
+            requests:
+              cpu: 1000m
+              memory: 1000Mi
+            limits:
+              cpu: 8000m
+              memory: 8000Mi

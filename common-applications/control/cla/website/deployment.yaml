@@ -1,0 +1,34 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    component: cla-frontend
+  name: cla-frontend
+  namespace: cla
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      component: cla-frontend
+  template:
+    metadata:
+      labels:
+        component: cla-frontend
+    spec:
+      containers:
+      - image: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/cla-webui:0a1d30fe9ce79bba84f50d8c88f29d61b8748335
+        imagePullPolicy: IfNotPresent
+        name: cla-frontend-pod
+        ports:
+        - containerPort: 80
+          name: http
+          protocol: TCP
+        resources:
+          requests:
+            cpu: 1000m
+            memory: 1000Mi
+          limits:
+            cpu: 1000m
+            memory: 1000Mi
+        

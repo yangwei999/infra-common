@@ -1,27 +1,9 @@
 resources:
-- ingress.yaml
+- website
+- backend
+- robot
 - namespace.yaml
-- configmap.yaml
-- deployment.yaml
-- service.yaml
 - secrets.yaml
-- pvc.yaml
-- ingress-backend.yaml
-- clasign-ingress.yaml
-- clasign-secrets.yaml
-- clasign-backend.yaml
-commonLabels:
-  app: infrastructure-cla
-commonAnnotations:
-  email: chenzeng765@163.com
-  owner: chenzeng
 namespace: cla
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-images:
-- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/cla-backend
-  newTag: 73ab7de67f67c2af69f137957a1d370f9187b5a3
-- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/cla-robot
-  newTag: b24aee5c1a3be0d35369361b68309a9fa5fb8a6b
-- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/cla-webui
-  newTag: 45782e3daec1184a211f65028d9200f2e3161a2f
