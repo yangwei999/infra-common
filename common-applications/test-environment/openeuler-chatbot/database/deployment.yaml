@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-deployment
+  namespace: openeuler-chatbot
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
+      nodeSelector:
+        autoscaler: "true"
+      containers:
+      - name: postgres
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler-chatbot/postgres:alpine3.17
+        env:
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: chatbot-secrets
+              key: pgsql_password
+        - name: POSTGRES_USER
+          valueFrom:
+            secretKeyRef:
+              name: chatbot-secrets
+              key: pgsql_user
+        - name: POSTGRES_DB
+          valueFrom:
+            secretKeyRef:
+              name: chatbot-secrets
+              key: pgsql_dbname
+        volumeMounts:
+        - name: postgres-storage
+          mountPath: /var/lib/postgresql/data
+        - name: timezone-volume
+          mountPath: /etc/timezone
+        - name: localtime-volume
+          mountPath: /etc/localtime
+      volumes:
+      - name: postgres-storage
+        persistentVolumeClaim:
+          claimName: postgres-data
+      - name: timezone-volume
+        hostPath:
+          path: /etc/timezone
+      - name: localtime-volume
+        hostPath:
+          path: /etc/localtime

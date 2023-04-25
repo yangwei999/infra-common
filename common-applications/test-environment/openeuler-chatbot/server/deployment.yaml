@@ -1,0 +1,92 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: server-deployment
+  namespace: openeuler-chatbot
+spec:
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
+      nodeSelector:
+        autoscaler: "true"
+      containers:
+      - name: server
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler-chatbot/server-test:v1.0.20230417104023
+        resources:
+          requests:
+            cpu: 500m
+            memory: 500Mi
+          limits:
+            cpu: 1000m
+            memory: 1000Mi
+        livenessProbe:
+          failureThreshold: 3
+          initialDelaySeconds: 5
+          periodSeconds: 10
+          successThreshold: 1
+          tcpSocket:
+            port: 8080
+          timeoutSeconds: 5
+        readinessProbe:
+          failureThreshold: 3
+          initialDelaySeconds: 5
+          periodSeconds: 10
+          successThreshold: 1
+          tcpSocket:
+            port: 8080
+          timeoutSeconds: 5
+        env:
+        - name: ADMIN_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: chatbot-secrets
+              key: admin_username
+        - name: ADMIN_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: chatbot-secrets
+              key: admin_password
+        - name: OPENAI_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: chatbot-secrets
+              key: openai_api_key
+        - name: PGSQL_HOST
+          valueFrom:
+            secretKeyRef:
+              name: chatbot-secrets
+              key: pgsql_host
+        - name: PGSQL_PORT
+          valueFrom:
+            secretKeyRef:
+              name: chatbot-secrets
+              key: pgsql_port
+        - name: PGSQL_USER
+          valueFrom:
+            secretKeyRef:
+              name: chatbot-secrets
+              key: pgsql_user
+        - name: PGSQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: chatbot-secrets
+              key: pgsql_password
+        - name: PGSQL_DBNAME
+          valueFrom:
+            secretKeyRef:
+              name: chatbot-secrets
+              key: pgsql_dbname
+        - name: PGSQL_TABLENAME
+          valueFrom:
+            secretKeyRef:
+              name: chatbot-secrets
+              key: pgsql_tablename

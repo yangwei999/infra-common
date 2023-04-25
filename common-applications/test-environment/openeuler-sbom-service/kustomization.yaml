@@ -19,10 +19,10 @@ kind: Kustomization
 namespace: openeuler-sbom-service
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openeuler-sbom-service-test
-  newTag: v1.0.20230410122003
+  newTag: v1.0.20230412111930
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openeuler-sbom-website-test
   newTag: v1.0.20230328114614
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/repo-post-verification-test
-  newTag: 351bafab1dd9f898c6a54e29702f3005b85d6f9e
+  newTag: 3163291356a54b764676f9ccc97ab2d7aaca5d7f
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/sbom-repo-service
   newTag: v1.0.20221108210256

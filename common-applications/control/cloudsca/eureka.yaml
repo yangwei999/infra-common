@@ -59,6 +59,16 @@ spec:
               value: 256m
             - name: CMS_IOF
               value: "75"
+            - name: jasypt.encryptor.algorithm
+              valueFrom:
+                secretKeyRef:
+                  name: sca-secret
+                  key: jasypt_encryptor_algorithm
+            - name: jasypt.encryptor.password
+              valueFrom:
+                secretKeyRef:
+                  name: sca-secret
+                  key: jasypt_encryptor_password
           resources:
             requests:
               cpu: 200m
