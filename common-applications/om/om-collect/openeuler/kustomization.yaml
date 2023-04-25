@@ -31,7 +31,6 @@ resources:
   - prophet_prediction
   - user-relation
   - gitee-org-baidutongji
-  - gitee_developer
   - git-commit-log
   - code-statistics
   - activities-practice
