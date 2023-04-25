@@ -13,7 +13,7 @@ spec:
         component: copr-frontend
     spec:
       nodeSelector:
-        usage: test
+        copr: test
         os.architecture: amd64
       initContainers:
         - name: init-frontend-database

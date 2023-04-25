@@ -15,7 +15,7 @@ spec:
         component: copr-backend
     spec:
       nodeSelector:
-        usage: test
+        copr: test
         os.architecture: amd64
       initContainers:
         - name: init-backend-resalloc

@@ -40,6 +40,8 @@ spec:
           value: 1Gi
         - name: BUILDER_TIMEOUT
           value: '360'
+        - name: BUILDER_TYPE
+          value: 'test'
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/copr/resalloc-test:v1.0.20230310170217
         imagePullPolicy: IfNotPresent
         livenessProbe:
@@ -85,7 +87,7 @@ spec:
           name: resalloc-data
       nodeSelector:
         os.architecture: amd64
-        usage: test
+        copr: test
       serviceAccountName: resalloc
       volumes:
       - configMap:
