@@ -47,7 +47,7 @@ resources:
   - city-location
   - gitee-repo
   - gitee-pr-version
-  - -docker-hub
+  - docker-hub
 commonAnnotations:
   owner: zhongjun
   email: "jun.zhongjun2@gmail.com"
