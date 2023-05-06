@@ -27,7 +27,7 @@ data:
     middleware:
       user_info_url: https://omapi.test.osinfra.cn/oneid/personal/center/user
     maintainer:
-      read_url: https://omapi.osinfra.cn/query/sig/info?community=openeuler&sig=TC
+      read_url: https://omapi.osinfra.cn/query/sig/info?community=openeuler
       interval: 1
     translation:
       access_key: "${OBS_AK}"
