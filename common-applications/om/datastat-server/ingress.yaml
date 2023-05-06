@@ -6,7 +6,16 @@ metadata:
     nginx.ingress.kubernetes.io/limit-connections: "400"
     nginx.ingress.kubernetes.io/limit-rps: "400"
     nginx.ingress.kubernetes.io/configuration-snippet: |
-      if ($http_origin ~* "^https?://((?:.*\.test\.osinfra\.cn)|(?:.*\.omapi\.osinfra\.cn)|)$") {
+      if ($http_origin ~* "^https?://((?:.*\.test\.osinfra\.cn)|(?:.*\.omapi\.osinfra\.cn)|(?:.*\.mindspore\.cn)|(?:.*\.opengauss\.org))$") {
+        set $cors "true";
+      }
+      if ($http_origin ~* "^https?://((?:.*\.openeuler\.org)|(?:.*\.openlookeng\.io))$") {
+        set $cors "true";
+      }
+      if ($http_origin ~ '^http:\/\/localhost:45678$') {
+        set $cors "true";
+      }
+      if ($http_origin ~ '^http:\/\/114\.116\.235\.161$') {
         set $cors "true";
       }
       if ($request_method = 'OPTIONS') {
