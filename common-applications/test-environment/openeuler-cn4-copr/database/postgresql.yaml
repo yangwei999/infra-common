@@ -15,10 +15,10 @@ spec:
         component: copr-database
     spec:
       nodeSelector:
-        usage: test
+        copr: test
         os.architecture: amd64
       containers:
-        - image: pkking/copr_database@sha256:54af68a2402acb19c19bdf406f05e6a9fd64befabdc4dd23b720656daf2575e6
+        - image: swr.cn-north-4.myhuaweicloud.com/opensourceway/copr/copr_database:54af68a2
           imagePullPolicy: IfNotPresent
           name: copr-postgres
           livenessProbe:

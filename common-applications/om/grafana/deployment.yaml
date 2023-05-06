@@ -10,7 +10,7 @@ spec:
     spec:
       containers:
       - name: grafana
-        image: grafana/grafana
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/om/grafana:v8.3.3
         resources:
           requests:
             cpu: 1000m

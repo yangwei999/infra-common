@@ -56,5 +56,13 @@ data:
     encryption:
       encryption_key: "${ENCRYPTION_KEY}"
     ci:
-      ci_endpoint: https://jenkins.osinfra.cn/generic-webhook-trigger/invoke
+      work_dir: /opt/app/software
       ci_service: software-pkg-service-test
+      user:
+        user: "${ROBOT_USERNAME}"
+        email: "${ROBOT_EMAIL}"
+        token: "${ROBOT_TOKEN}"
+      ci_repo:
+        org: weiwei123444
+        repo: test
+        link: https://gitee.com/weiwei123444/test.git

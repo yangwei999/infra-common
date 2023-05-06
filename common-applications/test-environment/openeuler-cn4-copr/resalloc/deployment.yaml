@@ -33,13 +33,15 @@ spec:
           '
         env:
         - name: BUILDER_SHA256
-          value: swr.cn-north-4.myhuaweicloud.com/opensourceway/copr/builder:v1.0.20230418154919
+          value: swr.cn-north-4.myhuaweicloud.com/opensourceway/copr/builder:v1.0.20230505174551
         - name: BUILDER_CPU
           value: '1'
         - name: BUILDER_MEM
           value: 1Gi
         - name: BUILDER_TIMEOUT
           value: '360'
+        - name: BUILDER_TYPE
+          value: test
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/copr/resalloc-test:v1.0.20230310170217
         imagePullPolicy: IfNotPresent
         livenessProbe:
@@ -84,8 +86,8 @@ spec:
         - mountPath: /var/log/resallocserver
           name: resalloc-data
       nodeSelector:
+        copr: test
         os.architecture: amd64
-        usage: test
       serviceAccountName: resalloc
       volumes:
       - configMap:

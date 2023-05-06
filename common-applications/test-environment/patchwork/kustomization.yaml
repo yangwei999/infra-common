@@ -18,4 +18,4 @@ commonAnnotations:
 namespace: patchwork
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/patchwork/patchwork
-  newTag: main-edbdbab
+  newTag: test-97a4ed3

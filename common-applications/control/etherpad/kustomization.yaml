@@ -12,6 +12,7 @@ patchesStrategicMerge:
   - configmap.yaml
   - pvc.yaml
   - service.yaml
+  - deployment.yaml
 patchesJson6902:
   - target:
       group: ""

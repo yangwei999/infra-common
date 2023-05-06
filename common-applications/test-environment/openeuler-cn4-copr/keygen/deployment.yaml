@@ -15,7 +15,7 @@ spec:
         component: copr-keygen
     spec:
       nodeSelector:
-        usage: test
+        copr: test
         os.architecture: amd64
       containers:
         - image: swr.cn-north-4.myhuaweicloud.com/opensourceway/copr/keygen-signd-test:v1.0.20230310165958

@@ -18,7 +18,7 @@ spec:
         usage: test
         os.architecture: amd64
       containers:
-        - image: centos/redis-32-centos7
+        - image: swr.cn-north-4.myhuaweicloud.com/opensourceway/copr/redis-32-centos7:latest
           imagePullPolicy: IfNotPresent
           name: copr-redis
           livenessProbe:
