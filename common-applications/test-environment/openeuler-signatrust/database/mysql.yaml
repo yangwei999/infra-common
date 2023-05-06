@@ -1,0 +1,75 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: signatrust-database
+  namespace: openeuler-signatrust
+spec:
+  strategy:
+    type: Recreate
+  replicas: 1
+  selector:
+    matchLabels:
+      component: signatrust-database
+  template:
+    metadata:
+      labels:
+        component: signatrust-database
+    spec:
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
+      containers:
+        - image: swr.cn-north-4.myhuaweicloud.com/opensourceway/signatrust/mysql:8.0
+          imagePullPolicy: Always
+          name: signatrust-database
+          livenessProbe:
+            tcpSocket:
+              port: 3306
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          readinessProbe:
+            tcpSocket:
+              port: 3306
+            initialDelaySeconds: 20
+            failureThreshold: 3
+            periodSeconds: 5
+            timeoutSeconds: 10
+          resources:
+            requests:
+              cpu: 4000m
+              memory: 4000Mi
+            limits:
+              cpu: 4000m
+              memory: 4000Mi
+          ports:
+          - containerPort: 3306
+            name: db
+            protocol: TCP
+          env:
+          - name: MYSQL_DATABASE
+            valueFrom:
+              secretKeyRef:
+                name: signatrust-secrets
+                key: MYSQL_DATABASE
+          - name: MYSQL_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: signatrust-secrets
+                key: MYSQL_PASSWORD
+          - name: MYSQL_USER
+            valueFrom:
+              secretKeyRef:
+                name: signatrust-secrets
+                key: MYSQL_USER
+          - name: MYSQL_ROOT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: signatrust-secrets
+                key: MYSQL_ROOT_PASSWORD
+          volumeMounts:
+          - mountPath: /var/lib/mysql
+            name: database-volume
+      volumes:
+      - name: database-volume
+        persistentVolumeClaim:
+          claimName: database-volume

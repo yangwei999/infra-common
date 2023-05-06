@@ -1,0 +1,15 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: signatrust-client-autoscaler
+  namespace: openeuler-signatrust
+spec:
+  scaleTargetRef:
+    name: signatrust-client
+  triggers:
+  - type: cron
+    metadata:
+      timezone: Asia/Shanghai
+      start: 30 8 * * *
+      end: 55 23 * * *
+      desiredReplicas: "1"

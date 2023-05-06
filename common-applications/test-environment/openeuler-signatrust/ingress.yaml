@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+  name: openeuler-signatrust-ingress
+  namespace: openeuler-signatrust
+spec:
+  tls:
+    - hosts:
+      - signatrust.test.osinfra.cn
+      secretName: openeuler-signatrust-tls
+  rules:
+    - host: signatrust.test.osinfra.cn
+      http:
+        paths:
+        - backend:
+            serviceName: control-server
+            servicePort: 8080
+          path: /
