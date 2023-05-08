@@ -48,6 +48,7 @@ resources:
   - gitee-repo
   - gitee-pr-version
   - docker-hub
+  - forumpost
 commonAnnotations:
   owner: zhongjun
   email: "jun.zhongjun2@gmail.com"
