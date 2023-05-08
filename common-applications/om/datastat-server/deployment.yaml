@@ -20,7 +20,7 @@ spec:
           image: swr.cn-north-4.myhuaweicloud.com/om/ds:0.0.34
           resources:
             limits:
-              cpu: 1000m
+              cpu: 2000m
               memory: 2000Mi
             requests:
               cpu: 500m
