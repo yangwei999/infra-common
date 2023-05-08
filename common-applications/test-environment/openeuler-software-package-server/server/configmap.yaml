@@ -16,6 +16,7 @@ data:
         software_pkg_basic: software_pkg_basic
         review_comment: review_comment
         translation_comment: translation_comment
+        operation_log: operation_log
     mq:
       address: "${KAFKA_ADDRESS}"
       topics:
