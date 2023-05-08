@@ -1,9 +1,0 @@
-resources:
-- deployment.yaml
-- secrets.yaml
-- ingress.yaml
-- service.yaml
-- namespace.yaml
-namespace: om-webserver-provider
-commonLabels:
-  common-app: om-webserver

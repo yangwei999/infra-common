@@ -6,8 +6,10 @@ metadata:
   labels:
     app: om-webserver
 spec:
-  replicas: 2
   revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: om-webserver
   template:
     metadata:
       labels:
@@ -15,6 +17,8 @@ spec:
     spec:
       imagePullSecrets:
       - name: huawei-swr-image-pull-secret
+      nodeSelector:
+        autoscaler: "true"
       containers:
         - name: om-webserver
           image: swr.cn-north-4.myhuaweicloud.com/om/om-webserver:0.3.98

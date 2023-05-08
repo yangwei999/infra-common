@@ -6,8 +6,10 @@ metadata:
   labels:
     app: om-webserver
 spec:
-  replicas: 2
   revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: om-webserver
   template:
     metadata:
       labels:
@@ -15,6 +17,8 @@ spec:
     spec:
       imagePullSecrets:
       - name: huawei-swr-image-pull-secret
+      nodeSelector:
+        autoscaler: "true"
       containers:
         - name: om-webserver
           image: swr.cn-north-4.myhuaweicloud.com/om/om-webserver:0.4.1
@@ -42,13 +46,13 @@ spec:
               port: 8888
             timeoutSeconds: 5
           ports:
-            - containerPort: 8888
-              name: om-webserver
+          - containerPort: 8888
+            name: om-webserver
           volumeMounts:
-            - mountPath: /var/lib/om-webserver/application.properties
-              subPath: application_properties
-              name: om-webserver-secrets-volume
+          - mountPath: /var/lib/om-webserver/application.properties
+            subPath: application_properties
+            name: om-webserver-secrets-volume
       volumes:
-        - name: om-webserver-secrets-volume
-          secret:
-            secretName: om-webserver-secrets
+      - name: om-webserver-secrets-volume
+        secret:
+          secretName: om-webserver-secrets

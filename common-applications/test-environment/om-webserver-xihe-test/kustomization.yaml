@@ -1,0 +1,14 @@
+resources:
+- deployment.yaml
+- secrets.yaml
+- ingress.yaml
+- service.yaml
+- namespace.yaml
+- autoscaler.yaml
+namespace: om-webserver-xihe-test
+commonAnnotations:
+  kubernetes.ops.cluster: test
+  kubernetes.ops.email: ""
+  kubernetes.ops.os.base: debian
+  kubernetes.ops.owner: lixianlin
+  kubernetes.ops.region: hk
