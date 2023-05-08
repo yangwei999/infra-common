@@ -13,3 +13,6 @@ resources:
 - website-service.yaml
 - website-deployment.yaml
 - autoscaler.yaml
+images:
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/mindspore/usercenter-website
+  newTag: test-97e669
