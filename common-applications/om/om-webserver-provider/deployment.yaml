@@ -1,0 +1,72 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: om-webserver
+  namespace: om-webserver-provider
+  labels:
+    app: om-webserver
+spec:
+  replicas: 2
+  revisionHistoryLimit: 10
+  template:
+    metadata:
+      labels:
+        app: om-webserver
+    spec:
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
+      containers:
+        - name: om-webserver
+          image: swr.cn-north-4.myhuaweicloud.com/om/om-webserver:0.3.98
+          resources:
+            limits:
+              cpu: 1000m
+              memory: 2000Mi
+            requests:
+              cpu: 500m
+              memory: 1000Mi
+          livenessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 20
+            periodSeconds: 10
+            successThreshold: 1
+            tcpSocket:
+              port: 8888
+            timeoutSeconds: 5
+          readinessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            successThreshold: 1
+            tcpSocket:
+              port: 8888
+            timeoutSeconds: 5
+          ports:
+            - containerPort: 8888
+              name: om-webserver
+          volumeMounts:
+            - mountPath: /var/lib/om-webserver/starFork.properties
+              subPath: starFork_properties
+              name: om-webserver-secrets-volume
+            - mountPath: /var/lib/om-webserver/blueZone.properties
+              subPath: blueZone_properties
+              name: om-webserver-secrets-volume
+            - mountPath: /var/lib/om-webserver/openEuler.properties
+              subPath: openEuler_properties
+              name: om-webserver-secrets-volume
+            - mountPath: /var/lib/om-webserver/openGauss.properties
+              subPath: openGauss_properties
+              name: om-webserver-secrets-volume
+            - mountPath: /var/lib/om-webserver/openLookeng.properties
+              subPath: openLookeng_properties
+              name: om-webserver-secrets-volume
+            - mountPath: /var/lib/om-webserver/mindSpore.properties
+              subPath: mindSpore_properties
+              name: om-webserver-secrets-volume
+            - mountPath: /var/lib/om-webserver/application.properties
+              subPath: application_properties
+              name: om-webserver-secrets-volume
+      volumes:
+        - name: om-webserver-secrets-volume
+          secret:
+            secretName: om-webserver-secrets

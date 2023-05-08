@@ -1,0 +1,9 @@
+resources:
+- deployment.yaml
+- secrets.yaml
+- ingress.yaml
+- service.yaml
+- namespace.yaml
+namespace: om-webserver-xihe-test
+commonLabels:
+  common-app: om-webserver
