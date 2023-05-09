@@ -12,3 +12,8 @@ commonAnnotations:
   kubernetes.ops.os.base: debian
   kubernetes.ops.owner: lixianlin
   kubernetes.ops.region: hk
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+images:
+- name: swr.cn-north-4.myhuaweicloud.com/om/om-webserver
+  newTag: 0.4.6
