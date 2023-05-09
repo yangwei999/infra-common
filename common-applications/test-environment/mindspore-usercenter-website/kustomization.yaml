@@ -15,4 +15,4 @@ resources:
 - autoscaler.yaml
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/mindspore/usercenter-website
-  newTag: test-b6b710
+  newTag: test-e10c69
