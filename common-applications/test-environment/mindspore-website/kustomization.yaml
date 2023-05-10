@@ -1,0 +1,16 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+commonAnnotations:
+  kubernetes.ops.cluster: test-cluster
+  kubernetes.ops.email: 775517776@qq.com
+  kubernetes.ops.os.base: debian
+  kubernetes.ops.owner: chenyang
+  kubernetes.ops.region: hk
+kind: Kustomization
+namespace: mindspore-website2
+resources:
+- namespace.yaml
+- website-ingress.yaml
+- website-service.yaml
+- website-secret.yaml
+- website-deployment.yaml
+- pvc.yaml
