@@ -1,0 +1,52 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: om-webserver
+  namespace: om-webserver-oneid
+  labels:
+    app: om-webserver
+spec:
+  replicas: 4
+  revisionHistoryLimit: 10
+  template:
+    metadata:
+      labels:
+        app: om-webserver
+    spec:
+      containers:
+        - name: om-webserver
+          image: swr.cn-north-4.myhuaweicloud.com/om/om-webserver:0.4.9
+          resources:
+            limits:
+              cpu: 2000m
+              memory: 8000Mi
+            requests:
+              cpu: 1000m
+              memory: 5000Mi
+          livenessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 20
+            periodSeconds: 10
+            successThreshold: 1
+            tcpSocket:
+              port: 8888
+            timeoutSeconds: 5
+          readinessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            successThreshold: 1
+            tcpSocket:
+              port: 8888
+            timeoutSeconds: 5
+          ports:
+            - containerPort: 8888
+              name: om-webserver
+          volumeMounts:
+            - mountPath: /var/lib/om-webserver/application.properties
+              subPath: application_properties
+              name: om-webserver-secrets-volume
+      volumes:
+        - name: om-webserver-secrets-volume
+          secret:
+            secretName: om-webserver-secrets

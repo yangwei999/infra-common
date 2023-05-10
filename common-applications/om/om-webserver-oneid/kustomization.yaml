@@ -1,0 +1,11 @@
+resources:
+- deployment.yaml
+- secrets.yaml
+- ingress.yaml
+- service.yaml
+namespace: om-webserver-oneid
+commonAnnotations:
+  owner: zhongjun
+  email: "jun.zhongjun2@gmail.com"
+commonLabels:
+  common-app: om-webserver
