@@ -5,7 +5,8 @@ resources:
 - service.yaml
 namespace: om-webserver-oneid
 commonAnnotations:
-  owner: zhongjun
-  email: "jun.zhongjun2@gmail.com"
-commonLabels:
-  common-app: om-webserver
+  kubernetes.ops.cluster: om-hk-cluster
+  kubernetes.ops.email: "jun.zhongjun2@gmail.com"
+  kubernetes.ops.os.base: ""
+  kubernetes.ops.owner: zhongjun
+  kubernetes.ops.region: hk
