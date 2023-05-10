@@ -16,4 +16,4 @@ resources:
 - pvc.yaml
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/mindspore/website
-  newTag: test-c223ca
+  newTag: v1.0.20230510153546
