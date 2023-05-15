@@ -19,7 +19,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/sca-analysis
-  newTag: 0802a5c5d77bc9ac9993e83c008dcc1765c79874
+  newTag: ae502d71d9c634ced31b49d7b6a9ad23bfaf71cd
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/sca-api-gateway
   newTag: b5320508933255e340f299e911c711070171f2d7
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/sca-datamanager
