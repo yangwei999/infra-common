@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: webserver-pvc-0
+  namespace: openguardfuzz-webserver
+  annotations:
+    everest.io/disk-volume-type: SSD
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10G
+  storageClassName: csi-disk
