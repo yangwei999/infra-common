@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    kubernetes.io/ingress.class: nginx
+  name: webserver-ingress
+  namespace: openguardfuzz-webserver
+spec:
+  rules:
+  - host: openguardfuzz.test.osinfra.cn
+    http:
+      paths:
+      - backend:
+          serviceName: webserver-service
+          servicePort: 80
+        path: /
+  tls:
+  - hosts:
+    - openguardfuzz.test.osinfra.cn
+    secretName: webserver-tls

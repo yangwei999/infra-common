@@ -69,6 +69,11 @@ spec:
                 secretKeyRef:
                   name: sca-secret
                   key: jasypt_encryptor_password
+            - name: jasypt_password
+              valueFrom:
+                secretKeyRef:
+                  name: sca-secret
+                  key: jasypt_encryptor_password
             - name: majun.access.token
               valueFrom:
                 secretKeyRef:
