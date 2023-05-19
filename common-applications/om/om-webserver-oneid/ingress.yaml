@@ -18,10 +18,10 @@ spec:
         - omapi.osinfra.cn
       secretName: tls-secrets
   rules:
-    - host: omapi.osinfra.cn
+    - host: omapi.oneid.osinfra.cn
       http:
         paths:
           - backend:
               serviceName: om-webserver-service
               servicePort: 80
-            path: /oneid/
+            path: /test/

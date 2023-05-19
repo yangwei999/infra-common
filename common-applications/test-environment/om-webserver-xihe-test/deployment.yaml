@@ -21,7 +21,7 @@ spec:
         autoscaler: "true"
       containers:
         - name: om-webserver
-          image: swr.cn-north-4.myhuaweicloud.com/om/om-webserver:0.4.1
+          image: swr.cn-north-4.myhuaweicloud.com/om/om-webserver:0.4.11
           resources:
             limits:
               cpu: 1000m
