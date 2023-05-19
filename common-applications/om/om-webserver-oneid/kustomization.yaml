@@ -3,6 +3,7 @@ resources:
 - secrets.yaml
 - ingress.yaml
 - service.yaml
+- namespace.yaml
 namespace: om-webserver-oneid
 commonAnnotations:
   kubernetes.ops.cluster: om-hk-cluster
