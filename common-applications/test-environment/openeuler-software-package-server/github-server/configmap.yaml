@@ -18,12 +18,15 @@ data:
     encryption:
       encryption_key: "${ENCRYPTION_KEY}"
     repo:
-      org: orgfsdfsd
+      org: orgfsdfsd123
     code:
       robot:
         username: "${GITHUB_ROBOT_USERNAME}"
         token: "${GITHUB_ROBOT_TOKEN}"
-      org: orgfsdfsd  
+      org: orgfsdfsd123
+      ci_repo:
+        repo: test
+        link: https://gitee.com/weiwei123444/test.git
     postgresql:
       table:
         software_pkg_pr: software_pkg_watch_github

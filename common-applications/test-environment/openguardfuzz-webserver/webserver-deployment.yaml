@@ -1,0 +1,115 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webserver-deployment
+  namespace: openguardfuzz-webserver
+spec:
+  selector:
+    matchLabels:
+      app: webserver
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: webserver
+    spec:
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
+      nodeSelector:
+        autoscaler: "true"
+      containers:
+      - env:
+        - name: STORAGE_AK
+          valueFrom:
+            secretKeyRef:
+              key: storage_ak
+              name: webserver-secret
+        - name: STORAGE_SK
+          valueFrom:
+            secretKeyRef:
+              key: storage_sk
+              name: webserver-secret
+        - name: DATABASE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: database_password
+              name: webserver-secret
+        - name: DATABASE_SERVER
+          valueFrom:
+            secretKeyRef:
+              key: database_server
+              name: webserver-secret
+        - name: DATABASE_PORT
+          valueFrom:
+            secretKeyRef:
+              key: database_port
+              name: webserver-secret
+        - name: DATABASE_DBNAME
+          valueFrom:
+            secretKeyRef:
+              key: database_dbname
+              name: webserver-secret
+        - name: DATABASE_USERNAME
+          valueFrom:
+            secretKeyRef:
+              key: database_username
+              name: webserver-secret
+        - name: JENKINS_TOKEN
+          valueFrom:
+            secretKeyRef:
+              key: jenkins_token
+              name: webserver-secret
+        - name: AUTH_EULER_CLIENT_SECRET
+          valueFrom:
+            secretKeyRef:
+              key: euler_client_secret
+              name: webserver-secret
+        - name: AUTH_EULER_CLIENT_ID
+          valueFrom:
+            secretKeyRef:
+              key: euler_client_id
+              name: webserver-secret
+        - name: AUTH_GITEE_CLIENT_SECRET
+          valueFrom:
+            secretKeyRef:
+              key: gitee_client_secret
+              name: webserver-secret
+        - name: AUTH_GITEE_CLIENT_ID
+          valueFrom:
+            secretKeyRef:
+              key: gitee_client_id
+              name: webserver-secret
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openguardfuzz-webserver:test-e9cdc2
+        imagePullPolicy: IfNotPresent
+        livenessProbe:
+          failureThreshold: 3
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          successThreshold: 1
+          tcpSocket:
+            port: 9000
+          timeoutSeconds: 5
+        name: webserver
+        readinessProbe:
+          failureThreshold: 3
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          successThreshold: 1
+          tcpSocket:
+            port: 9000
+          timeoutSeconds: 5
+        resources:
+          limits:
+            cpu: 2000m
+            memory: 8000Mi
+          requests:
+            cpu: 1000m
+            memory: 4000Mi
+        volumeMounts:
+        - mountPath: /var/data
+          name: container-mountpath-0
+      volumes:
+      - name: container-mountpath-0
+        persistentVolumeClaim:
+          claimName: webserver-pvc-0

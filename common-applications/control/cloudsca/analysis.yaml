@@ -52,7 +52,7 @@ spec:
               secretKeyRef:
                 name: sca-secret
                 key: jasypt_encryptor_algorithm
-          - name: jasypt.encryptor.password
+          - name: jasypt_password
             valueFrom:
               secretKeyRef:
                 name: sca-secret
