@@ -15,10 +15,6 @@ spec:
       http:
         paths:
           - backend:
-              serviceName: scan-tools-backend-service
-              servicePort: 80
-            path: /api
-          - backend:
               serviceName: oauth2-proxy
               servicePort: 4180
             path: /

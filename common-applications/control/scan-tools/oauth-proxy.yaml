@@ -23,7 +23,10 @@ spec:
           - --http-address=0.0.0.0:4180
           - --provider-display-name=authing
           - --cookie-expire=12h0m0s
-          - --skip-auth-regex=^/api/
+          - --skip-auth-regex=^/api/obs_upload/obs_interact
+          - --skip-auth-regex=^/api/permission/kubeconfig_webhook
+          - --skip-auth-regex=^/api/app_resources/service_export
+          - --skip-auth-regex=^/api/app_resources/repo
           - --skip-auth-regex=^/static/
           - --redirect-url=https://ops.osinfra.cn/oauth2/callback
           - --oidc-issuer-url=https://scan-tool.authing.cn/oidc
