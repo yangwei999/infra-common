@@ -20,6 +20,6 @@ images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openeuler-usercenter-server-test
   newTag: 5b6c6b4735066d5774a12084d753dc20b269efc3
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openeuler-usercenter-test
-  newTag: 277bf3eb19fc430f3589ba69e7eae4f39baf9c84
+  newTag: 515d5b61555a10e17455403d7386a1485bc9c277
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/opengauss/opengauss-usercenter-test
   newTag: 3816611d84570a438503c99c5b741943ee7ed4d9
