@@ -15,4 +15,4 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openeuler-quickissue-test
-  newTag: ac8bd4f393469dcda21f8f17989ac311166cf7eb
+  newTag: 51d9764525ca7cb84daae6d0eecabb5fa96482f5
