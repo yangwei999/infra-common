@@ -50,6 +50,7 @@ resources:
   - docker-hub
   - forumpost
   - eur-openeuler
+  - eur-openeuler-download
 commonAnnotations:
   owner: zhongjun
   email: "jun.zhongjun2@gmail.com"
