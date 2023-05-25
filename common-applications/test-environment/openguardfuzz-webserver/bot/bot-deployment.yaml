@@ -65,6 +65,7 @@ spec:
               name: webserver-secret
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openguardfuzz-bot:test-6e6b83
         imagePullPolicy: IfNotPresent
+        name: bot
         resources:
           limits:
             cpu: 1000m
