@@ -1,7 +1,7 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 commonAnnotations:
   kubernetes.ops.cluster: test-cluster
-  kubernetes.ops.email: ''
+  kubernetes.ops.email: ""
   kubernetes.ops.os.base: ubuntu
   kubernetes.ops.owner: guodaxing
   kubernetes.ops.region: hk
@@ -10,3 +10,6 @@ namespace: openguardfuzz-webserver
 resources:
 - bot-deployment.yaml
 - autoscaler.yaml
+images:
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openguardfuzz-bot
+  newTag: test-16ec43
