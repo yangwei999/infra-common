@@ -1,0 +1,74 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bot-deployment
+  namespace: openguardfuzz-webserver
+spec:
+  selector:
+    matchLabels:
+      app: bot
+  template:
+    metadata:
+      labels:
+        app: bot
+    spec:
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
+      nodeSelector:
+        autoscaler: "true"
+      containers:
+      - env:
+        - name: STORAGE_AK
+          valueFrom:
+            secretKeyRef:
+              key: storage_ak
+              name: webserver-secret
+        - name: STORAGE_SK
+          valueFrom:
+            secretKeyRef:
+              key: storage_sk
+              name: webserver-secret
+        - name: STORAGE_BUCKET
+          valueFrom:
+            secretKeyRef:
+              key: storage_bucket
+              name: webserver-secret
+        - name: STORAGE_DATAPATH
+          valueFrom:
+            secretKeyRef:
+              key: storage_datapath
+              name: webserver-secret
+        - name: DATABASE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: database_password
+              name: webserver-secret
+        - name: DATABASE_SERVER
+          valueFrom:
+            secretKeyRef:
+              key: database_server
+              name: webserver-secret
+        - name: DATABASE_PORT
+          valueFrom:
+            secretKeyRef:
+              key: database_port
+              name: webserver-secret
+        - name: DATABASE_DBNAME
+          valueFrom:
+            secretKeyRef:
+              key: database_dbname
+              name: webserver-secret
+        - name: DATABASE_USERNAME
+          valueFrom:
+            secretKeyRef:
+              key: database_username
+              name: webserver-secret
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openguardfuzz-bot:test-6e6b83
+        imagePullPolicy: IfNotPresent
+        resources:
+          limits:
+            cpu: 1000m
+            memory: 1000Mi
+          requests:
+            cpu: 500m
+            memory: 500Mi

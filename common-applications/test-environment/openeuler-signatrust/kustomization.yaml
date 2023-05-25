@@ -6,6 +6,7 @@ resources:
 - control-server
 - data-server
 - database
+- app
 namespace: openeuler-signatrust
 commonAnnotations:
   kubernetes.ops.cluster: test
