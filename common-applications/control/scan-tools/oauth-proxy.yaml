@@ -25,7 +25,7 @@ spec:
           - --cookie-expire=12h0m0s
           - --skip-auth-regex=^/api/obs_upload/obs_interact
           - --skip-auth-regex=^/api/permission/kubeconfig_webhook
-          - --skip-auth-regex=^/api/app_resources/service_export
+          - --skip-auth-regex=^/api/app_resources/sla_export
           - --skip-auth-regex=^/api/app_resources/repo
           - --skip-auth-regex=^/api/users/login
           - --skip-auth-regex=^/static/
