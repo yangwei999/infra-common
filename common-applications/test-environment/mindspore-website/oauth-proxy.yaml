@@ -1,0 +1,98 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    k8s-app: oauth2-proxy-admin
+  name: oauth2-proxy-admin
+  namespace: mindspore-website2
+spec:
+  selector:
+    matchLabels:
+      k8s-app: oauth2-proxy-admin
+  template:
+    metadata:
+      labels:
+        k8s-app: oauth2-proxy-admin
+    spec:
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
+      nodeSelector:
+        autoscaler: "true"
+      containers:
+        - args:
+          - --provider=oidc
+          - --email-domain=*
+          - --upstream=http://website-service.mindspore-website2.svc.cluster.local
+          - --http-address=0.0.0.0:4180
+          - --provider-display-name=authing
+          - --cookie-expire=12h0m0s
+          - --auth-routers=^/source/
+          - --auth-routers=^/admin/
+          - --auth-routers=^/login.html
+          - --enable-auth-routers=true
+          - --redirect-url=https://mindspore-website2.test.osinfra.cn/oauth2/callback
+          - --oidc-issuer-url=https://mindspore-website-test.authing.cn/oidc
+          - --insecure-oidc-allow-unverified-email=true
+          - --session-cookie-minimal=false
+          - --pass-access-token=true
+          - --cookie-secure=false
+          - --login-url=https://xiheapi.osinfra.cn/oneid/oidc/authorize
+          - --redeem-url=https://xiheapi.osinfra.cn/oneid/oidc/token
+          - --profile-url=https://xiheapi.osinfra.cn/oneid/oidc/user
+          - --skip-oidc-discovery=true
+          - --insecure-oidc-skip-issuer-verification=true
+          - --skip-jwt-bearer-tokens=false
+          - --oidc-jwks-url=https://oauth2-proxy.authing.cn/oidc/.well-known/jwks.json
+          - --set-xauthrequest=true
+          - --skip-auth-strip-headers=false
+          - --set-authorization-header=true
+          - --scope=profile openid email id_token
+          - --signature-key=sha256:81nwm1iqdN3FBtnj4O0kL6BRuLfzMzCKaawnztLSRYQ
+          env:
+          - name: OAUTH2_PROXY_CLIENT_ID
+            valueFrom:
+              secretKeyRef:
+                key: oauth2_client_id
+                name: website-secret
+          - name: OAUTH2_PROXY_CLIENT_SECRET
+            valueFrom:
+              secretKeyRef:
+                key: oauth2_client_secret
+                name: website-secret
+          - name: OAUTH2_PROXY_COOKIE_SECRET
+            valueFrom:
+              secretKeyRef:
+                key: oauth2_cookie_secret
+                name: website-secret
+          image: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/oauth2-proxy:b2d87e8e29285720327bf01aee604f929ea64dd4
+          imagePullPolicy: Always
+          name: oauth2-proxy
+          ports:
+          - containerPort: 4180
+            protocol: TCP
+          resources:
+            limits:
+              cpu: 200m
+              memory: 200Mi
+            requests:
+              cpu: 100m
+              memory: 100Mi
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    k8s-app: oauth2-proxy-admin
+  name: oauth2-proxy-admin
+  namespace: mindspore-website2
+spec:
+  ports:
+    - name: http
+      port: 4180
+      protocol: TCP
+      targetPort: 4180
+  selector:
+    k8s-app: oauth2-proxy-admin
+
+
