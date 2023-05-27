@@ -16,5 +16,7 @@ kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/copr/backend-test
   newTag: v1.0.20230527195823
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/copr/backend_httpd-test
+  newTag: v1.0.20230527200334
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/copr/frontend-test
   newTag: v1.0.20230523152501
