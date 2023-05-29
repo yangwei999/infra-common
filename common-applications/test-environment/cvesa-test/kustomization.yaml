@@ -16,4 +16,4 @@ kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/cve-sa-backend/cvesa-test
   newName: swr.cn-north-4.myhuaweicloud.com/opensourceway/cve-sa-backend/cvesa-test
-  newTag: b328ae685b5a4a57f93e5669466b86351c544aec
+  newTag: 24573f7b09150342f9bb04b18411e1ba53445383
