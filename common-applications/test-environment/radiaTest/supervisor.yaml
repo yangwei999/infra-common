@@ -35,6 +35,8 @@ spec:
     spec:
       imagePullSecrets:
       - name: huawei-swr-image-pull-secret
+      nodeSelector:
+        infra: "true"
       containers:
       - name: gunicorn
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/radia-test/gunicorn:1.1.1
@@ -64,7 +66,7 @@ spec:
             memory: 8000Mi
           limits:
             cpu: 8000m
-            memory: 8000Mi
+            memory: 12000Mi
       volumes:
       - name: log-storage
         persistentVolumeClaim:
