@@ -1,14 +1,15 @@
+---
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-prod
     kubernetes.io/ingress.class: nginx
-  name: opengauss-website-ingress
+  name: opengauss-website-new-ingress
   namespace: opengauss-usercenter
 spec:
   rules:
-  - host: website-test.opengauss.org
+  - host: website.opengauss.test.osinfra.cn
     http:
       paths:
       - backend:
@@ -17,8 +18,8 @@ spec:
         path: /
   tls:
   - hosts:
-    - website-test.opengauss.org
-    secretName: opengauss-website-tls
+    - website.opengauss.test.osinfra.cn
+    secretName: opengauss-website-new-tls
 
 ---
 apiVersion: extensions/v1beta1
@@ -28,11 +29,11 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt-prod
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/rewrite-target: /$2
-  name: opengauss-website-meeting-ingress
+  name: opengauss-website-meeting-new-ingress
   namespace: opengauss-usercenter
 spec:
   rules:
-  - host: website-test.opengauss.org
+  - host: website.opengauss.test.osinfra.cn
     http:
       paths:
       - backend:
@@ -41,5 +42,5 @@ spec:
         path: /calendar(/|$)(.*)
   tls:
   - hosts:
-    - website-test.opengauss.org
-    secretName: opengauss-website-meeting-tls
+    - website.opengauss.test.osinfra.cn
+    secretName: opengauss-website-meeting-new-tls

@@ -19,4 +19,4 @@ spec:
         - backend:
             serviceName: control-server
             servicePort: 8080
-          path: /
+          path: /api

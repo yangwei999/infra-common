@@ -11,3 +11,6 @@ commonAnnotations:
   kubernetes.ops.region: hk
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+images:
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/signatrust/signatrust-data-server
+  newTag: 1905c44b3945d8ec20b121aac407a31a64aaf15e

@@ -1,15 +1,15 @@
 apiVersion: keda.sh/v1alpha1
 kind: ScaledObject
 metadata:
-  name: doc-search-autoscaler
-  namespace: openeuler-doc-search
+  name: website-deployment-autoscaler
+  namespace: openeuler-signatrust
 spec:
   scaleTargetRef:
-    name: doc-search
+    name: website-deployment
   triggers:
   - type: cron
     metadata:
       timezone: Asia/Shanghai
       start: 30 8 * * *
       end: 55 23 * * *
-      desiredReplicas: "3"
+      desiredReplicas: "1"
