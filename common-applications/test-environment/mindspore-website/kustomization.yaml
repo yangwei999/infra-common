@@ -15,6 +15,7 @@ resources:
 - website-deployment.yaml
 - pvc.yaml
 - oauth-proxy.yaml
+- autoscaler.yaml
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/mindspore/website
   newTag: v1.0.20230601193603
