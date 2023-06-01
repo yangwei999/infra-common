@@ -4,7 +4,7 @@ metadata:
   name: paste-deployment
   namespace: paste
 spec:
-  replicas: 0
+  replicas: 1
   strategy:
     rollingUpdate:
       maxSurge: 1
