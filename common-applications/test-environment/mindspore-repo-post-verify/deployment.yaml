@@ -50,7 +50,7 @@ spec:
             secretKeyRef:
               key: jasypt.encryptor.password
               name: repo-post-verify-secrets
-        - name: access_token
+        - name: accessToken
           valueFrom:
             secretKeyRef:
               key: access_token

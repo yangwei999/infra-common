@@ -49,7 +49,7 @@ spec:
             secretKeyRef:
               key: jasypt.encryptor.password
               name: openeuler-repo-post-secrets
-        - name: access_token
+        - name: accessToken
           valueFrom:
             secretKeyRef:
               key: access_token
