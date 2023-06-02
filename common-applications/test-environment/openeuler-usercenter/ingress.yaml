@@ -27,15 +27,15 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
     cert-manager.io/cluster-issuer: letsencrypt-prod
-  name: opengauss-usercenter-ingress
+  name: opengauss-usercenter-new-ingress
   namespace: openeuler-usercenter
 spec:
   tls:
     - hosts:
-      - id-test.opengauss.org
-      secretName: opengauss-usercenter-tls
+      - id.opengauss.test.osinfra.cn
+      secretName: opengauss-usercenter-new-tls
   rules:
-    - host: id-test.opengauss.org
+    - host: id.opengauss.test.osinfra.cn
       http:
         paths:
         - backend:

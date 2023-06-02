@@ -18,7 +18,7 @@ spec:
         - omapi.osinfra.cn
       secretName: tls-secrets
   rules:
-    - host: omapi.oneid.osinfra.cn
+    - host: omapi.osinfra.cn
       http:
         paths:
           - backend:

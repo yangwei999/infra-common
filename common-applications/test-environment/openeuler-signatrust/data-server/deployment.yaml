@@ -15,27 +15,12 @@ spec:
     spec:
       imagePullSecrets:
       - name: huawei-swr-image-pull-secret
+      nodeSelector:
+        autoscaler: "true"
       initContainers:
       - name: init-mysql
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/signatrust/busybox:1.28
         command: [ "sh", "-c", "until nslookup signatrust-database.openeuler-signatrust.svc.cluster.local; do echo waiting for mysql service ; sleep 2; done;" ]
-      - name: prepare-table
-        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/signatrust/rust-sqlx:latest
-        env:
-        - name: DATABASE_URL
-          valueFrom:
-            secretKeyRef:
-              name: signatrust-secrets
-              key: DATABASE_URL
-        command:
-          - /bin/sh
-          - -c
-          - |
-            # TODO: Use commit it instead of latest master
-            git clone https://gitee.com/openeuler/signatrust
-            cd signatrust
-            sqlx database create
-            sqlx migrate run
       containers:
       - image: swr.cn-north-4.myhuaweicloud.com/opensourceway/signatrust/signatrust-data-server:518a21b4de368ef502eaa7339c70a13dbead1edc
         imagePullPolicy: Always

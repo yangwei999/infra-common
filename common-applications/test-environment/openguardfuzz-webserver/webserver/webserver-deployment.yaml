@@ -60,6 +60,11 @@ spec:
             secretKeyRef:
               key: jenkins_token
               name: webserver-secret
+        - name: JENKINS_USERNAME
+          valueFrom:
+            secretKeyRef:
+              key: jenkins_username
+              name: webserver-secret
         - name: AUTH_EULER_CLIENT_SECRET
           valueFrom:
             secretKeyRef:

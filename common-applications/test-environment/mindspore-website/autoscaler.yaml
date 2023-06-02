@@ -13,3 +13,20 @@ spec:
       start: 30 8 * * *
       end: 55 23 * * *
       desiredReplicas: "1"
+
+---
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: oauth2-proxy-admin-autoscaler
+  namespace: mindspore-website2
+spec:
+  scaleTargetRef:
+    name: oauth2-proxy-admin
+  triggers:
+  - type: cron
+    metadata:
+      timezone: Asia/Shanghai
+      start: 30 8 * * *
+      end: 55 23 * * *
+      desiredReplicas: "1"
