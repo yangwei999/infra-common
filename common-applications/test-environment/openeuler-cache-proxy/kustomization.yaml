@@ -1,12 +1,14 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 commonAnnotations:
   kubernetes.ops.cluster: test-cluster
-  kubernetes.ops.email: ''
+  kubernetes.ops.community: libing
+  kubernetes.ops.email: ""
   kubernetes.ops.os.base: openeuler
   kubernetes.ops.owner: niexinquan
   kubernetes.ops.region: hk
-  kubernetes.ops.community: libing
-images: []
+images:
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/cache-proxy-test
+  newTag: master-0a0d2b
 kind: Kustomization
 namespace: openeuler-cache-proxy
 resources:
