@@ -28,6 +28,8 @@ spec:
           - --skip-auth-regex=^/api/app_resources/sla_export
           - --skip-auth-regex=^/api/app_resources/repo
           - --skip-auth-regex=^/api/users/login
+          - --skip-auth-regex=^/api/app_resources/service
+          - --skip-auth-regex=^/api/app_resources/service_introduce
           - --skip-auth-regex=^/static/
           - --redirect-url=https://ops.osinfra.cn/oauth2/callback
           - --oidc-issuer-url=https://scan-tool.authing.cn/oidc
