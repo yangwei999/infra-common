@@ -263,6 +263,9 @@ spec:
         volumeMounts:
         - mountPath: /etc/radiaTest
           name: periodic-worker-configure
+        - mountPath: /etc/radiaTest_ssl/cacert.pem
+          name: periodic-worker-secret
+          subPath: cacert.pem
         - mountPath: /tmp
           name: periodic-worker-share
         resources:
@@ -280,6 +283,10 @@ spec:
       - name: periodic-worker-share
         persistentVolumeClaim:
           claimName: cce-sfs-gunicorn-share
+      - name: periodic-worker-secret
+        secret:
+          secretName: radia-test-secret
+          defaultMode: 256
 
 ---
 apiVersion: apps/v1
