@@ -1,6 +1,5 @@
 resources:
 - postgresql.yaml
-- redis.yaml
 - service.yaml
 namespace: fedora-copr
 commonAnnotations:
