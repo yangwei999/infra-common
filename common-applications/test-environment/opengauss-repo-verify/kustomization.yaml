@@ -17,4 +17,4 @@ commonAnnotations:
   kubernetes.ops.region: hk
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/opengauss/opengauss-repo-verify-test
-  newTag: v1.0.20230606114611
+  newTag: v1.0.20230606161013
