@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+  namespace: mindspore-website2
+spec:
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
+      nodeSelector:
+        autoscaler: "true"
+      containers:
+      - env:
+        - name: MS_MYSQL_URL
+          valueFrom:
+            secretKeyRef:
+              key: ms_mysql_url
+              name: backend-secret
+        - name: MS_MYSQL_USERNAME
+          valueFrom:
+            secretKeyRef:
+              key: ms_mysql_username
+              name: backend-secret
+        - name: MS_MYSQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: ms_mysql_password
+              name: backend-secret
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/mindspore/website-backend:v1.0.20230607173835
+        imagePullPolicy: IfNotPresent
+        livenessProbe:
+          failureThreshold: 3
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          successThreshold: 1
+          tcpSocket:
+            port: 8080
+          timeoutSeconds: 5
+        name: backend
+        readinessProbe:
+          failureThreshold: 3
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          successThreshold: 1
+          tcpSocket:
+            port: 8080
+          timeoutSeconds: 5
+        resources:
+          limits:
+            cpu: 1000m
+            memory: 1000Mi
+          requests:
+            cpu: 1000m
+            memory: 1000Mi

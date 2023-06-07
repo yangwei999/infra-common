@@ -8,7 +8,12 @@ commonAnnotations:
 kind: Kustomization
 namespace: mindspore-website2
 resources:
-- namespace.yaml
-- website
-- backend
-- oauth-proxy
+- website-ingress.yaml
+- website-service.yaml
+- website-secret.yaml
+- website-deployment.yaml
+- pvc.yaml
+- autoscaler.yaml
+images:
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/mindspore/website
+  newTag: v1.0.20230607094220

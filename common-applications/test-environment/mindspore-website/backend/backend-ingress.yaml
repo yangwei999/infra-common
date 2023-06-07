@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    kubernetes.io/ingress.class: nginx
+  name: backend-ingress
+  namespace: mindspore-website2
+spec:
+  rules:
+  - host: mindspore-website2.test.osinfra.cn
+    http:
+      paths:
+      - backend:
+          serviceName: backend-service
+          servicePort: 80
+        path: /source
+  tls:
+  - hosts:
+    - mindspore-website2.test.osinfra.cn
+    secretName: backend-tls
