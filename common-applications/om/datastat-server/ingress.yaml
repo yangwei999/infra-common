@@ -12,7 +12,7 @@ metadata:
       if ($http_origin ~* "^https?://((?:.*\.openeuler\.org)|(?:.*\.openlookeng\.io))$") {
         set $cors "true";
       }
-      if ($http_origin ~* "^https?://((?:mindspore\.cn))$") {
+      if ($http_origin ~* "^https?://(mindspore\.cn)$") {
         set $cors "true";
       }
       if ($http_origin ~ '^http:\/\/localhost:45678$') {
