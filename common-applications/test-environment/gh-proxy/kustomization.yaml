@@ -13,4 +13,3 @@ resources:
 - server-ingress.yaml
 - server-service.yaml
 - server-deployment.yaml
-- autoscaler.yaml
