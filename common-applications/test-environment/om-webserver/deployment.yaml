@@ -17,12 +17,12 @@ spec:
       - name: huawei-swr-image-pull-secret
       containers:
         - name: om-webserver
-          image: swr.cn-north-4.myhuaweicloud.com/om/om-webserver:0.2.33
+          image: swr.cn-north-4.myhuaweicloud.com/om/om-webserver:0.3.89
           resources:
             requests:
               memory: 100Mi
           ports:
-            - containerPort: 8888
+            - containerPort: 8080
               name: om-webserver
           volumeMounts:
             - mountPath: /var/lib/om-webserver/starFork.properties
