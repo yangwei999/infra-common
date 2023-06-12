@@ -7,7 +7,7 @@ spec:
     - name: srv
       port: 80
       protocol: TCP
-      targetPort: 8888
+      targetPort: 8080
   selector:
     app: om-webserver
   type: ClusterIP
