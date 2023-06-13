@@ -1,0 +1,12 @@
+resources:
+- deployment.yaml
+- secrets.yaml
+- ingress.yaml
+- service.yaml
+namespace: om-webserver
+commonAnnotations:
+  kubernetes.ops.cluster: freesky-icsl-hk-cluster
+  kubernetes.ops.email: ""
+  kubernetes.ops.os.base: ""
+  kubernetes.ops.owner: zhongjun
+  kubernetes.ops.region: hk
