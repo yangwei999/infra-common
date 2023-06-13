@@ -51,11 +51,13 @@ data:
         username: "${ROBOT_USERNAME}"
         token: "${ROBOT_TOKEN}"
         email: "${ROBOT_EMAIL}"
-      pr:
-        org: weiwei123444
         repo: community
-      robot_to_merge_pr:
+        link: https://gitee.com/weiwei123444/community.git
+      community_robot:
         token: "${ROBOT_MERGE_PR_TOKEN}"
+        org: euler-ttttt
+        repo: community
+        link: https://gitee.com/euler-ttttt/community.git
       software_pkg:
         endpoint: https://software-pkg.test.osinfra.cn/zh/package-detail/
     message_server:
