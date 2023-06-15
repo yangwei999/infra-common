@@ -9,6 +9,7 @@ resources:
   - git-commit-log-enterprise
   - gitee-foundation
   - git-commit-log-foundation
+  - git-commit-log-oepkgs
 commonAnnotations:
   owner: zhongjun
   email: "jun.zhongjun2@gmail.com"

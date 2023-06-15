@@ -1,0 +1,31 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: git-commit-log-oepkgs
+  namespace: om
+  labels:
+    app: git-commit-log-oepkgs
+spec:
+  revisionHistoryLimit: 10
+  template:
+    metadata:
+      labels:
+        app: git-commit-log-oepkgs
+    spec:
+      containers:
+        - name: git-commit-log-oepkgs
+          image: swr.cn-north-4.myhuaweicloud.com/om/om-collection:0.5.38
+          volumeMounts:
+            - mountPath: /var/lib/om/config.ini
+              subPath: credentials_cfg
+              name: git-commit-log-oepkgs-secrets-volume
+            - mountPath: /mnt
+              subPath: commitlog
+              name: storage
+      volumes:
+        - name: git-commit-log-oepkgs-secrets-volume
+          secret:
+            secretName: git-commit-log-oepkgs-secrets
+        - name: storage
+          persistentVolumeClaim:
+            claimName: commitlogoepkgs
