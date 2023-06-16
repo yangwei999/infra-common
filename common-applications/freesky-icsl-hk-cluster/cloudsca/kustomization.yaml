@@ -1,0 +1,18 @@
+resources:
+- analysis
+- dm
+- eureka
+- gateway
+- api-gateway
+- rabbitmq
+- web
+- namespace.yaml
+- secrets.yaml
+commonLabels:
+  server: infrastructure-sca
+commonAnnotations:
+  email: xzq615@hotmail.com
+  owner: xiaozhongqi
+namespace: sca
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization

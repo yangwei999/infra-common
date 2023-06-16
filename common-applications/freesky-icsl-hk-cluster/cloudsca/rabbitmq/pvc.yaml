@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  annotations:
+    everest.io/disk-volume-type: SSD
+  name: rabbitmq-data-volume
+  namespace: sca
+spec:
+  accessModes:
+  - ReadWriteOnce
+  storageClassName: csi-disk
+  resources:
+    requests:
+      storage: 10Gi

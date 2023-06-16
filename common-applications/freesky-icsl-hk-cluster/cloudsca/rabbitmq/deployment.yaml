@@ -1,0 +1,68 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rabbitmq
+  namespace: sca
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: rabbitmq
+  template:
+    metadata:
+      labels:
+        app: rabbitmq
+    spec:
+      containers:
+      - name: rabbitmq
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/sca/rabbitmq:lts-20221109
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: RABBITMQ_DEFAULT_USER
+          valueFrom:
+            secretKeyRef:
+              key: rabbitmq_default_user
+              name: sca-rabbitmq-secret
+        - name: RABBITMQ_DEFAULT_PASS
+          valueFrom:
+            secretKeyRef:
+              key: rabbitmq_default_pass
+              name: sca-rabbitmq-secret
+        - name: RABBITMQ_DEFAULT_VHOST
+          valueFrom:
+            secretKeyRef:
+              key: rabbitmq_default_vhost
+              name: sca-rabbitmq-secret
+        readinessProbe:
+          tcpSocket:
+            port: 5672
+          initialDelaySeconds: 10
+          failureThreshold: 3
+          successThreshold: 1
+          periodSeconds: 10
+          timeoutSeconds: 5
+        livenessProbe:
+          tcpSocket:
+            port: 5672
+          initialDelaySeconds: 20
+          periodSeconds: 20
+          successThreshold: 1
+          failureThreshold: 3
+          timeoutSeconds: 5
+        resources:
+          requests:
+            cpu: 1000m
+            memory: 2G
+          limits:
+            cpu: 2000m
+            memory: 4G
+        volumeMounts:
+        - mountPath: /var/lib/rabbitmq
+          name: data
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: rabbitmq-data-volume

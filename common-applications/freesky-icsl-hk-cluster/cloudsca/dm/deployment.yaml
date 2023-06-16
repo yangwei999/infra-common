@@ -1,0 +1,77 @@
+# Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sca-dm
+  namespace: sca
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sca-dm
+  template:
+    metadata:
+      labels:
+        app: sca-dm
+    spec:
+      imagePullSecrets:
+        - name: huawei-swr-image-pull-secret
+      containers:
+      - name: sca-dm
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/icsl/sca-datamanager:801778e1457c511da1add445cb045a0c5d909fd8
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: app-port
+          containerPort: 7979
+        env:
+          - name: MY_POD_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+          - name: SERVICE_NAME
+            value: dm-service
+          - name: EUREKA_SERVER
+            value: "http://eureka.sca.svc.cluster.local:9000/eureka"
+          - name: APP_ENV
+            value: acceptance
+          - name: PACKAGE_VERSION
+            value: 1.0-SNAPSHOT
+          - name: MAX_HEAP_MEM
+            value: 3072m
+          - name: INIT_HEAP_MEM
+            value: 1024m
+          - name: CMS_IOF
+            value: "75"
+          - name: INIT_KEY
+            valueFrom:
+              secretKeyRef:
+                name: sca-secret
+                key: app-init-key
+          - name: jasypt.encryptor.algorithm
+            valueFrom:
+              secretKeyRef:
+                name: sca-secret
+                key: jasypt_encryptor_algorithm
+          - name: jasypt.encryptor.password
+            valueFrom:
+              secretKeyRef:
+                name: sca-secret
+                key: jasypt_encryptor_password
+          - name: jasypt_password
+            valueFrom:
+              secretKeyRef:
+                name: sca-secret
+                key: jasypt_encryptor_password
+          - name: majun.access.token
+            valueFrom:
+              secretKeyRef:
+                name: sca-secret
+                key: majun_access_token
+        resources:
+          requests:
+            cpu: 200m
+            memory: 2G
+          limits:
+            cpu: 2000m
+            memory: 6G
+

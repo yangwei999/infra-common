@@ -1,0 +1,22 @@
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+  name: cloudsca-api-ingress
+  namespace: sca
+spec:
+  tls:
+    - hosts:
+        - sca-api.myopeninfra.com
+      secretName: sca-api-tls
+  rules:
+    - host: sca-api.myopeninfra.com
+      http:
+        paths:
+        - backend:
+            serviceName: sca-api-gateway
+            servicePort: 8020
+          path: /
