@@ -5,8 +5,11 @@ commonAnnotations:
   kubernetes.ops.cluster: freesky-icsl-hk-cluster
   kubernetes.ops.email: ""
   kubernetes.ops.os.base: ""
-  kubernetes.ops.owner: "liuwugang"
+  kubernetes.ops.owner: liuwugang
   kubernetes.ops.region: hk
 namespace: sca
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+images:
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/icsl/sca-analysis
+  newTag: 0e54c2cf7e3ef31ee624dfc1c066ae6f295f6d2e
