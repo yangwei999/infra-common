@@ -75,6 +75,11 @@ spec:
             secretKeyRef:
               key: ms_pytorch_url
               name: website-secret
+        - name: MINDSPORE_BOOK
+          valueFrom:
+            secretKeyRef:
+              key: mindspore_book
+              name: website-secret
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/mindspore/website:test-bcbabd
         imagePullPolicy: IfNotPresent
         volumeMounts:
