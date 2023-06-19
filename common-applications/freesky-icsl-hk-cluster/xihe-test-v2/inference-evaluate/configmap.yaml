@@ -1,0 +1,45 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: configmap
+data:
+  config.yaml: |
+    inference: 
+      rpc_endpiont: "${INTERNAL_RPC_ENDPOINT}"
+      gitlab_endpiont: "${GITLAB_HOST}"
+      obs:
+        access_key: "${HW_OBS_AK}"
+        secret_key: "${HW_OBS_SK}"
+        endpoint: "${HW_OBS_ENDPOINT}"
+        bucket: "${HW_OBS_BUCKET}"
+        obsutil_path: /usr/src/app/obsutil
+        lfs_path: gitlab-lfs
+      crd:
+        crd_image: "${INFERENCE_CRD_IMAGE}"
+        crd_cpu: 0.5
+        crd_memory: 512
+        crd_template: "${INFERENCE_CRD_TEMPLATE}"
+
+    evaluate:
+      rpc_endpiont: "${INTERNAL_RPC_ENDPOINT}"
+      crd:
+        crd_image: "${EVALUATE_CRD_IMAGE}"
+        crd_cpu: 0.5
+        crd_memory: 512
+        crd_template: "${EVALUATE_CRD_TEMPLATE}"
+
+    cloud:
+      rpc_endpiont: "${INTERNAL_RPC_ENDPOINT}"
+      jupyter_token: "${JUPYTER_TOKEN}"
+      crd:
+        crd_image: "${CLOUD_CRD_IMAGE}"
+        crd_cpu: ${CLOUD_CRD_CPU}
+        crd_memory: ${CLOUD_CRD_MEMORY}
+        crd_template: "${CLOUD_CRD_TEMPLATE}"
+
+    k8s:
+      kind: CodeServer
+      group: cs.opensourceways.com
+      version: v1alpha1
+      namespace: "${KUBE_NAMESPACE}"
+      kube_config_file: "${KUBE_CONFIG_FILE}"

@@ -1,0 +1,21 @@
+resources:
+- namespace.yaml
+- secret.yaml
+- internal-server
+- message-server
+- hook-delivery
+- hook-dispatcher
+- access
+- sync-repo
+- training-center-huaweicloud
+- inference-evaluate
+- xihe-website
+- xihe-server
+- xihe-script
+- big-model-finetune
+- xihe-statistics
+- finetune
+- async-server
+namespace: xihe-test-v2
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
