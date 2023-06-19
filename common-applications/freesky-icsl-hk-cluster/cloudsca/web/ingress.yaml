@@ -27,3 +27,7 @@ spec:
               serviceName: sca-gateway
               servicePort: 8080
             path: /gateway/(.*)
+          - backend:
+              serviceName: sca-api-gateway
+              servicePort: 8020
+            path: /apigw/(.*)

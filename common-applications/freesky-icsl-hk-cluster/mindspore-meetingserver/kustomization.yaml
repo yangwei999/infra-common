@@ -1,0 +1,17 @@
+resources:
+- namespace.yaml
+- deployment.yaml
+- service.yaml
+- secrets.yaml
+- cronjob.yaml
+- pvc.yaml
+- ingress.yaml
+commonAnnotations:
+  email: 469227928@qq.com
+  owner: liuqi
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: mindspore-meetingserver
+images:
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/mindspore/mindspore-meeting-server
+  newTag: aa07263f9b2668ccc2bcc83104b732cdbeeff5b8
