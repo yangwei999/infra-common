@@ -15,7 +15,7 @@ images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/sunmao/data-cache
   newTag: f939000aaf6bc67c63d056585679442a13d2e027
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/sunmao/event-retriever
-  newTag: v1.0.20230621102342
+  newTag: v1.0.20230621105123
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/sunmao/rabbitmq
   newTag: f939000aaf6bc67c63d056585679442a13d2e027
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/sunmao/rule-handler
