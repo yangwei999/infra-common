@@ -17,7 +17,7 @@ spec:
       - name: huawei-swr-image-pull-secret
       containers:
         - name: datastat-server
-          image: swr.cn-north-4.myhuaweicloud.com/om/ds:0.0.46
+          image: swr.cn-north-4.myhuaweicloud.com/om/ds:0.0.51
           resources:
             limits:
               cpu: 2000m
@@ -31,7 +31,7 @@ spec:
             periodSeconds: 10
             successThreshold: 1
             tcpSocket:
-              port: 8888
+              port: 8080
             timeoutSeconds: 5
           readinessProbe:
             failureThreshold: 3
@@ -39,10 +39,10 @@ spec:
             periodSeconds: 10
             successThreshold: 1
             tcpSocket:
-              port: 8888
+              port: 8080
             timeoutSeconds: 5
           ports:
-            - containerPort: 8888
+            - containerPort: 8080
               name: datastat-server
           volumeMounts:
             - mountPath: /var/lib/ds/custom.properties

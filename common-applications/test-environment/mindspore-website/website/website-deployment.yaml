@@ -1,0 +1,115 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: website-deployment
+  namespace: mindspore-website2
+spec:
+  selector:
+    matchLabels:
+      app: website
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: website
+    spec:
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
+      nodeSelector:
+        autoscaler: "true"
+      containers:
+      - env:
+        - name: MS_MYSQL_URL
+          valueFrom:
+            secretKeyRef:
+              key: ms_mysql_url
+              name: website-secret
+        - name: MS_MYSQL_USERNAME
+          valueFrom:
+            secretKeyRef:
+              key: ms_mysql_username
+              name: website-secret
+        - name: MS_MYSQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: ms_mysql_password
+              name: website-secret
+        - name: MS_MAIL_URL
+          valueFrom:
+            secretKeyRef:
+              key: ms_mail_url
+              name: website-secret
+        - name: MS_MAIL_NAME
+          valueFrom:
+            secretKeyRef:
+              key: ms_mail_name
+              name: website-secret
+        - name: MS_MAIL_USERNAME
+          valueFrom:
+            secretKeyRef:
+              key: ms_mail_username
+              name: website-secret
+        - name: MS_MAIL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: ms_mail_password
+              name: website-secret
+        - name: MS_REDIS_HOST
+          valueFrom:
+            secretKeyRef:
+              key: ms_redis_host
+              name: website-secret
+        - name: MS_REDIS_PORT
+          valueFrom:
+            secretKeyRef:
+              key: ms_redis_port
+              name: website-secret
+        - name: MS_REDIS_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: ms_redis_password
+              name: website-secret
+        - name: MS_PYTORCH_URL
+          valueFrom:
+            secretKeyRef:
+              key: ms_pytorch_url
+              name: website-secret
+        - name: MINDSPORE_BOOK
+          valueFrom:
+            secretKeyRef:
+              key: mindspore_book
+              name: website-secret
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/mindspore/website:test-bcbabd
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+        - mountPath: /mnt/share/file
+          name: website-data-volume
+        livenessProbe:
+          failureThreshold: 3
+          initialDelaySeconds: 20
+          periodSeconds: 20
+          successThreshold: 1
+          tcpSocket:
+            port: 8080
+          timeoutSeconds: 5
+        name: website
+        readinessProbe:
+          failureThreshold: 3
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          successThreshold: 1
+          tcpSocket:
+            port: 8080
+          timeoutSeconds: 5
+        resources:
+          limits:
+            cpu: 1000m
+            memory: 2000Mi
+          requests:
+            cpu: 1000m
+            memory: 2000Mi
+      volumes:
+      - name: website-data-volume
+        persistentVolumeClaim:
+          claimName: website-data

@@ -1,0 +1,343 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: xihe-server
+  namespace: xihe-test-v2
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: xihe-server
+  template:
+    metadata:
+      labels:
+        app: xihe-server
+    spec:
+      containers:
+      - name: xihe-server
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/xihe/xihe-server:97f347b62bf46f56cedb5886999fa8335b9fcefb
+        imagePullPolicy: IfNotPresent
+        args:
+        - --port=8000
+        - --config-file=/opt/app/conf/config.yaml
+        - --enable_debug=true
+        env:
+        - name: AUTHING_APP_ID
+          valueFrom:
+            secretKeyRef:
+              name: xihe-secret
+              key: AUTHING_APP_ID
+        - name: AUTHING_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: xihe-secret
+              key: AUTHING_SECRET
+        - name: MONGODB_NAME
+          valueFrom:
+            secretKeyRef:
+              name: xihe-secret
+              key: MONGODB_NAME
+        - name: MONGODB_CONNECTION
+          valueFrom:
+            secretKeyRef:
+              name: xihe-secret
+              key: MONGODB_CONNECTION
+        - name: GITLAB_ENDPOINT
+          valueFrom:
+            secretKeyRef:
+              name: xihe-secret
+              key: GITLAB_ENDPOINT
+        - name: GITLAB_GRAPHQL_ENDPOINT
+          valueFrom:
+            secretKeyRef:
+              name: xihe-secret
+              key: GITLAB_GRAPHQL_ENDPOINT
+        - name: GITLAB_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: xihe-secret
+              key: GITLAB_TOKEN
+        - name: API_TOKEN_KEY
+          valueFrom:
+            secretKeyRef:
+              name: xihe-secret
+              key: API_TOKEN_KEY
+        - name: ENCRYPTION_KEY
+          valueFrom:
+            secretKeyRef:
+              name: xihe-secret
+              key: ENCRYPTION_KEY
+        - name: DEFAULT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: xihe-secret
+              key: DEFAULT_PASSWORD
+        - name: AUTHING_REDIRECT_URI_TEST
+          valueFrom:
+            secretKeyRef:
+              name: xihe-secret
+              key: AUTHING_REDIRECT_URI_TEST
+        - name: KAFKA_ADDRESS
+          valueFrom:
+            secretKeyRef:
+              name: xihe-secret
+              key: KAFKA_ADDRESS
+        - name: BIGMODEL_AUTH_ENDPOINT
+          valueFrom:
+            secretKeyRef:
+              name: xihe-secret
+              key: BIGMODEL_AUTH_ENDPOINT
+        - name: BIGMODEL_AUTH_ENDPOINT_WUKONG
+          valueFrom:
+            secretKeyRef:
+              name: xihe-secret
+              key: BIGMODEL_AUTH_ENDPOINT_WUKONG
+        - name: BIGMODEL_DESCRIBE_PICTURE
+          valueFrom:
+            secretKeyRef:
+              name: xihe-secret
+              key: BIGMODEL_DESCRIBE_PICTURE
+        - name: BIGMODEL_SINGLE_PICTURE
+          valueFrom:
+            secretKeyRef:
+              name: xihe-secret
+              key: BIGMODEL_SINGLE_PICTURE
+        - name: BIGMODEL_MULTI_PICTURES
+          valueFrom:
+            secretKeyRef:
+              name: xihe-secret
+              key: BIGMODEL_MULTI_PICTURES
+        - name: BIGMODEL_USER
+          valueFrom:
+            secretKeyRef:
+              name: xihe-secret
+              key: BIGMODEL_USER
+        - name: BIGMODEL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: xihe-secret
+              key: BIGMODEL_PASSWORD
+        - name: BIGMODEL_DOMAIN_WUKONG
+          valueFrom:
+            secretKeyRef:
+              name: xihe-secret
+              key: BIGMODEL_DOMAIN_WUKONG
+        - name: BIGMODEL_USER_WUKONG
+          valueFrom:
+            secretKeyRef:
+              name: xihe-secret
+              key: BIGMODEL_USER_WUKONG
+        - name: BIGMODEL_PASSWORD_WUKONG
+          valueFrom:
+            secretKeyRef:
+              name: xihe-secret
+              key: BIGMODEL_PASSWORD_WUKONG
+        - name: BIGMODEL_PROJECT
+          valueFrom:
+            secretKeyRef:
+              name: xihe-secret
+              key: BIGMODEL_PROJECT
+        - name: BIGMODEL_VQA
+          valueFrom:
+            secretKeyRef:
+              name: xihe-secret
+              key: BIGMODEL_VQA
+        - name: BIGMODEL_PANGU
+          valueFrom:
+            secretKeyRef:
+              name: xihe-secret
+              key: BIGMODEL_PANGU
+        - name: BIGMODEL_LUOJIA
+          valueFrom:
+            secretKeyRef:
+              name: xihe-secret
+              key: BIGMODEL_LUOJIA
+        - name: BIGMODEL_WUKONG
+          valueFrom:
+            secretKeyRef:
+              name: xihe-secret
+              key: BIGMODEL_WUKONG
+        - name: BIGMODEL_CODEGEEX
+          valueFrom:
+            secretKeyRef:
+              name: xihe-secret
+              key: BIGMODEL_CODEGEEX
+        - name: VQA_OBS_ENDPOINT
+          valueFrom:
+            secretKeyRef:
+              name: xihe-secret
+              key: VQA_OBS_ENDPOINT
+        - name: VQA_OBS_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: xihe-secret
+              key: VQA_OBS_ACCESS_KEY
+        - name: VQA_OBS_SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: xihe-secret
+              key: VQA_OBS_SECRET_KEY
+        - name: VQA_OBS_BUCKET
+          valueFrom:
+            secretKeyRef:
+              name: xihe-secret
+              key: VQA_OBS_BUCKET
+        - name: WUKONG_OBS_ENDPOINT
+          valueFrom:
+            secretKeyRef:
+              name: xihe-secret
+              key: WUKONG_OBS_ENDPOINT
+        - name: WUKONG_OBS_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: xihe-secret
+              key: WUKONG_OBS_ACCESS_KEY
+        - name: WUKONG_OBS_SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: xihe-secret
+              key: WUKONG_OBS_SECRET_KEY
+        - name: WUKONG_OBS_BUCKET
+          valueFrom:
+            secretKeyRef:
+              name: xihe-secret
+              key: WUKONG_OBS_BUCKET
+        - name: LUOJIA_OBS_BUCKET
+          valueFrom:
+            secretKeyRef:
+              name: xihe-secret
+              key: LUOJIA_OBS_BUCKET
+        - name: HW_OBS_AK
+          valueFrom:
+            secretKeyRef:
+              name: xihe-secret
+              key: HW_OBS_AK
+        - name: HW_OBS_SK
+          valueFrom:
+            secretKeyRef:
+              name: xihe-secret
+              key: HW_OBS_SK
+        - name: HW_OBS_ENDPOINT
+          valueFrom:
+            secretKeyRef:
+              name: xihe-secret
+              key: HW_OBS_ENDPOINT
+        - name: HW_OBS_BUCKET
+          valueFrom:
+            secretKeyRef:
+              name: xihe-secret
+              key: HW_OBS_BUCKET
+        - name: PGSQL_HOST
+          valueFrom:
+            secretKeyRef:
+              name: xihe-statistics-secret
+              key: PGSQL_HOST
+        - name: PGSQL_USER
+          valueFrom:
+            secretKeyRef:
+              name: xihe-statistics-secret
+              key: PGSQL_USER
+        - name: PGSQL_PWD
+          valueFrom:
+            secretKeyRef:
+              name: xihe-statistics-secret
+              key: PGSQL_PWD
+        - name: PGSQL_NAME
+          valueFrom:
+            secretKeyRef:
+              name: xihe-statistics-secret
+              key: PGSQL_NAME
+        - name: PGSQL_PORT
+          valueFrom:
+            secretKeyRef:
+              name: xihe-statistics-secret
+              key: PGSQL_PORT
+        - name: AI_QUESTION_ID
+          valueFrom:
+            secretKeyRef:
+              name: xihe-secret
+              key: AI_QUESTION_ID
+        - name: QUESTION_POOL_ID
+          valueFrom:
+            secretKeyRef:
+              name: xihe-secret
+              key: QUESTION_POOL_ID
+        - name: FINETUNE_ENDPOINT
+          valueFrom:
+            secretKeyRef:
+              name: xihe-secret
+              key: FINETUNE_ENDPOINT
+        - name: BIGMODEL_WUKONGHF
+          valueFrom:
+            secretKeyRef:
+              name: xihe-secret
+              key: BIGMODEL_WUKONGHF
+        - name: BIGMODEL_VQAHF
+          valueFrom:
+            secretKeyRef:
+              name: xihe-secret
+              key: BIGMODEL_VQAHF
+        - name: BIGMODEL_LUOJIAHF
+          valueFrom:
+            secretKeyRef:
+              name: xihe-secret
+              key: BIGMODEL_LUOJIAHF
+        - name: BIGMODEL_WUKONG_2IMG
+          valueFrom:
+            secretKeyRef:
+              name: xihe-secret
+              key: BIGMODEL_WUKONG_2IMG
+        - name: BIGMODEL_WUKONG_4IMG
+          valueFrom:
+            secretKeyRef:
+              name: xihe-secret
+              key: BIGMODEL_WUKONG_4IMG
+        - name: BIGMODEL_DESCRIBE_PICTUREHF
+          valueFrom:
+            secretKeyRef:
+              name: xihe-secret
+              key: BIGMODEL_DESCRIBE_PICTUREHF
+        - name: AUTHING_ENDPOINT
+          valueFrom:
+            secretKeyRef:
+              name: xihe-secret
+              key: AUTHING_ENDPOINT
+        - name: CERT_ENDPOINT
+          valueFrom:
+            secretKeyRef:
+              name: xihe-secret
+              key: CERT_ENDPOINT
+        - name: BIGMODEL_AI_DETECTOR
+          valueFrom:
+            secretKeyRef:
+              name: xihe-secret
+              key: BIGMODEL_AI_DETECTOR
+        - name: ENCRYPTION_KEY_CSRF
+          valueFrom:
+            secretKeyRef:
+              name: xihe-secret
+              key: ENCRYPTION_KEY_CSRF
+        resources:
+          requests:
+            cpu: 1000m
+            memory: 1000Mi
+          limits:
+            cpu: 1000m
+            memory: 1000Mi
+        ports:
+        - containerPort: 8000
+          name: http
+          protocol: TCP
+        volumeMounts:
+        - mountPath: /opt/app/conf
+          name: config
+      volumes:
+      - name: config
+        configMap:
+          name: server-configmap

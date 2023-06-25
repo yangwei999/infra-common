@@ -1,0 +1,112 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment
+  namespace: xihe-test-v2
+spec:
+  replicas: 1
+  template:
+    spec:
+      containers:
+      - args:
+        - --port=8888
+        - --config-file=/app/conf/xihe-gitlab/app_config/config.yaml
+        - --enable_debug=true
+        env:
+        - name: HW_OBS_AK
+          valueFrom:
+            secretKeyRef:
+              key: HW_OBS_AK
+              name: xihe-secret
+        - name: HW_OBS_SK
+          valueFrom:
+            secretKeyRef:
+              key: HW_OBS_SK
+              name: xihe-secret
+        - name: HW_OBS_ENDPOINT
+          valueFrom:
+            secretKeyRef:
+              key: HW_OBS_ENDPOINT
+              name: xihe-secret
+        - name: HW_OBS_BUCKET
+          valueFrom:
+            secretKeyRef:
+              key: HW_OBS_BUCKET
+              name: xihe-secret
+        - name: GITLAB_HOST
+          valueFrom:
+            secretKeyRef:
+              key: GITLAB_HOST
+              name: xihe-secret
+        - name: JUPYTER_TOKEN
+          valueFrom:
+            secretKeyRef:
+              key: JUPYTER_TOKEN
+              name: xihe-secret
+        - name: CLOUD_CRD_IMAGE
+          value: swr.cn-north-4.myhuaweicloud.com/opensourceway/mindspore/mindspore-jupyter-cpu:v2.1
+        - name: CLOUD_CRD_CPU
+          valueFrom:
+            secretKeyRef:
+              key: CLOUD_CRD_CPU
+              name: xihe-secret
+        - name: CLOUD_CRD_MEMORY
+          valueFrom:
+            secretKeyRef:
+              key: CLOUD_CRD_MEMORY
+              name: xihe-secret
+        - name: INTERNAL_RPC_ENDPOINT
+          valueFrom:
+            secretKeyRef:
+              key: INTERNAL_RPC_ENDPOINT
+              name: xihe-secret
+        - name: INFERENCE_CRD_TEMPLATE
+          valueFrom:
+            secretKeyRef:
+              key: INFERENCE_CRD_TEMPLATE
+              name: xihe-secret
+        - name: EVALUATE_CRD_TEMPLATE
+          valueFrom:
+            secretKeyRef:
+              key: EVALUATE_CRD_TEMPLATE
+              name: xihe-secret
+        - name: CLOUD_CRD_TEMPLATE
+          valueFrom:
+            secretKeyRef:
+              key: CLOUD_CRD_TEMPLATE
+              name: xihe-secret
+        - name: KUBE_CONFIG_FILE
+          valueFrom:
+            secretKeyRef:
+              key: KUBE_CONFIG_FILE
+              name: xihe-secret
+        - name: KUBE_NAMESPACE
+          valueFrom:
+            secretKeyRef:
+              key: KUBE_NAMESPACE
+              name: xihe-secret
+        - name: INFERENCE_CRD_IMAGE
+          value: swr.cn-north-4.myhuaweicloud.com/opensourceway/mindspore/xihe-inference-evaluate:inferenceimpl.v1.0.20230529200407
+        - name: EVALUATE_CRD_IMAGE
+          value: swr.cn-north-4.myhuaweicloud.com/opensourceway/mindspore/xihe-inference-evaluate:evaluateimpl.v1.0.20221124180204
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/xihe/xihe:latest
+        imagePullPolicy: IfNotPresent
+        name: inference-evaluate
+        ports:
+        - containerPort: 8888
+          name: http
+          protocol: TCP
+        volumeMounts:
+        - mountPath: /app/conf/xihe-gitlab/app_config/
+          name: app-config
+          readOnly: true
+        - mountPath: /app/conf/xihe-gitlab/kube/config
+          name: kubeconfig
+          subPath: cluster_kubeconfig
+      volumes:
+      - configMap:
+          name: configmap-inference-evaluate
+        name: app-config
+      - name: kubeconfig
+        secret:
+          secretName: xihe-cluster-secret-inference-evaluate

@@ -1,0 +1,17 @@
+resources:
+- deployment.yaml
+- namespace.yaml
+- service.yaml
+- ingress.yaml
+commonAnnotations:
+  kubernetes.ops.cluster: freesky-icsl-hk-cluster
+  kubernetes.ops.email: ""
+  kubernetes.ops.os.base: debian
+  kubernetes.ops.owner: gongzhuangbang
+  kubernetes.ops.region: hk
+namespace: openlookeng-website
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+images:
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/icsl/openlookeng-website
+  newTag: 70bc8c7fbee0d1338aacc39020b4d4f528cddff2

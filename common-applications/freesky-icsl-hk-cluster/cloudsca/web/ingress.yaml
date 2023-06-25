@@ -1,0 +1,33 @@
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/custom-http-errors: "400, 500"
+    nginx.ingress.kubernetes.io/proxy-body-size: 100M
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+  name: cloudsca-ingress
+  namespace: sca
+spec:
+  tls:
+    - hosts:
+        - sca.myopeninfra.com
+      secretName: sca-secret-new-lts
+  rules:
+    - host: sca.myopeninfra.com
+      http:
+        paths:
+          - backend:
+              serviceName: sca-web
+              servicePort: 8528
+            path: /(.*)
+          - backend:
+              serviceName: sca-gateway
+              servicePort: 8080
+            path: /gateway/(.*)
+          - backend:
+              serviceName: sca-api-gateway
+              servicePort: 8020
+            path: /apigw/(.*)

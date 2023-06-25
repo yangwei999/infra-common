@@ -19,9 +19,6 @@ spec:
         - name: init-frontend-database
           image: ebiqe/alpine-nc:latest
           command: [ "sh", "-c", "until nc -z database.fedora-copr.svc.cluster.local 5432; do echo waiting for database service ; sleep 2; done;" ]
-        - name: init-frontend-redis
-          image: ebiqe/alpine-nc:latest
-          command: [ "sh", "-c", "until nc -z redis.fedora-copr.svc.cluster.local 6379; do echo waiting for redis service ; sleep 2; done;" ]
       containers:
         - image: swr.cn-north-4.myhuaweicloud.com/opensourceway/copr/frontend-test:v1.0.20230310174025
           imagePullPolicy: IfNotPresent

@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: meeting-service
+  namespace: opengauss-website
+spec:
+  selector:
+    app: meetingserver
+  ports:
+  - name: meeting-api-endpoint
+    port: 80
+    targetPort: 8080
+  type: ClusterIP

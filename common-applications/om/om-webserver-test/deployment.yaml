@@ -17,7 +17,7 @@ spec:
       - name: huawei-swr-image-pull-secret
       containers:
         - name: om-webserver
-          image: swr.cn-north-4.myhuaweicloud.com/om/om-webserver:0.4.39
+          image: swr.cn-north-4.myhuaweicloud.com/om/om-webserver:0.4.40
           resources:
             limits:
               cpu: 1000m
@@ -31,7 +31,7 @@ spec:
             periodSeconds: 10
             successThreshold: 1
             tcpSocket:
-              port: 8888
+              port: 8080
             timeoutSeconds: 5
           readinessProbe:
             failureThreshold: 3
@@ -39,10 +39,10 @@ spec:
             periodSeconds: 10
             successThreshold: 1
             tcpSocket:
-              port: 8888
+              port: 8080
             timeoutSeconds: 5
           ports:
-            - containerPort: 8888
+            - containerPort: 8080
               name: om-webserver
           volumeMounts:
             - mountPath: /var/lib/om-webserver/application.properties

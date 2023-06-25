@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: big-model-finetune-deployment
+  namespace: xihe-test-v2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: big-model-finetune
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: big-model-finetune
+    spec:
+      securityContext:
+        sysctls:
+        - name: kernel.sem
+          value: "32000 1024000000 500 64000"
+      nodeSelector:
+        kubernetes.kernel.sem: "true"
+      containers:
+      - image: swr.cn-north-4.myhuaweicloud.com/opensourceway/xihe/big-model-finetune:c409315983b32f9ea44dae3c51e2a54123a5673e
+        imagePullPolicy: IfNotPresent
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 20
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 5
+        name: big-model-finetune
+        env:
+        - name: CPU_COUNT
+          valueFrom:
+            secretKeyRef:
+              key: big_model_finetune_cpu_count
+              name: big-model-finetune-secret
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 5
+        resources:
+          limits:
+            cpu: 2000m
+            memory: 3000Mi
+          requests:
+            cpu: 1000m
+            memory: 1500Mi

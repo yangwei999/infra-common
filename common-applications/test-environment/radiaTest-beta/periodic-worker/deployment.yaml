@@ -30,6 +30,9 @@ spec:
         - mountPath: /etc/radiaTest/server.ini
           name: radiatest-secret
           subPath: server.ini
+        - mountPath: /etc/radiaTest_ssl/cacert.pem
+          name: radiatest-secret
+          subPath: cacert.pem
         - mountPath: /tmp
           name: periodic-worker-share
         resources:

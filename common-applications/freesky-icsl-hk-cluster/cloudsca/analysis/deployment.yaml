@@ -1,0 +1,72 @@
+# Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sca-analysis
+  namespace: sca
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sca-analysis
+  template:
+    metadata:
+      labels:
+        app: sca-analysis
+    spec:
+      imagePullSecrets:
+        - name: huawei-swr-image-pull-secret
+      containers:
+      - name: sca-analysis
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/icsl/sca-analysis:e3f18e9d68b97b834e2944dc14fe4100993c23ba
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: app-port
+          containerPort: 8015
+        env:
+          - name: MY_POD_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+          - name: SERVICE_NAME
+            value: analysis-service
+          - name: EUREKA_SERVER
+            value: "http://eureka.sca.svc.cluster.local:9000/eureka"
+          - name: APP_ENV
+            value: acceptance
+          - name: PACKAGE_VERSION
+            value: 1.0-SNAPSHOT
+          - name: MAX_HEAP_MEM
+            value: 3072m
+          - name: INIT_HEAP_MEM
+            value: 1024m
+          - name: CMS_IOF
+            value: "75"
+          - name: INIT_KEY
+            valueFrom:
+              secretKeyRef:
+                name: sca-secret
+                key: app-init-key
+          - name: jasypt.encryptor.algorithm
+            valueFrom:
+              secretKeyRef:
+                name: sca-secret
+                key: jasypt_encryptor_algorithm
+          - name: jasypt_password
+            valueFrom:
+              secretKeyRef:
+                name: sca-secret
+                key: jasypt_encryptor_password
+          - name: majun.access.token
+            valueFrom:
+              secretKeyRef:
+                name: sca-secret
+                key: majun_access_token
+        resources:
+          requests:
+            cpu: 500m
+            memory: 2G
+          limits:
+            cpu: 1000m
+            memory: 4G
+

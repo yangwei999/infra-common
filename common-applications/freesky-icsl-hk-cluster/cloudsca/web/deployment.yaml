@@ -1,0 +1,44 @@
+# Deployment 
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sca-web
+  namespace: sca
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: sca-web
+  template:
+    metadata:
+      labels:
+        app: sca-web
+    spec:
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
+      containers:
+      - name: sca-web
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/icsl/sca-web:9339970f803c6fb126b6c30f358020372c7bacf9
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: app-port
+          containerPort: 8015
+        env:
+          - name: MY_POD_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+          - name: SERVICE_NAME
+            value: sca-web
+        resources:
+          requests:
+            cpu: 300m
+            memory: 500Mi
+          limits:
+            cpu: 2000m
+            memory: 2048Mi

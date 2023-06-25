@@ -32,7 +32,11 @@ spec:
           - --skip-auth-regex=^/adjuncts/
           - --skip-auth-regex=^/images/
           - --skip-auth-regex=^/jnlpJars/
-          - --skip-auth-regex=^/
+          - --skip-auth-regex=^/computer/
+          - --skip-auth-regex=^/wsagents/
+          - --skip-auth-regex=^/generic-webhook-trigger/
+          - --skip-auth-regex=^/crumbIssuer/
+          - --skip-auth-regex=^/github-webhook/
           # for webhook to be triggered
           - --skip-auth-regex=^/gitee-project/
           - --insecure-oidc-allow-unverified-email=true
