@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: om-webserver
-          image: swr.cn-north-4.myhuaweicloud.com/om/om-webserver:0.4.12
+          image: swr.cn-north-4.myhuaweicloud.com/opensourceway/icsl/om-webserver:test-pwd-5f0952
           resources:
             limits:
               cpu: 2000m
