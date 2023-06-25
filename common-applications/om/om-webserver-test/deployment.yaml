@@ -17,7 +17,7 @@ spec:
       - name: huawei-swr-image-pull-secret
       containers:
         - name: om-webserver
-          image: swr.cn-north-4.myhuaweicloud.com/om/om-webserver:0.4.40
+          image: swr.cn-north-4.myhuaweicloud.com/om/om-webserver:0.4.42
           resources:
             limits:
               cpu: 1000m
