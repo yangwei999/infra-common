@@ -7,13 +7,4 @@ kind: ConfigMap
 metadata:
   name: nginx-configuration
   namespace: ingress-nginx
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: tcp-services
-  namespace: ingress-nginx
-data:
-  30500: "jenkins/jenkins-agent:50000"
-# this port will be exposed via ingress service
-# 50000 jenkins.osinfra.cn's jenkins tunnel port
+
