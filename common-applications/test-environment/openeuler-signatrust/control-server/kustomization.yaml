@@ -13,4 +13,4 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/signatrust/signatrust-control-server
-  newTag: b0970afdb91d4943903c9e638d7224947023db86
+  newTag: f7ebece923a24875a2fb7d8527454ea1e8298c9d
