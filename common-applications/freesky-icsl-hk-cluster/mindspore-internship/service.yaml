@@ -1,0 +1,14 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: internship-service
+  namespace: mindspore-internship
+spec:
+  ports:
+    - name: httpport
+      port: 80
+      targetPort: 80
+  selector:
+    app: internship-website
+  type: ClusterIP

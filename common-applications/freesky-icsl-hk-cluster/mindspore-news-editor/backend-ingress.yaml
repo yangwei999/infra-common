@@ -8,7 +8,7 @@ metadata:
   namespace: mindspore-news-editor
 spec:
   rules:
-  - host: news.mindspore.myopeninfra.com
+  - host: console.mindspore.myopeninfra.com
     http:
       paths:
       - backend:
@@ -17,5 +17,5 @@ spec:
         path: /
   tls:
   - hosts:
-    - news.mindspore.myopeninfra.com
+    - console.mindspore.myopeninfra.com
     secretName: backend-tls
