@@ -51,6 +51,7 @@ resources:
   - forumpost
   - eur-openeuler
   - eur-openeuler-download
+  - hub-oepkgs
 commonAnnotations:
   owner: zhongjun
   email: "jun.zhongjun2@gmail.com"
