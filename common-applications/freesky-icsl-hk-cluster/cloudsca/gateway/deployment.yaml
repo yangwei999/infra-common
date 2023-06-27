@@ -29,7 +29,7 @@ spec:
               fieldRef:
                 fieldPath: metadata.name
           - name: SERVICE_NAME
-            value: sca-gateway
+            value: utralsca-gateway
           - name: EUREKA_SERVER
             value: "http://eureka.sca.svc.cluster.local:9000/eureka"
           - name: APP_ENV
