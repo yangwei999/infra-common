@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: chat-api
@@ -6,8 +6,12 @@ metadata:
   labels:
     app: chat-api
 spec:
-  replicas: 4
-  revisionHistoryLimit: 10
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: chat-api
   template:
     metadata:
       labels:
@@ -15,14 +19,14 @@ spec:
     spec:
       containers:
         - name: chat-api
-          image: swr.ap-southeast-1.myhuaweicloud.com/chatapi/chat-api:0.0.1
+          image: swr.cn-north-4.myhuaweicloud.com/opensourceway/chatapi/chat-api:0.0.1
           resources:
             limits:
               cpu: 2000m
-              memory: 8000Mi
+              memory: 4000Mi
             requests:
               cpu: 1000m
-              memory: 5000Mi
+              memory: 2000Mi
           livenessProbe:
             failureThreshold: 3
             initialDelaySeconds: 20
@@ -47,7 +51,6 @@ spec:
               name: chat-api-model-volume
       nodeSelector:
         accelerator: nvidia-t4
-
       volumes:
         - name: chat-api-model-volume
           persistentVolumeClaim:
