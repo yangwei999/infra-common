@@ -1,0 +1,10 @@
+resources:
+- deployment.yaml
+- ingress.yaml
+- service.yaml
+- pvc.yaml
+commonAnnotations:
+  owner: zhongjun
+  email: "jun.zhongjun2@gmail.com"
+commonLabels:
+  common-app: chat-api

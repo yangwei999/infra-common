@@ -1,0 +1,54 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: chat-api
+  namespace: om
+  labels:
+    app: chat-api
+spec:
+  replicas: 4
+  revisionHistoryLimit: 10
+  template:
+    metadata:
+      labels:
+        app: chat-api
+    spec:
+      containers:
+        - name: chat-api
+          image: swr.ap-southeast-1.myhuaweicloud.com/chatapi/chat-api:0.0.1
+          resources:
+            limits:
+              cpu: 2000m
+              memory: 8000Mi
+            requests:
+              cpu: 1000m
+              memory: 5000Mi
+          livenessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 20
+            periodSeconds: 10
+            successThreshold: 1
+            tcpSocket:
+              port: 8080
+            timeoutSeconds: 5
+          readinessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            successThreshold: 1
+            tcpSocket:
+              port: 8080
+            timeoutSeconds: 5
+          ports:
+            - containerPort: 8080
+              name: chat-api
+          volumeMounts:
+            - mountPath: /mnt
+              name: chat-api-model-volume
+      nodeSelector:
+        accelerator: nvidia-t4
+
+      volumes:
+        - name: chat-api-model-volume
+          persistentVolumeClaim:
+            secretName: chat-api-model
