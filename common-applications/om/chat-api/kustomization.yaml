@@ -3,6 +3,7 @@ resources:
 - ingress.yaml
 - service.yaml
 - pvc.yaml
+- namespace.yaml
 commonAnnotations:
   owner: zhongjun
   email: "jun.zhongjun2@gmail.com"
