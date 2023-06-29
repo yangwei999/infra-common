@@ -47,8 +47,7 @@ spec:
             - containerPort: 8080
               name: chat-api
           volumeMounts:
-            - mountPath: /mnt
-              subPath: chat-api-model
+            - mountPath: /var/lib/om/model/chatglm-6b
               name: chat-api-model-volume
       nodeSelector:
         accelerator: nvidia-t4
