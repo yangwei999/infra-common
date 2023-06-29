@@ -48,10 +48,11 @@ spec:
               name: chat-api
           volumeMounts:
             - mountPath: /mnt
+              subPath: chat-api-model
               name: chat-api-model-volume
       nodeSelector:
         accelerator: nvidia-t4
       volumes:
         - name: chat-api-model-volume
           persistentVolumeClaim:
-            secretName: chat-api-model
+            claimName: chat-api-model
