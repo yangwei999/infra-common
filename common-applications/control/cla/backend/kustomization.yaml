@@ -4,11 +4,11 @@ resources:
 - service.yaml
 - pvc.yaml
 commonAnnotations:
-  kubernetes.ops.cluster: openeuler-hk
+  kubernetes.ops.cluster: mindspore-cn1-cluster
   kubernetes.ops.email: chenzeng765@163.com
   kubernetes.ops.os.base: debian
   kubernetes.ops.owner: chenzeng
-  kubernetes.ops.region: hk
+  kubernetes.ops.region: beijing
 namespace: cla
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization

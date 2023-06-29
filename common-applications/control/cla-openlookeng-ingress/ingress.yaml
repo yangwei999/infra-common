@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/permanent-redirect: https://clasign.osinfra.cn$request_uri
+  name: clasign-ingress
+  namespace: cla
+spec:
+  rules:
+  - host: clasign.openlookeng.io
+  tls:
+  - hosts:
+    - clasign.openlookeng.io
+    secretName: clasign-openlookeng-tls
