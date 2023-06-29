@@ -9,3 +9,4 @@ commonAnnotations:
   email: "jun.zhongjun2@gmail.com"
 commonLabels:
   common-app: chat-api
+namespace: chat-api
