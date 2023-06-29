@@ -39,4 +39,11 @@ spec:
             secretKeyRef:
               key: GIT_PASSWORD
               name: docs-secrets
+        volumeMounts:
+        - mountPath: /root/workspace
+          name: data
       restartPolicy: Never
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: data-volume

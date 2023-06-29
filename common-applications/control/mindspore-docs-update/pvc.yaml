@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: data-volume
+  namespace: mindspore-docs-update
+  annotations:
+    everest.io/disk-volume-type: SSD
+spec:
+  storageClassName: csi-disk-sas
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi
+  volumeMode: Filesystem
