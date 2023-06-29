@@ -3,8 +3,9 @@ kind: Ingress
 metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
-    nginx.ingress.kubernetes.io/rewrite-target: /
-    nginx.ingress.kubernetes.io/permanent-redirect: https://clasign.osinfra.cn$request_uri
+    nginx.ingress.kubernetes.io/server-snippet: |
+      rewrite ^/sign$ https://clasign.osinfra.cn/sign/gitee_openlookeng-1614322910578209320 redirect;
+      rewrite ^/$     https://clasign.osinfra.cn/                                           redirect;
   name: clasign-ingress
   namespace: cla
 spec:
