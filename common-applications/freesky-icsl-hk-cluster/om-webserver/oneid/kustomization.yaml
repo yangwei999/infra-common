@@ -14,4 +14,4 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/icsl/oneid-server
-  newTag: 73cf804d66be21549c707318dfad376f9d0649a9
+  newTag: 3617a0f266829bedd789ed69fa9c010fd6fd62dd
