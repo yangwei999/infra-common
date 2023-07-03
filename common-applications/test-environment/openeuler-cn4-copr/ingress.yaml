@@ -32,6 +32,10 @@ spec:
           serviceName: copr-frontend
           servicePort: 5000
         path: /
+      - backend:
+          serviceName: copr-backend
+          servicePort: 5002
+        path: /stats
   tls:
   - hosts:
     - packages.test.osinfra.cn
