@@ -29,25 +29,6 @@ spec:
               cpu: 1000m
               memory: 2000Mi
               nvidia.com/gpu: 1
-          livenessProbe:
-            failureThreshold: 3
-            initialDelaySeconds: 20
-            periodSeconds: 10
-            successThreshold: 1
-            tcpSocket:
-              port: 8080
-            timeoutSeconds: 5
-          readinessProbe:
-            failureThreshold: 3
-            initialDelaySeconds: 10
-            periodSeconds: 10
-            successThreshold: 1
-            tcpSocket:
-              port: 8080
-            timeoutSeconds: 5
-          ports:
-            - containerPort: 8080
-              name: chat-api
           volumeMounts:
             - mountPath: /var/lib/om/model/chatglm-6b
               name: chat-api-model-volume
