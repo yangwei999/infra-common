@@ -23,10 +23,12 @@ spec:
           resources:
             limits:
               cpu: 2000m
-              memory: 4000Mi
+              memory: 16000Mi
+              nvidia.com/gpu: 1
             requests:
               cpu: 1000m
               memory: 2000Mi
+              nvidia.com/gpu: 1
           livenessProbe:
             failureThreshold: 3
             initialDelaySeconds: 20
