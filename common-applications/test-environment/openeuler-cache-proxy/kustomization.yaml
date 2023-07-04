@@ -8,7 +8,7 @@ commonAnnotations:
   kubernetes.ops.region: hk
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/cache-proxy-test
-  newTag: master-6ade40
+  newTag: wenhao7-6fbeae
 kind: Kustomization
 namespace: openeuler-cache-proxy
 resources:
