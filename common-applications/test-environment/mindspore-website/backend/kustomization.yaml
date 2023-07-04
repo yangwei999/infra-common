@@ -1,7 +1,7 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 commonAnnotations:
   kubernetes.ops.cluster: test-cluster
-  kubernetes.ops.email: ''
+  kubernetes.ops.email: ""
   kubernetes.ops.os.base: openeuler
   kubernetes.ops.owner: chenyang
   kubernetes.ops.region: hk
@@ -13,3 +13,6 @@ resources:
 - backend-service.yaml
 - backend-secret.yaml
 - backend-deployment.yaml
+images:
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/mindspore/website-backend
+  newTag: test-v1.0.20230704110818
