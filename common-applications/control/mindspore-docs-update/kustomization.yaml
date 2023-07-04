@@ -14,4 +14,4 @@ kind: Kustomization
 namespace: mindspore-docs-update
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/mindspore/docs-whl
-  newTag: v1.0.20230704185422
+  newTag: v1.0.20230704202216
