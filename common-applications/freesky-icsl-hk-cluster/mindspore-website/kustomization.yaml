@@ -16,4 +16,4 @@ commonAnnotations:
 kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/icsl/mindspore-website
-  newTag: 38a526f3222a891ed9038033ca11c7adf0e69868
+  newTag: c8f067eff77e2c71b2b596133cd1becbcd64490e
