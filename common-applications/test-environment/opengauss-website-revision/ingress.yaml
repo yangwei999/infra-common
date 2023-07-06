@@ -12,6 +12,10 @@ metadata:
       rewrite ^/zh/cve.html$                              /zh/cve/ redirect;
       rewrite ^/zh/summit.html                            /zh/summit/summit2022/  permanent;
       rewrite ^/zh/summit2021.html                        /zh/summit/summit2021/  permanent;
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      add_header X-XSS-Protection "1; mode=block";
+      add_header Strict-Transport-Security "max-age=31536000";
+      add_header Content-Security-Policy "script-src 'self' *.baidu.com ers.baidu.com; object-src 'none'; frame-ancestors https://vhall.huawei.com";
   name: opengauss-website-ingress
   namespace: opengauss-website-revision
 spec:
