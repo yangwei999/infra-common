@@ -20,9 +20,14 @@ spec:
           name: http
           protocol: TCP
         volumeMounts:
+        - mountPath: /app/conf/xihe-gitlab/kafka
+          name: secret-volume
+          subPath: KAFKA_ADDRESS
         - mountPath: /app/conf/xihe-gitlab/app_config/
           name: app-config
           readOnly: true
+        - mountPath: /workspace
+          name: data-volume
         env:
         - name: ACCESS_HMAC
           valueFrom:
@@ -68,3 +73,10 @@ spec:
       - name: app-config
         configMap:
           name: configmap-sync-repo
+      - name: secret-volume
+        secret:
+          defaultMode: 420
+          secretName: xihe-secret
+      - name: data-volume
+        persistentVolumeClaim:
+          claimName: xihe-sync-repo-pvc-sync-repo
