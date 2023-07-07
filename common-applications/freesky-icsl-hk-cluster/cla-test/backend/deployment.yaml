@@ -34,19 +34,36 @@ spec:
               mkdir -p /opt/app/conf/pdfs/output
               /opt/app/cla-server
           env:
+            - name: REDISDB_IP
+              valueFrom:
+                secretKeyRef:
+                  name: cla-secrets
+                  key: redis-ip
+            - name: REDISDB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: cla-secrets
+                  key: redis-password
             - name: MONGODB_CONNECTION
               valueFrom:
                 secretKeyRef:
                   name: cla-secrets
                   key: mongodb-connection
-            - name: CLA_PLATFORM_URL
-              value: "https://clasign.myopeninfra.com/"
             - name: MONGODB_NAME
               value: "cla-test"
+            - name: CLA_PLATFORM_URL
+              value: "https://clasign.test.myopeninfra.com"
+            - name: COOKIE_DOMAIN
+              value: "clasign.test.myopeninfra.com"
             - name: PASSWORD_RETRIEVAL_URL
               value: "https://clasign.test.myopeninfra.com/retrieve-password"
             - name: PASSWORD_RESET_URL
               value: "https://clasign.test.myopeninfra.com/reset-password"
+            - name: GMAIL_CREDENTIALS
+              valueFrom:
+                secretKeyRef:
+                  name: cla-secrets
+                  key: gmail-credentials
             - name: API_TOKEN_KEY
               valueFrom:
                 secretKeyRef:
@@ -57,6 +74,31 @@ spec:
                 secretKeyRef:
                   name: cla-secrets
                   key: symmetric-encryption-key
+            - name: SYMMETRIC_ENCRYPTION_NONCE
+              valueFrom:
+                secretKeyRef:
+                  name: cla-secrets
+                  key: symmetric-encryption-nonce
+            - name: GITEE_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: cla-secrets
+                  key: gitee-client-id
+            - name: GITEE_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: cla-secrets
+                  key: gitee-client-secret
+            - name: GITHUB_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: cla-secrets
+                  key: github-client-id
+            - name: GITHUB_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: cla-secrets
+                  key: github-client-secret
             - name: HTTP_PORT
               value: "80"
             - name: RUN_MODE
