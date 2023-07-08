@@ -15,4 +15,4 @@ resources:
 - backend-deployment.yaml
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/mindspore/website-backend
-  newTag: test-v1.0.20230707162827
+  newTag: test-v1.0.20230708171138
