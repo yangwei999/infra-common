@@ -19,7 +19,10 @@ spec:
     spec:
       containers:
         - name: chat-api
-          image: swr.cn-north-4.myhuaweicloud.com/opensourceway/chatapi/chat-api:0.0.1
+          image: swr.cn-north-4.myhuaweicloud.com/opensourceway/chatapi/chat-api:0.0.4
+          env:
+            - name: LD_LIBRARY_PATH
+              value: /usr/local/nvidia/lib64
           resources:
             limits:
               cpu: 2000m
@@ -32,9 +35,15 @@ spec:
           volumeMounts:
             - mountPath: /var/lib/om/model/chatglm-6b
               name: chat-api-model-volume
+            - mountPath: /var/lib/om/config.ini
+              subPath: credentials_cfg
+              name: chat-api-secrets-volume
       nodeSelector:
         accelerator: nvidia-t4
       volumes:
         - name: chat-api-model-volume
           persistentVolumeClaim:
             claimName: chat-api-model
+        - name: chat-api-secrets-volume
+          secret:
+            secretName: chat-api-secrets

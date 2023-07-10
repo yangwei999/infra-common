@@ -4,6 +4,7 @@ resources:
 - service.yaml
 - pvc.yaml
 - namespace.yaml
+- secrets.yaml
 commonAnnotations:
   owner: zhongjun
   email: "jun.zhongjun2@gmail.com"
