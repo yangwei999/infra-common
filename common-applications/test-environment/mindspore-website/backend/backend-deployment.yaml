@@ -14,8 +14,16 @@ spec:
     spec:
       imagePullSecrets:
       - name: huawei-swr-image-pull-secret
-      nodeSelector:
-        autoscaler: "true"
+      affinity:
+        podAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - website
+            topologyKey: kubernetes.io/hostname
       containers:
       - env:
         - name: MS_MYSQL_URL
@@ -59,3 +67,10 @@ spec:
           requests:
             cpu: 1000m
             memory: 1000Mi
+        volumeMounts:
+        - mountPath: /mnt/share/file
+          name: website-data-volume
+      volumes:
+      - name: website-data-volume
+        persistentVolumeClaim:
+          claimName: website-data

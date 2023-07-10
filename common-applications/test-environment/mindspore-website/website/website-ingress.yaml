@@ -7,7 +7,7 @@ metadata:
     nginx.ingress.kubernetes.io/configuration-snippet: |
       add_header X-XSS-Protection "1; mode=block";
       add_header Strict-Transport-Security "max-age=31536000";
-      add_header Content-Security-Policy "script-src 'self' *.baidu.com ers.baidu.com; object-src 'none'; frame-ancestors https://www.bilibili.com";
+      add_header Content-Security-Policy "script-src 'self' *.baidu.com ers.baidu.com 'unsafe-inline' 'unsafe-eval' cdn.bootcss.com https://cdn.mathjax.org; object-src 'none'; frame-ancestors https://www.bilibili.com";
   name: website-ingress
   namespace: mindspore-website2
 spec:
