@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ether-data-vol
+  namespace: mindspore-etherpad
+  annotations:
+    everest.io/disk-volume-type: SSD
+spec:
+  storageClassName: "csi-disk-sas"
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
