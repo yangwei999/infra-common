@@ -1,0 +1,32 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: chatgpt-deployments-autoscaler
+  namespace: chatgpt
+spec:
+  scaleTargetRef:
+    name: chatgpt-deployments
+  triggers:
+  - type: cron
+    metadata:
+      timezone: Asia/Shanghai
+      start: 0 8 * * *
+      end: 55 23 * * *
+      desiredReplicas: "1"
+
+---
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: oauth2-proxy-autoscaler
+  namespace: chatgpt
+spec:
+  scaleTargetRef:
+    name: oauth2-proxy
+  triggers:
+  - type: cron
+    metadata:
+      timezone: Asia/Shanghai
+      start: 0 8 * * *
+      end: 55 23 * * *
+      desiredReplicas: "1"

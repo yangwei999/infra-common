@@ -1,0 +1,209 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: meetingserver-deployment
+  namespace: opengauss-website-revision
+spec:
+  selector:
+    matchLabels:
+      app: meetingserver
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: meetingserver
+    spec:
+      containers:
+      - command:
+        - /bin/bash
+        - -c
+        - |
+          strip -R .note.ABI-tag /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.11.3
+          python manage.py collectstatic
+          python manage.py makemigrations
+          python manage.py migrate
+          python manage.py sync_sigs
+          exec uwsgi --ini /work/app-meeting-server/deploy/production/uwsgi.ini
+        env:
+        - name: ZOOM_TOKEN
+          valueFrom:
+            secretKeyRef:
+              key: zoom_token
+              name: meetingserver-secret
+        - name: GITEE_OAUTH_CLIENT_ID
+          valueFrom:
+            secretKeyRef:
+              key: gitee_oauth_client_id
+              name: meetingserver-secret
+        - name: GITEE_OAUTH_CLIENT_SECRET
+          valueFrom:
+            secretKeyRef:
+              key: gitee_oauth_client_secret
+              name: meetingserver-secret
+        - name: SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              key: secret_key
+              name: meetingserver-secret
+        - name: GMAIL_USERNAME
+          valueFrom:
+            secretKeyRef:
+              key: gmail_username
+              name: meetingserver-secret
+        - name: GMAIL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: gmail_password
+              name: meetingserver-secret
+        - name: SMTP_SERVER_HOST
+          valueFrom:
+            secretKeyRef:
+              key: smtp_server_host
+              name: meetingserver-secret
+        - name: BILI_UID
+          valueFrom:
+            secretKeyRef:
+              key: bili_uid
+              name: meetingserver-secret
+        - name: SESSDATA
+          valueFrom:
+            secretKeyRef:
+              key: sessdata
+              name: meetingserver-secret
+        - name: BILI_JCT
+          valueFrom:
+            secretKeyRef:
+              key: bili_jct
+              name: meetingserver-secret
+        - name: ACCESS_KEY_ID
+          valueFrom:
+            secretKeyRef:
+              key: access_key_id
+              name: meetingserver-secret
+        - name: SECRET_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              key: secret_access_key
+              name: meetingserver-secret
+        - name: OBS_ENDPOINT
+          valueFrom:
+            secretKeyRef:
+              key: obs_endpoint
+              name: meetingserver-secret
+        - name: OBS_BUCKETNAME
+          valueFrom:
+            secretKeyRef:
+              key: obs_bucketname
+              name: meetingserver-secret
+        - name: REDIRECT_HOME_PAGE
+          valueFrom:
+            secretKeyRef:
+              key: redirect_home_page
+              name: meetingserver-secret
+        - name: ZOOM_HOST_FIRST
+          valueFrom:
+            secretKeyRef:
+              key: zoom_host_first
+              name: meetingserver-secret
+        - name: ZOOM_HOST_SECOND
+          valueFrom:
+            secretKeyRef:
+              key: zoom_host_second
+              name: meetingserver-secret
+        - name: WELINK_HOST_1
+          valueFrom:
+            secretKeyRef:
+              key: welink_host_1
+              name: meetingserver-secret
+        - name: WELINK_HOST_1_ACCOUNT
+          valueFrom:
+            secretKeyRef:
+              key: welink_host_1_account
+              name: meetingserver-secret
+        - name: WELINK_HOST_1_PWD
+          valueFrom:
+            secretKeyRef:
+              key: welink_host_1_pwd
+              name: meetingserver-secret
+        - name: GITEE_OAUTH_REDIRECT
+          valueFrom:
+            secretKeyRef:
+              key: gitee_oauth_redirect
+              name: meetingserver-secret
+        - name: QUERY_TOKEN
+          valueFrom:
+            secretKeyRef:
+              key: query_token
+              name: meetingserver-secret
+        - name: TZ
+          valueFrom:
+            secretKeyRef:
+              key: tz
+              name: meetingserver-secret
+        - name: DB_USER
+          valueFrom:
+            secretKeyRef:
+              key: db_user
+              name: meetingserver-secret
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: db_password
+              name: meetingserver-secret
+        - name: DB_HOST
+          valueFrom:
+            secretKeyRef:
+              key: db_host
+              name: meetingserver-secret
+        - name: DB_PORT
+          valueFrom:
+            secretKeyRef:
+              key: db_port
+              name: meetingserver-secret
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/opengauss/meeting-server-test:v1.0.20221027152017
+        imagePullPolicy: IfNotPresent
+        livenessProbe:
+          failureThreshold: 3
+          initialDelaySeconds: 20
+          periodSeconds: 20
+          successThreshold: 1
+          tcpSocket:
+            port: 8080
+          timeoutSeconds: 5
+        name: meetingserver
+        readinessProbe:
+          failureThreshold: 3
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          successThreshold: 1
+          tcpSocket:
+            port: 8080
+          timeoutSeconds: 5
+        resources:
+          limits:
+            cpu: "1"
+            memory: 1000Mi
+          requests:
+            cpu: 500m
+            memory: 500Mi
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /work/app-meeting-server/meetings/migrations
+          name: container-mountpath
+          subPath: migrations
+        - mountPath: /work/app-meeting-server/share
+          name: container-mountpath
+          subPath: share
+      dnsPolicy: ClusterFirst
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - name: container-mountpath
+        persistentVolumeClaim:
+          claimName: meetings-data-volume
