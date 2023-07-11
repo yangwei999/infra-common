@@ -5,6 +5,7 @@ metadata:
   name: chatgpt-deployments
   namespace: chatgpt
 spec:
+  replicas: 1
   strategy:
     type: Recreate
   selector:
@@ -18,7 +19,7 @@ spec:
       imagePullSecrets:
       - name: huawei-swr-image-pull-secret
       nodeSelector:
-        autoscaler: "true"
+        infra: "true"
       volumes:
         - name: secret
           secret:

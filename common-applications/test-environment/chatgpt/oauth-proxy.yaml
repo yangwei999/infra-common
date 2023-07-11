@@ -6,6 +6,7 @@ metadata:
   name: oauth2-proxy
   namespace: chatgpt
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app: oauth2
@@ -17,7 +18,7 @@ spec:
       imagePullSecrets:
       - name: huawei-swr-image-pull-secret
       nodeSelector:
-        autoscaler: "true"
+        infra: "true"
       containers:
       - args:
         - --provider=oidc
