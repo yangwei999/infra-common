@@ -161,6 +161,21 @@ spec:
             secretKeyRef:
               key: db_port
               name: meetingserver-secret
+        - name: ZOOM_ACCOUNT_FIRST
+          valueFrom:
+            secretKeyRef:
+              key: ZOOM_ACCOUNT_FIRST
+              name: meetingserver-secret
+        - name: ZOOM_ACCOUNT_SECONT
+          valueFrom:
+            secretKeyRef:
+              key: ZOOM_ACCOUNT_SECONT
+              name: meetingserver-secret
+        - name: SMTP_SENDER
+          valueFrom:
+            secretKeyRef:
+              key: SMTP_SENDER
+              name: meetingserver-secret
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/opengauss/meeting-server-test:v1.0.20221027152017
         imagePullPolicy: IfNotPresent
         livenessProbe:

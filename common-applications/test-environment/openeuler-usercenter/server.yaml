@@ -46,6 +46,10 @@ spec:
             secretKeyRef:
               key: DEFAULT_AVATAR
               name: oneid-server-secrets
+        volumeMounts:
+        - mountPath: /root/projects/oneid-server/src/main/resources/application.yaml
+          name: secret
+          subPath: application-yaml
         resources:
           requests:
             cpu: 500m
@@ -53,3 +57,7 @@ spec:
           limits:
             cpu: 500m
             memory: 500Mi
+      volumes:
+      - name: secret
+        secret:
+          secretName: oneid-server-secrets
