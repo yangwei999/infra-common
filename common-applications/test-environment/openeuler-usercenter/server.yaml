@@ -47,7 +47,10 @@ spec:
               key: DEFAULT_AVATAR
               name: oneid-server-secrets
         volumeMounts:
-        - mountPath: /root/projects/oneid-server/src/main/resources/application.yaml
+        - mountPath: /oneid-server/src/main/resources/application.yaml
+          name: secret
+          subPath: application-yaml
+        - mountPath: /oneid-server/target/classes/application.yaml
           name: secret
           subPath: application-yaml
         resources:
