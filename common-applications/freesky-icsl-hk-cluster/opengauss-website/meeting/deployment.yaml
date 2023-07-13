@@ -146,7 +146,10 @@ spec:
                   key: db_host
                   name: meeting-server-secrets
             - name: DB_PORT
-              value: "3306"
+              valueFrom:
+                secretKeyRef:
+                  key: db_port
+                  name: meeting-server-secrets
             - name: GITEE_OAUTH_REDIRECT
               valueFrom:
                 secretKeyRef:
