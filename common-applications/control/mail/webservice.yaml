@@ -155,22 +155,22 @@ spec:
                 secretKeyRef:
                   name: mailman-secrets
                   key: mailweb_redis_password
-            - name: RASP_BACKEND_URL
+            - name: XARMOR_BACKEND_URL
               valueFrom:
                 secretKeyRef:
                   name: mailman-secrets
                   key: rasp_backend_url
-            - name: RASP_APPID
+            - name: XARMOR_APP_ID
               valueFrom:
                 secretKeyRef:
                   name: mailman-secrets
                   key: rasp_appid
-            - name: RASP_APP_TOKEN
+            - name: XARMOR_APP_TOKEN
               valueFrom:
                 secretKeyRef:
                   name: mailman-secrets
                   key: rasp_app_token
-            - name: RASP_TENANT_ID
+            - name: XARMOR_TENANT_ID
               valueFrom:
                 secretKeyRef:
                   name: mailman-secrets
