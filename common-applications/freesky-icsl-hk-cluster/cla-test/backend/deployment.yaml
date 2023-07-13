@@ -50,7 +50,7 @@ spec:
             - |
               mkdir -p /opt/app/conf/pdfs/org_signature_pdf
               mkdir -p /opt/app/conf/pdfs/output
-              /opt/app/start.sh /vault/secret/config
+              /opt/app/start.sh /vault/secrets/config
           env:
             - name: MONGODB_NAME
               value: "cla-test"
