@@ -15,9 +15,27 @@ spec:
       component: cla-backend
   template:
     metadata:
+      annotations:
+        vault.hashicorp.com/agent-inject: 'true'
+        vault.hashicorp.com/role: 'freesky-hk-cla-test'
+        vault.hashicorp.com/agent-inject-secret-config: 'internal/data/infra-common/cla-icsl-test'
+        vault.hashicorp.com/agent-pre-populate-only: "true"
+        vault.hashicorp.com/agent-inject-template-config: |  
+          {{- with secret "internal/infra-common/cla-icsl-test" -}}  
+          GITEE_CLIENT_ID {{ .Data.data.GITEE_CLIENT_ID }}
+          GITEE_CLIENT_SECRET {{ .Data.data.GITEE_CLIENT_SECRET }}
+          GITHUB_CLIENT_ID {{ .Data.data.GITHUB_CLIENT_ID }}
+          GITHUB_CLIENT_SECRET {{ .Data.data.GITHUB_CLIENT_SECRET }}
+          GMAIL_CREDENTIALS {{ .Data.data.GMAIL_CREDENTIALS }}
+          MONGODB_CONNECTION {{ .Data.data.MONGODB_CONNECTION }}
+          REDISDB_IP {{ .Data.data.REDISDB_IP }}
+          REDISDB_PASSWORD {{ .Data.data.REDISDB_PASSWORD }}
+          SYMMETRIC_ENCRYPTION_KEY {{ .Data.data.SYMMETRIC_ENCRYPTION_KEY }}
+          {{- end }}
       labels:
         component: cla-backend
     spec:
+      serviceAccountName: cla-test
       containers:
         - image: swr.cn-north-4.myhuaweicloud.com/opensourceway/icsl/cla-backend:e4d3c10ce59796217020c6d8301c4532f9ea0bd8
           imagePullPolicy: IfNotPresent
@@ -32,23 +50,8 @@ spec:
             - |
               mkdir -p /opt/app/conf/pdfs/org_signature_pdf
               mkdir -p /opt/app/conf/pdfs/output
-              /opt/app/cla-server
+              /opt/app/start.sh /vault/secret/config
           env:
-            - name: REDISDB_IP
-              valueFrom:
-                secretKeyRef:
-                  name: cla-secrets
-                  key: redis-ip
-            - name: REDISDB_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: cla-secrets
-                  key: redis-password
-            - name: MONGODB_CONNECTION
-              valueFrom:
-                secretKeyRef:
-                  name: cla-secrets
-                  key: mongodb-connection
             - name: MONGODB_NAME
               value: "cla-test"
             - name: CLA_PLATFORM_URL
@@ -59,46 +62,16 @@ spec:
               value: "https://clasign.test.myopeninfra.com/retrieve-password"
             - name: PASSWORD_RESET_URL
               value: "https://clasign.test.myopeninfra.com/reset-password"
-            - name: GMAIL_CREDENTIALS
-              valueFrom:
-                secretKeyRef:
-                  name: cla-secrets
-                  key: gmail-credentials
             - name: API_TOKEN_KEY
               valueFrom:
                 secretKeyRef:
                   name: cla-secrets
                   key: api-token-key
-            - name: SYMMETRIC_ENCRYPTION_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: cla-secrets
-                  key: symmetric-encryption-key
             - name: SYMMETRIC_ENCRYPTION_NONCE
               valueFrom:
                 secretKeyRef:
                   name: cla-secrets
                   key: symmetric-encryption-nonce
-            - name: GITEE_CLIENT_ID
-              valueFrom:
-                secretKeyRef:
-                  name: cla-secrets
-                  key: gitee-client-id
-            - name: GITEE_CLIENT_SECRET
-              valueFrom:
-                secretKeyRef:
-                  name: cla-secrets
-                  key: gitee-client-secret
-            - name: GITHUB_CLIENT_ID
-              valueFrom:
-                secretKeyRef:
-                  name: cla-secrets
-                  key: github-client-id
-            - name: GITHUB_CLIENT_SECRET
-              valueFrom:
-                secretKeyRef:
-                  name: cla-secrets
-                  key: github-client-secret
             - name: HTTP_PORT
               value: "80"
             - name: RUN_MODE
@@ -108,15 +81,6 @@ spec:
           volumeMounts:
             - mountPath: /opt/app/conf/pdfs
               name: data-volume
-            - mountPath: /opt/app/conf/platforms/email.yaml
-              subPath: email
-              name: secret-volume
-            - mountPath: /opt/app/conf/platforms/gmail.json
-              subPath: gmail
-              name: secret-volume
-            - mountPath: /opt/app/conf/platforms/code_platforms.yaml
-              subPath: code-platforms
-              name: secret-volume
       volumes:
         - name: data-volume
           persistentVolumeClaim:
