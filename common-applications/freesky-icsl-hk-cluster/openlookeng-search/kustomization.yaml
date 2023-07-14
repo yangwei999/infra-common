@@ -8,5 +8,7 @@ namespace: openlookeng-search
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/icsl/openlookeng-search
+  newTag: 03bf320c629c8c41b820ccfa43597d04e2c14543
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openlookeng/search
   newTag: 8281096ff3d69918a32941c541b57ea1e507fd89
