@@ -166,10 +166,10 @@ spec:
             secretKeyRef:
               key: ZOOM_ACCOUNT_FIRST
               name: meetingserver-secret
-        - name: ZOOM_ACCOUNT_SECONT
+        - name: ZOOM_ACCOUNT_SECOND
           valueFrom:
             secretKeyRef:
-              key: ZOOM_ACCOUNT_SECONT
+              key: ZOOM_ACCOUNT_SECOND
               name: meetingserver-secret
         - name: SMTP_SENDER
           valueFrom:
