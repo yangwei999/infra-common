@@ -362,7 +362,13 @@ spec:
         volumeMounts:
         - mountPath: /opt/app/conf
           name: config
+        - mountPath: /opt/app/ca.crt
+          name: xihe-secret
+          subPath: mongo_ca_crt
       volumes:
       - name: config
         configMap:
           name: server-configmap
+      - name: xihe-secret
+        secret:
+          secretName: xihe-secret
