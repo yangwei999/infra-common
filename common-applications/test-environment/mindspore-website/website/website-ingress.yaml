@@ -7,9 +7,10 @@ metadata:
     nginx.ingress.kubernetes.io/configuration-snippet: |
       add_header X-Content-Type-Options "nosniff";
       add_header X-XSS-Protection "1; mode=block";
-      add_header Strict-Transport-Security "max-age=31536000;includeSubDomains";
       add_header X-Frame-Options "DENY";
-      add_header Content-Security-Policy "script-src 'self' *.baidu.com ers.baidu.com 'unsafe-inline' 'unsafe-eval' cdn.bootcss.com https://cdn.mathjax.org; object-src 'none'; frame-ancestors https://www.bilibili.com";
+      add_header Content-Security-Policy "script-src 'self' *.baidu.com ers.baidu.com 'unsafe-inline' 'unsafe-eval' cdn.bootcss.com https://cdn.mathjax.org; object-src 'none'; frame-ancestors https://player.bilibili.com";
+      add_header Cache-Control "no-cache";
+      add_header Pragma "no-cache";
   name: website-ingress
   namespace: mindspore-website2
 spec:
@@ -36,6 +37,13 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /$1
     nginx.ingress.kubernetes.io/upstream-vhost: dsapi.osinfra.cn
     nginx.ingress.kubernetes.io/backend-protocol: HTTPS
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      add_header X-Content-Type-Options "nosniff";
+      add_header X-XSS-Protection "1; mode=block";
+      add_header X-Frame-Options "DENY";
+      add_header Content-Security-Policy "script-src 'self' *.baidu.com ers.baidu.com 'unsafe-inline' 'unsafe-eval' cdn.bootcss.com https://cdn.mathjax.org; object-src 'none'; frame-src https://player.bilibili.com";
+      add_header Cache-Control "no-cache";
+      add_header Pragma "no-cache";
   name: website-dsapi-ingress
   namespace: mindspore-website2
 spec:
@@ -63,6 +71,13 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /$1
     nginx.ingress.kubernetes.io/upstream-vhost: doc-search.mindspore.cn
     nginx.ingress.kubernetes.io/backend-protocol: HTTPS
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      add_header X-Content-Type-Options "nosniff";
+      add_header X-XSS-Protection "1; mode=block";
+      add_header X-Frame-Options "DENY";
+      add_header Content-Security-Policy "script-src 'self' *.baidu.com ers.baidu.com 'unsafe-inline' 'unsafe-eval' cdn.bootcss.com https://cdn.mathjax.org; object-src 'none'; frame-src https://player.bilibili.com";
+      add_header Cache-Control "no-cache";
+      add_header Pragma "no-cache";
   name: website-search-ingress
   namespace: mindspore-website2
 spec:
