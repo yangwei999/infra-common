@@ -12,4 +12,4 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/icsl/sca-analysis
-  newTag: 0522fb6aaefc9c20a06835a692702ff859d73dab
+  newTag: 532128e548c93e6ee4ba8566d8badb538abf4e6e
