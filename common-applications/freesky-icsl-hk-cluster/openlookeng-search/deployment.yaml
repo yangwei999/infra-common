@@ -16,13 +16,26 @@ spec:
       app: search
   template:
     metadata:
+      annotations:
+        vault.hashicorp.com/agent-inject: 'true'
+        vault.hashicorp.com/role: 'freesky-hk-openlookeng-search'
+        vault.hashicorp.com/agent-inject-secret-application.yml: 'internal/data/openlookeng/search-icsl'
+        vault.hashicorp.com/agent-pre-populate-only: "true"
       labels:
         app: search
     spec:
+      serviceAccount: openlookeng-search
       containers:
       - name: search
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/icsl/openlookeng-search:8281096ff3d69918a32941c541b57ea1e507fd89
         imagePullPolicy: IfNotPresent
+        command:
+        - /bin/bash
+        - -c
+        - |
+          sed -i '1,2d;$d' /vault/secrets/application.yml
+          sed -i '$d'  /vault/secrets/application.yml
+          java -jar /EaseSearch/target/EaseSearch-0.0.1-SNAPSHOT.jar --spring.config.location=$APPLICATION_PATH
         ports:
         - containerPort: 8080
           name: http
@@ -73,6 +86,8 @@ spec:
             secretKeyRef:
               name: search-secrets
               key: tespassword
+        - name: APPLICATION_PATH
+          vaule: "/vault/secrets/application.yml"
         resources:
           requests:
             cpu: 1000m
