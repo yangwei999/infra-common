@@ -67,6 +67,11 @@ spec:
               secretKeyRef:
                 name: sca-secret
                 key: majun_access_token
+          - name: scaSalt
+            valueFrom:
+              secretKeyRef:
+                name: sca-secret
+                key: scaSalt
         resources:
           requests:
             cpu: 200m
@@ -74,4 +79,21 @@ spec:
           limits:
             cpu: 1000m
             memory: 2G
+        volumeMounts:
+        - mountPath: /work.ks
+          name: secret-volume
+          subPath: work_ks
+        - mountPath: /primary.ks
+          name: secret-volume
+          subPath: primary_ks
+        - mountPath: /standby.ks
+          name: secret-volume
+          subPath: standby_ks
+        - mountPath: /opt/app/certs.keystore
+          name: secret-volume
+          subPath: certs_keystore
+      volumes:
+      - name: secret-volume
+        secret:
+          secretName: sca-secret
 
