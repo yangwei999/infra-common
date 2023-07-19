@@ -26,7 +26,6 @@ spec:
           GITEE_CLIENT_SECRET {{ .Data.data.GITEE_CLIENT_SECRET }}
           GITHUB_CLIENT_ID {{ .Data.data.GITHUB_CLIENT_ID }}
           GITHUB_CLIENT_SECRET {{ .Data.data.GITHUB_CLIENT_SECRET }}
-          GMAIL_CREDENTIALS {{ .Data.data.GMAIL_CREDENTIALS }}
           MONGODB_CONNECTION {{ .Data.data.MONGODB_CONNECTION }}
           REDISDB_IP {{ .Data.data.REDISDB_IP }}
           REDISDB_PASSWORD {{ .Data.data.REDISDB_PASSWORD }}
@@ -81,6 +80,9 @@ spec:
           volumeMounts:
             - mountPath: /opt/app/conf/pdfs
               name: data-volume
+            - mountPath: /opt/app/mongodb_ca.crt
+              name: secret-volume
+              subPath: mongodb_ca_crt
       volumes:
         - name: data-volume
           persistentVolumeClaim:
