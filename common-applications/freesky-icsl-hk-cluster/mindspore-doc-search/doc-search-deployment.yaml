@@ -57,7 +57,7 @@ spec:
               key: GIT_PASSWORD
               name: doc-search-secret
         - name: APPLICATION_PATH
-          vaule: "/vault/secrets/application.yml"
+          value: "/vault/secrets/application.yml"
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/icsl/mindspore-search:7332da50ec635bfa39629a7b49dd291295af920d
         imagePullPolicy: IfNotPresent
         command:

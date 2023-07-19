@@ -87,7 +87,7 @@ spec:
               name: search-secrets
               key: tespassword
         - name: APPLICATION_PATH
-          vaule: "/vault/secrets/application.yml"
+          value: "/vault/secrets/application.yml"
         resources:
           requests:
             cpu: 1000m
