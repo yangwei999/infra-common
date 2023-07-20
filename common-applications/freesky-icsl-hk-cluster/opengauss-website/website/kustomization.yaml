@@ -7,7 +7,7 @@ kind: Kustomization
 namespace: opengauss-website
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/icsl/opengauss-website
-  newTag: dcbd3f3bfc497761ccee1f15f1d8103d32b00e34
+  newTag: 0312be6c64ae219c9e989a097e036a10f7ef7974
 commonAnnotations:
   kubernetes.ops.cluster: freesky-icsl-hk-cluster
   kubernetes.ops.email: ""
