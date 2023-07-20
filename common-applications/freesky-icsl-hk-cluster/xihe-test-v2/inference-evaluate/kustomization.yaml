@@ -11,4 +11,4 @@ nameSuffix: -inference-evaluate
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/xihe/xihe
   newName: swr.cn-north-4.myhuaweicloud.com/opensourceway/xihe/xihe-inference-evaluate
-  newTag: norm-d9ab07
+  newTag: norm-0a1b79
