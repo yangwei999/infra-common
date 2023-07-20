@@ -22,14 +22,12 @@ spec:
         vault.hashicorp.com/agent-pre-populate-only: "true"
         vault.hashicorp.com/agent-inject-template-config: |  
           {{- with secret "internal/infra-common/cla-icsl-test" -}}  
-          GITEE_CLIENT_ID {{ .Data.data.GITEE_CLIENT_ID }}
-          GITEE_CLIENT_SECRET {{ .Data.data.GITEE_CLIENT_SECRET }}
-          GITHUB_CLIENT_ID {{ .Data.data.GITHUB_CLIENT_ID }}
-          GITHUB_CLIENT_SECRET {{ .Data.data.GITHUB_CLIENT_SECRET }}
-          MONGODB_CONNECTION {{ .Data.data.MONGODB_CONNECTION }}
-          REDISDB_IP {{ .Data.data.REDISDB_IP }}
-          REDISDB_PASSWORD {{ .Data.data.REDISDB_PASSWORD }}
-          SYMMETRIC_ENCRYPTION_KEY {{ .Data.data.SYMMETRIC_ENCRYPTION_KEY }}
+          {{ .Data.data.config }}
+          {{- end }}
+        vault.hashicorp.com/agent-inject-secret-ca.crt: 'internal/data/infra-common/cla-icsl-test'
+        vault.hashicorp.com/agent-inject-template-ca.crt: |
+          {{- with secret "internal/infra-common/cla-icsl-test" -}}  
+          {{ .Data.data.CA_CERT }}
           {{- end }}
       labels:
         component: cla-backend
@@ -49,44 +47,11 @@ spec:
             - |
               mkdir -p /opt/app/conf/pdfs/org_signature_pdf
               mkdir -p /opt/app/conf/pdfs/output
-              /opt/app/start.sh /vault/secrets/config
-          env:
-            - name: MONGODB_NAME
-              value: "cla-test"
-            - name: CLA_PLATFORM_URL
-              value: "https://clasign.test.myopeninfra.com"
-            - name: COOKIE_DOMAIN
-              value: "clasign.test.myopeninfra.com"
-            - name: PASSWORD_RETRIEVAL_URL
-              value: "https://clasign.test.myopeninfra.com/retrieve-password"
-            - name: PASSWORD_RESET_URL
-              value: "https://clasign.test.myopeninfra.com/reset-password"
-            - name: API_TOKEN_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: cla-secrets
-                  key: api-token-key
-            - name: SYMMETRIC_ENCRYPTION_NONCE
-              valueFrom:
-                secretKeyRef:
-                  name: cla-secrets
-                  key: symmetric-encryption-nonce
-            - name: HTTP_PORT
-              value: "80"
-            - name: RUN_MODE
-              value: dev
-            - name: RESTRICTED_CORP_EMAIL_SUFFIX
-              value: "[qq.com,gmail.com,163.com,foxmail.com,yahoo.com,126.com,139.com,189.cn,sina.com,sina.cn,sohu.com,outlook.com,hotmail.com]"
+              /opt/app/cla-server --config-file=/vault/secrets/config
           volumeMounts:
             - mountPath: /opt/app/conf/pdfs
               name: data-volume
-            - mountPath: /opt/app/mongodb_ca.crt
-              name: secret-volume
-              subPath: mongodb_ca_crt
       volumes:
         - name: data-volume
           persistentVolumeClaim:
             claimName: cla-data-vol
-        - name: secret-volume
-          secret:
-            secretName: cla-secrets
