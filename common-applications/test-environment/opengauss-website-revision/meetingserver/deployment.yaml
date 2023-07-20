@@ -176,6 +176,26 @@ spec:
             secretKeyRef:
               key: SMTP_SENDER
               name: meetingserver-secret
+        - name: XARMOR_BACKEND_URL
+          valueFrom:
+            secretKeyRef:
+              key: xarmor_backend_url
+              name: meetingserver-secret
+        - name: XARMOR_APP_ID
+          valueFrom:
+            secretKeyRef:
+              key: xarmor_app_id
+              name: meetingserver-secret
+        - name: XARMOR_APP_TOKEN
+          valueFrom:
+            secretKeyRef:
+              key: xarmor_app_token
+              name: meetingserver-secret
+        - name: XARMOR_TENANT_ID
+          valueFrom:
+            secretKeyRef:
+              key: xarmor_tenant_id
+              name: meetingserver-secret
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/opengauss/meeting-server-test:v1.0.20221027152017
         imagePullPolicy: IfNotPresent
         livenessProbe:

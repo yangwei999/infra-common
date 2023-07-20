@@ -65,6 +65,26 @@ spec:
             secretKeyRef:
               key: spring_security_user_password
               name: anti-poisoning-secrets
+        - name: XARMOR_BACKEND_URL
+          valueFrom:
+            secretKeyRef:
+              key: xarmor_backend_url
+              name: anti-poisoning-secrets
+        - name: XARMOR_APP_ID
+          valueFrom:
+            secretKeyRef:
+              key: xarmor_app_id
+              name: anti-poisoning-secrets
+        - name: XARMOR_APP_TOKEN
+          valueFrom:
+            secretKeyRef:
+              key: xarmor_app_token
+              name: anti-poisoning-secrets
+        - name: XARMOR_TENANT_ID
+          valueFrom:
+            secretKeyRef:
+              key: xarmor_tenant_id
+              name: anti-poisoning-secrets
         volumeMounts:
         - mountPath: /var/log
           name: log-data

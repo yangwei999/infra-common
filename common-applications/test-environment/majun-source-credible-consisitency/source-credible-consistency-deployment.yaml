@@ -60,6 +60,26 @@ spec:
             secretKeyRef:
               key: spring.security.user.password
               name: source-credible-consistency-secret
+        - name: XARMOR_BACKEND_URL
+          valueFrom:
+            secretKeyRef:
+              key: xarmor_backend_url
+              name: source-credible-consistency-secret
+        - name: XARMOR_APP_ID
+          valueFrom:
+            secretKeyRef:
+              key: xarmor_app_id
+              name: source-credible-consistency-secret
+        - name: XARMOR_APP_TOKEN
+          valueFrom:
+            secretKeyRef:
+              key: xarmor_app_token
+              name: source-credible-consistency-secret
+        - name: XARMOR_TENANT_ID
+          valueFrom:
+            secretKeyRef:
+              key: xarmor_tenant_id
+              name: source-credible-consistency-secret
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/majun/source-credible-consisitency-test:fd4043bb0c586667eec80ae4e349169a8a399a5b
         imagePullPolicy: IfNotPresent
         livenessProbe:
