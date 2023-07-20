@@ -13,43 +13,49 @@ spec:
       app: om-webserver
   template:
     metadata:
+      annotations:
+        vault.hashicorp.com/agent-inject: 'true'
+        vault.hashicorp.com/role: 'freesky-hk-xihe-oneid'
+        vault.hashicorp.com/agent-inject-secret-application.yml: 'internal/data/infra-common/xihe-oneid'
+        vault.hashicorp.com/agent-pre-populate-only: "true"
+        vault.hashicorp.com/agent-inject-template-application.yml: |  
+          {{- with secret "internal/data/infra-common/xihe-oneid" -}}  
+          {{ .Data.data.application_xihe_properties }}
+          {{- end }}
       labels:
         app: om-webserver
     spec:
+      serviceAccountName: xihe-oneid
       containers:
-        - name: om-webserver
-          image: swr.cn-north-4.myhuaweicloud.com/opensourceway/icsl/om-webserver:test-pwd-5f0952
-          resources:
-            limits:
-              cpu: 2000m
-              memory: 4000Mi
-            requests:
-              cpu: 2000m
-              memory: 4000Mi
-          livenessProbe:
-            failureThreshold: 3
-            initialDelaySeconds: 20
-            periodSeconds: 10
-            successThreshold: 1
-            tcpSocket:
-              port: 8080
-            timeoutSeconds: 5
-          readinessProbe:
-            failureThreshold: 3
-            initialDelaySeconds: 10
-            periodSeconds: 10
-            successThreshold: 1
-            tcpSocket:
-              port: 8080
-            timeoutSeconds: 5
-          ports:
-            - containerPort: 8080
-              name: om-webserver
-          volumeMounts:
-            - mountPath: /var/lib/om-webserver/application.properties
-              subPath: application_properties
-              name: om-webserver-secrets-volume
-      volumes:
-        - name: om-webserver-secrets-volume
-          secret:
-            secretName: om-webserver-secrets
+      - name: om-webserver
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/icsl/om-webserver:test-pwd-5f0952
+        env:
+        - name: APPLICATION_PATH
+          value: "/vault/secrets/application.yml"
+        resources:
+          limits:
+            cpu: 2000m
+            memory: 4000Mi
+          requests:
+            cpu: 2000m
+            memory: 4000Mi
+        livenessProbe:
+          failureThreshold: 3
+          initialDelaySeconds: 20
+          periodSeconds: 10
+          successThreshold: 1
+          tcpSocket:
+            port: 8080
+          timeoutSeconds: 5
+        readinessProbe:
+          failureThreshold: 3
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          successThreshold: 1
+          tcpSocket:
+            port: 8080
+          timeoutSeconds: 5
+        ports:
+          - containerPort: 8080
+            name: om-webserver
+        

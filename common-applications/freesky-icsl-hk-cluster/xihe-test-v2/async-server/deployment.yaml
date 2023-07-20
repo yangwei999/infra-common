@@ -14,218 +14,29 @@ spec:
     type: RollingUpdate
   template:
     metadata:
+      annotations:
+        vault.hashicorp.com/agent-inject: "true"
+        vault.hashicorp.com/agent-inject-secret-application.yml: xihe/data/conf
+        vault.hashicorp.com/agent-inject-template-application.yml: |
+          {{- with secret "xihe/data/conf/" -}}
+          {{ .Data.data.asyncserver }}
+          {{- end }}
+        vault.hashicorp.com/agent-pre-populate-only: "true"
+        vault.hashicorp.com/role: xihe-test
       labels:
         app: async-server
     spec:
+      serviceAccount: xihe-test
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
       containers:
       - image: swr.cn-north-4.myhuaweicloud.com/opensourceway/xihe/xihe-async-server:v1.0.20230420194635
         imagePullPolicy: IfNotPresent
         name: async-server
         args:
         - --port=8000
-        - --config-file=/opt/app/conf/config.yaml
-        - --enable_debug=true
-        env:
-        - name: PGSQL_HOST
-          valueFrom:
-            secretKeyRef:
-              key: PGSQL_HOST
-              name: xihe-statistics-secret
-        - name: PGSQL_USER
-          valueFrom:
-            secretKeyRef:
-              key: PGSQL_USER
-              name: xihe-statistics-secret
-        - name: PGSQL_PWD
-          valueFrom:
-            secretKeyRef:
-              key: PGSQL_PWD
-              name: xihe-statistics-secret
-        - name: PGSQL_NAME
-          valueFrom:
-            secretKeyRef:
-              key: PGSQL_NAME
-              name: xihe-statistics-secret
-        - name: PGSQL_PORT
-          valueFrom:
-            secretKeyRef:
-              key: PGSQL_PORT
-              name: xihe-statistics-secret
-        - name: BIGMODEL_USER
-          valueFrom:
-            secretKeyRef:
-              key: BIGMODEL_USER
-              name: xihe-secret
-        - name: BIGMODEL_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              key: BIGMODEL_PASSWORD
-              name: xihe-secret
-        - name: BIGMODEL_PROJECT
-          valueFrom:
-            secretKeyRef:
-              key: BIGMODEL_PROJECT
-              name: xihe-secret
-        - name: BIGMODEL_AUTH_ENDPOINT
-          valueFrom:
-            secretKeyRef:
-              key: BIGMODEL_AUTH_ENDPOINT
-              name: xihe-secret
-        - name: BIGMODEL_VQA
-          valueFrom:
-            secretKeyRef:
-              key: BIGMODEL_VQA
-              name: xihe-secret
-        - name: BIGMODEL_PANGU
-          valueFrom:
-            secretKeyRef:
-              key: BIGMODEL_PANGU
-              name: xihe-secret
-        - name: BIGMODEL_LUOJIA
-          valueFrom:
-            secretKeyRef:
-              key: BIGMODEL_LUOJIA
-              name: xihe-secret
-        - name: BIGMODEL_WUKONG
-          valueFrom:
-            secretKeyRef:
-              key: BIGMODEL_WUKONG
-              name: xihe-secret
-        - name: BIGMODEL_CODEGEEX
-          valueFrom:
-            secretKeyRef:
-              key: BIGMODEL_CODEGEEX
-              name: xihe-secret
-        - name: BIGMODEL_DESCRIBE_PICTURE
-          valueFrom:
-            secretKeyRef:
-              key: BIGMODEL_DESCRIBE_PICTURE
-              name: xihe-secret
-        - name: BIGMODEL_SINGLE_PICTURE
-          valueFrom:
-            secretKeyRef:
-              key: BIGMODEL_SINGLE_PICTURE
-              name: xihe-secret
-        - name: BIGMODEL_MULTI_PICTURES
-          valueFrom:
-            secretKeyRef:
-              key: BIGMODEL_MULTI_PICTURES
-              name: xihe-secret
-        - name: VQA_OBS_ENDPOINT
-          valueFrom:
-            secretKeyRef:
-              key: VQA_OBS_ENDPOINT
-              name: xihe-secret
-        - name: VQA_OBS_ACCESS_KEY
-          valueFrom:
-            secretKeyRef:
-              key: VQA_OBS_ACCESS_KEY
-              name: xihe-secret
-        - name: VQA_OBS_SECRET_KEY
-          valueFrom:
-            secretKeyRef:
-              key: VQA_OBS_SECRET_KEY
-              name: xihe-secret
-        - name: VQA_OBS_BUCKET
-          valueFrom:
-            secretKeyRef:
-              key: VQA_OBS_BUCKET
-              name: xihe-secret
-        - name: LUOJIA_OBS_BUCKET
-          valueFrom:
-            secretKeyRef:
-              key: LUOJIA_OBS_BUCKET
-              name: xihe-secret
-        - name: HW_OBS_AK
-          valueFrom:
-            secretKeyRef:
-              key: HW_OBS_AK
-              name: xihe-secret
-        - name: HW_OBS_SK
-          valueFrom:
-            secretKeyRef:
-              key: HW_OBS_SK
-              name: xihe-secret
-        - name: BIGMODEL_DOMAIN_WUKONG
-          valueFrom:
-            secretKeyRef:
-              key: BIGMODEL_DOMAIN_WUKONG
-              name: xihe-secret
-        - name: BIGMODEL_USER_WUKONG
-          valueFrom:
-            secretKeyRef:
-              key: BIGMODEL_USER_WUKONG
-              name: xihe-secret
-        - name: BIGMODEL_PASSWORD_WUKONG
-          valueFrom:
-            secretKeyRef:
-              key: BIGMODEL_PASSWORD_WUKONG
-              name: xihe-secret
-        - name: BIGMODEL_PROJECT
-          valueFrom:
-            secretKeyRef:
-              key: BIGMODEL_PROJECT
-              name: xihe-secret
-        - name: BIGMODEL_AUTH_ENDPOINT_WUKONG
-          valueFrom:
-            secretKeyRef:
-              key: BIGMODEL_AUTH_ENDPOINT_WUKONG
-              name: xihe-secret
-        - name: WUKONG_OBS_ENDPOINT
-          valueFrom:
-            secretKeyRef:
-              key: WUKONG_OBS_ENDPOINT
-              name: xihe-secret
-        - name: WUKONG_OBS_ACCESS_KEY
-          valueFrom:
-            secretKeyRef:
-              key: WUKONG_OBS_ACCESS_KEY
-              name: xihe-secret
-        - name: WUKONG_OBS_SECRET_KEY
-          valueFrom:
-            secretKeyRef:
-              key: WUKONG_OBS_SECRET_KEY
-              name: xihe-secret
-        - name: WUKONG_OBS_BUCKET
-          valueFrom:
-            secretKeyRef:
-              key: WUKONG_OBS_BUCKET
-              name: xihe-secret
-        - name: KAFKA_ADDRESS
-          valueFrom:
-            secretKeyRef:
-              key: KAFKA_ADDRESS
-              name: xihe-secret
-        - name: BIGMODEL_WUKONG_2IMG
-          valueFrom:
-            secretKeyRef:
-              key: BIGMODEL_WUKONG_2IMG
-              name: xihe-secret
-        - name: BIGMODEL_WUKONG_4IMG
-          valueFrom:
-            secretKeyRef:
-              key: BIGMODEL_WUKONG_4IMG
-              name: xihe-secret
-        - name: BIGMODEL_DESCRIBE_PICTUREHF
-          valueFrom:
-            secretKeyRef:
-              key: BIGMODEL_DESCRIBE_PICTUREHF
-              name: xihe-secret
-        - name: BIGMODEL_VQAHF
-          valueFrom:
-            secretKeyRef:
-              key: BIGMODEL_VQAHF
-              name: xihe-secret
-        - name: BIGMODEL_LUOJIAHF
-          valueFrom:
-            secretKeyRef:
-              key: BIGMODEL_LUOJIAHF
-              name: xihe-secret
-        - name: BIGMODEL_DOMAIN
-          valueFrom:
-            secretKeyRef:
-              key: BIGMODEL_DOMAIN
-              name: xihe-secret
+        - --config-file=/vault/secrets/application.yml
+        - --enable_debug=false
         resources:
           limits:
             cpu: 1000m
@@ -233,11 +44,3 @@ spec:
           requests:
             cpu: 1000m
             memory: 1000Mi
-        volumeMounts:
-        - mountPath: /opt/app/conf/config.yaml
-          name: config
-          subPath: config.yaml
-      volumes:
-      - name: config
-        configMap:
-          name: async-server-configmap
