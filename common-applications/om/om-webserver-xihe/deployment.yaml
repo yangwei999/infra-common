@@ -18,6 +18,9 @@ spec:
       containers:
         - name: om-webserver
           image: swr.cn-north-4.myhuaweicloud.com/om/om-webserver:0.4.94
+          env:
+          - name: APPLICATION_PATH
+            value: /var/lib/om-webserver/application.properties
           resources:
             limits:
               cpu: 1000m
@@ -45,24 +48,6 @@ spec:
             - containerPort: 8080
               name: om-webserver
           volumeMounts:
-            - mountPath: /var/lib/om-webserver/starFork.properties
-              subPath: starFork_properties
-              name: om-webserver-secrets-volume
-            - mountPath: /var/lib/om-webserver/blueZone.properties
-              subPath: blueZone_properties
-              name: om-webserver-secrets-volume
-            - mountPath: /var/lib/om-webserver/openEuler.properties
-              subPath: openEuler_properties
-              name: om-webserver-secrets-volume
-            - mountPath: /var/lib/om-webserver/openGauss.properties
-              subPath: openGauss_properties
-              name: om-webserver-secrets-volume
-            - mountPath: /var/lib/om-webserver/openLookeng.properties
-              subPath: openLookeng_properties
-              name: om-webserver-secrets-volume
-            - mountPath: /var/lib/om-webserver/mindSpore.properties
-              subPath: mindSpore_properties
-              name: om-webserver-secrets-volume
             - mountPath: /var/lib/om-webserver/application.properties
               subPath: application_properties
               name: om-webserver-secrets-volume

@@ -89,11 +89,14 @@ spec:
         - mountPath: /standby.ks
           name: secret-volume
           subPath: standby_ks
-        - mountPath: /opt/app/certs.keystore
-          name: secret-volume
-          subPath: certs_keystore
+        - mountPath: /opt/app/cert/
+          name: data-volume
       volumes:
       - name: secret-volume
         secret:
           secretName: sca-secret
+      - name: data-volume
+        persistentVolumeClaim:
+          claimName: sca-volume
+
 
