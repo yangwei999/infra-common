@@ -11,4 +11,4 @@ nameSuffix: -sync-repo
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/xihe/xihe
   newName: swr.cn-north-4.myhuaweicloud.com/opensourceway/xihe/robot-gitlab-sync-repo
-  newTag: norm-98ffa1
+  newTag: norm-982ade
