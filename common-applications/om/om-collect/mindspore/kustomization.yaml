@@ -36,6 +36,7 @@ resources:
   - sig-maintainer
   - github_mindspore_lab_pr_issue
   - drainage-register
+  - big-model-research
 commonAnnotations:
   owner: zhongjun
   email: "jun.zhongjun2@gmail.com"
