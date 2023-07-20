@@ -10,6 +10,6 @@ nameSuffix: -internal-server
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/xihe/xihe
   newName: swr.cn-north-4.myhuaweicloud.com/opensourceway/xihe/xihe-internal-server
-  newTag: norm-f993aa
+  newTag: norm-b3b6b8
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/xihe/xihe-internal-server
   newTag: v1.0.20230518153502
