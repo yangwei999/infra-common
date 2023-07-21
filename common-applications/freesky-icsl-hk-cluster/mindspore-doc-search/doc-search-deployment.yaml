@@ -56,6 +56,8 @@ spec:
             secretKeyRef:
               key: GIT_PASSWORD
               name: doc-search-secret
+        - name: MINDSPORE_OFFICIAL
+          value: "https://mindspore.myopeninfra.com"
         - name: APPLICATION_PATH
           value: "/vault/secrets/application.yml"
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/icsl/mindspore-search:7332da50ec635bfa39629a7b49dd291295af920d
