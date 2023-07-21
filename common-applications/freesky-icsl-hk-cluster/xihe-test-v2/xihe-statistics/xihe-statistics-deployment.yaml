@@ -30,7 +30,7 @@ spec:
       imagePullSecrets:
       - name: huawei-swr-image-pull-secret
       containers:
-        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/xihe/xihe-statistics-test:c5ebfdafa8903c49ee050404b337ea517481c316
+      - image: swr.cn-north-4.myhuaweicloud.com/opensourceway/xihe/xihe-statistics-test:c5ebfdafa8903c49ee050404b337ea517481c316
         imagePullPolicy: IfNotPresent
         args:
         - --port=8080
