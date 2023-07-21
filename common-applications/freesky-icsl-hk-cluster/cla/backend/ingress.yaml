@@ -7,6 +7,13 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt-prod
     nginx.ingress.kubernetes.io/rewrite-target: /$2
     nginx.ingress.kubernetes.io/proxy-body-size: 8m
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      add_header Content-Security-Policy "script-src 'self' *.baidu.com ers.baidu.com 'unsafe-inline' 'unsafe-eval' ; object-src 'none'; frame-src https://clasign.myopeninfra.com";
+      add_header X-XSS-Protection "1; mode=block";
+      add_header X-Frame-Options "SAMEORIGIN";
+      add_header Cache-Control "no-cache";
+      add_header Pragma "no-cache";
+      add_header X-Content-Type-Options "nosniff";
   name: cla-ingress-backend
   namespace: cla
 spec:

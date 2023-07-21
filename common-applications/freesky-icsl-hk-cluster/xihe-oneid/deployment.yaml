@@ -31,7 +31,7 @@ spec:
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/icsl/om-webserver:test-pwd-5f0952
         env:
         - name: APPLICATION_PATH
-          value: "/vault/secrets/application.yml"
+          value: "/vault/secrets/application.properties"
         resources:
           limits:
             cpu: 2000m
