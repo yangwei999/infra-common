@@ -35,7 +35,7 @@ spec:
           protocol: TCP
         env:
         - name: APPLICATION_PATH
-          value: "/vault/secrets/application.properties"
+          value: "/vault/secrets/application.yml"
         resources:
           requests:
             cpu: 500m

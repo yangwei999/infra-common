@@ -20,7 +20,7 @@ spec:
         vault.hashicorp.com/agent-inject-secret-application.yml: xihe/data/conf
         vault.hashicorp.com/agent-inject-template-application.yml: |
           {{- with secret "xihe/data/conf/" -}}
-          {{ .Data.data.training-center-huaweicloud }}
+          {{ .Data.data.training }}
           {{- end }}
         vault.hashicorp.com/agent-pre-populate-only: "true"
         vault.hashicorp.com/role: xihe-test
