@@ -14,4 +14,4 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/icsl/cla-backend
-  newTag: e3305919b14104a10688a95803bb21ec6dfbd840
+  newTag: f48acaddc196b525318501f60439e14b7f98c0af
