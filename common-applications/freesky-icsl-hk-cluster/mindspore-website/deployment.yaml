@@ -15,9 +15,21 @@ spec:
       app: mindsporewebsite
   template:
     metadata:
+      annotations:
+        vault.hashicorp.com/agent-inject: 'true'
+        vault.hashicorp.com/role: 'freesky-hk-mindspore-website'
+        vault.hashicorp.com/agent-inject-secret-application.yml: 'internal/data/mindspore/website'
+        vault.hashicorp.com/agent-pre-populate-only: "true"
+        vault.hashicorp.com/agent-inject-template-application.yml: |  
+          {{- with secret "internal/data/mindspore/website" -}}  
+          {{ .Data.data.application }}
+          {{- end }}
       labels:
         app: mindsporewebsite
     spec:
+      serviceAccountName: mindspore-website
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
       containers:
       - name: website
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/icsl/mindspore-website:v1.0.20230612110208
@@ -27,56 +39,8 @@ spec:
           name: http
           protocol: TCP
         env:
-          - name: MS_MYSQL_URL
-            value: jdbc:mysql://172.16.100.48:3306/website?characterEncoding=utf8&useSSL=false&serverTimezone=UTC&rewriteBatchedStatements=true&allowPublicKeyRetrieval=true
-          - name: MS_MYSQL_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                key: mysql_password
-                name: website-secrets
-          - name: MS_MAIL_URL
-            value: mail.mindspore.cn
-          - name: MS_MAIL_NAME
-            value: news@mindspore.cn
-          - name: MS_MAIL_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                key: mail_password
-                name: website-secrets
-          - name: RASP_TENANTID
-            valueFrom:
-              secretKeyRef:
-                key: rasp_tenantid
-                name: website-secrets
-          - name: RASP_APPID
-            valueFrom:
-              secretKeyRef:
-                key: rasp_appid
-                name: website-secrets
-          - name: RASP_SECRET
-            valueFrom:
-              secretKeyRef:
-                key: rasp_secret
-                name: website-secrets
-          - name: MS_REDIS_HOST
-            value: 172.16.100.93
-          - name: MS_REDIS_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                key: redis_password
-                name: website-secrets
-          - name: MS_REDIS_PORT
-            valueFrom:
-              secretKeyRef:
-                key: redis_port
-                name: website-secrets
-          - name: MS_PYTORCH_URL
-            valueFrom:
-              secretKeyRef:
-                key: pytorch_url
-                name: website-secrets
-          - name: MINDSPORE_OFFICIAL
-            value: "https://mindspore.myopeninfra.com"
+        - name: APPLICATION_PATH
+          vault: "/vault/secrets/application.yml"
         resources:
           requests:
             cpu: 2000m
