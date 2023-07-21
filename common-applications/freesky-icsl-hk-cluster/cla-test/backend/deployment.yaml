@@ -32,7 +32,7 @@ spec:
       labels:
         component: cla-backend
     spec:
-      serviceAccountName: cla
+      serviceAccountName: cla-test
       containers:
         - image: swr.cn-north-4.myhuaweicloud.com/opensourceway/icsl/cla-backend:e4d3c10ce59796217020c6d8301c4532f9ea0bd8
           imagePullPolicy: IfNotPresent
