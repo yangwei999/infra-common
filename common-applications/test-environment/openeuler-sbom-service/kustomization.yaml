@@ -8,6 +8,7 @@ resources:
 - sbom-repo-service.yaml
 - repo-post-verify.yaml
 - autoscaler.yaml
+- pvc.yaml
 commonAnnotations:
   kubernetes.ops.cluster: test
   kubernetes.ops.email: huangheqing2@huawei.com

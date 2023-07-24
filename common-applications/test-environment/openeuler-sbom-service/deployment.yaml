@@ -5,6 +5,8 @@ metadata:
   name: sbom-deployment
   namespace: openeuler-sbom-service
 spec:
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
       app: sbom-deployment
@@ -93,14 +95,49 @@ spec:
             secretKeyRef:
               key: xarmor_tenant_id
               name: sbom-server-secrets
+        - name: SIGNATRUST_CLIENT
+          valueFrom:
+            secretKeyRef:
+              key: SIGNATRUST_CLIENT
+              name: sbom-server-secrets
+        - name: SIGNATRUST_CLIENT_CONFIG
+          valueFrom:
+            secretKeyRef:
+              key: SIGNATRUST_CLIENT_CONFIG
+              name: sbom-server-secrets
+        - name: SIGNATRUST_KEY_NAME
+          valueFrom:
+            secretKeyRef:
+              key: SIGNATRUST_KEY_NAME
+              name: sbom-server-secrets
         volumeMounts:
         - mountPath: /var/db_secrets
           name: db-secret
+        - mountPath: /signatrust/.data/tempdir
+          name: data-volume
+          subPath: tempdir
+        - mountPath: /signatrust/.data/client
+          name: data-volume
+          subPath: client
+        - mountPath: /signatrust/.data/certs/client/server.crt
+          name: sbom-secret
+          subPath: ca-crt
+        - mountPath: /signatrust/.data/certs/client/server.key
+          name: sbom-secret
+          subPath: ca-key
+        - mountPath: /signatrust/.data/certs/client/client.toml
+          name: sbom-secret
+          subPath: client-toml
       volumes:
       - name: db-secret
         secret:
           secretName: sbom-server-db-secrets
-        
+      - name: data-volume
+        persistentVolumeClaim:
+          claimName: client-volume
+      - name: sbom-secret
+        secret:
+          secretName: sbom-server-secrets
           
 
 
