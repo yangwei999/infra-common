@@ -20,11 +20,27 @@ spec:
           value: debug
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/signatrust/signatrust-control-server:518a21b4de368ef502eaa7339c70a13dbead1edc
         imagePullPolicy: Always
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /api/health/
+            port: 8080
+            scheme: HTTPS
+          initialDelaySeconds: 5
+          periodSeconds: 5
         name: signatrust-server
         ports:
         - containerPort: 8080
           name: http
           protocol: TCP
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /api/health/
+            port: 8080
+            scheme: HTTPS
+          initialDelaySeconds: 10
+          periodSeconds: 5
         resources:
           limits:
             cpu: 4000m
@@ -32,22 +48,10 @@ spec:
           requests:
             cpu: 1000m
             memory: 1000Mi
-        livenessProbe:
-          httpGet:
-            path: /api/health/
-            port: 8080
-            scheme: HTTPS
-          initialDelaySeconds: 5
-          periodSeconds: 5
-          failureThreshold: 3
-        readinessProbe:
-          httpGet:
-            path: /api/health/
-            port: 8080
-            scheme: HTTPS
-          initialDelaySeconds: 10
-          periodSeconds: 5
-          failureThreshold: 3
+        securityContext:
+          allowPrivilegeEscalation: false
+          runAsGroup: 1000
+          runAsUser: 1000
         volumeMounts:
         - mountPath: /app/config/server.toml
           name: secret
@@ -61,10 +65,6 @@ spec:
         - mountPath: /Users/tommylike/Work/codes/rust-projects/signatrust/.data/certs/server/ca_root.pem
           name: secret
           subPath: ca-root-pem
-        securityContext:
-          allowPrivilegeEscalation: false
-          runAsUser: 1000
-          runAsGroup: 1000
       imagePullSecrets:
       - name: huawei-swr-image-pull-secret
       initContainers:
@@ -98,7 +98,7 @@ spec:
               key: DATABASE_URL
               name: signatrust-secrets
         - name: CONTROL_SERVER_TAG
-          value: e48ad19a25e6cb92c5f0de0fd70b538714569055
+          value: 114477e8db0cf4bf308616283edb1149d7a80a0e
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/signatrust/rust-sqlx:latest
         name: prepare-table
       nodeSelector:
