@@ -32,6 +32,20 @@ spec:
           requests:
             cpu: 1000m
             memory: 1000Mi
+        livenessProbe:
+          httpGet:
+            path: /api/health/
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /api/health/
+            port: 8080
+          initialDelaySeconds: 10
+          periodSeconds: 5
+          failureThreshold: 3
         volumeMounts:
         - mountPath: /app/config/server.toml
           name: secret
@@ -45,6 +59,10 @@ spec:
         - mountPath: /Users/tommylike/Work/codes/rust-projects/signatrust/.data/certs/server/ca_root.pem
           name: secret
           subPath: ca-root-pem
+        securityContext:
+          allowPrivilegeEscalation: false
+          runAsUser: 1000
+          runAsGroup: 1000
       imagePullSecrets:
       - name: huawei-swr-image-pull-secret
       initContainers:
