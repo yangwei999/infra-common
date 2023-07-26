@@ -19,3 +19,5 @@ kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/signatrust/signatrust-client
   newTag: 114477e8db0cf4bf308616283edb1149d7a80a0e
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/signatrust/signatrust-control-admin
+  newTag: 114477e8db0cf4bf308616283edb1149d7a80a0e
