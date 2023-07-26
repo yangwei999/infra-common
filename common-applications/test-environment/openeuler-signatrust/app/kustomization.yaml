@@ -14,4 +14,4 @@ resources:
 - autoscaler.yaml
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/signatrust/signatrust-app
-  newTag: 75b3a895618dc47bc78f62315eb52760cdd7ee47
+  newTag: e48ad19a25e6cb92c5f0de0fd70b538714569055
