@@ -23,6 +23,6 @@ images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/copr/frontend-test
   newTag: v1.0.20230619160624
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/copr/keygen-signd-test
-  newTag: v1.0.20230527201236
+  newTag: v1.0.20230727163913
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/copr/resalloc-test
   newTag: v1.0.20230607144637
