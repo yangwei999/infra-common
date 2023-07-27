@@ -48,7 +48,7 @@ spec:
             - name: EUREKA_INSTANCE_HOSTNAME
               value: ${MY_POD_NAME}.eureka
             - name: SERVICE_NAME
-              value: sca-eureka
+              value: utralsca-eureka
             - name: APP_ENV
               value: prod
             - name: PACKAGE_VERSION
@@ -59,26 +59,11 @@ spec:
               value: 256m
             - name: CMS_IOF
               value: "75"
-            - name: jasypt.encryptor.algorithm
+            - name: scaSalt
               valueFrom:
                 secretKeyRef:
                   name: sca-secret
-                  key: jasypt_encryptor_algorithm
-            - name: jasypt.encryptor.password
-              valueFrom:
-                secretKeyRef:
-                  name: sca-secret
-                  key: jasypt_encryptor_password
-            - name: jasypt_password
-              valueFrom:
-                secretKeyRef:
-                  name: sca-secret
-                  key: jasypt_encryptor_password
-            - name: majun.access.token
-              valueFrom:
-                secretKeyRef:
-                  name: sca-secret
-                  key: majun_access_token
+                  key: scaSalt
           resources:
             requests:
               cpu: 200m
@@ -86,3 +71,17 @@ spec:
             limits:
               cpu: 500m
               memory: 600Mi
+          volumeMounts:
+          - mountPath: /work.ks
+            name: secret-volume
+            subPath: work_ks
+          - mountPath: /primary.ks
+            name: secret-volume
+            subPath: primary_ks
+          - mountPath: /standby.ks
+            name: secret-volume
+            subPath: standby_ks
+        volumes:
+        - name: secret-volume
+          secret:
+            secretName: sca-secret

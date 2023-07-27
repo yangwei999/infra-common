@@ -29,7 +29,7 @@ spec:
               fieldRef:
                 fieldPath: metadata.name
           - name: SERVICE_NAME
-            value: dm-service
+            value: utralsca-dm-service
           - name: EUREKA_SERVER
             value: "http://eureka-0.eureka:9000/eureka, http://eureka-1.eureka:9000/eureka"
           - name: APP_ENV
@@ -42,31 +42,11 @@ spec:
             value: 1024m
           - name: CMS_IOF
             value: "75"
-          - name: INIT_KEY
+          - name: scaSalt
             valueFrom:
               secretKeyRef:
                 name: sca-secret
-                key: app-init-key
-          - name: jasypt.encryptor.algorithm
-            valueFrom:
-              secretKeyRef:
-                name: sca-secret
-                key: jasypt_encryptor_algorithm
-          - name: jasypt.encryptor.password
-            valueFrom:
-              secretKeyRef:
-                name: sca-secret
-                key: jasypt_encryptor_password
-          - name: jasypt_password
-            valueFrom:
-              secretKeyRef:
-                name: sca-secret
-                key: jasypt_encryptor_password
-          - name: majun.access.token
-            valueFrom:
-              secretKeyRef:
-                name: sca-secret
-                key: majun_access_token
+                key: scaSalt
         resources:
           requests:
             cpu: 200m
@@ -74,6 +54,21 @@ spec:
           limits:
             cpu: 2000m
             memory: 6G
+        volumeMounts:
+        - mountPath: /work.ks
+          name: secret-volume
+          subPath: work_ks
+        - mountPath: /primary.ks
+          name: secret-volume
+          subPath: primary_ks
+        - mountPath: /standby.ks
+          name: secret-volume
+          subPath: standby_ks
+      volumes:
+      - name: secret-volume
+        secret:
+          secretName: sca-secret
+
 ---
 # Service
 apiVersion: v1
