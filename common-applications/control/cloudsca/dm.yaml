@@ -42,6 +42,11 @@ spec:
             value: 1024m
           - name: CMS_IOF
             value: "75"
+          - name: majun.access.token
+            valueFrom:
+              secretKeyRef:
+                name: sca-secret
+                key: majun_access_token
           - name: scaSalt
             valueFrom:
               secretKeyRef:
