@@ -13,4 +13,4 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/cla-webui
-  newTag: 08e29f1a812696c763de40f5a95ff9e02edfae21
+  newTag: 96459dc4f02a160856ebe0a0ea923a82b37dfe60
