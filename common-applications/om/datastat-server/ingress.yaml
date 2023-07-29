@@ -15,6 +15,9 @@ metadata:
       if ($http_origin ~* "^https?://(mindspore\.cn)$") {
         set $cors "true";
       }
+      if ($http_origin ~* "^https?://(mindspore\.myopeninfra\.com)$") {
+        set $cors "true";
+      }
       if ($http_origin ~ '^http:\/\/localhost:45678$') {
         set $cors "true";
       }
