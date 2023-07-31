@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: chat-api
-          image: swr.cn-north-4.myhuaweicloud.com/opensourceway/chatapi/easymodel:0.0.9
+          image: swr.cn-north-4.myhuaweicloud.com/opensourceway/chatapi/easymodel:0.0.12
           env:
             - name: LD_LIBRARY_PATH
               value: /usr/local/nvidia/lib64
