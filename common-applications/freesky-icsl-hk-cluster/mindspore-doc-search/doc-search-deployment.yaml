@@ -26,36 +26,6 @@ spec:
       serviceAccount: mindspore-search
       containers:
       - env:
-        - name: eshost
-          valueFrom:
-            secretKeyRef:
-              key: eshost
-              name: doc-search-secret
-        - name: esusername
-          valueFrom:
-            secretKeyRef:
-              key: esusername
-              name: doc-search-secret
-        - name: espassword
-          valueFrom:
-            secretKeyRef:
-              key: espassword
-              name: doc-search-secret
-        - name: esport
-          valueFrom:
-            secretKeyRef:
-              key: esport
-              name: doc-search-secret
-        - name: GIT_USERNAME
-          valueFrom:
-            secretKeyRef:
-              key: GIT_USERNAME
-              name: doc-search-secret
-        - name: GIT_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              key: GIT_PASSWORD
-              name: doc-search-secret
         - name: MINDSPORE_OFFICIAL
           value: "https://mindspore.myopeninfra.com"
         - name: APPLICATION_PATH
