@@ -16,6 +16,5 @@ resources:
 - server-ingress.yaml
 - server-service.yaml
 - server-deployment.yaml
-- autoscaler.yaml
 - pvc.yaml
 - secret.yaml
