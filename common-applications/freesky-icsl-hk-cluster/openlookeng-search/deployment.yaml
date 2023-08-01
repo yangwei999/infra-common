@@ -41,51 +41,6 @@ spec:
           name: http
           protocol: TCP
         env:
-        - name: eshost
-          valueFrom:
-            secretKeyRef:
-              name: search-secrets
-              key: host
-        - name: esusername
-          valueFrom:
-            secretKeyRef:
-              name: search-secrets
-              key: username
-        - name: espassword
-          valueFrom:
-            secretKeyRef:
-              name: search-secrets
-              key: password
-        - name: esport
-          valueFrom:
-            secretKeyRef:
-              name: search-secrets
-              key: port
-        - name: depp
-          valueFrom:
-            secretKeyRef:
-              name: search-secrets
-              key: depp
-        - name: teshost
-          valueFrom:
-            secretKeyRef:
-              name: search-secrets
-              key: teshost
-        - name: tesport
-          valueFrom:
-            secretKeyRef:
-              name: search-secrets
-              key: tesport
-        - name: tesusername
-          valueFrom:
-            secretKeyRef:
-              name: search-secrets
-              key: tesusername
-        - name: tespassword
-          valueFrom:
-            secretKeyRef:
-              name: search-secrets
-              key: tespassword
         - name: APPLICATION_PATH
           value: "/vault/secrets/application.yml"
         resources:
@@ -111,11 +66,3 @@ spec:
           tcpSocket:
             port: 8080
           timeoutSeconds: 1
-        volumeMounts:
-        - mountPath: /opengauss/application.yaml
-          name: configmap-volume
-          subPath: application.yaml
-      volumes:
-      - name: configmap-volume
-        secret:
-          secretName: search-secrets
