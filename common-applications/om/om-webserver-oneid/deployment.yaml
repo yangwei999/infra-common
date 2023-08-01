@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: om-webserver
-          image: swr.cn-north-4.myhuaweicloud.com/om/om-webserver:0.4.39
+          image: swr.cn-north-4.myhuaweicloud.com/om/om-webserver:0.5.3
           resources:
             limits:
               cpu: 2000m
@@ -23,6 +23,9 @@ spec:
             requests:
               cpu: 1000m
               memory: 5000Mi
+          env:
+          - name: APPLICATION_PATH
+            value: "/var/lib/om-webserver/application.properties"
           livenessProbe:
             failureThreshold: 3
             initialDelaySeconds: 20
