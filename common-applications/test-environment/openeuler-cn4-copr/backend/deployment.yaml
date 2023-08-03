@@ -83,6 +83,15 @@ spec:
               name: copr-backend-data
             - mountPath: /var/lib/copr/public_html/stats
               name: copr-backend-stats-data
+            - mountPath: /home/copr/server.key
+              name: copr-secrets
+              subPath: server-key
+            - mountPath: /home/copr/server.crt
+              name: copr-secrets
+              subPath: server-crt
+            - mountPath: /etc/signatrust.toml
+              name: copr-secrets
+              subPath: signatrust-toml
         - image: swr.cn-north-4.myhuaweicloud.com/opensourceway/copr/backend-test:v1.0.20230310164803
           imagePullPolicy: IfNotPresent
           name: build
@@ -108,6 +117,15 @@ spec:
               subPath: backend_copr-be.conf
             - mountPath: /var/lib/copr/public_html/stats
               name: copr-backend-stats-data
+            - mountPath: /home/copr/server.key
+              name: copr-secrets
+              subPath: server-key
+            - mountPath: /home/copr/server.crt
+              name: copr-secrets
+              subPath: server-crt
+            - mountPath: /etc/signatrust.toml
+              name: copr-secrets
+              subPath: signatrust-toml
       volumes:
         - name: copr-backend
           configMap:
