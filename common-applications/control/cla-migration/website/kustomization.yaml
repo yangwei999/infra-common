@@ -1,16 +1,16 @@
 resources:
+- ingress.yaml
 - deployment.yaml
 - service.yaml
-- secret.yaml
 commonAnnotations:
-  kubernetes.ops.cluster: mindspore-cn1-cluster
-  kubernetes.ops.email: chenzeng765@163.com
+  kubernetes.ops.cluster: mindspore-cn1-mail-cluster
+  kubernetes.ops.email: ""
   kubernetes.ops.os.base: debian
   kubernetes.ops.owner: chenzeng
   kubernetes.ops.region: beijing
-namespace: cla
+namespace: cla-migration
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/cla-webui
-  newTag: 45782e3daec1184a211f65028d9200f2e3161a2f
+  newTag: c07c0000e4b3649437f53b213c466c76a0fb8592
