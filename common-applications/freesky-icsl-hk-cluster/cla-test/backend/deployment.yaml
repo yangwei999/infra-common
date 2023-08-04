@@ -45,9 +45,7 @@ spec:
             - /bin/sh
             - -c
             - |
-              mkdir -p /opt/app/conf/pdfs/org_signature_pdf
-              mkdir -p /opt/app/conf/pdfs/output
-              /opt/app/cla-server --config-file=/vault/secrets/config
+              /home/cla/cla-server --config-file=/vault/secrets/config
           volumeMounts:
             - mountPath: /opt/app/conf/pdfs
               name: data-volume
