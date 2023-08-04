@@ -24,6 +24,7 @@ metadata:
   name: post-verification-deployment
   namespace: openeuler-sbom-service
 spec:
+  replicas: 0
   strategy:
     type: Recreate
   revisionHistoryLimit: 10
