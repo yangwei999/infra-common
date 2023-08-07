@@ -18,6 +18,9 @@ spec:
       annotations:
         vault.hashicorp.com/agent-inject: 'true'
         vault.hashicorp.com/role: 'mindspore-mail-cn1-cluster-cla'
+        vault.hashicorp.com/agent-inject-perms-config: "0700"
+        vault.hashicorp.com/agent-inject-perms-ca.crt: "0700"
+        vault.hashicorp.com/agent-run-as-user: "1000"
         vault.hashicorp.com/agent-inject-secret-config: 'internal/data/infra-common/cla'
         vault.hashicorp.com/agent-pre-populate-only: "true"
         vault.hashicorp.com/agent-inject-template-config: |  
@@ -37,8 +40,11 @@ spec:
       - image: swr.cn-north-4.myhuaweicloud.com/opensourceway/icsl/cla-backend:e4d3c10ce59796217020c6d8301c4532f9ea0bd8
         imagePullPolicy: IfNotPresent
         name: cla-backend-pod
+        env:
+        - name: HTTP_PORT
+          value: "8080"
         ports:
-        - containerPort: 80
+        - containerPort: 8080
           name: http
           protocol: TCP
         command:
