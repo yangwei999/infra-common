@@ -10,9 +10,21 @@ spec:
       app: doc-search
   template:
     metadata:
+      annotations:
+        vault.hashicorp.com/agent-inject: 'true'
+        vault.hashicorp.com/role: 'search'
+        vault.hashicorp.com/agent-inject-secret-application.yml: 'internal/data/infra-test/search'
+        vault.hashicorp.com/agent-pre-populate-only: "true"
+        vault.hashicorp.com/agent-inject-perms-application.yml: "0644"
+        vault.hashicorp.com/agent-run-as-user: "1001"
+        vault.hashicorp.com/agent-inject-template-application.yml: |  
+          {{- with secret "internal/data/infra-test/search" -}}  
+          {{ .Data.data.application }}
+          {{- end }}
       labels:
         app: doc-search
     spec:
+      serviceAccount: search
       nodeSelector:
         autoscaler: "true"
       imagePullSecrets:
@@ -28,91 +40,6 @@ spec:
             cpu: 1000m
             memory: 3000Mi
         env:
-        - name: eshost
-          valueFrom:
-            secretKeyRef:
-              name: doc-search-secrets
-              key: host
-        - name: esusername
-          valueFrom:
-            secretKeyRef:
-              name: doc-search-secrets
-              key: username
-        - name: espassword
-          valueFrom:
-            secretKeyRef:
-              name: doc-search-secrets
-              key: password
-        - name: esport
-          valueFrom:
-            secretKeyRef:
-              name: doc-search-secrets
-              key: port
-        - name: teshost
-          valueFrom:
-            secretKeyRef:
-              name: doc-search-secrets
-              key: teshost
-        - name: tesusername
-          valueFrom:
-            secretKeyRef:
-              name: doc-search-secrets
-              key: tesusername
-        - name: tesport
-          valueFrom:
-            secretKeyRef:
-              name: doc-search-secrets
-              key: tesport
-        - name: tespassword
-          valueFrom:
-            secretKeyRef:
-              name: doc-search-secrets
-              key: tespassword
-        - name: kneed
-          valueFrom:
-            secretKeyRef:
-              name: doc-search-secrets
-              key: kneed
-        - name: kbootstrap
-          valueFrom:
-            secretKeyRef:
-              name: doc-search-secrets
-              key: kbootstrap
-        - name: kgroup
-          valueFrom:
-            secretKeyRef:
-              name: doc-search-secrets
-              key: kgroup
-        - name: GIT_USERNAME
-          valueFrom:
-            secretKeyRef:
-              name: doc-search-secrets
-              key: GIT_USERNAME
-        - name: GIT_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: doc-search-secrets
-              key: GIT_PASSWORD
-        - name: OPS_USERNAME
-          valueFrom:
-            secretKeyRef:
-              name: doc-search-secrets
-              key: OPS_USERNAME
-        - name: OPS_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: doc-search-secrets
-              key: OPS_PASSWORD
-        - name: FORUMDOMAIM
-          valueFrom:
-            secretKeyRef:
-              name: doc-search-secrets
-              key: FORUMDOMAIM
-        - name: MINDSPORE_OFFICIAL
-          valueFrom:
-            secretKeyRef:
-              name: doc-search-secrets
-              key: MINDSPORE_OFFICIAL
         - name: X_ARMOR_BACKEND_TENANT_ID
           valueFrom:
             secretKeyRef:
@@ -134,4 +61,8 @@ spec:
               name: doc-search-secrets
               key: xarmor_backend_url
         - name: APPLICATION_PATH
-          value: "/EaseSearch/target/classes/application.yml"
+          value: "/vault/secrets/application.yml"
+        - name: FORUMDOMAIM
+          value: "https://forum.openeuler.org"
+        - name: MINDSPORE_OFFICIAL
+          value: "https://www.mindspore.cn"
