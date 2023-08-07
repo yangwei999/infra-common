@@ -58,7 +58,7 @@ metadata:
   name: rabbitmq
   namespace: sca
 spec:
-  replicas: 1
+  replicas: 0
   strategy:
     rollingUpdate:
       maxSurge: 1

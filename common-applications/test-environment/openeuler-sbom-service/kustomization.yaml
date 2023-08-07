@@ -7,7 +7,6 @@ resources:
 - sbom-website.yaml
 - sbom-repo-service.yaml
 - repo-post-verify.yaml
-- autoscaler.yaml
 - pvc.yaml
 commonAnnotations:
   kubernetes.ops.cluster: test

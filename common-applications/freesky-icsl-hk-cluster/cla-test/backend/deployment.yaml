@@ -37,8 +37,11 @@ spec:
         - image: swr.cn-north-4.myhuaweicloud.com/opensourceway/icsl/cla-backend:e4d3c10ce59796217020c6d8301c4532f9ea0bd8
           imagePullPolicy: IfNotPresent
           name: cla-backend-pod
+          env:
+          - name: HTTP_PORT
+            value: "8080"
           ports:
-            - containerPort: 80
+            - containerPort: 8080
               name: http
               protocol: TCP
           command:

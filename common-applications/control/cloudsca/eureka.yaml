@@ -21,7 +21,7 @@ metadata:
   name: eureka
   namespace: sca
 spec:
-  replicas: 2
+  replicas: 0
   serviceName: "eureka"
   selector:
     matchLabels:

@@ -17,4 +17,3 @@ resources:
 - source-credible-consistency-secret.yaml
 - source-credible-consistency-deployment.yaml
 - pvc.yaml
-- autoscaler.yaml

@@ -5,7 +5,7 @@ metadata:
   name: anti-poisoning
   namespace: majun-anti-poisoning
 spec:
-  replicas: 2
+  replicas: 0
   strategy:
     rollingUpdate:
       maxSurge: 1
