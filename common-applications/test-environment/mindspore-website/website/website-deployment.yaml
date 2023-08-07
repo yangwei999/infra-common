@@ -11,75 +11,29 @@ spec:
     type: Recreate
   template:
     metadata:
+      annotations:
+        vault.hashicorp.com/agent-inject: 'true'
+        vault.hashicorp.com/role: 'mindspore-website'
+        vault.hashicorp.com/agent-inject-secret-application.yml: 'internal/data/infra-test/mindspore-website'
+        vault.hashicorp.com/agent-pre-populate-only: "true"
+        vault.hashicorp.com/agent-inject-perms-application.yml: "0644"
+        vault.hashicorp.com/agent-run-as-user: "1001"
+        vault.hashicorp.com/agent-inject-template-application.yml: |  
+          {{- with secret "internal/data/infra-test/mindspore-website" -}}  
+          {{ .Data.data.application }}
+          {{- end }}
       labels:
         app: website
     spec:
       imagePullSecrets:
       - name: huawei-swr-image-pull-secret
+      serviceAccountName: mindspore-website
       nodeSelector:
         autoscaler: "true"
       containers:
       - env:
-        - name: MS_MYSQL_URL
-          valueFrom:
-            secretKeyRef:
-              key: ms_mysql_url
-              name: website-secret
-        - name: MS_MYSQL_USERNAME
-          valueFrom:
-            secretKeyRef:
-              key: ms_mysql_username
-              name: website-secret
-        - name: MS_MYSQL_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              key: ms_mysql_password
-              name: website-secret
-        - name: MS_MAIL_URL
-          valueFrom:
-            secretKeyRef:
-              key: ms_mail_url
-              name: website-secret
-        - name: MS_MAIL_NAME
-          valueFrom:
-            secretKeyRef:
-              key: ms_mail_name
-              name: website-secret
-        - name: MS_MAIL_USERNAME
-          valueFrom:
-            secretKeyRef:
-              key: ms_mail_username
-              name: website-secret
-        - name: MS_MAIL_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              key: ms_mail_password
-              name: website-secret
-        - name: MS_REDIS_HOST
-          valueFrom:
-            secretKeyRef:
-              key: ms_redis_host
-              name: website-secret
-        - name: MS_REDIS_PORT
-          valueFrom:
-            secretKeyRef:
-              key: ms_redis_port
-              name: website-secret
-        - name: MS_REDIS_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              key: ms_redis_password
-              name: website-secret
-        - name: MS_PYTORCH_URL
-          valueFrom:
-            secretKeyRef:
-              key: ms_pytorch_url
-              name: website-secret
-        - name: MINDSPORE_BOOK
-          valueFrom:
-            secretKeyRef:
-              key: mindspore_book
-              name: website-secret
+        - name: APPLICATION_PATH
+          value: "/vault/secrets/application.yml"
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/mindspore/website:test-bcbabd
         imagePullPolicy: IfNotPresent
         volumeMounts:
