@@ -43,6 +43,18 @@ spec:
           - --session-cookie-minimal=false
           - --pass-access-token=true
           - --cookie-secure=false
+          - --login-url=https://xiheapi.osinfra.cn/oneid/oidc/authorize
+          - --redeem-url=https://xiheapi.osinfra.cn/oneid/oidc/token
+          - --profile-url=https://xiheapi.osinfra.cn/oneid/oidc/user
+          - --skip-oidc-discovery=true
+          - --insecure-oidc-skip-issuer-verification=true
+          - --skip-jwt-bearer-tokens=false
+          - --oidc-jwks-url=https://oauth2-proxy.authing.cn/oidc/.well-known/jwks.json
+          - --set-xauthrequest=true
+          - --skip-auth-strip-headers=false
+          - --set-authorization-header=true
+          - --scope=profile openid email id_token
+          - --signature-key=sha256:81nwm1iqdN3FBtnj4O0kL6BRuLfzMzCKaawnztLSRYQ
           env:
             - name: OAUTH2_PROXY_CLIENT_ID
               valueFrom:
