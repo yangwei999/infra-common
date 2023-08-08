@@ -18,6 +18,9 @@ metadata:
       if ($http_origin ~* "^https?://(www\.huawei\.com)$") {
         set $cors "true";
       }
+      if ($http_origin ~* "^https?://(www1-back\.huawei\.com)$") {
+        set $cors "true";
+      }
       if ($http_origin ~* "^https?://(mindspore\.myopeninfra\.com)$") {
         set $cors "true";
       }
