@@ -53,7 +53,7 @@ spec:
         - |
           /home/cla/cla-server --config-file=/vault/secrets/config
         volumeMounts:
-        - mountPath: /opt/app/conf/pdfs
+        - mountPath: /home/cla/conf/pdfs
           name: data-volume
       volumes:
       - name: data-volume
