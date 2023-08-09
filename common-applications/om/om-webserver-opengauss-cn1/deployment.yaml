@@ -26,6 +26,9 @@ spec:
           requests:
             cpu: 1000m
             memory: 5000Mi
+        env:
+        - name: APPLICATION_PATH
+          value: "/var/lib/om-webserver/application.properties"
         livenessProbe:
           failureThreshold: 3
           initialDelaySeconds: 20
