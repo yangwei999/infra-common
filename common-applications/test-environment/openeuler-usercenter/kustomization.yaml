@@ -17,9 +17,11 @@ commonAnnotations:
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openeuler-usercenter-server
+  newTag: 380294eb9eedc175601138f6e106ba49060143c3
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openeuler-usercenter-server-test
-  newTag: 73146dbaa445bd79121bb10a953a448c2d7a5b22
+  newTag: 380294eb9eedc175601138f6e106ba49060143c3
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openeuler-usercenter-test
-  newTag: b9ab3459ecb837b67ce5e7f7acc4df1e98fe62ab
+  newTag: e92208fcd2af1c1f7d5d9655316e6e781a08a1b3
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/opengauss/opengauss-usercenter-test
-  newTag: 65d46a8c4d3a20ddc9becce85ae3541ddf7f20e8
+  newTag: e92208fcd2af1c1f7d5d9655316e6e781a08a1b3

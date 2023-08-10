@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+  name: chatgpt-ingress
+  namespace: chatgpt
+spec:
+  tls:
+    - hosts:
+      - chat.test.osinfra.cn
+      secretName: chatgpt-reverse-tls
+  rules:
+    - host: chat.test.osinfra.cn
+      http:
+        paths:
+        - backend:
+            serviceName: oauth2-proxy
+            servicePort: 4180
+          path: /

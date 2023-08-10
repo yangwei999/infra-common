@@ -155,6 +155,26 @@ spec:
                 secretKeyRef:
                   name: mailman-secrets
                   key: mailweb_redis_password
+            - name: XARMOR_BACKEND_URL
+              valueFrom:
+                secretKeyRef:
+                  name: mailman-secrets
+                  key: rasp_backend_url
+            - name: XARMOR_APP_ID
+              valueFrom:
+                secretKeyRef:
+                  name: mailman-secrets
+                  key: rasp_appid
+            - name: XARMOR_APP_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: mailman-secrets
+                  key: rasp_app_token
+            - name: XARMOR_TENANT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: mailman-secrets
+                  key: rasp_tenant_id
           volumeMounts:
           - mountPath: /opt/mailman-web-static
             name: mailman-web-volume

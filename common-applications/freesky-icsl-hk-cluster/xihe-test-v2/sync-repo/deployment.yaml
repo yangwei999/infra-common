@@ -5,66 +5,50 @@ metadata:
   namespace: xihe-test-v2
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      component: sync-repo
+  strategy:
+    type: Recreate
   template:
+    metadata:
+      annotations:
+        vault.hashicorp.com/agent-inject: "true"
+        vault.hashicorp.com/agent-inject-secret-application.yml: xihe/data/conf
+        vault.hashicorp.com/agent-inject-template-application.yml: |
+          {{- with secret "xihe/data/conf/" -}}
+          {{ .Data.data.syncrepo }}
+          {{- end }}
+        vault.hashicorp.com/agent-inject-secret-kafka: xihe/data/conf
+        vault.hashicorp.com/agent-inject-template-kafka: |
+          {{- with secret "xihe/data/conf/" -}}
+          {{ .Data.data.kafka }}
+          {{- end }}
+        vault.hashicorp.com/agent-pre-populate-only: "true"
+        vault.hashicorp.com/role: xihe-test
+      labels:
+        component: sync-repo
     spec:
+      serviceAccount: xihe-test
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
       containers:
       - name: sync-repo
         args:
-        - --port=8888
-        - --config-file=/app/conf/xihe-gitlab/app_config/config.yaml
-        - --enable_debug=true
+        - --port=8000
+        - --config-file=/vault/secrets/application.yml
+        - --kafkamq-config-file=/vault/secrets/kafka
+        - --enable_debug=false
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/xihe/xihe:latest
         imagePullPolicy: IfNotPresent
         ports:
-        - containerPort: 8888
+        - containerPort: 8000
           name: http
           protocol: TCP
         volumeMounts:
-        - mountPath: /app/conf/xihe-gitlab/app_config/
-          name: app-config
-          readOnly: true
-        env:
-        - name: ACCESS_HMAC
-          valueFrom:
-            secretKeyRef:
-              name: xihe-secret
-              key: SYSTEMHOOK_HMAC
-        - name: HW_OBS_AK
-          valueFrom:
-            secretKeyRef:
-              name: xihe-secret
-              key: HW_OBS_AK
-        - name: HW_OBS_SK
-          valueFrom:
-            secretKeyRef:
-              name: xihe-secret
-              key: HW_OBS_SK
-        - name: HW_OBS_ENDPOINT
-          valueFrom:
-            secretKeyRef:
-              name: xihe-secret
-              key: HW_OBS_ENDPOINT
-        - name: HW_OBS_BUCKET
-          valueFrom:
-            secretKeyRef:
-              name: xihe-secret
-              key: HW_OBS_BUCKET
-        - name: MYSQL_CONN
-          valueFrom:
-            secretKeyRef:
-              name: xihe-secret
-              key: MYSQL_CONN
-        - name: GITLAB_TOKEN
-          valueFrom:
-            secretKeyRef:
-              name: xihe-secret
-              key: GITLAB_TOKEN
-        - name: GITLAB_HOST
-          valueFrom:
-            secretKeyRef:
-              name: xihe-secret
-              key: GITLAB_HOST
+        - mountPath: /workspace
+          name: data-volume
       volumes:
-      - name: app-config
-        configMap:
-          name: configmap-sync-repo
+      - name: data-volume
+        persistentVolumeClaim:
+          claimName: xihe-sync-repo-pvc-sync-repo

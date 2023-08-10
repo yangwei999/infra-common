@@ -12,3 +12,6 @@ commonAnnotations:
   kubernetes.ops.region: hk
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+images:
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/icsl/mindspore-internship
+  newTag: 2cbd7c8d9ca3a9c667e8e721f87ae919862cba29

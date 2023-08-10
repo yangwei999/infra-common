@@ -47,21 +47,16 @@ spec:
               secretKeyRef:
                 name: sca-secret
                 key: app-init-key
-          - name: jasypt.encryptor.algorithm
-            valueFrom:
-              secretKeyRef:
-                name: sca-secret
-                key: jasypt_encryptor_algorithm
-          - name: jasypt_password
-            valueFrom:
-              secretKeyRef:
-                name: sca-secret
-                key: jasypt_encryptor_password
           - name: majun.access.token
             valueFrom:
               secretKeyRef:
                 name: sca-secret
                 key: majun_access_token
+          - name: scaSalt
+            valueFrom:
+              secretKeyRef:
+                name: sca-secret
+                key: scaSalt
         resources:
           requests:
             cpu: 500m
@@ -69,4 +64,23 @@ spec:
           limits:
             cpu: 1000m
             memory: 4G
+        volumeMounts:
+        - mountPath: /work.ks
+          name: secret-volume
+          subPath: work_ks
+        - mountPath: /primary.ks
+          name: secret-volume
+          subPath: primary_ks
+        - mountPath: /standby.ks
+          name: secret-volume
+          subPath: standby_ks
+        - mountPath: /opt/app/cert/
+          name: data-volume
+      volumes:
+      - name: secret-volume
+        secret:
+          secretName: sca-secret
+      - name: data-volume
+        persistentVolumeClaim:
+          claimName: sca-volume
 

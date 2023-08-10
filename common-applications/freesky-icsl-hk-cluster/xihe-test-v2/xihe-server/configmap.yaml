@@ -14,6 +14,7 @@ data:
     mongodb:
       db_conn: "${MONGODB_CONNECTION}"
       db_name: "${MONGODB_NAME}"
+      db_cert: "${MONGODB_CERT}"
       collections:
         project: project
         model: model
@@ -60,6 +61,7 @@ data:
       token_expiry: 28800
       encryption_key: "${ENCRYPTION_KEY}"
       encryption_key_csrf: "${ENCRYPTION_KEY_CSRF}"
+      encryption_key_gitlab_token: "${ENCRYPTION_KEY_GITLAB_TOKEN}"
       default_password: "${DEFAULT_PASSWORD}"
       max_training_record_num: 5
       tags:
@@ -100,7 +102,7 @@ data:
 
     bigmodel:
       cloud:
-        domain: "${BIGMODEL_USER}"
+        domain: "${BIGMODEL_DOMAIN}"
         user: "${BIGMODEL_USER}"
         password: "${BIGMODEL_PASSWORD}"
         project: "${BIGMODEL_PROJECT}"
@@ -211,6 +213,28 @@ data:
           - start_learning_rate
           - end_learning_rate
 
+      avatar_url:
+      - "https://obs-xihe-beijing4.obs.cn-north-4.myhuaweicloud.com/xihe-img/default_avatar/common-3.png"
+      - "https://obs-xihe-beijing4.obs.cn-north-4.myhuaweicloud.com/xihe-img/default_avatar/common-2.png"
+      - "https://obs-xihe-beijing4.obs.cn-north-4.myhuaweicloud.com/xihe-img/default_avatar/common-1.png"
+      - "https://obs-xihe-beijing4.obs.cn-north-4.myhuaweicloud.com/xihe-img/default_avatar/common-4.png"
+      - "https://obs-xihe-beijing4.obs.cn-north-4.myhuaweicloud.com/xihe-img/default_avatar/catimg_01.png"
+      - "https://obs-xihe-beijing4.obs.cn-north-4.myhuaweicloud.com/xihe-img/default_avatar/catimg_02.png"
+      - "https://obs-xihe-beijing4.obs.cn-north-4.myhuaweicloud.com/xihe-img/default_avatar/catimg_03.png"
+      - "https://obs-xihe-beijing4.obs.cn-north-4.myhuaweicloud.com/xihe-img/default_avatar/catimg_04.png"
+      - "https://obs-xihe-beijing4.obs.cn-north-4.myhuaweicloud.com/xihe-img/default_avatar/catimg_05.png"
+      - "https://obs-xihe-beijing4.obs.cn-north-4.myhuaweicloud.com/xihe-img/default_avatar/catimg_06.png"
+      - "https://obs-xihe-beijing4.obs.cn-north-4.myhuaweicloud.com/xihe-img/default_avatar/catimg_07.png"
+      - "https://obs-xihe-beijing4.obs.cn-north-4.myhuaweicloud.com/xihe-img/default_avatar/catimg_08.png"
+      - "https://obs-xihe-beijing4.obs.cn-north-4.myhuaweicloud.com/xihe-img/default_avatar/man-1.png"
+      - "https://obs-xihe-beijing4.obs.cn-north-4.myhuaweicloud.com/xihe-img/default_avatar/man-2.png"
+      - "https://obs-xihe-beijing4.obs.cn-north-4.myhuaweicloud.com/xihe-img/default_avatar/man-3.png"
+      - "https://obs-xihe-beijing4.obs.cn-north-4.myhuaweicloud.com/xihe-img/default_avatar/man-4.png"
+      - "https://obs-xihe-beijing4.obs.cn-north-4.myhuaweicloud.com/xihe-img/default_avatar/woman-1.png"
+      - "https://obs-xihe-beijing4.obs.cn-north-4.myhuaweicloud.com/xihe-img/default_avatar/woman-2.png"
+      - "https://obs-xihe-beijing4.obs.cn-north-4.myhuaweicloud.com/xihe-img/default_avatar/woman-3.png"
+      - "https://obs-xihe-beijing4.obs.cn-north-4.myhuaweicloud.com/xihe-img/default_avatar/woman-4.png"
+
     mq:
       address: "${KAFKA_ADDRESS}"
       topics:
@@ -287,3 +311,9 @@ data:
       table:
         pod: pod
         async_task: async_task
+
+    redis:
+      db:
+        address: "${REDIS_ADDRESS}"
+        password: "${REDIS_PASSWORD}"
+        key_pair: "${KEY_PAIR}"

@@ -1,11 +1,11 @@
 apiVersion: keda.sh/v1alpha1
 kind: ScaledObject
 metadata:
-  name: issuerate-updator-autoscaler
-  namespace: radia-test-beta
+  name: meetingserver-deployment-autoscaler
+  namespace: opengauss-website-revision
 spec:
   scaleTargetRef:
-    name: issuerate-updator
+    name: meetingserver-deployment
   triggers:
   - type: cron
     metadata:

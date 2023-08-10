@@ -2,6 +2,7 @@ resources:
 - namespace.yaml
 - secret.yaml
 - job.yaml
+- pvc.yaml
 commonAnnotations:
   kubernetes.ops.cluster: infra-hk-cluster
   kubernetes.ops.email: 775517776@qq.com
@@ -13,4 +14,4 @@ kind: Kustomization
 namespace: mindspore-docs-update
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/mindspore/docs-whl
-  newTag: v1.0.20230629112816
+  newTag: v1.0.20230810030155

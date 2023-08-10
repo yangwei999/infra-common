@@ -16,7 +16,7 @@ spec:
       imagePullSecrets:
       - name: huawei-swr-image-pull-secret
       containers:
-        - image: swr.cn-north-4.myhuaweicloud.com/opensourceway/signatrust/signatrust-client:518a21b4de368ef502eaa7339c70a13dbead1edc
+        - image: swr.cn-north-4.myhuaweicloud.com/opensourceway/signatrust/signatrust-client:114477e8db0cf4bf308616283edb1149d7a80a0e
           imagePullPolicy: Always
           name: signatrust-client
           env:
@@ -33,13 +33,24 @@ spec:
           - /bin/sh
           - -c
           - |
+            mkdir -p /Users/tommylike/Work/codes/rust-projects/signatrust/.data/tempdir
             sleep 100000000
           volumeMounts:
           - mountPath: /app/config/client.toml
             name: config-volume
             subPath: client.toml
+          - mountPath: /Users/tommylike/Work/codes/rust-projects/signatrust/.data/certs/client/server.crt
+            name: secret
+            subPath: ca-crt
+          - mountPath: /Users/tommylike/Work/codes/rust-projects/signatrust/.data/certs/client/server.key
+            name: secret
+            subPath: ca-key
           - mountPath: /app/data/
             name: client-volume
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsUser: 1000
+            runAsGroup: 1000
       volumes:
       - name: config-volume
         configMap:
@@ -47,3 +58,6 @@ spec:
       - name: client-volume
         persistentVolumeClaim:
           claimName: client-volume
+      - name: secret
+        secret:
+          secretName: signatrust-secrets

@@ -15,9 +15,24 @@ spec:
       component: cla-backend
   template:
     metadata:
+      annotations:
+        vault.hashicorp.com/agent-inject: 'true'
+        vault.hashicorp.com/role: 'freesky-hk-cla'
+        vault.hashicorp.com/agent-inject-secret-config: 'internal/data/infra-common/cla-icsl-test'
+        vault.hashicorp.com/agent-pre-populate-only: "true"
+        vault.hashicorp.com/agent-inject-template-config: |  
+          {{- with secret "internal/infra-common/cla-icsl-test" -}}  
+          {{ .Data.data.configIcsl }}
+          {{- end }}
+        vault.hashicorp.com/agent-inject-secret-ca.crt: 'internal/data/infra-common/cla-icsl-test'
+        vault.hashicorp.com/agent-inject-template-ca.crt: |
+          {{- with secret "internal/infra-common/cla-icsl-test" -}}  
+          {{ .Data.data.CA_CERT_Icsl }}
+          {{- end }}
       labels:
         component: cla-backend
     spec:
+      serviceAccountName: cla
       containers:
         - image: swr.cn-north-4.myhuaweicloud.com/opensourceway/icsl/cla-backend:e4d3c10ce59796217020c6d8301c4532f9ea0bd8
           imagePullPolicy: IfNotPresent
@@ -32,53 +47,11 @@ spec:
             - |
               mkdir -p /opt/app/conf/pdfs/org_signature_pdf
               mkdir -p /opt/app/conf/pdfs/output
-              /opt/app/cla-server
-          env:
-            - name: MONGODB_CONNECTION
-              valueFrom:
-                secretKeyRef:
-                  name: cla-secrets
-                  key: mongodb-connection
-            - name: CLA_PLATFORM_URL
-              value: "https://clasign.myopeninfra.com/"
-            - name: MONGODB_NAME
-              value: "cla"
-            - name: PASSWORD_RETRIEVAL_URL
-              value: "https://clasign.myopeninfra.com/retrieve-password"
-            - name: PASSWORD_RESET_URL
-              value: "https://clasign.myopeninfra.com/reset-password"
-            - name: API_TOKEN_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: cla-secrets
-                  key: api-token-key
-            - name: SYMMETRIC_ENCRYPTION_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: cla-secrets
-                  key: symmetric-encryption-key
-            - name: HTTP_PORT
-              value: "80"
-            - name: RUN_MODE
-              value: dev
-            - name: RESTRICTED_CORP_EMAIL_SUFFIX
-              value: "[qq.com,gmail.com,163.com,foxmail.com,yahoo.com,126.com,139.com,189.cn,sina.com,sina.cn,sohu.com,outlook.com,hotmail.com]"
+              /opt/app/cla-server --config-file=/vault/secrets/config
           volumeMounts:
             - mountPath: /opt/app/conf/pdfs
               name: data-volume
-            - mountPath: /opt/app/conf/platforms/email.yaml
-              subPath: email
-              name: secret-volume
-            - mountPath: /opt/app/conf/platforms/gmail.json
-              subPath: gmail
-              name: secret-volume
-            - mountPath: /opt/app/conf/platforms/code_platforms.yaml
-              subPath: code-platforms
-              name: secret-volume
       volumes:
         - name: data-volume
           persistentVolumeClaim:
             claimName: cla-data-vol
-        - name: secret-volume
-          secret:
-            secretName: cla-secrets

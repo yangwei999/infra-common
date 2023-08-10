@@ -1,0 +1,58 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: cla-backend
+  name: cla-backend
+  namespace: cla-test
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      component: cla-backend
+  template:
+    metadata:
+      annotations:
+        vault.hashicorp.com/agent-inject: 'true'
+        vault.hashicorp.com/role: 'freesky-hk-cla-test'
+        vault.hashicorp.com/agent-inject-secret-config: 'internal/data/infra-common/cla-icsl-test'
+        vault.hashicorp.com/agent-pre-populate-only: "true"
+        vault.hashicorp.com/agent-inject-template-config: |  
+          {{- with secret "internal/infra-common/cla-icsl-test" -}}  
+          {{ .Data.data.config }}
+          {{- end }}
+        vault.hashicorp.com/agent-inject-secret-ca.crt: 'internal/data/infra-common/cla-icsl-test'
+        vault.hashicorp.com/agent-inject-template-ca.crt: |
+          {{- with secret "internal/infra-common/cla-icsl-test" -}}  
+          {{ .Data.data.CA_CERT }}
+          {{- end }}
+      labels:
+        component: cla-backend
+    spec:
+      serviceAccountName: cla-test
+      containers:
+        - image: swr.cn-north-4.myhuaweicloud.com/opensourceway/icsl/cla-backend:e4d3c10ce59796217020c6d8301c4532f9ea0bd8
+          imagePullPolicy: IfNotPresent
+          name: cla-backend-pod
+          env:
+          - name: HTTP_PORT
+            value: "8080"
+          ports:
+            - containerPort: 8080
+              name: http
+              protocol: TCP
+          command:
+            - /bin/sh
+            - -c
+            - |
+              /home/cla/cla-server --config-file=/vault/secrets/config
+          volumeMounts:
+            - mountPath: /opt/app/conf/pdfs
+              name: data-volume
+      volumes:
+        - name: data-volume
+          persistentVolumeClaim:
+            claimName: cla-data-vol

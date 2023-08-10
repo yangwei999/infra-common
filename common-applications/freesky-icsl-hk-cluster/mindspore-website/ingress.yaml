@@ -4,6 +4,14 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
     cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/limit-rpm: "200"
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      add_header Content-Security-Policy "script-src 'self' *.baidu.com ers.baidu.com 'unsafe-inline' 'unsafe-eval' cdn.bootcss.com https://cdn.mathjax.org https://cdnjs.cloudflare.com/ https://cdn.jsdelivr.net/; object-src 'none'; frame-src https://player.bilibili.com";
+      add_header X-XSS-Protection "1; mode=block";
+      add_header X-Frame-Options "DENY";
+      add_header Cache-Control "no-cache";
+      add_header Pragma "no-cache";
+      add_header X-Content-Type-Options "nosniff";
     nginx.ingress.kubernetes.io/server-snippet: |
       rewrite ^~/resource/ https://gitee.com/mindspore/book redirect;
       rewrite ^/icla https://clasign.osinfra.cn/sign/Z2l0ZWUlMkZtaW5kc3BvcmU= redirect;
@@ -45,3 +53,71 @@ spec:
               serviceName: websiteservice
               servicePort: 80
             path: /robots.txt
+
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+    nginx.ingress.kubernetes.io/upstream-vhost: dsapi.osinfra.cn
+    nginx.ingress.kubernetes.io/backend-protocol: HTTPS
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      add_header X-Content-Type-Options "nosniff";
+      add_header X-XSS-Protection "1; mode=block";
+      add_header X-Frame-Options "DENY";
+      add_header Content-Security-Policy "script-src 'self' *.baidu.com ers.baidu.com 'unsafe-inline' 'unsafe-eval' cdn.bootcss.com https://cdn.mathjax.org; object-src 'none'; frame-src https://player.bilibili.com";
+      add_header Cache-Control "no-cache";
+      add_header Pragma "no-cache";
+  name: website-dsapi-ingress
+  namespace: mindspore-website
+spec:
+  rules:
+  - host: mindspore.myopeninfra.com
+    http:
+      paths:
+      - paths:
+        backend:
+          serviceName: dsapi-service
+          servicePort: 443
+        path: /api-dsapi/(.*)
+  tls:
+  - hosts:
+    - mindspore.myopeninfra.com
+    secretName: website-tls
+
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+    nginx.ingress.kubernetes.io/upstream-vhost: search.mindspore.myopeninfra.com
+    nginx.ingress.kubernetes.io/backend-protocol: HTTPS
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      add_header X-Content-Type-Options "nosniff";
+      add_header X-XSS-Protection "1; mode=block";
+      add_header X-Frame-Options "DENY";
+      add_header Content-Security-Policy "script-src 'self' *.baidu.com ers.baidu.com 'unsafe-inline' 'unsafe-eval' cdn.bootcss.com https://cdn.mathjax.org; object-src 'none'; frame-src https://player.bilibili.com";
+      add_header Cache-Control "no-cache";
+      add_header Pragma "no-cache";
+  name: website-search-ingress
+  namespace: mindspore-website
+spec:
+  rules:
+  - host: mindspore.myopeninfra.com
+    http:
+      paths:
+      - paths:
+        backend:
+          serviceName: search-service
+          servicePort: 443
+        path: /api-search/(.*)
+  tls:
+  - hosts:
+    - mindspore.myopeninfra.com
+    secretName: website-tls

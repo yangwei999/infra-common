@@ -118,3 +118,20 @@ spec:
   resources:
     requests:
       storage: 20Gi
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: copr-backend-stats-data
+  labels:
+    failure-domain.beta.kubernetes.io/zone: cn-north-4a
+  annotations:
+    everest.io/disk-volume-type: SSD
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: csi-disk

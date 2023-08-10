@@ -5,6 +5,7 @@ metadata:
   name: issuerate-updator
   namespace: radia-test
 spec:
+  replicas: 0
   strategy:
     type: Recreate
   selector:

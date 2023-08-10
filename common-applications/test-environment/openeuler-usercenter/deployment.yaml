@@ -22,7 +22,7 @@ spec:
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openeuler-usercenter-test:e712c3c7c79c610f6b615a4c018929d73e3d277c
         imagePullPolicy: IfNotPresent
         ports:
-        - containerPort: 80
+        - containerPort: 8080
           name: http
           protocol: TCP
         resources:

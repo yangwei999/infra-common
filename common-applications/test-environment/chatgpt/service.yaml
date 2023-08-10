@@ -1,14 +1,13 @@
----
 apiVersion: v1
 kind: Service
 metadata:
-  name: xihe-script-service
-  namespace: xihe-test-v2
+  name: chatgpt-service
+  namespace: chatgpt
 spec:
   ports:
-    - name: httpport
+    - name: http
       port: 80
       targetPort: 8080
   selector:
-    app: xihe-script
+    app: chatgpt-reverse
   type: ClusterIP

@@ -5,35 +5,51 @@ metadata:
   namespace: xihe-test-v2
 spec:
   replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      component: hook-delivery
   template:
+    metadata:
+      annotations:
+        vault.hashicorp.com/agent-inject: "true"
+        vault.hashicorp.com/agent-inject-secret-application.yml: xihe/data/conf
+        vault.hashicorp.com/agent-inject-template-application.yml: |
+          {{- with secret "xihe/data/conf/" -}}
+          {{ .Data.data.HookDelivery }}
+          {{- end }}
+        vault.hashicorp.com/agent-inject-secret-hmac: xihe/data/conf
+        vault.hashicorp.com/agent-inject-template-hmac: |
+          {{- with secret "xihe/data/conf/" -}}
+          {{ .Data.data.SystemHookHac }}
+          {{- end }}
+        vault.hashicorp.com/agent-inject-secret-kafka: xihe/data/conf
+        vault.hashicorp.com/agent-inject-template-kafka: |
+          {{- with secret "xihe/data/conf/" -}}
+          {{ .Data.data.kafka }}
+          {{- end }}
+        vault.hashicorp.com/agent-pre-populate-only: "true"
+        vault.hashicorp.com/role: xihe-test
+      labels:
+        component: hook-delivery
     spec:
+      serviceAccount: xihe-test
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
       containers:
       - name: hook-delivery
         args:
-        - --port=8888
-        - --config-file=/app/conf/xihe-gitlab/app_config/config.yaml
-        - --hmac-secret-file=/app/conf/xihe-gitlab/hmac
-        - --kafkamq-config-file=/app/conf/xihe-gitlab/kafka
+        - --port=8000
+        - --config-file=/vault/secrets/application.yml
+        - --hmac-secret-file=/vault/secrets/hmac
+        - --kafkamq-config-file=/vault/secrets/kafka
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/xihe/xihe:latest
         imagePullPolicy: IfNotPresent
         ports:
-        - containerPort: 8888
+        - containerPort: 8000
           name: http
           protocol: TCP
-        volumeMounts:
-        - mountPath: /app/conf/xihe-gitlab/hmac
-          subPath: SYSTEMHOOK_HMAC
-          name: secret-volume
-        - mountPath: /app/conf/xihe-gitlab/kafka
-          subPath: KAFKA_ADDRESS
-          name: secret-volume
-        - mountPath: /app/conf/xihe-gitlab/app_config/
-          name: app-config
-          readOnly: true
-      volumes:
-      - name: secret-volume
-        secret:
-          secretName: xihe-secret
-      - name: app-config
-        configMap:
-          name: configmap-hook-delivery

@@ -5,6 +5,7 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
     cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/limit-rpm: "200"
     nginx.ingress.kubernetes.io/whitelist-source-range: 49.0.228.19
   name: oneid-server-ingress
   namespace: om-webserver

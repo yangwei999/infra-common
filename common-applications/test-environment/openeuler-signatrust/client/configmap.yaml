@@ -15,5 +15,5 @@ data:
     tls_cert = "/Users/tommylike/Work/codes/rust-projects/signatrust/.data/certs/client/server.crt"
     tls_key = "/Users/tommylike/Work/codes/rust-projects/signatrust/.data/certs/client/server.key"
     type = "dns"
-    server_name = "data-server-headless.openeuler-signatrust.svc.cluster.local"
+    server_address = "data-server-headless.openeuler-signatrust.svc.cluster.local"
     server_port = "8088"

@@ -1,0 +1,58 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chatgpt-deployments
+  namespace: chatgpt
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: chatgpt-reverse
+  template:
+    metadata:
+      labels:
+        app: chatgpt-reverse
+    spec:
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
+      nodeSelector:
+        infra: "true"
+      volumes:
+        - name: secret
+          secret:
+            secretName: chatgpt-secret
+        - name: data
+          persistentVolumeClaim:
+            claimName: chatgpt-data
+      containers:
+        - command:
+            - /usr/local/bin/pandora
+            - --tokens_file
+            - "/opt/app/tokens.txt"
+            - -s
+            - "0.0.0.0:8080"
+            - --thread
+            - "16"
+          image: swr.cn-north-4.myhuaweicloud.com/opensourceway/chatgpt/pandora:0.0.3
+          imagePullPolicy: Always
+          name: pandora-server
+          ports:
+            - containerPort: 8080
+              name: http
+              protocol: TCP
+          resources:
+            requests:
+              cpu: 2000m
+              memory: 2000Mi
+            limits:
+              cpu: 4000m
+              memory: 4000Mi
+          volumeMounts:
+            - mountPath: /data
+              name: data
+            - mountPath: /opt/app/tokens.txt
+              name: secret
+              subPath: token_secret

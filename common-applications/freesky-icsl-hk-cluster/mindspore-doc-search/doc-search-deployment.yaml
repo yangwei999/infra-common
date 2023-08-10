@@ -15,43 +15,30 @@ spec:
     type: RollingUpdate
   template:
     metadata:
+      annotations:
+        vault.hashicorp.com/agent-inject: 'true'
+        vault.hashicorp.com/role: 'freesky-hk-mindspore-search'
+        vault.hashicorp.com/agent-inject-secret-application.yml: 'internal/data/mindspore/search-icsl'
+        vault.hashicorp.com/agent-pre-populate-only: "true"
       labels:
         app: doc-search
     spec:
+      serviceAccount: mindspore-search
       containers:
       - env:
-        - name: eshost
-          valueFrom:
-            secretKeyRef:
-              key: eshost
-              name: doc-search-secret
-        - name: esusername
-          valueFrom:
-            secretKeyRef:
-              key: esusername
-              name: doc-search-secret
-        - name: espassword
-          valueFrom:
-            secretKeyRef:
-              key: espassword
-              name: doc-search-secret
-        - name: esport
-          valueFrom:
-            secretKeyRef:
-              key: esport
-              name: doc-search-secret
-        - name: GIT_USERNAME
-          valueFrom:
-            secretKeyRef:
-              key: GIT_USERNAME
-              name: doc-search-secret
-        - name: GIT_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              key: GIT_PASSWORD
-              name: doc-search-secret
+        - name: MINDSPORE_OFFICIAL
+          value: "https://mindspore.myopeninfra.com"
+        - name: APPLICATION_PATH
+          value: "/vault/secrets/application.yml"
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/icsl/mindspore-search:7332da50ec635bfa39629a7b49dd291295af920d
         imagePullPolicy: IfNotPresent
+        command:
+        - /bin/bash
+        - -c
+        - |
+          sed -i '1,2d;$d' /vault/secrets/application.yml
+          sed -i '$d'  /vault/secrets/application.yml
+          java -jar /EaseSearch/target/EaseSearch-0.0.1-SNAPSHOT.jar --spring.config.location=$APPLICATION_PATH
         livenessProbe:
           failureThreshold: 3
           initialDelaySeconds: 20

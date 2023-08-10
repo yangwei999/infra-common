@@ -1,0 +1,32 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/limit-connections: "400"
+    nginx.ingress.kubernetes.io/limit-rps: "400"
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      add_header Content-Security-Policy "script-src 'self' *.baidu.com ers.baidu.com 'unsafe-inline' 'unsafe-eval' ; object-src 'none'; frame-src https://clasign.test.myopeninfra.com";
+      add_header X-XSS-Protection "1; mode=block";
+      add_header X-Frame-Options "SAMEORIGIN";
+      add_header Cache-Control "no-cache";
+      add_header Pragma "no-cache";
+      add_header X-Content-Type-Options "nosniff";
+  name: cla-ingress
+  namespace: cla-test
+spec:
+  tls:
+    - hosts:
+        - clasign.test.myopeninfra.com
+      secretName: clasign-tls
+  rules:
+    - host: clasign.test.myopeninfra.com
+      http:
+        paths:
+          - backend:
+              serviceName: claservice
+              servicePort: 80
+            path: /
