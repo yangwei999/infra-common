@@ -5,72 +5,44 @@ metadata:
   namespace: xihe-test-v2
 spec:
   replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      component: message-server
   template:
+    metadata:
+      annotations:
+        vault.hashicorp.com/agent-inject: "true"
+        vault.hashicorp.com/agent-inject-secret-application.yml: xihe/data/conf
+        vault.hashicorp.com/agent-inject-template-application.yml: |
+          {{- with secret "xihe/data/conf/" -}}
+          {{ .Data.data.messageServer }}
+          {{- end }}
+        vault.hashicorp.com/agent-inject-secret-ca.crt: xihe/data/conf
+        vault.hashicorp.com/agent-inject-template-ca.crt: |
+          {{- with secret "xihe/data/conf/" -}}
+          {{ .Data.data.MongoCA }}
+          {{- end }}
+        vault.hashicorp.com/agent-pre-populate-only: "true"
+        vault.hashicorp.com/role: xihe-test
+      labels:
+        component: message-server
     spec:
+      serviceAccount: xihe-test
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
       containers:
       - name: message-server
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/xihe/xihe:latest
         imagePullPolicy: IfNotPresent
         args:
         - --port=8000
-        - --config-file=/opt/app/conf/config.yaml
-        - --enable_debug=true
-        env:
-        - name: MONGODB_NAME
-          valueFrom:
-            secretKeyRef:
-              name: xihe-secret
-              key: MONGODB_NAME
-        - name: MONGODB_CONNECTION
-          valueFrom:
-            secretKeyRef:
-              name: xihe-secret
-              key: MONGODB_CONNECTION
-        - name: KAFKA_ADDRESS
-          valueFrom:
-            secretKeyRef:
-              name: xihe-secret
-              key: KAFKA_ADDRESS
-        - name: PGSQL_HOST
-          valueFrom:
-            secretKeyRef:
-              name: xihe-statistics-secret
-              key: PGSQL_HOST
-        - name: PGSQL_USER
-          valueFrom:
-            secretKeyRef:
-              name: xihe-statistics-secret
-              key: PGSQL_USER
-        - name: PGSQL_PWD
-          valueFrom:
-            secretKeyRef:
-              name: xihe-statistics-secret
-              key: PGSQL_PWD
-        - name: PGSQL_NAME
-          valueFrom:
-            secretKeyRef:
-              name: xihe-statistics-secret
-              key: PGSQL_NAME
-        - name: PGSQL_PORT
-          valueFrom:
-            secretKeyRef:
-              name: xihe-statistics-secret
-              key: PGSQL_PORT
-        - name: INFERENCE_EVALUATE_ENDPOINT
-          valueFrom:
-            secretKeyRef:
-              name: xihe-secret
-              key: INFERENCE_EVALUATE_ENDPOINT
-        - name: TRAINING_ENDPOINT
-          valueFrom:
-            secretKeyRef:
-              name: xihe-secret
-              key: TRAINING_ENDPOINT
-        - name: FINETUNE_ENDPOINT
-          valueFrom:
-            secretKeyRef:
-              name: xihe-secret
-              key: FINETUNE_ENDPOINT
+        - --config-file=/vault/secrets/application.yml
+        - --enable_debug=false
         resources:
           requests:
             cpu: 1000m
@@ -82,10 +54,3 @@ spec:
         - containerPort: 8000
           name: http
           protocol: TCP
-        volumeMounts:
-        - mountPath: /opt/app/conf
-          name: config
-      volumes:
-      - name: config
-        configMap:
-          name: configmap-message-server

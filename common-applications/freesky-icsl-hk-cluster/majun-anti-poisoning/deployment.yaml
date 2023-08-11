@@ -1,0 +1,88 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: anti-poisoning
+  namespace: majun-anti-poisoning
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: anti-poisoning
+  template:
+    metadata:
+      labels:
+        app: anti-poisoning
+    spec:
+      containers:
+      - name: anti-poisoning
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/majun/anti-poisoning-test:bb9c06c0fc149693db759b9f0fd9067bc3cd1069
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8086
+          name: http
+          protocol: TCP
+        resources:
+          requests:
+            cpu: 2000m
+            memory: 4000Mi
+          limits:
+            cpu: 2000m
+            memory: 4000Mi
+        env:
+        - name: jasypt.encryptor.password
+          valueFrom:
+            secretKeyRef:
+              key: jasypt_encryptor_password
+              name: anti-poisoning-secrets
+        - name: spring.data.mongodb.uri
+          valueFrom:
+            secretKeyRef:
+              key: spring_data_mongodb_uri
+              name: anti-poisoning-secrets
+        - name: spring.data.mongodb.dbname
+          valueFrom:
+            secretKeyRef:
+              key: spring_data_mongodb_dbname
+              name: anti-poisoning-secrets
+        - name: spring.data.mongodb.env
+          valueFrom:
+            secretKeyRef:
+              key: spring_data_mongodb_env
+              name: anti-poisoning-secrets
+        - name: spring.security.user.name
+          valueFrom:
+            secretKeyRef:
+              key: spring_security_user_name
+              name: anti-poisoning-secrets
+        - name: spring.security.user.password
+          valueFrom:
+            secretKeyRef:
+              key: spring_security_user_password
+              name: anti-poisoning-secrets
+        volumeMounts:
+        - mountPath: /var/log
+          name: log-data
+        readinessProbe:
+          tcpSocket:
+            port: 8086
+          initialDelaySeconds: 20
+          failureThreshold: 3
+          successThreshold: 1
+          periodSeconds: 10
+          timeoutSeconds: 5
+        livenessProbe:
+          tcpSocket:
+            port: 8086
+          initialDelaySeconds: 30
+          periodSeconds: 20
+          successThreshold: 1
+          failureThreshold: 3
+          timeoutSeconds: 5
+      volumes:
+      - name: log-data
+        persistentVolumeClaim:
+          claimName: log-data-volume
+

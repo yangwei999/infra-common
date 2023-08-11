@@ -38,6 +38,8 @@ spec:
               - mountPath: /etc/copr/copr-be.conf
                 name: copr-secrets
                 subPath: backend_copr-be.conf
+              - mountPath: /var/lib/copr/public_html/stats
+                name: copr-backend-stats-data
           volumes:
             - name: copr-backend
               configMap:
@@ -45,6 +47,9 @@ spec:
             - name: copr-backend-data
               persistentVolumeClaim:
                 claimName: copr-backend-data
+            - name: copr-backend-stats-data
+              persistentVolumeClaim:
+                claimName: copr-backend-stats-data
             - name: copr-secrets
               secret:
                 secretName: copr-secrets
@@ -89,6 +94,8 @@ spec:
               - mountPath: /etc/copr/copr-be.conf
                 name: copr-secrets
                 subPath: backend_copr-be.conf
+              - mountPath: /var/lib/copr/public_html/stats
+                name: copr-backend-stats-data
           volumes:
             - name: copr-backend
               configMap:
@@ -96,6 +103,9 @@ spec:
             - name: copr-backend-data
               persistentVolumeClaim:
                 claimName: copr-backend-data
+            - name: copr-backend-stats-data
+              persistentVolumeClaim:
+                claimName: copr-backend-stats-data
             - name: copr-secrets
               secret:
                 secretName: copr-secrets

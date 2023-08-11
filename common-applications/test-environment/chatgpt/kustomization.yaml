@@ -1,0 +1,15 @@
+resources:
+  - deployment.yaml
+  - namespace.yaml
+  - ingress.yaml
+  - pvc.yaml
+  - oauth-proxy.yaml
+  - secrets.yaml
+  - service.yaml
+commonAnnotations:
+  kubernetes.ops.cluster: test
+  kubernetes.ops.email: "tommylikehu@gmail.com"
+  kubernetes.ops.os.base: ""
+  kubernetes.ops.owner: tommylike
+  kubernetes.ops.region: hk
+namespace: chatgpt

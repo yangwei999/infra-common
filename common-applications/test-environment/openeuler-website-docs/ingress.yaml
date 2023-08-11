@@ -3,6 +3,12 @@ kind: Ingress
 metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      add_header X-Content-Type-Options "nosniff";
+      add_header X-XSS-Protection "1; mode=block";
+      add_header X-Frame-Options "DENY";
+      add_header Cache-Control "no-cache";
+      add_header Pragma "no-cache";
   name: openeuler-website-docs-zh-ingress
   namespace: openeuler-website-docs
 spec:
@@ -25,6 +31,12 @@ kind: Ingress
 metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      add_header X-Content-Type-Options "nosniff";
+      add_header X-XSS-Protection "1; mode=block";
+      add_header X-Frame-Options "DENY";
+      add_header Cache-Control "no-cache";
+      add_header Pragma "no-cache";
   name: openeuler-website-docs-ru-ingress
   namespace: openeuler-website-docs
 spec:
@@ -48,6 +60,12 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
     cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      add_header X-Content-Type-Options "nosniff";
+      add_header X-XSS-Protection "1; mode=block";
+      add_header X-Frame-Options "DENY";
+      add_header Cache-Control "no-cache";
+      add_header Pragma "no-cache";
   name: openeuler-website-docs-preview-ingress
   namespace: openeuler-website-docs
 spec:

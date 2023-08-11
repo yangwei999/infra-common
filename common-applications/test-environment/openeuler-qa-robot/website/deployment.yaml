@@ -1,0 +1,51 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: qa-robot-deployment
+  namespace: qa-robot
+spec:
+  selector:
+    matchLabels:
+      app: qa-robot-openeuler
+  template:
+    metadata:
+      labels:
+        app: qa-robot-openeuler
+    spec:
+      imagePullSecrets:
+        - name: huawei-swr-image-pull-secret
+      nodeSelector:
+        autoscaler: "true"
+      containers:
+      - name: qa-robot
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/qa-robot-test:bf409d4f6bde22575ec3beff47a8121281196c96
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+          name: http
+          protocol: TCP
+        resources:
+          requests:
+            cpu: 500m
+            memory: 500Mi
+          limits:
+            cpu: 500m
+            memory: 500Mi
+        livenessProbe:
+          failureThreshold: 3
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          successThreshold: 1
+          tcpSocket:
+            port: 8080
+          timeoutSeconds: 5
+        readinessProbe:
+          failureThreshold: 3
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          successThreshold: 1
+          tcpSocket:
+            port: 8080
+          timeoutSeconds: 5
+

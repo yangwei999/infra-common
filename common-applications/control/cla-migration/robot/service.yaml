@@ -2,13 +2,14 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: xihe-async-service
-  namespace: xihe-test-v2
+  name: cla-robot-service
+  namespace: cla-migration
 spec:
   ports:
     - name: httpport
       port: 80
-      targetPort: 8080
+      protocol: TCP
+      targetPort: 80
   selector:
-    app: async-server
+    component: cla-robot
   type: ClusterIP

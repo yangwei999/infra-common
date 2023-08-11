@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+  name: qa-robot-ingress
+  namespace: qa-robot
+spec:
+  tls:
+    - hosts:
+        - qa-robot.openeuler.test.osinfra.cn
+      secretName: qa-robot-openeuler-tls
+  rules:
+    - host: qa-robot.openeuler.test.osinfra.cn
+      http:
+        paths:
+          - backend:
+              serviceName: qa-robot-openeuler-service
+              servicePort: 80
+            path: /

@@ -21,7 +21,7 @@ metadata:
   name: eureka
   namespace: sca
 spec:
-  replicas: 2
+  replicas: 0
   serviceName: "eureka"
   selector:
     matchLabels:
@@ -34,55 +34,59 @@ spec:
       imagePullSecrets:
         - name: huawei-swr-image-pull-secret
       containers:
-        - name: eureka
-          image: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/sca-eureka:2da74f4f19e420bdc7233954881e632c1c57eae0
-          ports:
-            - containerPort: 9000
-          env:
-            - name: MY_POD_NAME
-              valueFrom:
-                fieldRef:
-                  fieldPath: metadata.name
-            - name: EUREKA_SERVER
-              value: "http://eureka-0.eureka:9000/eureka, http://eureka-1.eureka:9000/eureka"
-            - name: EUREKA_INSTANCE_HOSTNAME
-              value: ${MY_POD_NAME}.eureka
-            - name: SERVICE_NAME
-              value: sca-eureka
-            - name: APP_ENV
-              value: prod
-            - name: PACKAGE_VERSION
-              value: 1.0-SNAPSHOT
-            - name: MAX_HEAP_MEM
-              value: 512m
-            - name: INIT_HEAP_MEM
-              value: 256m
-            - name: CMS_IOF
-              value: "75"
-            - name: jasypt.encryptor.algorithm
-              valueFrom:
-                secretKeyRef:
-                  name: sca-secret
-                  key: jasypt_encryptor_algorithm
-            - name: jasypt.encryptor.password
-              valueFrom:
-                secretKeyRef:
-                  name: sca-secret
-                  key: jasypt_encryptor_password
-            - name: jasypt_password
-              valueFrom:
-                secretKeyRef:
-                  name: sca-secret
-                  key: jasypt_encryptor_password
-            - name: majun.access.token
-              valueFrom:
-                secretKeyRef:
-                  name: sca-secret
-                  key: majun_access_token
-          resources:
-            requests:
-              cpu: 200m
-              memory: 500Mi
-            limits:
-              cpu: 500m
-              memory: 600Mi
+      - name: eureka
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/sca-eureka:2da74f4f19e420bdc7233954881e632c1c57eae0
+        ports:
+        - containerPort: 9000
+        env:
+        - name: MY_POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: EUREKA_SERVER
+          value: "http://eureka-0.eureka:9000/eureka, http://eureka-1.eureka:9000/eureka"
+        - name: EUREKA_INSTANCE_HOSTNAME
+          value: ${MY_POD_NAME}.eureka
+        - name: SERVICE_NAME
+          value: utralsca-eureka
+        - name: APP_ENV
+          value: prod
+        - name: PACKAGE_VERSION
+          value: 1.0-SNAPSHOT
+        - name: MAX_HEAP_MEM
+          value: 512m
+        - name: INIT_HEAP_MEM
+          value: 256m
+        - name: CMS_IOF
+          value: "75"
+        - name: majun.access.token
+          valueFrom:
+            secretKeyRef:
+              name: sca-secret
+              key: majun_access_token
+        - name: scaSalt
+          valueFrom:
+            secretKeyRef:
+              name: sca-secret
+              key: scaSalt
+        resources:
+          requests:
+            cpu: 200m
+            memory: 500Mi
+          limits:
+            cpu: 500m
+            memory: 600Mi
+        volumeMounts:
+        - mountPath: /work.ks
+          name: secret-volume
+          subPath: work_ks
+        - mountPath: /primary.ks
+          name: secret-volume
+          subPath: primary_ks
+        - mountPath: /standby.ks
+          name: secret-volume
+          subPath: standby_ks
+      volumes:
+      - name: secret-volume
+        secret:
+          secretName: sca-secret

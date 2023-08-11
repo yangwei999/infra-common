@@ -22,7 +22,7 @@ spec:
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/opengauss/opengauss-usercenter-test:659d9b3eb9db1aa70032e8fcfbb3fac9c3adf154
         imagePullPolicy: IfNotPresent
         ports:
-        - containerPort: 80
+        - containerPort: 8080
           name: http
           protocol: TCP
         resources:

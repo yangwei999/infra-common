@@ -9,7 +9,7 @@ spec:
   selector:
     matchLabels:
       app: redis-service
-  replicas: 1
+  replicas: 0
   strategy:
     type: Recreate
   template:

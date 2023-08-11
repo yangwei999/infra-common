@@ -5,7 +5,7 @@ metadata:
   name: anti-poisoning
   namespace: majun-anti-poisoning
 spec:
-  replicas: 2
+  replicas: 0
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -37,12 +37,7 @@ spec:
             cpu: 4000m
             memory: 8000Mi
         env:
-        - name: jasypt.encryptor.password
-          valueFrom:
-            secretKeyRef:
-              key: jasypt_encryptor_password
-              name: anti-poisoning-secrets
-        - name: spring.data.mongodb.uri
+        - name: mongodb.uri
           valueFrom:
             secretKeyRef:
               key: spring_data_mongodb_uri
@@ -57,23 +52,27 @@ spec:
             secretKeyRef:
               key: spring_data_mongodb_env
               name: anti-poisoning-secrets
-        - name: spring.security.user.name
+        - name: poisonSalt
           valueFrom:
             secretKeyRef:
-              key: spring_security_user_name
-              name: anti-poisoning-secrets
-        - name: spring.security.user.password
-          valueFrom:
-            secretKeyRef:
-              key: spring_security_user_password
+              key: poisonSalt
               name: anti-poisoning-secrets
         volumeMounts:
         - mountPath: /var/log
           name: log-data
+        - mountPath: /usr/local/primary.ks
+          name: secret
+          subPath: primary-ks
+        - mountPath: /usr/local/standby.ks
+          name: secret
+          subPath: standby-ks
+        - mountPath: /usr/local/work.ks
+          name: secret
+          subPath: work-ks
         readinessProbe:
           tcpSocket:
             port: 8086
-          initialDelaySeconds: 20
+          initialDelaySeconds: 60
           failureThreshold: 3
           successThreshold: 1
           periodSeconds: 10
@@ -81,7 +80,7 @@ spec:
         livenessProbe:
           tcpSocket:
             port: 8086
-          initialDelaySeconds: 30
+          initialDelaySeconds: 60
           periodSeconds: 20
           successThreshold: 1
           failureThreshold: 3
@@ -90,4 +89,7 @@ spec:
       - name: log-data
         persistentVolumeClaim:
           claimName: log-data-volume
+      - name: secret
+        secret:
+          secretName: anti-poisoning-secrets
 

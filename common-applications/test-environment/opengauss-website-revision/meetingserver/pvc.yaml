@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  annotations:
+    pv.kubernetes.io/bind-completed: "yes"
+    pv.kubernetes.io/bound-by-controller: "yes"
+    volume.beta.kubernetes.io/storage-provisioner: everest-csi-provisioner
+  finalizers:
+  - kubernetes.io/pvc-protection
+  name: meetings-data-volume
+  namespace: opengauss-website-revision
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: csi-disk-sas
+  volumeMode: Filesystem
+  volumeName: pvc-ab790320-734a-4c7d-b2dc-a4befc2f4110
+status:
+  accessModes:
+  - ReadWriteOnce
+  capacity:
+    storage: 10Gi
+  phase: Bound

@@ -20,11 +20,27 @@ spec:
           value: debug
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/signatrust/signatrust-control-server:518a21b4de368ef502eaa7339c70a13dbead1edc
         imagePullPolicy: Always
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /api/health/
+            port: 8080
+            scheme: HTTPS
+          initialDelaySeconds: 5
+          periodSeconds: 5
         name: signatrust-server
         ports:
         - containerPort: 8080
           name: http
           protocol: TCP
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /api/health/
+            port: 8080
+            scheme: HTTPS
+          initialDelaySeconds: 10
+          periodSeconds: 5
         resources:
           limits:
             cpu: 4000m
@@ -32,6 +48,10 @@ spec:
           requests:
             cpu: 1000m
             memory: 1000Mi
+        securityContext:
+          allowPrivilegeEscalation: false
+          runAsGroup: 1000
+          runAsUser: 1000
         volumeMounts:
         - mountPath: /app/config/server.toml
           name: secret
@@ -78,7 +98,7 @@ spec:
               key: DATABASE_URL
               name: signatrust-secrets
         - name: CONTROL_SERVER_TAG
-          value: 5a5cf7af97905c33e9ac2290187fb59442ae7001
+          value: 1a07ff4b6ec3c5a691bae5e8fcb705d670731f14
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/signatrust/rust-sqlx:latest
         name: prepare-table
       nodeSelector:

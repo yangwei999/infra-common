@@ -4,7 +4,9 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/limit-connections: "400"
-    nginx.ingress.kubernetes.io/limit-rps: "400"
+    nginx.ingress.kubernetes.io/limit-rps: "2"
+    nginx.ingress.kubernetes.io/limit-rpm: "40"
+    nginx.ingress.kubernetes.io/limit-whitelist: "202.170.90.255, 49.0.228.50"
     nginx.ingress.kubernetes.io/configuration-snippet: |
       if ($http_origin ~* "^https?://((?:.*\.test\.osinfra\.cn)|(?:.*\.omapi\.osinfra\.cn)|(?:.*\.mindspore\.cn)|(?:.*\.opengauss\.org))$") {
         set $cors "true";
@@ -13,6 +15,15 @@ metadata:
         set $cors "true";
       }
       if ($http_origin ~* "^https?://(mindspore\.cn)$") {
+        set $cors "true";
+      }
+      if ($http_origin ~* "^https?://(www\.huawei\.com)$") {
+        set $cors "true";
+      }
+      if ($http_origin ~* "^https?://(www1-back\.huawei\.com)$") {
+        set $cors "true";
+      }
+      if ($http_origin ~* "^https?://(mindspore\.myopeninfra\.com)$") {
         set $cors "true";
       }
       if ($http_origin ~ '^http:\/\/localhost:45678$') {

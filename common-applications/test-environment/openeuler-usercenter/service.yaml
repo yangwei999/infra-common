@@ -8,7 +8,7 @@ spec:
   - name: https-port
     protocol: TCP
     port: 80
-    targetPort: 80
+    targetPort: 8080
   selector:
     app: openeuler-usercenter
   type: ClusterIP
@@ -40,7 +40,7 @@ spec:
   - name: https-port
     protocol: TCP
     port: 80
-    targetPort: 80
+    targetPort: 8080
   selector:
     app: opengauss-usercenter
   type: ClusterIP

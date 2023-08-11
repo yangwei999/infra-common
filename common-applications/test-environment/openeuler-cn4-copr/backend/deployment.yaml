@@ -46,6 +46,8 @@ spec:
           volumeMounts:
             - mountPath: /var/lib/copr/public_html/results
               name: copr-backend-data
+            - mountPath: /var/lib/copr/public_html/stats
+              name: copr-backend-stats-data
         - image: swr.cn-north-4.myhuaweicloud.com/opensourceway/copr/backend-test:v1.0.20230310164803
           imagePullPolicy: IfNotPresent
           name: log
@@ -63,6 +65,8 @@ spec:
             - mountPath: /etc/copr/copr-be.conf
               name: copr-secrets
               subPath: backend_copr-be.conf
+            - mountPath: /var/lib/copr/public_html/stats
+              name: copr-backend-stats-data
         - image: swr.cn-north-4.myhuaweicloud.com/opensourceway/copr/backend-test:v1.0.20230310164803
           imagePullPolicy: IfNotPresent
           name: action
@@ -77,6 +81,17 @@ spec:
               subPath: backend_copr-be.conf
             - mountPath: /var/lib/copr/public_html/results
               name: copr-backend-data
+            - mountPath: /var/lib/copr/public_html/stats
+              name: copr-backend-stats-data
+            - mountPath: /home/copr/server.key
+              name: copr-secrets
+              subPath: server-key
+            - mountPath: /home/copr/server.crt
+              name: copr-secrets
+              subPath: server-crt
+            - mountPath: /etc/signatrust.toml
+              name: copr-secrets
+              subPath: signatrust-toml
         - image: swr.cn-north-4.myhuaweicloud.com/opensourceway/copr/backend-test:v1.0.20230310164803
           imagePullPolicy: IfNotPresent
           name: build
@@ -100,6 +115,17 @@ spec:
             - mountPath: /etc/copr/copr-be.conf
               name: copr-secrets
               subPath: backend_copr-be.conf
+            - mountPath: /var/lib/copr/public_html/stats
+              name: copr-backend-stats-data
+            - mountPath: /home/copr/server.key
+              name: copr-secrets
+              subPath: server-key
+            - mountPath: /home/copr/server.crt
+              name: copr-secrets
+              subPath: server-crt
+            - mountPath: /etc/signatrust.toml
+              name: copr-secrets
+              subPath: signatrust-toml
       volumes:
         - name: copr-backend
           configMap:
@@ -107,6 +133,9 @@ spec:
         - name: copr-backend-data
           persistentVolumeClaim:
             claimName: copr-backend-data
+        - name: copr-backend-stats-data
+          persistentVolumeClaim:
+            claimName: copr-backend-stats-data
         - name: copr-secrets
           secret:
             secretName: copr-secrets

@@ -7,7 +7,7 @@ resources:
 - sbom-website.yaml
 - sbom-repo-service.yaml
 - repo-post-verify.yaml
-- autoscaler.yaml
+- pvc.yaml
 commonAnnotations:
   kubernetes.ops.cluster: test
   kubernetes.ops.email: huangheqing2@huawei.com
@@ -19,9 +19,9 @@ kind: Kustomization
 namespace: openeuler-sbom-service
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openeuler-sbom-service-test
-  newTag: v1.0.20230613092853
+  newTag: v1.0.20230731201025
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openeuler-sbom-website-test
-  newTag: v1.0.20230628140802
+  newTag: v1.0.20230801160328
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/repo-post-verification-test
   newTag: b664f531ba92c5cf14cff0391d6ac74271f3095e
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/sbom-repo-service

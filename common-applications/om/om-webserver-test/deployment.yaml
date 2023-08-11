@@ -17,7 +17,10 @@ spec:
       - name: huawei-swr-image-pull-secret
       containers:
         - name: om-webserver
-          image: swr.cn-north-4.myhuaweicloud.com/om/om-webserver:0.4.43
+          image: swr.cn-north-4.myhuaweicloud.com/om/om-webserver:0.5.3
+          env:
+          - name: APPLICATION_PATH
+            value: "/var/lib/om-webserver/application.properties"
           resources:
             limits:
               cpu: 1000m

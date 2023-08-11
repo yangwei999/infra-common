@@ -53,6 +53,10 @@ spec:
         - mountPath: /Users/tommylike/Work/codes/rust-projects/signatrust/.data/certs/server/ca_root.pem
           name: secret
           subPath: ca-root-pem
+        securityContext:
+          allowPrivilegeEscalation: false
+          runAsUser: 1000
+          runAsGroup: 1000
       volumes:
       - name: secret
         secret:
