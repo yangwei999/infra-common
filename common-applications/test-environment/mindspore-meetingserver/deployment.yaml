@@ -47,6 +47,10 @@ spec:
         env:
         - name: TZ
           value: Asia/Shanghai
+        - name: CONFIG_PATH
+          value: /vault/secrets/secrets.yaml
+        - name: XARMOR_CONF
+          value: /work/app-meeting-server/xarmor_pyrasp.ini
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/mindspore/meetingserver:test-main-9c0045
         imagePullPolicy: IfNotPresent
         livenessProbe:
