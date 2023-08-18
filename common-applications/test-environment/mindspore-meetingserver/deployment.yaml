@@ -1,0 +1,92 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: meetingserver-deployment
+  namespace: mindspore-meetingserver
+spec:
+  selector:
+    matchLabels:
+      app: meetingserver
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        vault.hashicorp.com/agent-inject: 'true'
+        vault.hashicorp.com/role: 'mindspore-meeting'
+        vault.hashicorp.com/agent-inject-perms-secrets.yaml: "0700"
+        vault.hashicorp.com/agent-inject-perms-xarmor_pyrasp.ini: "0700"
+        vault.hashicorp.com/agent-run-as-user: "1000"
+        vault.hashicorp.com/agent-inject-secret-secrets.yaml: 'internal/data/infra-test/mindspore-meeting'
+        vault.hashicorp.com/agent-pre-populate-only: "true"
+        vault.hashicorp.com/agent-inject-template-secrets.yaml: |  
+          {{- with secret "internal/data/infra-test/mindspore-meeting" -}}  
+          {{ .Data.data.config }}
+          {{- end }}
+        vault.hashicorp.com/agent-inject-secret-xarmor_pyrasp.ini: 'internal/data/infra-test/mindspore-meeting'
+        vault.hashicorp.com/agent-inject-template-xarmor_pyrasp.ini: |  
+          {{- with secret "internal/data/infra-test/mindspore-meeting" -}}  
+          {{ .Data.data.rasp }}
+          {{- end }}
+      labels:
+        app: meetingserver
+    spec:
+      containers:
+      - command:
+        - /bin/sh
+        - -c
+        - |
+          strip -R .note.ABI-tag /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.11.3
+          touch /work/app-meeting-server/meetings/migrations/__init__.py
+          cp /vault/secrets/xarmor_pyrasp.ini /work/app-meeting-server/xarmor_pyrasp.ini
+          rm -rf /vault/secrets/xarmor_pyrasp.ini
+          python manage.py collectstatic
+          python manage.py makemigrations
+          python manage.py migrate
+          exec uwsgi --ini /work/app-meeting-server/deploy/production/uwsgi.ini
+        env:
+        - name: TZ
+          value: Asia/Shanghai
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/mindspore/meetingserver:test-main-9c0045
+        imagePullPolicy: IfNotPresent
+        livenessProbe:
+          failureThreshold: 3
+          initialDelaySeconds: 20
+          periodSeconds: 20
+          successThreshold: 1
+          tcpSocket:
+            port: 8080
+          timeoutSeconds: 5
+        name: meetingserver
+        readinessProbe:
+          failureThreshold: 3
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          successThreshold: 1
+          tcpSocket:
+            port: 8080
+          timeoutSeconds: 5
+        resources:
+          limits:
+            cpu: "1"
+            memory: 1000Mi
+          requests:
+            cpu: 500m
+            memory: 500Mi
+        volumeMounts:
+        - mountPath: /work/app-meeting-server/meetings/migrations
+          name: container-mountpath
+          subPath: migrations
+      dnsPolicy: ClusterFirst
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
+      serviceAccountName: mindspore-meeting
+      nodeSelector:
+        autoscaler: "true"
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - name: container-mountpath
+        persistentVolumeClaim:
+          claimName: meetings-data-volume
