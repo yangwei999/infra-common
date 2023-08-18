@@ -66,3 +66,5 @@ spec:
           value: "https://forum.openeuler.org"
         - name: MINDSPORE_OFFICIAL
           value: "https://www.mindspore.cn"
+        - name: SERVICE_URL
+          value: "https://gitee.com/opensourceway/om-data/raw/master/src/openeuler/server.yaml"
