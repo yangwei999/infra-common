@@ -11,6 +11,17 @@ spec:
     type: Recreate
   template:
     metadata:
+      annotations:
+        vault.hashicorp.com/agent-inject: 'true'
+        vault.hashicorp.com/role: 'openeuler-meeting'
+        vault.hashicorp.com/agent-inject-perms-secrets.yaml: "0700"
+        vault.hashicorp.com/agent-run-as-user: "1000"
+        vault.hashicorp.com/agent-inject-secret-secrets.yaml: 'internal/data/infra-test/openeuler-meeting'
+        vault.hashicorp.com/agent-pre-populate-only: "true"
+        vault.hashicorp.com/agent-inject-template-secrets.yaml: |  
+          {{- with secret "internal/data/infra-test/openeuler-meeting" -}}  
+          {{ .Data.data.config }}
+          {{- end }}
       labels:
         app: meetingserver
     spec:
@@ -19,18 +30,15 @@ spec:
         - /bin/sh
         - -c
         - |
-          # Fix wkhtmltopdf shared library issue when running on kernel which < 3.17
-          # Read detail at https://stackoverflow.com/questions/54582864/missing-qt-libs-with-wkhtmltopdf-in-docker-on-debian-buster
           strip -R .note.ABI-tag /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.11.3
-          # incase the __init__.py does not exist in the mounted volume
           touch /work/app-meeting-server/meetings/migrations/__init__.py
           python manage.py collectstatic
-          # python manage.py makemigrations
-          # python manage.py migrate
           exec uwsgi --ini /work/app-meeting-server/deploy/production/uwsgi.ini
-        envFrom:
-        - secretRef:
-            name: meetingserver-secret
+        env:
+        - name: TZ
+          value: Asia/Shanghai
+        - name: CONFIG_PATH
+          value: /vault/secrets/secrets.yaml
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/meetingserver:test-main-e9d41a
         imagePullPolicy: IfNotPresent
         livenessProbe:
@@ -66,6 +74,7 @@ spec:
       - name: huawei-swr-image-pull-secret
       nodeSelector:
         autoscaler: "true"
+      serviceAccountName: openeuler-meeting
       restartPolicy: Always
       schedulerName: default-scheduler
       terminationGracePeriodSeconds: 30
