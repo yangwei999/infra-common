@@ -18,14 +18,14 @@ spec:
           volumeMounts:
             - mountPath: /var/lib/om/config.ini
               subPath: credentials_cfg
-              name: om-commit-log-secrets-volume
+              name: mindspore-big-model-commit-secrets-volume
             - mountPath: /mnt
-              subPath: commitlog
+              subPath: bigmodelcommitlog
               name: storage
       volumes:
-        - name: om-commit-log-secrets-volume
+        - name: mindspore-big-model-commit-secrets-volume
           secret:
-            secretName: om-commit-log-secrets
+            secretName: mindspore-big-model-commit-secrets
         - name: storage
           persistentVolumeClaim:
-            claimName: commitlog
+            claimName: bigmodelcommitlog
