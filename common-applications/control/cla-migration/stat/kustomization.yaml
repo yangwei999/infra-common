@@ -11,3 +11,6 @@ commonAnnotations:
 namespace: cla-migration
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+images:
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/icsl/cla-stat
+  newTag: 97692fd0383db01cd75b759a92b27d3cdf41db06
