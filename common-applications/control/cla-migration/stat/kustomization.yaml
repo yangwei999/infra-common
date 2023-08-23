@@ -2,7 +2,6 @@ resources:
 - ingress.yaml
 - deployment.yaml
 - service.yaml
-- pvc.yaml
 commonAnnotations:
   kubernetes.ops.cluster: mindspore-cn1-mail-cluster
   kubernetes.ops.email: ""
@@ -12,6 +11,3 @@ commonAnnotations:
 namespace: cla-migration
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-images:
-- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/icsl/cla-backend
-  newTag: a4b7be9ad78f5c8a94d5bf0cced564af9aac4b08

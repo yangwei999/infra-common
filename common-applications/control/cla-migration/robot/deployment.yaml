@@ -7,7 +7,7 @@ metadata:
   name: cla-robot
   namespace: cla-migration
 spec:
-  replicas: 1
+  replicas: 0
   selector:
     matchLabels:
       component: cla-robot
