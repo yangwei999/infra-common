@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: cla-stat-service
+  namespace: cla-migration
+spec:
+  ports:
+  - name: srv
+    port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: cla-stat
+  type: ClusterIP
