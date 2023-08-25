@@ -5,6 +5,7 @@ metadata:
   name: sbom-deployment
   namespace: openeuler-sbom-service
 spec:
+  replicas: 0
   strategy:
     type: Recreate
   selector:

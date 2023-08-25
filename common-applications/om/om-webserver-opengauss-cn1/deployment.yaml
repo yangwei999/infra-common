@@ -13,9 +13,21 @@ spec:
       app: om-webserver
   template:
     metadata:
+      annotations:
+        vault.hashicorp.com/agent-inject: 'true'
+        vault.hashicorp.com/role: 'opengauss-omwebserver'
+        vault.hashicorp.com/agent-inject-secret-application.properties: 'internal/data/infra-common/opengauss-omwebserver'
+        vault.hashicorp.com/agent-pre-populate-only: "true"
+        vault.hashicorp.com/agent-inject-template-application.properties: |  
+          {{- with secret "internal/data/infra-common/opengauss-omwebserver" -}}  
+          {{ .Data.data.application_properties }}
+          {{- end }}
       labels:
         app: om-webserver
     spec:
+      serviceAccountName: opengauss-omwebserver
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
       containers:
       - name: om-webserver
         image: swr.cn-north-4.myhuaweicloud.com/om/om-webserver:0.5.10
@@ -28,7 +40,7 @@ spec:
             memory: 5000Mi
         env:
         - name: APPLICATION_PATH
-          value: "/var/lib/om-webserver/application.properties"
+          value: "/vault/secrets/application.properties"
         livenessProbe:
           failureThreshold: 3
           initialDelaySeconds: 20
@@ -48,11 +60,3 @@ spec:
         ports:
         - containerPort: 8080
           name: om-webserver
-        volumeMounts:
-        - mountPath: /var/lib/om-webserver/application.properties
-          subPath: application_properties
-          name: om-webserver-secrets-volume
-      volumes:
-      - name: om-webserver-secrets-volume
-        secret:
-          secretName: om-webserver-secrets

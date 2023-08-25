@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: commitlog
+  name: openeuler-iso-download-pvc
   annotations:
     everest.io/disk-volume-type: SSD
 spec:

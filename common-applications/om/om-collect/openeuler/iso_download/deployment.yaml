@@ -1,19 +1,19 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: big-model-commit
+  name: openeuler-iso-download-om-collect
   namespace: om
   labels:
-    app: big-model-commit
+    app: openeuler-iso-download-om-collect
 spec:
   revisionHistoryLimit: 10
   template:
     metadata:
       labels:
-        app: big-model-commit
+        app: openeuler-iso-download-om-collect
     spec:
       containers:
-        - name: big-model-commit
+        - name: openeuler-iso-download-om-collect
           image: swr.cn-north-4.myhuaweicloud.com/om/om-collection:0.5.43
           volumeMounts:
             - mountPath: /var/lib/om/config.ini
@@ -25,7 +25,7 @@ spec:
       volumes:
         - name: om-commit-log-secrets-volume
           secret:
-            secretName: om-commit-log-secrets
+            secretName: openeuler-iso-download-secrets
         - name: storage
           persistentVolumeClaim:
-            claimName: commitlog
+            claimName: openeuler-iso-download-pvc
