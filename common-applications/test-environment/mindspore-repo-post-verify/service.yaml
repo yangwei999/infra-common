@@ -4,15 +4,12 @@ kind: Service
 metadata:
   name: repo-post-verify-service
   namespace: mindspore-repo-post-verify
-  annotations:
-    kubernetes.io/elb.class: union
-    kubernetes.io/elb.id: 2eae4f4c-5fec-4fda-87c7-c7ea8819526f
-    kubernetes.io/elb.lb-algorithm: ROUND_ROBIN
 spec:
   ports:
   - name: http
     port: 8080
+    protocol: TCP
     targetPort: 8080
   selector:
     app: repo-post-verify
-  type: LoadBalancer
+  type: ClusterIP

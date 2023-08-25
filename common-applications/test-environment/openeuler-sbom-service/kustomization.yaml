@@ -8,9 +8,10 @@ resources:
 - sbom-repo-service.yaml
 - repo-post-verify.yaml
 - pvc.yaml
+- autoscaler.yaml
 commonAnnotations:
   kubernetes.ops.cluster: test
-  kubernetes.ops.email: huangheqing2@huawei.com
+  kubernetes.ops.email: ""
   kubernetes.ops.os.base: alpine
   kubernetes.ops.owner: huangheqing
   kubernetes.ops.region: hk
