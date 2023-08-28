@@ -1,7 +1,7 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 commonAnnotations:
   kubernetes.ops.cluster: test-cluster
-  kubernetes.ops.email: ''
+  kubernetes.ops.email: ""
   kubernetes.ops.os.base: openeuler
   kubernetes.ops.owner: wangxing
   kubernetes.ops.region: hk
@@ -12,3 +12,6 @@ resources:
 - website-service.yaml
 - website-deployment.yaml
 - autoscaler.yaml
+images:
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/opengauss/quickissue-website-test
+  newTag: 1d014027ae149ac52c9e1e76aaaeb315ede61880
