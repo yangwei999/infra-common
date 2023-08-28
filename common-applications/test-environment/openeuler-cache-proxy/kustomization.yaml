@@ -18,3 +18,4 @@ resources:
 - server-deployment.yaml
 - pvc.yaml
 - secret.yaml
+- autoscaler.yaml
