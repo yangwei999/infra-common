@@ -1,0 +1,8 @@
+resources:
+- namespace.yaml
+- tls.yaml
+- website
+- server
+namespace: opengauss-quickissue
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
