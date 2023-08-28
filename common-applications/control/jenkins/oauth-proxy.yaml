@@ -5,7 +5,7 @@ metadata:
     k8s-app: oauth2-proxy
   name: oauth2-proxy
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       k8s-app: oauth2-proxy
@@ -43,9 +43,9 @@ spec:
           - --session-cookie-minimal=false
           - --pass-access-token=true
           - --cookie-secure=false
-          - --login-url=https://xiheapi.osinfra.cn/oneid/oidc/authorize
-          - --redeem-url=https://xiheapi.osinfra.cn/oneid/oidc/token
-          - --profile-url=https://xiheapi.osinfra.cn/oneid/oidc/user
+          - --login-url=https://omapi.osinfra.cn/oneid/oidc/authorize
+          - --redeem-url=https://omapi.osinfra.cn/oneid/oidc/token
+          - --profile-url=https://omapi.osinfra.cn/oneid/oidc/user
           - --skip-oidc-discovery=true
           - --insecure-oidc-skip-issuer-verification=true
           - --skip-jwt-bearer-tokens=false
@@ -71,7 +71,7 @@ spec:
                 secretKeyRef:
                   key: cookie_secret
                   name: osinfra-jenkins
-          image: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/oauth2-proxy:4b64a9c04a247dd5da3ff664d9d497c902324c3a
+          image: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/oauth2-proxy:b2d87e8e29285720327bf01aee604f929ea64dd4
           imagePullPolicy: Always
           name: oauth2-proxy
           ports:
