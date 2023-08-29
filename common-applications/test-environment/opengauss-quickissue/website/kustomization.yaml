@@ -14,4 +14,4 @@ resources:
 - autoscaler.yaml
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/opengauss/quickissue-website-test
-  newTag: "1693276120"
+  newTag: 03460f57ee0819c50407281c9715036674374210
