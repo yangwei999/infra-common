@@ -24,7 +24,7 @@ spec:
         effect: "NoSchedule"
       containers:
       - name: chat-api
-        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/chatapi/easymodel:0.0.16
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/chatapi/easymodel:master-2f693a
         env:
         - name: LD_LIBRARY_PATH
           value: /usr/local/nvidia/lib64
@@ -52,7 +52,7 @@ spec:
             port: 8080
           timeoutSeconds: 5
         volumeMounts:
-        - mountPath: /var/lib/om/model/chatglm-6b
+        - mountPath: /var/lib/om/model/
           name: chat-api-model-volume
         - mountPath: /var/lib/om/config.ini
           subPath: credentials_cfg
