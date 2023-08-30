@@ -4,7 +4,7 @@ metadata:
   name: source-credible-consistency-deployment
   namespace: majun-source-credible-consistency
 spec:
-  replicas: 0
+  replicas: 1
   strategy:
     type: Recreate
   selector:

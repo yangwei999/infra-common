@@ -11,9 +11,9 @@ kind: Kustomization
 namespace: opengauss-repo-verify
 commonAnnotations:
   kubernetes.ops.cluster: test
-  kubernetes.ops.email: 644233126@qq.com
+  kubernetes.ops.email: ""
   kubernetes.ops.os.base: openEuler
-  kubernetes.ops.owner: jiaorui
+  kubernetes.ops.owner: chentao
   kubernetes.ops.region: hk
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/opengauss/opengauss-repo-verify-test

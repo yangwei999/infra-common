@@ -5,7 +5,7 @@ metadata:
   name: anti-poisoning
   namespace: majun-anti-poisoning
 spec:
-  replicas: 0
+  replicas: 2
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -69,6 +69,9 @@ spec:
         - mountPath: /usr/local/work.ks
           name: secret
           subPath: work-ks
+        - mountPath: /usr/local/configJson.json
+          name: secret
+          subPath: configjson-json
         readinessProbe:
           tcpSocket:
             port: 8086

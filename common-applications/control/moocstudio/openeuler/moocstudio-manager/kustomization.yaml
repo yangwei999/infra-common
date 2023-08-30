@@ -3,7 +3,6 @@ resources:
 - deployment.yaml
 - service.yaml
 - secrets.yaml
-- ingress.yaml
 commonLabels:
   app: moocstudio-openeuler-manager
   owner: zhangjianjun

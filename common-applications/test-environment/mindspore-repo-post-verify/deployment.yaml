@@ -5,7 +5,6 @@ metadata:
   name: repo-post-verify-deployment
   namespace: mindspore-repo-post-verify
 spec:
-  replicas: 0
   strategy:
     type: Recreate
   selector:

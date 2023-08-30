@@ -5,7 +5,6 @@ metadata:
   name: post-verification-deployment
   namespace: opengauss-repo-verify
 spec:
-  replicas: 0
   strategy:
     type: Recreate
   revisionHistoryLimit: 10
