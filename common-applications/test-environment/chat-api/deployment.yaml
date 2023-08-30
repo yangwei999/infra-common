@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chat-api
+  namespace: chat-api
+  labels:
+    app: chat-api
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: chat-api
+  template:
+    metadata:
+      labels:
+        app: chat-api
+    spec:
+      tolerations:
+      - key: "GPU"
+        operator: "Equal"
+        value: "false"
+        effect: "NoSchedule"
+      containers:
+      - name: chat-api
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/chatapi/easymodel:0.0.16
+        env:
+        - name: LD_LIBRARY_PATH
+          value: /usr/local/nvidia/lib64
+        resources:
+          limits:
+            cpu: 2000m
+            memory: 30000Mi
+          requests:
+            cpu: 1000m
+            memory: 2000Mi
+        livenessProbe:
+          failureThreshold: 3
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          successThreshold: 1
+          tcpSocket:
+            port: 8080
+          timeoutSeconds: 5
+        readinessProbe:
+          failureThreshold: 3
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          successThreshold: 1
+          tcpSocket:
+            port: 8080
+          timeoutSeconds: 5
+        volumeMounts:
+        - mountPath: /var/lib/om/model/chatglm-6b
+          name: chat-api-model-volume
+        - mountPath: /var/lib/om/config.ini
+          subPath: credentials_cfg
+          name: chat-api-secrets-volume
+      volumes:
+      - name: chat-api-model-volume
+        persistentVolumeClaim:
+          claimName: obs-chatapi-pvc
+      - name: chat-api-secrets-volume
+        secret:
+          secretName: chat-api-secrets

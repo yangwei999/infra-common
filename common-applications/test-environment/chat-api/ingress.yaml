@@ -1,0 +1,30 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/limit-connections: "400"
+    nginx.ingress.kubernetes.io/limit-rps: "400"
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      add_header X-XSS-Protection "1; mode=block";
+      add_header X-Frame-Options "SAMEORIGIN";
+      add_header Content-Security-Policy "script-src 'self' *.baidu.com *.googleapis.com ers.baidu.com 'unsafe-eval' 'unsafe-inline';object-src 'none';frame-ancestors 'self'";
+  name: chat-api-ingress
+  namespace: chat-api
+spec:
+  tls:
+    - hosts:
+        - chatapi.test.osinfra.cn
+      secretName: chatapi-test-osinfra-cn-tls
+  rules:
+  - host: chatapi.test.osinfra.cn
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: chat-api-service
+            port:
+              number: 8080
+  ingressClassName: nginx
