@@ -9,8 +9,11 @@ namespace: chat-api
 apiVersion: kustomize.config.k8s.io/v1beta1
 commonAnnotations:
   kubernetes.ops.cluster: shanghai-test-cluster
-  kubernetes.ops.email: ''
+  kubernetes.ops.email: ""
   kubernetes.ops.os.base: debian
   kubernetes.ops.owner: wucaiping
   kubernetes.ops.region: shanghai
 kind: Kustomization
+images:
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/chatapi/easymodel
+  newTag: master-4ae9cd
