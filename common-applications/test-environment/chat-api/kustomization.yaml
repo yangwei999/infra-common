@@ -16,4 +16,4 @@ commonAnnotations:
 kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/chatapi/easymodel
-  newTag: master-bb46b9
+  newTag: master-db3d8b
