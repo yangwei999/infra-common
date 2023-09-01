@@ -1,0 +1,16 @@
+resources:
+- autoscaler.yaml
+- deployment.yaml
+- ingress.yaml
+- namespace.yaml
+- service.yaml
+- tls.yaml
+commonAnnotations:
+  kubernetes.ops.cluster: test
+  kubernetes.ops.email: ""
+  kubernetes.ops.os.base: debian
+  kubernetes.ops.owner: chenyang
+  kubernetes.ops.region: hk
+namespace: pr-message
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
