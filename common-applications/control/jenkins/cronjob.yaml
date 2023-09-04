@@ -64,4 +64,4 @@ spec:
             - containerPort: 80
               name: http
               protocol: TCP
-          restartPolicy: OnFailure
+          restartPolicy: Never
