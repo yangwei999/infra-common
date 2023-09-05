@@ -42,6 +42,8 @@ spec:
           value: '360'
         - name: BUILDER_TYPE
           value: test
+        - name: BUILDER_SECRET
+          value: /home/mockbuild/.ssh/id_backend.pub:copr-secrets:backend_id_rsa.pub
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/copr/resalloc-test:v1.0.20230310170217
         imagePullPolicy: IfNotPresent
         livenessProbe:
