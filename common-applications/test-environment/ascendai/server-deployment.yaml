@@ -59,7 +59,7 @@ spec:
           periodSeconds: 10
           successThreshold: 1
           httpGet:
-            path: /api/v1/job
+            path: /swagger/index.html
             port: 8080
           timeoutSeconds: 5
         name: server
@@ -69,7 +69,7 @@ spec:
           periodSeconds: 10
           successThreshold: 1
           httpGet:
-            path: /api/v1/job
+            path: /swagger/index.html
             port: 8080
           timeoutSeconds: 5
         resources:
