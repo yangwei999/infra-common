@@ -10,15 +10,15 @@ metadata:
       add_header X-XSS-Protection "1; mode=block";
       add_header X-Frame-Options "SAMEORIGIN";
       add_header Content-Security-Policy "script-src 'self' *.baidu.com *.googleapis.com ers.baidu.com 'unsafe-eval' 'unsafe-inline';object-src 'none';frame-ancestors 'self'";
-  name: chat-api-ingress
+  name: modelapi-ingress
   namespace: chat-api
 spec:
   tls:
     - hosts:
-        - chatapi.test.osinfra.cn
-      secretName: chatapi-test-osinfra-cn-tls
+        - modelapi.osinfra.cn
+      secretName: modelapi-osinfra-cn-tls
   rules:
-  - host: chatapi.test.osinfra.cn
+  - host: modelapi.osinfra.cn
     http:
       paths:
       - path: /
