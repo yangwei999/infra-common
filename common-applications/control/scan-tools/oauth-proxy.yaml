@@ -28,6 +28,7 @@ spec:
           - --skip-auth-regex=^/api/app_resources/sla_export
           - --skip-auth-regex=^/api/app_resources/repo
           - --skip-auth-regex=^/api/users/login
+          - --skip-auth-regex=^/api/users/refresh_token
           - --skip-auth-regex=^/api/app_resources/service
           - --skip-auth-regex=^/api/app_resources/service_introduce
           - --skip-auth-regex=^/static/
