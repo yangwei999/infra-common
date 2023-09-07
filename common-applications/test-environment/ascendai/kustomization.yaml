@@ -7,7 +7,7 @@ commonAnnotations:
   kubernetes.ops.region: hk
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/ascend/foundation-model-server
-  newTag: main-776f91
+  newTag: main-37cbb1
 kind: Kustomization
 namespace: ascendai
 resources:
