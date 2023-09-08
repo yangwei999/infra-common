@@ -19,4 +19,4 @@ images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openeuler-login-feature-docs-zh-test
   newTag: v1.0.20230413200225
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openeuler-login-feature-website-test
-  newTag: 2dbb2e1dda8891c636db8ebf09063beb9b08180e
+  newTag: a2f1e79b926d6194b453a0109ec7ce9b0c0c0967
