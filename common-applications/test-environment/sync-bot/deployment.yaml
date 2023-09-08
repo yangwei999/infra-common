@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sync-bot
+  name: sync-bot
+  namespace: sync-bot
+spec:
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: sync-bot
+  template:
+    metadata:
+      annotations:
+        vault.hashicorp.com/agent-inject: 'true'
+        vault.hashicorp.com/role: 'sync-bot'
+        vault.hashicorp.com/agent-inject-perms-token.conf: "0700"
+        vault.hashicorp.com/agent-inject-perms-secret.conf: "0700"
+        vault.hashicorp.com/agent-run-as-user: "1000"
+        vault.hashicorp.com/agent-inject-secret-token.conf: 'internal/data/infra-test/sync-bot'
+        vault.hashicorp.com/agent-inject-secret-secret.conf: 'internal/data/infra-test/sync-bot'
+        vault.hashicorp.com/agent-pre-populate-only: "true"
+        vault.hashicorp.com/agent-inject-template-token.conf: |  
+          {{- with secret "internal/data/infra-test/sync-bot" -}}  
+          {{ .Data.data.token }}
+          {{- end }}
+        vault.hashicorp.com/agent-inject-template-secret.conf: |  
+          {{- with secret "internal/data/infra-test/sync-bot" -}}  
+          {{ .Data.data.secret }}
+          {{- end }}
+      labels:
+        app: sync-bot
+    spec:
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
+      nodeSelector:
+        autoscaler: "true"
+      serviceAccountName: sync-bot
+      containers:
+      - env:
+        - name: TZ
+          value: Asia/Shanghai
+        command:
+        - /bin/sh
+        - -c
+        - |
+          exec /sync-bot --gitee-token=/vault/secrets/token.conf --webhook-secret=/vault/secrets/secret.conf --port=8765
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/sync-bot-test:951c90a1f8ad7d2e5e97c2a4d32fe129ee315807
+        imagePullPolicy: IfNotPresent
+        name: sync-bot
+        volumeMounts:
+        - mountPath: /repos
+          name: sync-bot-repo-volume
+        ports:
+        - containerPort: 8765
+          name: http
+          protocol: TCP
+      volumes:
+      - name: sync-bot-repo-volume
+        persistentVolumeClaim:
+          claimName: openeuler-sync-bot-volume
