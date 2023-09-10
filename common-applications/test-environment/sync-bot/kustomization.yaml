@@ -15,3 +15,6 @@ commonAnnotations:
 namespace: sync-bot
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+images:
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/sync-bot-test
+  newTag: 1cc44bf16f5a18c805166c15a2872df1e1246169
