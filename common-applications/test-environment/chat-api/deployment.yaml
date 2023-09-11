@@ -14,6 +14,17 @@ spec:
       app: chat-api
   template:
     metadata:
+      annotations:
+        vault.hashicorp.com/agent-inject: 'true'
+        vault.hashicorp.com/role: 'modelapi'
+        vault.hashicorp.com/agent-inject-perms-config.ini: "0700"
+        vault.hashicorp.com/agent-run-as-user: "1000"
+        vault.hashicorp.com/agent-inject-secret-config.ini: 'internal/data/infra-test/modelapi'
+        vault.hashicorp.com/agent-pre-populate-only: "true"
+        vault.hashicorp.com/agent-inject-template-config.ini: |  
+          {{- with secret "internal/data/infra-test/modelapi" -}}  
+          {{ .Data.data.config }}
+          {{- end }}
       labels:
         app: chat-api
     spec:
@@ -22,12 +33,17 @@ spec:
         operator: "Equal"
         value: "false"
         effect: "NoSchedule"
+      serviceAccountName: modelapi
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
       containers:
       - name: chat-api
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/chatapi/easymodel:master-2f693a
         env:
         - name: LD_LIBRARY_PATH
           value: /usr/local/nvidia/lib64
+        - name: APPLICATION_PATH
+          value: /vault/secrets/config.ini
         resources:
           limits:
             cpu: 2000m
@@ -56,13 +72,7 @@ spec:
         volumeMounts:
         - mountPath: /var/lib/om/model/
           name: chat-api-model-volume
-        - mountPath: /var/lib/baichuai/config.ini
-          subPath: credentials_cfg
-          name: chat-api-secrets-volume
       volumes:
       - name: chat-api-model-volume
         persistentVolumeClaim:
           claimName: obs-chatapi-pvc
-      - name: chat-api-secrets-volume
-        secret:
-          secretName: chat-api-secrets
