@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: uptime-kuma-pvc-0
+  namespace: uptime-kuma
+  annotations:
+    everest.io/disk-volume-type: SSD
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100G
+  storageClassName: csi-disk
