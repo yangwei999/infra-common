@@ -45,7 +45,7 @@ spec:
             port: 8080
           timeoutSeconds: 5
         volumeMounts:
-        - mountPath: /pr-message/config.yaml
+        - mountPath: /home/pr/pr-message/config.yaml
           subPath: config
           name: secret
       volumes:
