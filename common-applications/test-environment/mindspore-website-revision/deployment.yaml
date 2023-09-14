@@ -22,7 +22,7 @@ spec:
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/mindspore/website-test:c31cc10adbdce1698f49146a2b625a6d66d04c92
         imagePullPolicy: IfNotPresent
         ports:
-        - containerPort: 80
+        - containerPort: 8080
           name: http
           protocol: TCP
         resources:
@@ -38,7 +38,7 @@ spec:
           periodSeconds: 10
           successThreshold: 1
           tcpSocket:
-            port: 80
+            port: 8080
           timeoutSeconds: 5
         readinessProbe:
           failureThreshold: 3
@@ -46,5 +46,5 @@ spec:
           periodSeconds: 10
           successThreshold: 1
           tcpSocket:
-            port: 80
+            port: 8080
           timeoutSeconds: 5
