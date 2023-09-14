@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: server-deployment
+  namespace: mindspore-website-api
+spec:
+  selector:
+    matchLabels:
+      app: server
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        vault.hashicorp.com/agent-inject: 'true'
+        vault.hashicorp.com/role: 'mindspore-website-api'
+        vault.hashicorp.com/agent-inject-perms-application.yaml: "0700"
+        vault.hashicorp.com/agent-run-as-user: "1001"
+        vault.hashicorp.com/agent-inject-secret-application.yaml: 'internal/data/infra-test/mindspore-website-api'
+        vault.hashicorp.com/agent-pre-populate-only: "true"
+        vault.hashicorp.com/agent-inject-template-application.yaml: |  
+          {{- with secret "internal/data/infra-test/mindspore-website-api" -}}  
+          {{ .Data.data.application }}
+          {{- end }}
+      labels:
+        app: server
+    spec:
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
+      nodeSelector:
+        autoscaler: "true"
+      serviceAccountName: mindspore-website-api
+      containers:
+      - env:
+        - name: APPLICATION_PATH
+          value: "/vault/secrets/application.yaml"
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/mindspore/mindspore-website-api-test:master-f4468c
+        imagePullPolicy: IfNotPresent
+        livenessProbe:
+          failureThreshold: 3
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          successThreshold: 1
+          tcpSocket:
+            port: 8080
+          timeoutSeconds: 5
+        name: server
+        readinessProbe:
+          failureThreshold: 3
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          successThreshold: 1
+          tcpSocket:
+            port: 8080
+          timeoutSeconds: 5
+        resources:
+          limits:
+            cpu: 1000m
+            memory: 1000Mi
+          requests:
+            cpu: 1000m
+            memory: 1000Mi
