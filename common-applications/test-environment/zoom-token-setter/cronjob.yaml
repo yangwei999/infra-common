@@ -1,0 +1,45 @@
+---
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: zoom-token-setter-cronjob
+  namespace: zoom-token-setter
+spec:
+  schedule: "30 * * * *"
+  concurrencyPolicy: Forbid
+  startingDeadlineSeconds: 180
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          annotations:
+            vault.hashicorp.com/agent-inject: 'true'
+            vault.hashicorp.com/role: 'zoom-token-setter'
+            vault.hashicorp.com/agent-inject-perms-secrets.yaml: "0700"
+            vault.hashicorp.com/agent-run-as-user: "1000"
+            vault.hashicorp.com/agent-inject-secret-secrets.yaml: 'internal/data/infra-test/zoom-token-setter'
+            vault.hashicorp.com/agent-pre-populate-only: "true"
+            vault.hashicorp.com/agent-inject-template-secrets.yaml: |  
+              {{- with secret "internal/data/infra-test/zoom-token-setter" -}}  
+              {{ .Data.data.config }}
+              {{- end }}
+        spec:
+          serviceAccountName: zoom-token-setter
+          imagePullSecrets:
+          - name: huawei-swr-image-pull-secret
+          nodeSelector:
+            autoscaler: "true"
+          restartPolicy: OnFailure
+          containers:
+          - name: zoom-token-setter
+            image: swr.cn-north-4.myhuaweicloud.com/opensourceway/meeting/zoom-token-setter-test:main-81bcb1
+            env:
+            - name: TZ
+              value: Asia/Shanghai
+            - name: CONFIG_PATH
+              value: /vault/secrets/secrets.yaml
+            command:
+              - /bin/sh
+              - -c
+              - |
+                python manage.py refresh
