@@ -1,0 +1,6 @@
+resources:
+- apisix-dashboard.yaml
+- apisix.yaml
+- etcd.yaml
+- namespace.yaml
+namespace: apisix

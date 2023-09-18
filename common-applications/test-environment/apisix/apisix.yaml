@@ -1,0 +1,152 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: apisix
+  namespace: apisix
+  labels:
+    app.kubernetes.io/instance: apisix
+    app.kubernetes.io/name: apisix
+    app.kubernetes.io/version: 2.10.0
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: apisix
+      app.kubernetes.io/name: apisix
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app.kubernetes.io/instance: apisix
+        app.kubernetes.io/name: apisix
+    spec:
+      volumes:
+      - name: apisix-config
+        secret:
+          secretName: apisix-secret
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
+      nodeSelector:
+        infra: "true"
+      initContainers:
+        - name: wait-etcd
+          image: swr.cn-north-4.myhuaweicloud.com/opensourceway/apache-apisix/busybox:1.28
+          command:
+            - sh
+            - '-c'
+            - >-
+              until nc -z apisix-etcd.apisix.svc.cluster.local 2379; do echo
+              waiting for etcd `date`; sleep 2; done;
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          imagePullPolicy: IfNotPresent
+      containers:
+        - name: apisix
+          image: swr.cn-north-4.myhuaweicloud.com/opensourceway/apache-apisix/apisix:2.10.0-alpine
+          ports:
+            - name: http
+              containerPort: 9080
+              protocol: TCP
+            - name: tls
+              containerPort: 9443
+              protocol: TCP
+            - name: admin
+              containerPort: 9180
+              protocol: TCP
+          resources: {}
+          volumeMounts:
+            - name: apisix-config
+              mountPath: /usr/local/apisix/conf/config.yaml
+              subPath: config.yaml
+          readinessProbe:
+            tcpSocket:
+              port: 9080
+            initialDelaySeconds: 10
+            timeoutSeconds: 1
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 6
+          lifecycle:
+            preStop:
+              exec:
+                command:
+                  - /bin/sh
+                  - '-c'
+                  - sleep 30
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+      securityContext: {}
+      schedulerName: default-scheduler
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 25%
+      maxSurge: 25%
+  revisionHistoryLimit: 10
+  progressDeadlineSeconds: 600
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: apisix-admin
+  namespace: apisix
+  labels:
+    app.kubernetes.io/instance: apisix
+    app.kubernetes.io/name: apisix
+    app.kubernetes.io/version: 2.10.0
+spec:
+  ports:
+    - name: apisix-admin
+      protocol: TCP
+      port: 9180
+      targetPort: 9180
+  selector:
+    app.kubernetes.io/instance: apisix
+    app.kubernetes.io/name: apisix
+  type: ClusterIP
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: apisix-gateway
+  namespace: apisix
+  labels:
+    app.kubernetes.io/instance: apisix
+    app.kubernetes.io/name: apisix
+    app.kubernetes.io/version: 2.10.0
+  annotations:
+    kubernetes.io/elb.class: union
+    kubernetes.io/elb.id: e0698d8e-e6c3-4d05-96bb-c69f8394a83b
+    kubernetes.io/elb.lb-algorithm: ROUND_ROBIN
+spec:
+  ports:
+    - name: apisix-gateway
+      protocol: TCP
+      port: 80
+      targetPort: 9080
+      nodePort: 31684
+  selector:
+    app.kubernetes.io/instance: apisix
+    app.kubernetes.io/name: apisix
+  type: LoadBalancer
+  sessionAffinity: None
+  externalTrafficPolicy: Local
+
+---
+apiVersion: secrets-manager.tuenti.io/v1alpha1
+kind: SecretDefinition
+metadata:
+  name: apisix-secret
+  namespace: apisix
+spec:
+  name: apisix-secret
+  keysMap:
+    config.yaml:
+      path: secrets/data/infra-test/apisix
+      key: conf-apisix.yaml
