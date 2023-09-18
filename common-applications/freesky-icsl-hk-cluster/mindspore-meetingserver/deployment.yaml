@@ -15,12 +15,15 @@ spec:
       annotations:
         vault.hashicorp.com/agent-inject: 'true'
         vault.hashicorp.com/role: 'mindspore-meeting'
+        vault.hashicorp.com/agent-inject-perms-secrets.yaml: "0700"
+        vault.hashicorp.com/agent-run-as-user: "1000"
         vault.hashicorp.com/agent-inject-secret-secrets.yaml: 'internal/data/mindspore/mindspore-meeting'
         vault.hashicorp.com/agent-pre-populate-only: "true"
         vault.hashicorp.com/agent-inject-template-secrets.yaml: |  
           {{- with secret "internal/data/mindspore/mindspore-meeting" -}}  
           {{ .Data.data.config }}
           {{- end }}
+        vault.hashicorp.com/agent-inject-perms-xarmor_pyrasp.ini: "0700"
         vault.hashicorp.com/agent-inject-secret-xarmor_pyrasp.ini: 'internal/data/mindspore/mindspore-meeting'
         vault.hashicorp.com/agent-inject-template-xarmor_pyrasp.ini: |  
           {{- with secret "internal/data/mindspore/mindspore-meeting" -}}  
@@ -33,54 +36,54 @@ spec:
       - name: huawei-swr-image-pull-secret
       serviceAccountName: mindspore-meeting
       containers:
-        - name: meeting-server
-          image: swr.cn-north-4.myhuaweicloud.com/opensourceway/mindspore/mindspore-meeting-server:v1.0.20210716
-          volumeMounts:
-            - mountPath: /work/app-meeting-server/meetings/migrations
-              name: meeting-data-volume
-          resources:
-            requests:
-              cpu: 2000m
-              memory: 2000Mi
-          env:
-          - name: TZ
+      - name: meeting-server
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/mindspore/mindspore-meeting-server:v1.0.20210716
+        volumeMounts:
+          - mountPath: /work/app-meeting-server/meetings/migrations
+            name: meeting-data-volume
+        resources:
+          requests:
+            cpu: 2000m
+            memory: 2000Mi
+        env:
+        - name: TZ
           value: Asia/Shanghai
-          - name: CONFIG_PATH
-            value: /vault/secrets/secrets.yaml
-          - name: XARMOR_CONF
-            value: /work/app-meeting-server/xarmor_pyrasp.ini
-          command:
-            - /bin/sh
-            - -c
-            - |
-              strip -R .note.ABI-tag /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.11.3
-              touch /work/app-meeting-server/meetings/migrations/__init__.py
-              cp /vault/secrets/xarmor_pyrasp.ini /work/app-meeting-server/xarmor_pyrasp.ini
-              rm -rf /vault/secrets/xarmor_pyrasp.ini
-              python manage.py collectstatic
-              python manage.py makemigrations
-              python manage.py migrate
-              exec uwsgi --ini /work/app-meeting-server/deploy/production/uwsgi.ini
-          imagePullPolicy: IfNotPresent
-          ports:
-          - containerPort: 8080
-            name: http
-            protocol: TCP
-          readinessProbe:              #就绪探针
-            initialDelaySeconds: 20    #延迟加载时间
-            periodSeconds: 5           #重试时间间隔
-            timeoutSeconds: 10         #超时时间设置
-            failureThreshold: 5        #探测失败的重试次数
-            tcpSocket:
-              port: 8080
-          livenessProbe:               #存活探针
-            initialDelaySeconds: 60    #延迟加载时间
-            periodSeconds: 5           #重试时间间隔
-            timeoutSeconds: 5          #超时时间设置
-            failureThreshold: 3        #探测失败的重试次数
-            tcpSocket:
-              port: 8080
+        - name: CONFIG_PATH
+          value: /vault/secrets/secrets.yaml
+        - name: XARMOR_CONF
+          value: /work/app-meeting-server/xarmor_pyrasp.ini
+        command:
+          - /bin/sh
+          - -c
+          - |
+            strip -R .note.ABI-tag /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.11.3
+            touch /work/app-meeting-server/meetings/migrations/__init__.py
+            cp /vault/secrets/xarmor_pyrasp.ini /work/app-meeting-server/xarmor_pyrasp.ini
+            rm -rf /vault/secrets/xarmor_pyrasp.ini
+            python manage.py collectstatic
+            python manage.py makemigrations
+            python manage.py migrate
+            exec uwsgi --ini /work/app-meeting-server/deploy/production/uwsgi.ini
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+          name: http
+          protocol: TCP
+        readinessProbe:              #就绪探针
+          initialDelaySeconds: 20    #延迟加载时间
+          periodSeconds: 5           #重试时间间隔
+          timeoutSeconds: 10         #超时时间设置
+          failureThreshold: 5        #探测失败的重试次数
+          tcpSocket:
+            port: 8080
+        livenessProbe:               #存活探针
+          initialDelaySeconds: 60    #延迟加载时间
+          periodSeconds: 5           #重试时间间隔
+          timeoutSeconds: 5          #超时时间设置
+          failureThreshold: 3        #探测失败的重试次数
+          tcpSocket:
+            port: 8080
       volumes:
-        - name: meeting-data-volume
-          persistentVolumeClaim:
-            claimName: meeting-share-volume
+      - name: meeting-data-volume
+        persistentVolumeClaim:
+          claimName: meeting-share-volume

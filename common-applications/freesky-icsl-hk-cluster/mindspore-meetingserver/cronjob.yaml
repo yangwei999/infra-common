@@ -14,6 +14,8 @@ spec:
           annotations:
             vault.hashicorp.com/agent-inject: 'true'
             vault.hashicorp.com/role: 'mindspore-meeting'
+            vault.hashicorp.com/agent-inject-perms-secrets.yaml: "0700"
+            vault.hashicorp.com/agent-run-as-user: "1000"
             vault.hashicorp.com/agent-inject-secret-secrets.yaml: 'internal/data/mindspore/mindspore-meeting'
             vault.hashicorp.com/agent-pre-populate-only: "true"
             vault.hashicorp.com/agent-inject-template-secrets.yaml: |  
@@ -56,6 +58,8 @@ spec:
           annotations:
             vault.hashicorp.com/agent-inject: 'true'
             vault.hashicorp.com/role: 'mindspore-meeting'
+            vault.hashicorp.com/agent-inject-perms-secrets.yaml: "0700"
+            vault.hashicorp.com/agent-run-as-user: "1000"
             vault.hashicorp.com/agent-inject-secret-secrets.yaml: 'internal/data/mindspore/mindspore-meeting'
             vault.hashicorp.com/agent-pre-populate-only: "true"
             vault.hashicorp.com/agent-inject-template-secrets.yaml: |  
@@ -97,6 +101,8 @@ spec:
           annotations:
             vault.hashicorp.com/agent-inject: 'true'
             vault.hashicorp.com/role: 'mindspore-meeting'
+            vault.hashicorp.com/agent-inject-perms-secrets.yaml: "0700"
+            vault.hashicorp.com/agent-run-as-user: "1000"
             vault.hashicorp.com/agent-inject-secret-secrets.yaml: 'internal/data/mindspore/mindspore-meeting'
             vault.hashicorp.com/agent-pre-populate-only: "true"
             vault.hashicorp.com/agent-inject-template-secrets.yaml: |  
