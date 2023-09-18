@@ -7,7 +7,7 @@ commonAnnotations:
   kubernetes.ops.region: hk
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/mindspore/mindspore-website-api-test
-  newTag: master-36dcd8
+  newTag: master-e023ba
 kind: Kustomization
 namespace: mindspore-website-api
 resources:
