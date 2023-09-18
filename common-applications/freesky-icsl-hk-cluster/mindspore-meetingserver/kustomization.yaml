@@ -2,7 +2,6 @@ resources:
 - namespace.yaml
 - deployment.yaml
 - service.yaml
-- secrets.yaml
 - cronjob.yaml
 - pvc.yaml
 - ingress.yaml
@@ -14,4 +13,4 @@ kind: Kustomization
 namespace: mindspore-meetingserver
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/mindspore/mindspore-meeting-server
-  newTag: 92d66bfa7480e0749202d9659d33d7b74fef68cb
+  newTag: 39e926d39c4d65844b31c60c755972e40d054db3

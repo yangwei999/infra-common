@@ -1,7 +1,6 @@
 resources:
 - deployment.yaml
 - service.yaml
-- secrets.yaml
 - pvc.yaml
 - ingress.yaml
 commonAnnotations:
@@ -15,4 +14,4 @@ kind: Kustomization
 namespace: opengauss-website
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/opengauss/opengauss-meeting-server
-  newTag: 233cd21ff31f3287b570cf074972e1f93cc10f6d
+  newTag: ddfbe9e86f939bed13ff214b3a8e49549de6e1e3
