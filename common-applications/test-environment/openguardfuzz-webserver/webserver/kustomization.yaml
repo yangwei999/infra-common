@@ -7,7 +7,7 @@ commonAnnotations:
   kubernetes.ops.region: hk
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openguardfuzz-webserver
-  newTag: test-e76a48
+  newTag: test-fb9b16
 kind: Kustomization
 namespace: openguardfuzz-webserver
 resources:
