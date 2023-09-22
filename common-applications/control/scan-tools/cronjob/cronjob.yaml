@@ -1,0 +1,214 @@
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: refresh-resource-command
+  namespace: scan-tools
+spec:
+  schedule: "0 0 * * *"
+  concurrencyPolicy: Forbid
+  startingDeadlineSeconds: 180
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          annotations:
+            vault.hashicorp.com/agent-inject: 'true'
+            vault.hashicorp.com/role: 'infra-ops'
+            vault.hashicorp.com/agent-inject-perms-secret: "0700"
+            vault.hashicorp.com/agent-run-as-user: "1000"
+            vault.hashicorp.com/secret-volume-path-secret: '/opt/open_infra/open_infra/config/secret'
+            vault.hashicorp.com/agent-inject-secret-secret: 'internal/data/infra-common/ops'
+            vault.hashicorp.com/agent-pre-populate-only: "true"
+            vault.hashicorp.com/agent-inject-template-secret: |  
+              {{- with secret "internal/data/infra-common/ops" -}}  
+              {{ .Data.data.config }}
+              {{- end }}
+        spec:
+          serviceAccountName: ops
+          imagePullSecrets:
+          - name: huawei-swr-image-pull-secret
+          restartPolicy: Never
+          containers:
+          - name: refresh-resource-command
+            image: swr.cn-north-4.myhuaweicloud.com/opensourceway/infra-common/scan-tools-backend:7a36a077381b1ec612ffcc3b15dea9a3e9a1ec0b
+            env:
+            - name: TZ
+              value: Asia/Shanghai
+            command:
+              - /bin/sh
+              - -c
+              - |
+                python3 manage.py refresh_resource_command
+
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: scan-port-command
+  namespace: scan-tools
+spec:
+  schedule: "0 1 * * *"
+  concurrencyPolicy: Forbid
+  startingDeadlineSeconds: 180
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          annotations:
+            vault.hashicorp.com/agent-inject: 'true'
+            vault.hashicorp.com/role: 'infra-ops'
+            vault.hashicorp.com/agent-inject-perms-secret: "0700"
+            vault.hashicorp.com/agent-run-as-user: "1000"
+            vault.hashicorp.com/secret-volume-path-secret: '/opt/open_infra/open_infra/config/secret'
+            vault.hashicorp.com/agent-inject-secret-secret: 'internal/data/infra-common/ops'
+            vault.hashicorp.com/agent-pre-populate-only: "true"
+            vault.hashicorp.com/agent-inject-template-secret: |  
+              {{- with secret "internal/data/infra-common/ops" -}}  
+              {{ .Data.data.config }}
+              {{- end }}
+        spec:
+          serviceAccountName: ops
+          imagePullSecrets:
+          - name: huawei-swr-image-pull-secret
+          restartPolicy: Never
+          containers:
+          - name: scan-port-command
+            image: swr.cn-north-4.myhuaweicloud.com/opensourceway/infra-common/scan-tools-backend:7a36a077381b1ec612ffcc3b15dea9a3e9a1ec0b
+            env:
+            - name: TZ
+              value: Asia/Shanghai
+            command:
+              - /bin/sh
+              - -c
+              - |
+                python3 manage.py scan_port_command
+
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: refresh-bill-command
+  namespace: scan-tools
+spec:
+  schedule: "0 2 1 * *"
+  concurrencyPolicy: Forbid
+  startingDeadlineSeconds: 180
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          annotations:
+            vault.hashicorp.com/agent-inject: 'true'
+            vault.hashicorp.com/role: 'infra-ops'
+            vault.hashicorp.com/agent-inject-perms-secret: "0700"
+            vault.hashicorp.com/agent-run-as-user: "1000"
+            vault.hashicorp.com/secret-volume-path-secret: '/opt/open_infra/open_infra/config/secret'
+            vault.hashicorp.com/agent-inject-secret-secret: 'internal/data/infra-common/ops'
+            vault.hashicorp.com/agent-pre-populate-only: "true"
+            vault.hashicorp.com/agent-inject-template-secret: |  
+              {{- with secret "internal/data/infra-common/ops" -}}  
+              {{ .Data.data.config }}
+              {{- end }}
+        spec:
+          serviceAccountName: ops
+          imagePullSecrets:
+          - name: huawei-swr-image-pull-secret
+          restartPolicy: Never
+          containers:
+          - name: refresh-bill-command
+            image: swr.cn-north-4.myhuaweicloud.com/opensourceway/infra-common/scan-tools-backend:7a36a077381b1ec612ffcc3b15dea9a3e9a1ec0b
+            env:
+            - name: TZ
+              value: Asia/Shanghai
+            command:
+              - /bin/sh
+              - -c
+              - |
+                python3 manage.py refresh_bill_command
+
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: refresh-refresh-resource-command
+  namespace: scan-tools
+spec:
+  schedule: "0 3 * * 1"
+  concurrencyPolicy: Forbid
+  startingDeadlineSeconds: 180
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          annotations:
+            vault.hashicorp.com/agent-inject: 'true'
+            vault.hashicorp.com/role: 'infra-ops'
+            vault.hashicorp.com/agent-inject-perms-secret: "0700"
+            vault.hashicorp.com/agent-run-as-user: "1000"
+            vault.hashicorp.com/secret-volume-path-secret: '/opt/open_infra/open_infra/config/secret'
+            vault.hashicorp.com/agent-inject-secret-secret: 'internal/data/infra-common/ops'
+            vault.hashicorp.com/agent-pre-populate-only: "true"
+            vault.hashicorp.com/agent-inject-template-secret: |  
+              {{- with secret "internal/data/infra-common/ops" -}}  
+              {{ .Data.data.config }}
+              {{- end }}
+        spec:
+          serviceAccountName: ops
+          imagePullSecrets:
+          - name: huawei-swr-image-pull-secret
+          restartPolicy: Never
+          containers:
+          - name: refresh-refresh-resource-command
+            image: swr.cn-north-4.myhuaweicloud.com/opensourceway/infra-common/scan-tools-backend:7a36a077381b1ec612ffcc3b15dea9a3e9a1ec0b
+            env:
+            - name: TZ
+              value: Asia/Shanghai
+            command:
+              - /bin/sh
+              - -c
+              - |
+                python3 manage.py refresh_refresh_resource_command
+
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: clean-expired-command
+  namespace: scan-tools
+spec:
+  schedule: "*/10 * * * *"
+  concurrencyPolicy: Forbid
+  startingDeadlineSeconds: 180
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          annotations:
+            vault.hashicorp.com/agent-inject: 'true'
+            vault.hashicorp.com/role: 'infra-ops'
+            vault.hashicorp.com/agent-inject-perms-secret: "0700"
+            vault.hashicorp.com/agent-run-as-user: "1000"
+            vault.hashicorp.com/secret-volume-path-secret: '/opt/open_infra/open_infra/config/secret'
+            vault.hashicorp.com/agent-inject-secret-secret: 'internal/data/infra-common/ops'
+            vault.hashicorp.com/agent-pre-populate-only: "true"
+            vault.hashicorp.com/agent-inject-template-secret: |  
+              {{- with secret "internal/data/infra-common/ops" -}}  
+              {{ .Data.data.config }}
+              {{- end }}
+        spec:
+          serviceAccountName: ops
+          imagePullSecrets:
+          - name: huawei-swr-image-pull-secret
+          restartPolicy: Never
+          containers:
+          - name: clean-expired-command
+            image: swr.cn-north-4.myhuaweicloud.com/opensourceway/infra-common/scan-tools-backend:7a36a077381b1ec612ffcc3b15dea9a3e9a1ec0b
+            env:
+            - name: TZ
+              value: Asia/Shanghai
+            command:
+              - /bin/sh
+              - -c
+              - |
+                python3 manage.py clean_expired_command
