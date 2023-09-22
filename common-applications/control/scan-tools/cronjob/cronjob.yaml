@@ -1,5 +1,5 @@
 ---
-apiVersion: batch/v1
+apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
   name: refresh-resource-command
@@ -15,12 +15,11 @@ spec:
           annotations:
             vault.hashicorp.com/agent-inject: 'true'
             vault.hashicorp.com/role: 'infra-ops'
-            vault.hashicorp.com/agent-inject-perms-secret: "0700"
+            vault.hashicorp.com/agent-inject-perms-secret.yaml: "0700"
             vault.hashicorp.com/agent-run-as-user: "1000"
-            vault.hashicorp.com/secret-volume-path-secret: '/opt/open_infra/open_infra/config/secret'
-            vault.hashicorp.com/agent-inject-secret-secret: 'internal/data/infra-common/ops'
+            vault.hashicorp.com/agent-inject-secret-secret.yaml: 'internal/data/infra-common/ops'
             vault.hashicorp.com/agent-pre-populate-only: "true"
-            vault.hashicorp.com/agent-inject-template-secret: |  
+            vault.hashicorp.com/agent-inject-template-secret.yaml: |  
               {{- with secret "internal/data/infra-common/ops" -}}  
               {{ .Data.data.config }}
               {{- end }}
@@ -35,6 +34,8 @@ spec:
             env:
             - name: TZ
               value: Asia/Shanghai
+            - name: open_infra_config
+              value: "/vault/secrets/secret.yaml"
             command:
               - /bin/sh
               - -c
@@ -42,7 +43,7 @@ spec:
                 python3 manage.py refresh_resource_command
 
 ---
-apiVersion: batch/v1
+apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
   name: scan-port-command
@@ -58,12 +59,11 @@ spec:
           annotations:
             vault.hashicorp.com/agent-inject: 'true'
             vault.hashicorp.com/role: 'infra-ops'
-            vault.hashicorp.com/agent-inject-perms-secret: "0700"
+            vault.hashicorp.com/agent-inject-perms-secret.yaml: "0700"
             vault.hashicorp.com/agent-run-as-user: "1000"
-            vault.hashicorp.com/secret-volume-path-secret: '/opt/open_infra/open_infra/config/secret'
-            vault.hashicorp.com/agent-inject-secret-secret: 'internal/data/infra-common/ops'
+            vault.hashicorp.com/agent-inject-secret-secret.yaml: 'internal/data/infra-common/ops'
             vault.hashicorp.com/agent-pre-populate-only: "true"
-            vault.hashicorp.com/agent-inject-template-secret: |  
+            vault.hashicorp.com/agent-inject-template-secret.yaml: |  
               {{- with secret "internal/data/infra-common/ops" -}}  
               {{ .Data.data.config }}
               {{- end }}
@@ -78,6 +78,8 @@ spec:
             env:
             - name: TZ
               value: Asia/Shanghai
+            - name: open_infra_config
+              value: "/vault/secrets/secret.yaml"
             command:
               - /bin/sh
               - -c
@@ -85,7 +87,7 @@ spec:
                 python3 manage.py scan_port_command
 
 ---
-apiVersion: batch/v1
+apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
   name: refresh-bill-command
@@ -101,12 +103,11 @@ spec:
           annotations:
             vault.hashicorp.com/agent-inject: 'true'
             vault.hashicorp.com/role: 'infra-ops'
-            vault.hashicorp.com/agent-inject-perms-secret: "0700"
+            vault.hashicorp.com/agent-inject-perms-secret.yaml: "0700"
             vault.hashicorp.com/agent-run-as-user: "1000"
-            vault.hashicorp.com/secret-volume-path-secret: '/opt/open_infra/open_infra/config/secret'
-            vault.hashicorp.com/agent-inject-secret-secret: 'internal/data/infra-common/ops'
+            vault.hashicorp.com/agent-inject-secret-secret.yaml: 'internal/data/infra-common/ops'
             vault.hashicorp.com/agent-pre-populate-only: "true"
-            vault.hashicorp.com/agent-inject-template-secret: |  
+            vault.hashicorp.com/agent-inject-template-secret.yaml: |  
               {{- with secret "internal/data/infra-common/ops" -}}  
               {{ .Data.data.config }}
               {{- end }}
@@ -121,6 +122,8 @@ spec:
             env:
             - name: TZ
               value: Asia/Shanghai
+            - name: open_infra_config
+              value: "/vault/secrets/secret.yaml"
             command:
               - /bin/sh
               - -c
@@ -128,7 +131,7 @@ spec:
                 python3 manage.py refresh_bill_command
 
 ---
-apiVersion: batch/v1
+apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
   name: refresh-refresh-resource-command
@@ -144,12 +147,11 @@ spec:
           annotations:
             vault.hashicorp.com/agent-inject: 'true'
             vault.hashicorp.com/role: 'infra-ops'
-            vault.hashicorp.com/agent-inject-perms-secret: "0700"
+            vault.hashicorp.com/agent-inject-perms-secret.yaml: "0700"
             vault.hashicorp.com/agent-run-as-user: "1000"
-            vault.hashicorp.com/secret-volume-path-secret: '/opt/open_infra/open_infra/config/secret'
-            vault.hashicorp.com/agent-inject-secret-secret: 'internal/data/infra-common/ops'
+            vault.hashicorp.com/agent-inject-secret-secret.yaml: 'internal/data/infra-common/ops'
             vault.hashicorp.com/agent-pre-populate-only: "true"
-            vault.hashicorp.com/agent-inject-template-secret: |  
+            vault.hashicorp.com/agent-inject-template-secret.yaml: |  
               {{- with secret "internal/data/infra-common/ops" -}}  
               {{ .Data.data.config }}
               {{- end }}
@@ -164,6 +166,8 @@ spec:
             env:
             - name: TZ
               value: Asia/Shanghai
+            - name: open_infra_config
+              value: "/vault/secrets/secret.yaml"
             command:
               - /bin/sh
               - -c
@@ -171,7 +175,7 @@ spec:
                 python3 manage.py refresh_refresh_resource_command
 
 ---
-apiVersion: batch/v1
+apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
   name: clean-expired-command
@@ -187,12 +191,11 @@ spec:
           annotations:
             vault.hashicorp.com/agent-inject: 'true'
             vault.hashicorp.com/role: 'infra-ops'
-            vault.hashicorp.com/agent-inject-perms-secret: "0700"
+            vault.hashicorp.com/agent-inject-perms-secret.yaml: "0700"
             vault.hashicorp.com/agent-run-as-user: "1000"
-            vault.hashicorp.com/secret-volume-path-secret: '/opt/open_infra/open_infra/config/secret'
-            vault.hashicorp.com/agent-inject-secret-secret: 'internal/data/infra-common/ops'
+            vault.hashicorp.com/agent-inject-secret-secret.yaml: 'internal/data/infra-common/ops'
             vault.hashicorp.com/agent-pre-populate-only: "true"
-            vault.hashicorp.com/agent-inject-template-secret: |  
+            vault.hashicorp.com/agent-inject-template-secret.yaml: |  
               {{- with secret "internal/data/infra-common/ops" -}}  
               {{ .Data.data.config }}
               {{- end }}
@@ -207,6 +210,8 @@ spec:
             env:
             - name: TZ
               value: Asia/Shanghai
+            - name: open_infra_config
+              value: "/vault/secrets/secret.yaml"
             command:
               - /bin/sh
               - -c

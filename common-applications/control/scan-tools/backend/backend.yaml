@@ -6,10 +6,7 @@ metadata:
 spec:
   replicas: 1
   strategy:
-    rollingUpdate:
-      maxSurge: 1
-      maxUnavailable: 0
-    type: RollingUpdate
+    type: Recreate
   selector:
     matchLabels:
       app: backend
@@ -18,12 +15,11 @@ spec:
       annotations:
         vault.hashicorp.com/agent-inject: 'true'
         vault.hashicorp.com/role: 'infra-ops'
-        vault.hashicorp.com/agent-inject-perms-secret: "0700"
+        vault.hashicorp.com/agent-inject-perms-secret.yaml: "0700"
         vault.hashicorp.com/agent-run-as-user: "1000"
-        vault.hashicorp.com/secret-volume-path-secret: '/opt/open_infra/open_infra/config/secret'
-        vault.hashicorp.com/agent-inject-secret-secret: 'internal/data/infra-common/ops'
+        vault.hashicorp.com/agent-inject-secret-secret.yaml: 'internal/data/infra-common/ops'
         vault.hashicorp.com/agent-pre-populate-only: "true"
-        vault.hashicorp.com/agent-inject-template-secret: |  
+        vault.hashicorp.com/agent-inject-template-secret.yaml: |  
           {{- with secret "internal/data/infra-common/ops" -}}  
           {{ .Data.data.config }}
           {{- end }}
@@ -37,6 +33,9 @@ spec:
       - name: backend
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/infra-common/scan-tools-backend:4b70dd16eb7caa80d00d7c3064b7486703f6d9b9
         imagePullPolicy: IfNotPresent
+        env:
+        - name: open_infra_config
+          value: "/vault/secrets/secret.yaml"
         resources:
           requests:
             cpu: 1000m
