@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: openeuler-ccs-service
+  namespace: openeuler-ccs
+spec:
+  clusterIP: None
+  ports:
+  - name:
+    port: 80
+    protocol: TCP
+    targetPort: 8086
+  selector:
+    server: ccs-server
