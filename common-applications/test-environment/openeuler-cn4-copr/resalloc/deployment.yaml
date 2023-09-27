@@ -34,7 +34,7 @@ spec:
         - name: BUILDER_TYPE
           value: test
         - name: BUILDER_SECRET
-          value: /home/mockbuild/.ssh/authorized_keys.pub:copr-secrets:backend_id_rsa.pub
+          value: /home/mockbuild/.ssh/authorized_keys:copr-secrets:backend_id_rsa.pub
         - name: BUILDER_DISK_SIZE
           value: 200Gi
         - name: BUILDER_PVC_NAME
