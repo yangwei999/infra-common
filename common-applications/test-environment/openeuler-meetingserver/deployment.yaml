@@ -15,12 +15,18 @@ spec:
         vault.hashicorp.com/agent-inject: 'true'
         vault.hashicorp.com/role: 'openeuler-meeting'
         vault.hashicorp.com/agent-inject-perms-secrets.yaml: "0700"
+        vault.hashicorp.com/agent-inject-perms-xarmor_pyrasp.ini: "0700"
         vault.hashicorp.com/agent-run-as-user: "1000"
         vault.hashicorp.com/agent-inject-secret-secrets.yaml: 'internal/data/infra-test/openeuler-meeting'
         vault.hashicorp.com/agent-pre-populate-only: "true"
         vault.hashicorp.com/agent-inject-template-secrets.yaml: |  
           {{- with secret "internal/data/infra-test/openeuler-meeting" -}}  
           {{ .Data.data.config }}
+          {{- end }}
+        vault.hashicorp.com/agent-inject-secret-xarmor_pyrasp.ini: 'internal/data/infra-test/openeuler-meeting'
+        vault.hashicorp.com/agent-inject-template-xarmor_pyrasp.ini: |  
+          {{- with secret "internal/data/infra-test/openeuler-meeting" -}}  
+          {{ .Data.data.rasp }}
           {{- end }}
       labels:
         app: meetingserver
@@ -30,15 +36,16 @@ spec:
         - /bin/sh
         - -c
         - |
-          strip -R .note.ABI-tag /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.11.3
-          touch /work/app-meeting-server/meetings/migrations/__init__.py
-          python manage.py collectstatic
+          cp /vault/secrets/xarmor_pyrasp.ini /work/app-meeting-server/xarmor_pyrasp.ini
+          rm -rf /vault/secrets/xarmor_pyrasp.ini
           exec uwsgi --ini /work/app-meeting-server/deploy/production/uwsgi.ini
         env:
         - name: TZ
           value: Asia/Shanghai
         - name: CONFIG_PATH
           value: /vault/secrets/secrets.yaml
+        - name: XARMOR_CONF
+          value: /work/app-meeting-server/xarmor_pyrasp.ini
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/meetingserver:test-main-e9d41a
         imagePullPolicy: IfNotPresent
         livenessProbe:

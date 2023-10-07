@@ -6,6 +6,7 @@ resources:
 - pvc.yaml
 - secret.yaml
 - namespace.yaml
+- cronjob.yaml
 namespace: openeuler-meetingserver
 commonAnnotations:
   kubernetes.ops.cluster: test
