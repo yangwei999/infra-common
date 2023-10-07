@@ -17,7 +17,7 @@ images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/copr/backend-test
   newTag: v1.0.20231007153515
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/copr/backend_httpd-test
-  newTag: v1.0.20231007155605
+  newTag: v1.0.20231007160126
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/copr/distgit-test
   newTag: v1.0.20230921210552
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/copr/frontend-test
