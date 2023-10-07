@@ -29,6 +29,11 @@ spec:
             secretKeyRef:
               name: sunmao-event-retriever-secrets
               key: gitee_token
+        - name: GITEE_TOKEN_SECRET_STR
+          valueFrom:
+            secretKeyRef:
+              name: sunmao-event-retriever-secrets
+              key: gitee_token_secret_str
         volumeMounts:
           - name: log-volume
             mountPath: "/app/src/log/"

@@ -22,25 +22,25 @@ spec:
   name: strategy-executor-secrets
   keysMap:
     rmq_user:
-      path: secrets/data/mindspore/sunmao-strategy-executor
-      key: rmq_user
+      path: secrets/data/mindspore/sunmao-event-retriever
+      key: RABBITMQ_USER
     rmq_pass:
-      path: secrets/data/mindspore/sunmao-strategy-executor
-      key: rmq_pass
+      path: secrets/data/mindspore/sunmao-event-retriever
+      key: RABBITMQ_PASSWORD
     rmq_queue_name:
-      path: secrets/data/mindspore/sunmao-strategy-executor
-      key: rmq_queue_name
+      path: secrets/data/mindspore/sunmao-event-retriever
+      key: RABBITMQ_QUEUE_NAME
     rmq_routingkey:
-      path: secrets/data/mindspore/sunmao-strategy-executor
-      key: rmq_routingkey
+      path: secrets/data/mindspore/sunmao-event-retriever
+      key: RABBITMQ_ROUTINGKEY
     rmq_exchange_name:
-      path: secrets/data/mindspore/sunmao-strategy-executor
-      key: rmq_exchange_name
+      path: secrets/data/mindspore/sunmao-event-retriever
+      key: RABBITMQ_EXCHANGE_NAME
     rmq_exchange_type:
-      path: secrets/data/mindspore/sunmao-strategy-executor
-      key: rmq_exchange_type
+      path: secrets/data/mindspore/sunmao-event-retriever
+      key: RABBITMQ_EXCHANGE_TYPE
     gitee_token:
-      path: secrets/data/mindspore/sunmao-strategy-executor
+      path: secrets/data/mindspore/sunmao-event-retriever
       key: gitee_token
 
 ---
