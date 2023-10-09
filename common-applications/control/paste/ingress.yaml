@@ -4,7 +4,6 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: repo-nginx
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
-    cert-manager.io/cluster-issuer: letsencrypt-prod
     nginx.ingress.kubernetes.io/server-snippet: |
       location ~* ^/[0-9a-zA-Z.?]+$ {
         if ( !-e $request_filename ) {
@@ -18,7 +17,7 @@ spec:
   tls:
     - hosts:
         - paste.openeuler.org
-      secretName: paste-openeuler-new-tls
+      secretName: paste-openeuler-tls
   rules:
     - host: paste.openeuler.org
       http:

@@ -11,8 +11,8 @@ resources:
 - autoscaler.yaml
 - backend-ingress.yaml
 - backend-service.yaml
-- backend-secret.yaml
 - backend-deployment.yaml
+- tls.yaml
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/mindspore/website-backend
-  newTag: test-v1.0.20230720162012
+  newTag: test-v1.0.20230927103020

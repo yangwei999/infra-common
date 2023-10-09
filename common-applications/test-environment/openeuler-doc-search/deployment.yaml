@@ -54,7 +54,22 @@ spec:
           valueFrom:
             secretKeyRef:
               name: doc-search-secrets
-              key: xarmor_app_token
+              key: xarmor_backend_app_token
+        - name: X_ARMOR_SECURITY_ENABLE
+          valueFrom:
+            secretKeyRef:
+              name: doc-search-secrets
+              key: xarmor_security_enable
+        - name: X_ARMOR_SECURITY_ROOT_PASSWORD_0
+          valueFrom:
+            secretKeyRef:
+              name: doc-search-secrets
+              key: xarmor_security_root_password
+        - name: X_ARMOR_SECURITY_WORK_PASSWORD_0
+          valueFrom:
+            secretKeyRef:
+              name: doc-search-secrets
+              key: xarmor_secutiry_work_password
         - name: X_ARMOR_BACKEND_BACKEND_URL
           valueFrom:
             secretKeyRef:

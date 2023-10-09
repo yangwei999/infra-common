@@ -9,11 +9,23 @@ spec:
       app: backend
   template:
     metadata:
+      annotations:
+        vault.hashicorp.com/agent-inject: 'true'
+        vault.hashicorp.com/role: 'mindspore-website'
+        vault.hashicorp.com/agent-inject-secret-application.yml: 'internal/data/infra-test/mindspore-website'
+        vault.hashicorp.com/agent-pre-populate-only: "true"
+        vault.hashicorp.com/agent-inject-perms-application.yml: "0600"
+        vault.hashicorp.com/agent-run-as-user: "1001"
+        vault.hashicorp.com/agent-inject-template-application.yml: |  
+          {{- with secret "internal/data/infra-test/mindspore-website" -}}  
+          {{ .Data.data.console }}
+          {{- end }}
       labels:
         app: backend
     spec:
       imagePullSecrets:
       - name: huawei-swr-image-pull-secret
+      serviceAccountName: mindspore-website
       affinity:
         podAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
@@ -26,21 +38,8 @@ spec:
             topologyKey: kubernetes.io/hostname
       containers:
       - env:
-        - name: MS_MYSQL_URL
-          valueFrom:
-            secretKeyRef:
-              key: ms_mysql_url
-              name: backend-secret
-        - name: MS_MYSQL_USERNAME
-          valueFrom:
-            secretKeyRef:
-              key: ms_mysql_username
-              name: backend-secret
-        - name: MS_MYSQL_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              key: ms_mysql_password
-              name: backend-secret
+        - name: APPLICATION_PATH
+          value: "/vault/secrets/application.yml"
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/mindspore/website-backend:v1.0.20230607173835
         imagePullPolicy: IfNotPresent
         livenessProbe:

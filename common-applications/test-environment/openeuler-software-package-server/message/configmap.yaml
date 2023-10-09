@@ -65,5 +65,5 @@ data:
         token: "${ROBOT_TOKEN}"
       ci_repo:
         org: weiwei123444
-        repo: test
-        link: https://gitee.com/weiwei123444/test.git
+        repo: mate-desktop
+        link: https://gitee.com/weiwei123444/mate-desktop.git

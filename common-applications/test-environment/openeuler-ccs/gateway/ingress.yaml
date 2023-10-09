@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/custom-http-errors: "400,500"
+    nginx.ingress.kubernetes.io/server-snippet: |
+      rewrite ^/api-certification/(.*) /ccs/base/$1 ;
+  name: openeuler-ccs-ingress
+spec:
+  tls:
+    - hosts:
+        - openeuler-ccs.test.osinfra.cn
+      secretName: openeuler-ccs-tls
+  rules:
+    - host: openeuler-ccs.test.osinfra.cn
+      http:
+        paths:
+          - backend:
+              serviceName: openeuler-ccs-gateway-service
+              servicePort: 8088
+            path: /

@@ -24,7 +24,7 @@ spec:
           exec /usr/bin/resalloc-server; '
         env:
         - name: BUILDER_SHA256
-          value: swr.cn-north-4.myhuaweicloud.com/opensourceway/copr/builder:v1.0.20230922144652
+          value: swr.cn-north-4.myhuaweicloud.com/opensourceway/copr/builder:v1.0.20231009100046
         - name: BUILDER_CPU
           value: '1'
         - name: BUILDER_MEM
@@ -34,7 +34,7 @@ spec:
         - name: BUILDER_TYPE
           value: test
         - name: BUILDER_SECRET
-          value: /home/mockbuild/.ssh/id_backend.pub:copr-secrets:backend_id_rsa.pub
+          value: /home/mockbuild/.ssh/authorized_keys:copr-secrets:backend_id_rsa.pub
         - name: BUILDER_DISK_SIZE
           value: 200Gi
         - name: BUILDER_PVC_NAME

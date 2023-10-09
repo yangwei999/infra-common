@@ -6,6 +6,7 @@ resources:
 - pvc.yaml
 - secret.yaml
 - namespace.yaml
+- cronjob.yaml
 namespace: openeuler-meetingserver
 commonAnnotations:
   kubernetes.ops.cluster: test
@@ -17,4 +18,4 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/meetingserver
-  newTag: test-main-203bd8
+  newTag: test-master-fab5b1
