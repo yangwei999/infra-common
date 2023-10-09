@@ -1,0 +1,71 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    server: ccs-gateway
+  name: ccs-gateway
+  namespace: openeuler-ccs
+spec:
+  selector:
+    matchLabels:
+      server: ccs-gateway
+  template:
+    metadata:
+      labels:
+        server: ccs-gateway
+    spec:
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
+      nodeSelector:
+        autoscaler: "true"
+      containers:
+        - env:
+          - name: TZ
+            value: Asia/Shanghai
+          - name: HOSTNAME
+            value: openeuler-ccs-gateway-service.openeuler-ccs.svc.cluster.local
+          - name: JAVA_OPTS1
+            value: "
+                    -Djasypt.encryptor.password=${JASYPT_ENCRYPTOR_PASSWORD}
+                    -Dspring.profiles.active=prod
+                    -Deureka.instance.hostname=${HOSTNAME}
+                    -Deureka.instance.instance-id=${spring.cloud.client.ip-address}:${server.port}
+                    -Deureka.client.fetch-registry=true 
+                    -Deureka.client.register-with-eureka=true
+                    -Deureka.client.serviceUrl.defaultZone=http://${EUREKA_CLIENT_NAME}:${EUREKA_CLIENT_PASS}@eureka-service.openeuler-ccs.svc.cluster.local:9761/eureka/
+                    "
+          envFrom:
+          - secretRef:
+              name: openeuler-ccs-gateway-secrets
+          image: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/ccs-gateway-test:master-fe78b1
+          imagePullPolicy: IfNotPresent
+          name: ccs-gateway
+          ports:
+          - containerPort: 8088
+            name: http
+            protocol: TCP
+          readinessProbe:              #就绪探针
+            initialDelaySeconds: 20    #延迟加载时间
+            periodSeconds: 5           #重试时间间隔
+            timeoutSeconds: 10         #超时时间设置
+            failureThreshold: 5        #探测失败的重试次数
+            httpGet:
+              path: /actuator/health/readiness
+              port: 8088
+          livenessProbe:               #存活探针
+            initialDelaySeconds: 60    #延迟加载时间
+            periodSeconds: 5           #重试时间间隔
+            timeoutSeconds: 5          #超时时间设置
+            failureThreshold: 3        #探测失败的重试次数
+            httpGet:
+              path: /actuator/health/liveness
+              port: 8088
+          resources:
+            limits:
+              cpu: 500m
+              memory: 500Mi
+            requests:
+              cpu: 500m
+              memory: 500Mi
+          

@@ -1,0 +1,77 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    server: ccs-eureka
+  name: ccs-eureka
+  namespace: openeuler-ccs
+spec:
+  selector:
+    matchLabels:
+      server: ccs-eureka
+  template:
+    metadata:
+      labels:
+        server: ccs-eureka
+    spec:
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
+      nodeSelector:
+        autoscaler: "true"
+      containers:
+        - env:
+          - name: APP_NAME
+            value: "ccs-eureka"
+          - name: POD_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+          - name: HOSTNAME
+            value: eureka-service.openeuler-ccs.svc.cluster.local
+          - name: TZ
+            value: Asia/Shanghai
+          - name: JAVA_OPTS1
+            value: "
+                    -Djasypt.encryptor.password=${JASYPT_ENCRYPTOR_PASSWORD}
+                    -Dspring.profiles.active=prod
+                    -Deureka.instance.hostname=${HOSTNAME}
+                    -Deureka.instance.instance-id=${spring.cloud.client.ip-address}:${server.port}
+                    -DregisterWithEureka=true
+                    -DfetchRegistry=true
+                    -Deureka.instance.preferIpAddress=false
+                    -Deureka.client.serviceUrl.defaultZone=http://${EUREKA_CLIENT_NAME}:${EUREKA_CLIENT_PASS}@ccs-eureka-0.eureka-service:9761/eureka/
+                    "
+          envFrom:
+          - secretRef:
+              name: openeuler-ccs-eureka-secrets
+          image: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/ccs-eureka-test:master-fe78b1
+          imagePullPolicy: IfNotPresent
+          name: ccs-eureka
+          ports:
+          - containerPort: 9761
+            name: http
+            protocol: TCP
+          resources:
+            limits:
+              cpu: 1000m
+              memory: 1000Mi
+            requests:
+              cpu: 1000m
+              memory: 1000Mi
+          readinessProbe:              #就绪探针
+            initialDelaySeconds: 20    #延迟加载时间
+            periodSeconds: 5           #重试时间间隔
+            timeoutSeconds: 10         #超时时间设置
+            failureThreshold: 5        #探测失败的重试次数
+            httpGet:
+              path: /actuator/health/readiness
+              port: 9761
+          livenessProbe:               #存活探针
+            initialDelaySeconds: 60    #延迟加载时间
+            periodSeconds: 5           #重试时间间隔
+            timeoutSeconds: 5          #超时时间设置
+            failureThreshold: 3        #探测失败的重试次数
+            httpGet:
+              path: /actuator/health/liveness
+              port: 9761

@@ -1,0 +1,70 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    server: ccs-config
+  name: ccs-config
+  namespace: openeuler-ccs
+spec:
+  selector:
+    matchLabels:
+      server: ccs-config
+  template:
+    metadata:
+      labels:
+        server: ccs-config
+    spec:
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
+      nodeSelector:
+        autoscaler: "true"
+      containers:
+        - env:
+          - name: HOSTNAME
+            value: openeuler-ccs-config-service.openeuler-ccs.svc.cluster.local
+          - name: JAVA_OPTS1
+            value: "
+                    -Djasypt.encryptor.password=${JASYPT_ENCRYPTOR_PASSWORD}
+                    -Dspring.profiles.active=prod
+                    -Deureka.instance.hostname=${HOSTNAME}
+                    -Deureka.instance.instance-id=${spring.cloud.client.ip-address}:${server.port}
+                    -Deureka.client.fetch-registry=true
+                    -Deureka.client.register-with-eureka=true
+                    -Deureka.client.serviceUrl.defaultZone=http://${EUREKA_CLIENT_NAME}:${EUREKA_CLIENT_PASS}@eureka-service.openeuler-ccs.svc.cluster.local:9761/eureka/
+                    "
+          - name: TZ
+            value: Asia/Shanghai
+          envFrom:
+          - secretRef:
+              name: openeuler-ccs-config-secrets
+          image: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/ccs-config-test:master-fe78b1
+          imagePullPolicy: IfNotPresent
+          name: ccs-config
+          ports:
+          - containerPort: 8087
+            name: http
+            protocol: TCP
+          readinessProbe:
+            initialDelaySeconds: 20
+            periodSeconds: 5
+            timeoutSeconds: 10
+            failureThreshold: 5
+            httpGet:
+              path: /actuator/health/readiness
+              port: 8087
+          livenessProbe:
+            initialDelaySeconds: 60
+            periodSeconds: 5
+            timeoutSeconds: 5
+            failureThreshold: 3
+            httpGet:
+              path: /actuator/health/liveness
+              port: 8087
+          resources:
+            limits:
+              cpu: 500m
+              memory: 500Mi
+            requests:
+              cpu: 500m
+              memory: 500Mi

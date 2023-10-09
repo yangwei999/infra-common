@@ -22,7 +22,7 @@ spec:
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/infra-common/community-talent-certification-test:ff431c51760cbf1a7b5a92cc11c2223312f550b6
         imagePullPolicy: IfNotPresent
         ports:
-        - containerPort: 80
+        - containerPort: 8080
           name: http
           protocol: TCP
         resources:
