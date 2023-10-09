@@ -24,7 +24,7 @@ spec:
           exec /usr/bin/resalloc-server; '
         env:
         - name: BUILDER_SHA256
-          value: swr.cn-north-4.myhuaweicloud.com/opensourceway/copr/builder:v1.0.20231009151443
+          value: swr.cn-north-4.myhuaweicloud.com/opensourceway/copr/builder:v1.0.20231009175839
         - name: BUILDER_CPU
           value: '1'
         - name: BUILDER_MEM
