@@ -3,8 +3,6 @@ resources:
 - namespace.yaml
 - service.yaml
 - ingress.yaml
-- pvc.yaml
-- secrets.yaml
 namespace: mindspore-website
 apiVersion: kustomize.config.k8s.io/v1beta1
 commonAnnotations:
@@ -14,6 +12,3 @@ commonAnnotations:
   kubernetes.ops.owner: gongzhuangbang
   kubernetes.ops.region: hk
 kind: Kustomization
-images:
-- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/icsl/mindspore-website
-  newTag: v1.0.20230722131754
