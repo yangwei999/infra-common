@@ -5,9 +5,6 @@ resources:
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: opengauss-website
-images:
-- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/icsl/opengauss-website
-  newTag: dcf806e44028f8736ffb5dbff9fcf4bdc21aa5df
 commonAnnotations:
   kubernetes.ops.cluster: freesky-icsl-hk-cluster
   kubernetes.ops.email: ""
