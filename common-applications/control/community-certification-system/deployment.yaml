@@ -23,7 +23,7 @@ spec:
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/infra-common/community-talent-certification:fb877e83a84a18fcb2ae59b2dc619bd61887dbb9
         imagePullPolicy: IfNotPresent
         ports:
-        - containerPort: 80
+        - containerPort: 8080
           name: http
           protocol: TCP
         resources:
@@ -33,3 +33,19 @@ spec:
           limits:
             cpu: 1000m
             memory: 1000Mi
+        livenessProbe:
+          failureThreshold: 3
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          successThreshold: 1
+          tcpSocket:
+            port: 8080
+          timeoutSeconds: 5
+        readinessProbe:
+          failureThreshold: 3
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          successThreshold: 1
+          tcpSocket:
+            port: 8080
+          timeoutSeconds: 5
