@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: xihe-server
+  name: xihe-aicc-finetune
   namespace: xihe-test-v2
 spec:
   replicas: 1
@@ -13,36 +13,32 @@ spec:
   revisionHistoryLimit: 10
   selector:
     matchLabels:
-      app: xihe-server
+      app: aicc-finetune
   template:
     metadata:
       annotations:
         vault.hashicorp.com/agent-inject: "true"
         vault.hashicorp.com/agent-inject-perms-application.yml: "0700"
-        vault.hashicorp.com/agent-inject-perms-ca.crt: "0700"
         vault.hashicorp.com/agent-run-as-user: "5000"
-        vault.hashicorp.com/agent-inject-secret-application.yml: xihe/data/conf
+        vault.hashicorp.com/agent-inject-secret-application.yml: "xihe/data/conf"
         vault.hashicorp.com/agent-inject-template-application.yml: |
-          {{- with secret "xihe/data/conf/" -}}
-          {{ .Data.data.Server }}
-          {{- end }}
-        vault.hashicorp.com/agent-inject-secret-ca.crt: xihe/data/conf
-        vault.hashicorp.com/agent-inject-template-ca.crt: |
-          {{- with secret "xihe/data/conf/" -}}
-          {{ .Data.data.MongoCA }}
+          {{- with secret "xihe/data/conf" -}}
+          {{ .Data.data.aiccfinetune }}
           {{- end }}
         vault.hashicorp.com/agent-pre-populate-only: "true"
         vault.hashicorp.com/role: xihe-test
       labels:
-        app: xihe-server
+        app: aicc-finetune
     spec:
       serviceAccount: xihe-test
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
       containers:
-      - name: xihe-server
-        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/xihe/xihe-server:97f347b62bf46f56cedb5886999fa8335b9fcefb
+      - name: aicc-finetune
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/xihe/xihe-aicc-finetune:test1-8e7a4c
         imagePullPolicy: IfNotPresent
         args:
-        - --port=8000
+        - --port=8080
         - --config-file=/vault/secrets/application.yml
         - --enable_debug=false
         resources:
@@ -52,7 +48,23 @@ spec:
           limits:
             cpu: 1000m
             memory: 1000Mi
+        livenessProbe:
+          failureThreshold: 3
+          initialDelaySeconds: 20
+          periodSeconds: 10
+          successThreshold: 1
+          tcpSocket:
+            port: 8080
+          timeoutSeconds: 5
+        readinessProbe:
+          failureThreshold: 3
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          successThreshold: 1
+          tcpSocket:
+            port: 8080
+          timeoutSeconds: 5
         ports:
-        - containerPort: 8000
+        - containerPort: 8080
           name: http
           protocol: TCP

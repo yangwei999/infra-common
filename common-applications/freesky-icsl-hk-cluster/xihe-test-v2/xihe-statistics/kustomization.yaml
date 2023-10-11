@@ -6,5 +6,4 @@ kind: Kustomization
 namespace: xihe-test-v2
 resources:
 - xihe-statistics-service.yaml
-- xihe-statistics-secret.yaml
 - xihe-statistics-deployment.yaml

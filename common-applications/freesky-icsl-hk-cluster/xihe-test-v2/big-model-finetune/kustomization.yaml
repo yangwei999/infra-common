@@ -7,4 +7,3 @@ namespace: xihe-test-v2
 resources:
 - service.yaml
 - big-model-finetune-deployment.yaml
-- big-model-finetune-secret.yaml
