@@ -17,6 +17,9 @@ spec:
       annotations:
         vault.hashicorp.com/agent-inject: "true"
         vault.hashicorp.com/secret-volume-path: "/bigmodel-finetune/conf/"
+        vault.hashicorp.com/agent-inject-perms-finetune_basic.yml: "0700"
+        vault.hashicorp.com/agent-inject-perms-asset.yml: "0700"
+        vault.hashicorp.com/agent-run-as-user: "5000"
         vault.hashicorp.com/agent-inject-secret-finetune_basic.yml: xihe/data/conf
         vault.hashicorp.com/agent-inject-template-finetune_basic.yml: |
           {{- with secret "xihe/data/conf/" -}}
@@ -32,12 +35,6 @@ spec:
       labels:
         app: big-model-finetune
     spec:
-      securityContext:
-        sysctls:
-        - name: kernel.sem
-          value: "32000 1024000000 500 64000"
-      nodeSelector:
-        kubernetes.kernel.sem: "true"
       serviceAccount: xihe-test
       imagePullSecrets:
       - name: huawei-swr-image-pull-secret
@@ -49,23 +46,20 @@ spec:
           httpGet:
             path: /health
             port: 8080
-          initialDelaySeconds: 20
+          initialDelaySeconds: 100
           periodSeconds: 10
           successThreshold: 1
           timeoutSeconds: 5
         name: big-model-finetune
         env:
         - name: CPU_COUNT
-          valueFrom:
-            secretKeyRef:
-              key: big_model_finetune_cpu_count
-              name: big-model-finetune-secret
+          value: "4"
         readinessProbe:
           failureThreshold: 3
           httpGet:
             path: /health
             port: 8080
-          initialDelaySeconds: 10
+          initialDelaySeconds: 100
           periodSeconds: 10
           successThreshold: 1
           timeoutSeconds: 5
