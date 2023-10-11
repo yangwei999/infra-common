@@ -1,14 +1,7 @@
 resources:
-- deployment.yaml
+- website
 - namespace.yaml
-- service.yaml
-- ingress.yaml
+- api
 namespace: mindspore-website
 apiVersion: kustomize.config.k8s.io/v1beta1
-commonAnnotations:
-  kubernetes.ops.cluster: freesky-icsl-hk-cluster
-  kubernetes.ops.email: ""
-  kubernetes.ops.os.base: debian
-  kubernetes.ops.owner: gongzhuangbang
-  kubernetes.ops.region: hk
 kind: Kustomization

@@ -1,0 +1,14 @@
+resources:
+- ingress.yaml
+- service.yaml
+- pvc.yaml
+- deployment.yaml
+namespace: mindspore-website
+apiVersion: kustomize.config.k8s.io/v1beta1
+commonAnnotations:
+  kubernetes.ops.cluster: freesky-icsl-hk-cluster
+  kubernetes.ops.email: ""
+  kubernetes.ops.os.base: openEuler
+  kubernetes.ops.owner: chenyang
+  kubernetes.ops.region: hk
+kind: Kustomization
