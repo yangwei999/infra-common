@@ -17,4 +17,4 @@ resources:
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/mindspore/website
   newName: swr.ap-southeast-1.myhuaweicloud.com/infra-hk/mindspore/website
-  newTag: v1.0.20231010191807
+  newTag: v1.0.20231011174536
