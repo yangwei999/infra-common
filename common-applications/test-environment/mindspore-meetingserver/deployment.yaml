@@ -36,13 +36,8 @@ spec:
         - /bin/sh
         - -c
         - |
-          strip -R .note.ABI-tag /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.11.3
-          touch /work/app-meeting-server/meetings/migrations/__init__.py
           cp /vault/secrets/xarmor_pyrasp.ini /work/app-meeting-server/xarmor_pyrasp.ini
           rm -rf /vault/secrets/xarmor_pyrasp.ini
-          python manage.py collectstatic
-          python manage.py makemigrations
-          python manage.py migrate
           exec uwsgi --ini /work/app-meeting-server/deploy/production/uwsgi.ini
         env:
         - name: TZ
@@ -51,7 +46,7 @@ spec:
           value: /vault/secrets/secrets.yaml
         - name: XARMOR_CONF
           value: /work/app-meeting-server/xarmor_pyrasp.ini
-        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/mindspore/meetingserver:test-main-9c0045
+        image: swr.ap-southeast-1.myhuaweicloud.com/infra-hk/openeuler/meetingserver:master-6148c8
         imagePullPolicy: IfNotPresent
         livenessProbe:
           failureThreshold: 3
@@ -77,20 +72,12 @@ spec:
           requests:
             cpu: 500m
             memory: 500Mi
-        volumeMounts:
-        - mountPath: /work/app-meeting-server/meetings/migrations
-          name: container-mountpath
-          subPath: migrations
       dnsPolicy: ClusterFirst
       imagePullSecrets:
       - name: huawei-swr-image-pull-secret
-      serviceAccountName: mindspore-meeting
       nodeSelector:
         autoscaler: "true"
+      serviceAccountName: mindspore-meeting
       restartPolicy: Always
       schedulerName: default-scheduler
       terminationGracePeriodSeconds: 30
-      volumes:
-      - name: container-mountpath
-        persistentVolumeClaim:
-          claimName: meetings-data-volume
