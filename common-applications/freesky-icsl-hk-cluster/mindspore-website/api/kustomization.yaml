@@ -14,4 +14,4 @@ commonAnnotations:
 kind: Kustomization
 images:
 - name: swr.ap-southeast-1.myhuaweicloud.com/infra-hk/icsl/mindspore-website-api
-  newTag: master-e15aa7
+  newTag: master-bb1760
