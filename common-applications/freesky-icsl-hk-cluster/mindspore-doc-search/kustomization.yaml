@@ -15,4 +15,5 @@ resources:
 - doc-search-deployment.yaml
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/icsl/mindspore-search
-  newTag: b82a39529edd4be2429a02ccba390853e38374eb
+  newName: swr.ap-southeast-1.myhuaweicloud.com/infra-hk/icsl/mindspore-search
+  newTag: c5ec76b8da61b4f3fc14016018984d68c889c604
