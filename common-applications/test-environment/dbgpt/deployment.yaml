@@ -1,0 +1,66 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dbgpt-deployment
+  namespace: dbgpt
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dbgpt
+  template:
+    metadata:
+      annotations:
+        vault.hashicorp.com/agent-inject: 'true'
+        vault.hashicorp.com/role: 'dbgpt'
+        vault.hashicorp.com/agent-inject-perms-config.ini: "0700"
+        vault.hashicorp.com/agent-run-as-user: "1001"
+        vault.hashicorp.com/agent-inject-secret-config.ini: 'internal/data/infra-test/dbgpt'
+        vault.hashicorp.com/agent-pre-populate-only: "true"
+        vault.hashicorp.com/agent-inject-template-config.ini: |  
+          {{- with secret "internal/data/infra-test/dbgpt" -}}  
+          {{ .Data.data.config }}
+          {{- end }}
+      labels:
+        app: dbgpt
+    spec:
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
+      nodeSelector:
+        autoscaler: "true"
+      serviceAccountName: dbgpt
+      containers:
+      - image: swr.ap-southeast-1.myhuaweicloud.com/infra-hk/dbgpt:f8e44fa15dd084d84ee524c4dcbe80dd53e8408b
+        imagePullPolicy: Always
+        name: dbgpt
+        env:
+        - name: APPLICATION_PATH
+          value: /vault/secrets/config.ini
+        ports:
+        - containerPort: 8000
+          name: http
+          protocol: TCP
+        resources:
+          requests:
+            cpu: 1000m
+            memory: 1000Mi
+          limits:
+            cpu: 2000m
+            memory: 2000Mi
+        livenessProbe:
+          failureThreshold: 3
+          initialDelaySeconds: 180
+          periodSeconds: 10
+          successThreshold: 1
+          tcpSocket:
+            port: 8000
+          timeoutSeconds: 5
+        readinessProbe:
+          failureThreshold: 3
+          initialDelaySeconds: 180
+          periodSeconds: 10
+          successThreshold: 1
+          tcpSocket:
+            port: 8000
+          timeoutSeconds: 5
