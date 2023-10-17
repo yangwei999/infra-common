@@ -3,3 +3,6 @@ kind: Kustomization
 resources:
 - deployment.yaml
 - service.yaml
+images:
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/xihe/xihe-aicc-finetune
+  newTag: main-b21720
