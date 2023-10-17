@@ -16,4 +16,4 @@ resources:
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/icsl/mindspore-search
   newName: swr.ap-southeast-1.myhuaweicloud.com/infra-hk/icsl/mindspore-search
-  newTag: c5ec76b8da61b4f3fc14016018984d68c889c604
+  newTag: 027f993fafc30191b5b84547590b7700a707336a
