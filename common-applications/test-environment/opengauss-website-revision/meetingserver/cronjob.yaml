@@ -1,0 +1,187 @@
+---
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: sync-sigs
+  namespace: opengauss-website-revision
+spec:
+  schedule: "0 * * * *"
+  concurrencyPolicy: Forbid
+  startingDeadlineSeconds: 180
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          annotations:
+            vault.hashicorp.com/agent-inject: 'true'
+            vault.hashicorp.com/role: 'test-cluster-opengauss-website-revision'
+            vault.hashicorp.com/agent-inject-perms-secrets.yaml: "0700"
+            vault.hashicorp.com/agent-run-as-user: "1000"
+            vault.hashicorp.com/agent-inject-secret-secrets.yaml: 'internal/data/infra-test/opengauss-meeting'
+            vault.hashicorp.com/agent-pre-populate-only: "true"
+            vault.hashicorp.com/agent-inject-template-secrets.yaml: |  
+              {{- with secret "internal/data/infra-test/opengauss-meeting" -}}  
+              {{ .Data.data.config }}
+              {{- end }}
+        spec:
+          restartPolicy: OnFailure
+          imagePullSecrets:
+          - name: huawei-swr-image-pull-secret
+          serviceAccountName: opengauss-meeting
+          containers:
+            - name: meeting-server
+              image: swr.ap-southeast-1.myhuaweicloud.com/infra-hk/openeuler/meetingserver:master-6148c8
+              env:
+              - name: TZ
+                value: Asia/Shanghai
+              - name: CONFIG_PATH
+                value: /vault/secrets/secrets.yaml
+              - name: XARMOR_CONF
+                value: /work/app-meeting-server/xarmor_pyrasp.ini
+              command:
+                - /bin/sh
+                - -c
+                - |
+                  python manage.py sync_sigs
+              volumeMounts:
+              - mountPath: /work/app-meeting-server/share
+                name: meeting-share-volume
+          volumes:
+          - name: meeting-share-volume
+            persistentVolumeClaim:
+              claimName: meetingserver-share-volume
+---
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: handle-recordings
+  namespace: opengauss-website-revision
+spec:
+  schedule: "0 * * * *"
+  concurrencyPolicy: Forbid
+  startingDeadlineSeconds: 180
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          annotations:
+            vault.hashicorp.com/agent-inject: 'true'
+            vault.hashicorp.com/role: 'test-cluster-opengauss-website-revision'
+            vault.hashicorp.com/agent-inject-perms-secrets.yaml: "0700"
+            vault.hashicorp.com/agent-run-as-user: "1000"
+            vault.hashicorp.com/agent-inject-secret-secrets.yaml: 'internal/data/infra-test/opengauss-meeting'
+            vault.hashicorp.com/agent-pre-populate-only: "true"
+            vault.hashicorp.com/agent-inject-template-secrets.yaml: |  
+              {{- with secret "internal/data/infra-test/opengauss-meeting" -}}  
+              {{ .Data.data.config }}
+              {{- end }}
+        spec:
+          restartPolicy: OnFailure
+          imagePullSecrets:
+          - name: huawei-swr-image-pull-secret
+          serviceAccountName: opengauss-meeting
+          containers:
+            - name: meeting-server
+              image: swr.ap-southeast-1.myhuaweicloud.com/infra-hk/openeuler/meetingserver:master-6148c8
+              env:
+              - name: TZ
+                value: Asia/Shanghai
+              - name: CONFIG_PATH
+                value: /vault/secrets/secrets.yaml
+              - name: XARMOR_CONF
+                value: /work/app-meeting-server/xarmor_pyrasp.ini
+              command:
+                - /bin/sh
+                - -c
+                - |
+                  python manage.py handle_recordings
+---
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: upload-to-bilibili
+  namespace: opengauss-website-revision
+spec:
+  schedule: "10 * * * *"
+  concurrencyPolicy: Forbid
+  startingDeadlineSeconds: 180
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          annotations:
+            vault.hashicorp.com/agent-inject: 'true'
+            vault.hashicorp.com/role: 'test-cluster-opengauss-website-revision'
+            vault.hashicorp.com/agent-inject-perms-secrets.yaml: "0700"
+            vault.hashicorp.com/agent-run-as-user: "1000"
+            vault.hashicorp.com/agent-inject-secret-secrets.yaml: 'internal/data/infra-test/opengauss-meeting'
+            vault.hashicorp.com/agent-pre-populate-only: "true"
+            vault.hashicorp.com/agent-inject-template-secrets.yaml: |  
+              {{- with secret "internal/data/infra-test/opengauss-meeting" -}}  
+              {{ .Data.data.config }}
+              {{- end }}
+        spec:
+          restartPolicy: OnFailure
+          imagePullSecrets:
+          - name: huawei-swr-image-pull-secret
+          serviceAccountName: opengauss-meeting
+          containers:
+            - name: meeting-server
+              image: swr.ap-southeast-1.myhuaweicloud.com/infra-hk/openeuler/meetingserver:master-6148c8
+              env:
+              - name: TZ
+                value: Asia/Shanghai
+              - name: CONFIG_PATH
+                value: /vault/secrets/secrets.yaml
+              - name: XARMOR_CONF
+                value: /work/app-meeting-server/xarmor_pyrasp.ini
+              command:
+                - /bin/sh
+                - -c
+                - |
+                  python manage.py upload_to_bilibili
+---
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: check-examination
+  namespace: opengauss-website-revision
+spec:
+  schedule: "20 * * * *"
+  concurrencyPolicy: Forbid
+  startingDeadlineSeconds: 180
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          annotations:
+            vault.hashicorp.com/agent-inject: 'true'
+            vault.hashicorp.com/role: 'test-cluster-opengauss-website-revision'
+            vault.hashicorp.com/agent-inject-perms-secrets.yaml: "0700"
+            vault.hashicorp.com/agent-run-as-user: "1000"
+            vault.hashicorp.com/agent-inject-secret-secrets.yaml: 'internal/data/infra-test/opengauss-meeting'
+            vault.hashicorp.com/agent-pre-populate-only: "true"
+            vault.hashicorp.com/agent-inject-template-secrets.yaml: |  
+              {{- with secret "internal/data/infra-test/opengauss-meeting" -}}  
+              {{ .Data.data.config }}
+              {{- end }}
+        spec:
+          restartPolicy: OnFailure
+          imagePullSecrets:
+          - name: huawei-swr-image-pull-secret
+          serviceAccountName: opengauss-meeting
+          containers:
+            - name: meeting-server
+              image: swr.ap-southeast-1.myhuaweicloud.com/infra-hk/openeuler/meetingserver:master-6148c8
+              env:
+              - name: TZ
+                value: Asia/Shanghai
+              - name: CONFIG_PATH
+                value: /vault/secrets/secrets.yaml
+              - name: XARMOR_CONF
+                value: /work/app-meeting-server/xarmor_pyrasp.ini
+              command:
+                - /bin/sh
+                - -c
+                - |
+                  python manage.py check_examination

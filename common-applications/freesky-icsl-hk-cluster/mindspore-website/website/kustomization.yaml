@@ -1,0 +1,19 @@
+resources:
+- ingress.yaml
+- service.yaml
+- deployment.yaml
+namespace: mindspore-website
+apiVersion: kustomize.config.k8s.io/v1beta1
+commonAnnotations:
+  kubernetes.ops.cluster: freesky-icsl-hk-cluster
+  kubernetes.ops.email: ""
+  kubernetes.ops.os.base: openeuler
+  kubernetes.ops.owner: gongzhuangbang
+  kubernetes.ops.region: hk
+kind: Kustomization
+images:
+- name: swr.ap-southeast-1.myhuaweicloud.com/infra-hk/icsl/mindspore-website
+  newTag: v1.0.20231011114059
+- name: swr.ap-southeast-1.myhuaweicloud.com/infra-hk/mindspore/website
+  newName: swr.ap-southeast-1.myhuaweicloud.com/infra-hk/icsl/mindspore-website
+  newTag: v1.0.20231011134149

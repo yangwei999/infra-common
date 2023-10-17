@@ -14,74 +14,37 @@ spec:
         app: mindspore-website
     spec:
       imagePullSecrets:
-      - name: huawei-southeast-swr-image-pull-secret
+      - name: huawei-swr-image-pull-secret
       nodeSelector:
         autoscaler: "true"
       containers:
-      - name: mindspore-website
-        image: swr.ap-southeast-1.myhuaweicloud.com/opensourceway/mindspore-website-test:b64a6fce353871e366cb42fda03221a97d3fc993
+      - name: website
+        image: swr.ap-southeast-1.myhuaweicloud.com/infra-hk/mindspore-website-test:master-de7e6c
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
           name: http
           protocol: TCP
-        env:
-          - name: MS_MYSQL_URL
-            valueFrom:
-              secretKeyRef:
-                key: mysql_url
-                name: mindspore-website-secrets
-          - name: MS_MYSQL_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                key: mysql_password
-                name: mindspore-website-secrets
-          - name: MS_MAIL_URL
-            valueFrom:
-              secretKeyRef:
-                key: mail_url
-                name: mindspore-website-secrets         
-          - name: MS_MAIL_NAME
-            valueFrom:
-              secretKeyRef:
-                key: mail_name
-                name: mindspore-website-secrets   
-          - name: MS_MAIL_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                key: mail_password
-                name: mindspore-website-secrets
-          - name: MS_REDIS_HOST
-            valueFrom:
-              secretKeyRef:
-                key: redis_host
-                name: mindspore-website-secrets
-          - name: MS_REDIS_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                key: redis_password
-                name: mindspore-website-secrets
-          - name: MS_PYTORCH_URL
-            valueFrom:
-              secretKeyRef:
-                key: pytorch_url
-                name: mindspore-website-secrets
         resources:
           requests:
-            cpu: 2000m
-            memory: 2000Mi
+            cpu: 100m
+            memory: 100Mi
           limits:
-            cpu: 4000m
-            memory: 4000Mi
-        volumeMounts:
-          - mountPath: /mnt/share/file
-            name: website-data-volume
-          - mountPath: /mnt/share/mindspore_repository
-            name: website-hub-data-volume
-      volumes:
-        - name: website-data-volume
-          persistentVolumeClaim:
-            claimName: website-data
-        - name: website-hub-data-volume
-          persistentVolumeClaim:
-            claimName: website-hub-data
+            cpu: 200m
+            memory: 200Mi
+        livenessProbe:
+          failureThreshold: 3
+          initialDelaySeconds: 5
+          periodSeconds: 10
+          successThreshold: 1
+          tcpSocket:
+            port: 8080
+          timeoutSeconds: 5
+        readinessProbe:
+          failureThreshold: 3
+          initialDelaySeconds: 5
+          periodSeconds: 10
+          successThreshold: 1
+          tcpSocket:
+            port: 8080
+          timeoutSeconds: 5

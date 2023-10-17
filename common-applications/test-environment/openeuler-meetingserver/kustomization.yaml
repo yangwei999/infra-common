@@ -3,7 +3,6 @@ resources:
 - service.yaml
 - deployment.yaml
 - autoscaler.yaml
-- pvc.yaml
 - secret.yaml
 - namespace.yaml
 - cronjob.yaml
@@ -17,5 +16,8 @@ commonAnnotations:
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
+- name: swr.ap-southeast-1.myhuaweicloud.com/infra-hk/openeuler/meetingserver
+  newTag: master-b53c45
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/meetingserver
-  newTag: test-master-fab5b1
+  newName: swr.ap-southeast-1.myhuaweicloud.com/infra-hk/openeuler/meetingserver
+  newTag: master-097afd

@@ -20,10 +20,10 @@ spec:
     spec:
       containers:
       - name: websitepod
-        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/icsl/openlookeng-website:306977ee1cfb140976a38308219821341a655f4d
+        image: swr.ap-southeast-1.myhuaweicloud.com/infra-hk/icsl/openlookeng-website:b600b516e3b27628e53188a847bec8caf0aa6951
         imagePullPolicy: IfNotPresent
         ports:
-        - containerPort: 80
+        - containerPort: 8080
           name: http
           protocol: TCP
         resources:
@@ -35,7 +35,7 @@ spec:
             memory: 1000Mi
         readinessProbe:
           tcpSocket:
-            port: 80
+            port: 8080
           initialDelaySeconds: 10
           failureThreshold: 3
           successThreshold: 1
@@ -43,7 +43,7 @@ spec:
           timeoutSeconds: 5
         livenessProbe:
           tcpSocket:
-            port: 80
+            port: 8080
           initialDelaySeconds: 10
           periodSeconds: 10
           successThreshold: 1

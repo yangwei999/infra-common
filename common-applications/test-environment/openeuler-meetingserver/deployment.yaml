@@ -46,7 +46,7 @@ spec:
           value: /vault/secrets/secrets.yaml
         - name: XARMOR_CONF
           value: /work/app-meeting-server/xarmor_pyrasp.ini
-        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/meetingserver:test-main-e9d41a
+        image: swr.ap-southeast-1.myhuaweicloud.com/infra-hk/openeuler/meetingserver:master-6148c8
         imagePullPolicy: IfNotPresent
         livenessProbe:
           failureThreshold: 3
@@ -72,10 +72,6 @@ spec:
           requests:
             cpu: 500m
             memory: 500Mi
-        volumeMounts:
-        - mountPath: /work/app-meeting-server/meetings/migrations
-          name: container-mountpath
-          subPath: migrations
       dnsPolicy: ClusterFirst
       imagePullSecrets:
       - name: huawei-swr-image-pull-secret
@@ -85,7 +81,3 @@ spec:
       restartPolicy: Always
       schedulerName: default-scheduler
       terminationGracePeriodSeconds: 30
-      volumes:
-      - name: container-mountpath
-        persistentVolumeClaim:
-          claimName: meetings-data-volume
