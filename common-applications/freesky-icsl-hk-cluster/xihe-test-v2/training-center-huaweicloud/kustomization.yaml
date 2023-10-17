@@ -9,4 +9,4 @@ nameSuffix: -training-center-huaweicloud
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/xihe/xihe
   newName: swr.cn-north-4.myhuaweicloud.com/opensourceway/xihe/xihe-training-center
-  newTag: dev-5cd127
+  newTag: sec-ffb4f8
