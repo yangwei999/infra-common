@@ -9,4 +9,4 @@ nameSuffix: -hook-delivery
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/xihe/xihe
   newName: swr.cn-north-4.myhuaweicloud.com/opensourceway/xihe/xihe-gitlab-hook-delivery
-  newTag: sec-cbe6fb
+  newTag: c-sec-8ac5f4
