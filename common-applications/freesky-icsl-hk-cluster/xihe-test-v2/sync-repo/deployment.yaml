@@ -17,6 +17,7 @@ spec:
         vault.hashicorp.com/agent-inject-perms-application.yml: "0700"
         vault.hashicorp.com/agent-inject-perms-kafka: "0700"
         vault.hashicorp.com/agent-inject-perms-redis.crt: "0700"
+        vault.hashicorp.com/agent-inject-perms-mysql.crt: "0700"
         vault.hashicorp.com/agent-run-as-user: "5000"
         vault.hashicorp.com/agent-inject-secret-application.yml: xihe/data/conf
         vault.hashicorp.com/agent-inject-template-application.yml: |
@@ -32,6 +33,11 @@ spec:
         vault.hashicorp.com/agent-inject-template-redis.crt: |
           {{- with secret "xihe/data/conf" -}}
           {{ .Data.data.RedisCA }}
+          {{- end }}
+        vault.hashicorp.com/agent-inject-secret-mysql.crt: "xihe/data/conf"
+        vault.hashicorp.com/agent-inject-template-mysql.crt: |
+          {{- with secret "xihe/data/conf" -}}
+          {{ .Data.data.MysqlCA }}
           {{- end }}
         vault.hashicorp.com/agent-pre-populate-only: "true"
         vault.hashicorp.com/role: xihe-test

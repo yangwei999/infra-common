@@ -18,11 +18,17 @@ spec:
       annotations:
         vault.hashicorp.com/agent-inject: "true"
         vault.hashicorp.com/agent-inject-perms-application.yml: "0700"
+        vault.hashicorp.com/agent-inject-perms-mysql.crt: "0700"
         vault.hashicorp.com/agent-run-as-user: "5000"
         vault.hashicorp.com/agent-inject-secret-application.yml: xihe/data/conf
         vault.hashicorp.com/agent-inject-template-application.yml: |
           {{- with secret "xihe/data/conf/" -}}
           {{ .Data.data.training }}
+          {{- end }}
+        vault.hashicorp.com/agent-inject-secret-mysql.crt: "xihe/data/conf"
+        vault.hashicorp.com/agent-inject-template-mysql.crt: |
+          {{- with secret "xihe/data/conf" -}}
+          {{ .Data.data.MysqlCA }}
           {{- end }}
         vault.hashicorp.com/agent-pre-populate-only: "true"
         vault.hashicorp.com/role: xihe-test
