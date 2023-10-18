@@ -4,4 +4,4 @@ resources:
 - deployment.yaml
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/mindspore/xihe-script
-  newTag: c-sec-be9fcc
+  newTag: c-sec-78413e
