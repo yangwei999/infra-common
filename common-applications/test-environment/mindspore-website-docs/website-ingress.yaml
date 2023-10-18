@@ -7,7 +7,7 @@ metadata:
   namespace: mindspore-website-docs
 spec:
   rules:
-  - host: mindspore-website-docs.test.osinfra.cn
+  - host: mindspore-docs.test.osinfra.cn
     http:
       paths:
       - backend:
@@ -16,5 +16,5 @@ spec:
         path: /
   tls:
   - hosts:
-    - mindspore-website-docs.test.osinfra.cn
+    - mindspore-docs.test.osinfra.cn
     secretName: website-tls
