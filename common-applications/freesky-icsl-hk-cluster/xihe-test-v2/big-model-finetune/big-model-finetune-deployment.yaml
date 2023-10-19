@@ -19,6 +19,7 @@ spec:
         vault.hashicorp.com/secret-volume-path: "/bigmodel-finetune/conf/"
         vault.hashicorp.com/agent-inject-perms-finetune_basic.yml: "0700"
         vault.hashicorp.com/agent-inject-perms-asset.yml: "0700"
+        vault.hashicorp.com/agent-inject-perms-mysql.crt: "0700"
         vault.hashicorp.com/agent-run-as-user: "5000"
         vault.hashicorp.com/agent-inject-secret-finetune_basic.yml: xihe/data/conf
         vault.hashicorp.com/agent-inject-template-finetune_basic.yml: |
@@ -29,6 +30,11 @@ spec:
         vault.hashicorp.com/agent-inject-template-asset.yml: |
           {{- with secret "xihe/data/conf/" -}}
           {{ .Data.data.finetuneAsset }}
+          {{- end }}
+        vault.hashicorp.com/agent-inject-secret-mysql.crt: "xihe/data/conf"
+        vault.hashicorp.com/agent-inject-template-mysql.crt: |
+          {{- with secret "xihe/data/conf" -}}
+          {{ .Data.data.MysqlCA }}
           {{- end }}
         vault.hashicorp.com/agent-pre-populate-only: "true"
         vault.hashicorp.com/role: xihe-test
