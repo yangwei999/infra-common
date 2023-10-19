@@ -17,11 +17,17 @@ spec:
       annotations:
         vault.hashicorp.com/agent-inject: "true"
         vault.hashicorp.com/agent-inject-perms-application.yml: "0700"
+        vault.hashicorp.com/agent-inject-perms-postgre.crt: "0700"
         vault.hashicorp.com/agent-run-as-user: "5000"
         vault.hashicorp.com/agent-inject-secret-application.yml: xihe/data/conf
         vault.hashicorp.com/agent-inject-template-application.yml: |
           {{- with secret "xihe/data/conf/" -}}
           {{ .Data.data.xiheStatistics }}
+          {{- end }}
+        vault.hashicorp.com/agent-inject-secret-postgre.crt: "xihe/data/conf"
+        vault.hashicorp.com/agent-inject-template-postgre.crt: |
+          {{- with secret "xihe/data/conf" -}}
+          {{ .Data.data.PostgreCA }}
           {{- end }}
         vault.hashicorp.com/agent-pre-populate-only: "true"
         vault.hashicorp.com/role: xihe-test
