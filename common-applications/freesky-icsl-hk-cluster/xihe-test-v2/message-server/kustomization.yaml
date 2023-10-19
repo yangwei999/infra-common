@@ -8,4 +8,4 @@ nameSuffix: -message-server
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/xihe/xihe
   newName: swr.cn-north-4.myhuaweicloud.com/opensourceway/xihe/xihe-message-server
-  newTag: dev-9cf9b5
+  newTag: sec-3bfdb4
