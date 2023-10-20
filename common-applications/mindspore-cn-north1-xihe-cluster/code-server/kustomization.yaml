@@ -1,0 +1,13 @@
+resources:
+- install-code-server-operator.yaml
+- role.yaml
+commonLabels:
+  common-app: code-server-x86-hk
+commonAnnotations:
+  kubernetes.ops.cluster: mindspore-cn1-xihe-cluster
+  kubernetes.ops.email: ""
+  kubernetes.ops.os.base: Alpine
+  kubernetes.ops.owner: tommylike
+  kubernetes.ops.region: cn1
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
