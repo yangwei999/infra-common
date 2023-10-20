@@ -71,7 +71,7 @@ spec:
         - --max-concurrency=20
         - --domain-name=pool1.mindspore.cn
         command:
-        - /manager
+        - /app/manager
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/playground/codeserver-controller:master-62bd5e
         imagePullPolicy: Always
         name: manager
