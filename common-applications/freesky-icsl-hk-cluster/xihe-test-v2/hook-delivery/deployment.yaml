@@ -50,6 +50,9 @@ spec:
       serviceAccount: xihe-test
       imagePullSecrets:
       - name: huawei-swr-image-pull-secret
+      securityContext:
+        seccompProfile:
+          type: RuntimeDefault
       containers:
       - name: hook-delivery
         args:

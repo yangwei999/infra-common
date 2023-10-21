@@ -18,7 +18,7 @@ spec:
     metadata:
       annotations:
         vault.hashicorp.com/agent-inject: "true"
-        vault.hashicorp.com/agent-inject-perms-application.yml: "0700"
+        vault.hashicorp.com/agent-inject-perms-application.yml: "0600"
         vault.hashicorp.com/agent-run-as-user: "5000"
         vault.hashicorp.com/agent-inject-secret-application.yml: "xihe/data/conf"
         vault.hashicorp.com/agent-inject-template-application.yml: |
@@ -33,6 +33,9 @@ spec:
       serviceAccount: xihe-test
       imagePullSecrets:
       - name: huawei-swr-image-pull-secret
+      securityContext:
+        seccompProfile:
+          type: RuntimeDefault
       containers:
       - name: aicc-finetune
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/xihe/xihe-aicc-finetune:test1-8e7a4c

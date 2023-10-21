@@ -43,6 +43,9 @@ spec:
       serviceAccount: xihe-test
       imagePullSecrets:
       - name: huawei-swr-image-pull-secret
+      securityContext:
+        seccompProfile:
+          type: RuntimeDefault
       containers:
       - image: swr.cn-north-4.myhuaweicloud.com/opensourceway/xihe/xihe-async-server:v1.0.20230420194635
         imagePullPolicy: IfNotPresent
