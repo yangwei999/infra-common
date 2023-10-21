@@ -19,8 +19,7 @@ spec:
         vault.hashicorp.com/agent-inject: 'true'
         vault.hashicorp.com/role: 'freesky-hk-mindspore-website'
         vault.hashicorp.com/agent-inject-perms-application.yaml: "0700"
-        vault.hashicorp.com/agent-inject-perms-keystore: "0700"
-        vault.hashicorp.com/agent-inject-perms-truststore: "0700"
+        vault.hashicorp.com/agent-inject-perms-ca.pem: "0700"
         vault.hashicorp.com/agent-run-as-user: "1001"
         vault.hashicorp.com/agent-inject-secret-application.yaml: 'internal/data/mindspore/website'
         vault.hashicorp.com/agent-pre-populate-only: "true"
@@ -28,15 +27,10 @@ spec:
           {{- with secret "internal/data/mindspore/website" -}}  
           {{ .Data.data.api }}
           {{- end }}
-        vault.hashicorp.com/agent-inject-secret-keystore: 'internal/data/mindspore/website'
-        vault.hashicorp.com/agent-inject-template-keystore: |  
+        vault.hashicorp.com/agent-inject-secret-ca.pem: 'internal/data/mindspore/website'
+        vault.hashicorp.com/agent-inject-template-ca.pem: |  
           {{- with secret "internal/data/mindspore/website" -}}  
-          {{ .Data.data.keystore }}
-          {{- end }}
-        vault.hashicorp.com/agent-inject-secret-truststore: 'internal/data/mindspore/website'
-        vault.hashicorp.com/agent-inject-template-truststore: |  
-          {{- with secret "internal/data/mindspore/website" -}}  
-          {{ .Data.data.truststore }}
+          {{ .Data.data.MysqlCA }}
           {{- end }}
       labels:
         app: api
