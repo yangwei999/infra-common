@@ -19,6 +19,9 @@ spec:
       labels:
         app: xihe-website
     spec:
+      securityContext:
+        seccompProfile:
+          type: RuntimeDefault
       containers:
       - name: xihe-website
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/xihe/xihe-website-test:2e7c9d92da5c19264286a54ff29381bca4652bf9

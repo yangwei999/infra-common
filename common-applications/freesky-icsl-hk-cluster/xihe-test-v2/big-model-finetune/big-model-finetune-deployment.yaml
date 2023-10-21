@@ -17,9 +17,9 @@ spec:
       annotations:
         vault.hashicorp.com/agent-inject: "true"
         vault.hashicorp.com/secret-volume-path: "/bigmodel-finetune/conf/"
-        vault.hashicorp.com/agent-inject-perms-finetune_basic.yml: "0700"
-        vault.hashicorp.com/agent-inject-perms-asset.yml: "0700"
-        vault.hashicorp.com/agent-inject-perms-mysql.crt: "0700"
+        vault.hashicorp.com/agent-inject-perms-finetune_basic.yml: "0600"
+        vault.hashicorp.com/agent-inject-perms-asset.yml: "0600"
+        vault.hashicorp.com/agent-inject-perms-mysql.crt: "0600"
         vault.hashicorp.com/agent-run-as-user: "5000"
         vault.hashicorp.com/agent-inject-secret-finetune_basic.yml: xihe/data/conf
         vault.hashicorp.com/agent-inject-template-finetune_basic.yml: |
@@ -44,6 +44,9 @@ spec:
       serviceAccount: xihe-test
       imagePullSecrets:
       - name: huawei-swr-image-pull-secret
+      securityContext:
+        seccompProfile:
+          type: RuntimeDefault
       containers:
       - image: swr.cn-north-4.myhuaweicloud.com/opensourceway/xihe/big-model-finetune:c409315983b32f9ea44dae3c51e2a54123a5673e
         imagePullPolicy: IfNotPresent

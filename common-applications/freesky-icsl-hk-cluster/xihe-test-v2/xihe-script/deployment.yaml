@@ -40,6 +40,9 @@ spec:
       serviceAccount: xihe-test
       imagePullSecrets:
       - name: huawei-swr-image-pull-secret
+      securityContext:
+        seccompProfile:
+          type: RuntimeDefault
       containers:
       - name: xihe-script
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/mindspore/xihe-script:v1.0.20221122113307
