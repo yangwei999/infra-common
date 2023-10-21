@@ -19,12 +19,18 @@ spec:
     metadata:
       annotations:
         vault.hashicorp.com/agent-inject: "true"
-        vault.hashicorp.com/agent-inject-perms-application.yml: "0700"
+        vault.hashicorp.com/agent-inject-perms-application.yml: "0600"
+        vault.hashicorp.com/agent-inject-perms-mq.crt: "0600"
         vault.hashicorp.com/agent-run-as-user: "5000"
         vault.hashicorp.com/agent-inject-secret-application.yml: xihe/data/conf
         vault.hashicorp.com/agent-inject-template-application.yml: |
           {{- with secret "xihe/data/conf/" -}}
           {{ .Data.data.xiheScript }}
+          {{- end }}
+        vault.hashicorp.com/agent-inject-secret-mq.crt: xihe/data/conf/
+        vault.hashicorp.com/agent-inject-template-mq.crt: |
+          {{- with secret "xihe/data/conf/" -}}
+          {{ .Data.data.MqCA }}
           {{- end }}
         vault.hashicorp.com/agent-pre-populate-only: "true"
         vault.hashicorp.com/role: xihe-test
