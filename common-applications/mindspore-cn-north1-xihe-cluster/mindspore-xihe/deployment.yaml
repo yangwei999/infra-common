@@ -44,6 +44,7 @@ spec:
           - --oidc-issuer-url=https://xihe-codeserver-test.authing.cn/oidc
           - --pass-access-token=true
           - --pass-basic-auth=true
+          - --set-xauthrequest=true
           - --insecure-oidc-allow-unverified-email=true
           - --session-cookie-minimal=false
           - --cookie-secure=true
