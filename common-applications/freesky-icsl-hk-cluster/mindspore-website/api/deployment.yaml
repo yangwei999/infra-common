@@ -18,8 +18,8 @@ spec:
       annotations:
         vault.hashicorp.com/agent-inject: 'true'
         vault.hashicorp.com/role: 'freesky-hk-mindspore-website'
-        vault.hashicorp.com/agent-inject-perms-application.yaml: "0700"
-        vault.hashicorp.com/agent-inject-perms-ca.pem: "0700"
+        vault.hashicorp.com/agent-inject-perms-application.yaml: "0600"
+        vault.hashicorp.com/agent-inject-perms-ca.pem: "0600"
         vault.hashicorp.com/agent-run-as-user: "1001"
         vault.hashicorp.com/agent-inject-secret-application.yaml: 'internal/data/mindspore/website'
         vault.hashicorp.com/agent-pre-populate-only: "true"
@@ -38,6 +38,9 @@ spec:
       imagePullSecrets:
       - name: huawei-swr-image-pull-secret
       serviceAccountName: mindspore-website
+      securityContext:
+        seccompProfile:
+          type: RuntimeDefault
       containers:
       - env:
         - name: APPLICATION_PATH

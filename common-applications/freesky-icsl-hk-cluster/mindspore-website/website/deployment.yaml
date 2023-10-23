@@ -18,6 +18,9 @@ spec:
       labels:
         app: mindsporewebsite
     spec:
+      securityContext:
+        seccompProfile:
+          type: RuntimeDefault
       containers:
       - name: websiteinfod
         image: swr.ap-southeast-1.myhuaweicloud.com/infra-hk/mindspore/website:v1.0.20231010191807

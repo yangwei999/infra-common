@@ -18,7 +18,7 @@ spec:
     metadata:
       annotations:
         vault.hashicorp.com/agent-inject: 'true'
-        vault.hashicorp.com/agent-inject-perms-application.yml: "0700"
+        vault.hashicorp.com/agent-inject-perms-application.yml: "0600"
         vault.hashicorp.com/agent-run-as-user: "1001"
         vault.hashicorp.com/role: 'freesky-hk-openlookeng-search'
         vault.hashicorp.com/agent-inject-secret-application.yml: 'internal/data/openlookeng/search-icsl'
@@ -31,6 +31,9 @@ spec:
         app: search
     spec:
       serviceAccount: openlookeng-search
+      securityContext:
+        seccompProfile:
+          type: RuntimeDefault
       containers:
       - name: search
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/icsl/openlookeng-search:8281096ff3d69918a32941c541b57ea1e507fd89

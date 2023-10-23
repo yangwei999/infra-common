@@ -42,6 +42,6 @@ spec:
           protocol: TCP
       volumes:
       - configMap:
-          defaultMode: 420
+          defaultMode: 384
           name: nginx-configmap
         name: nginx-configmap
