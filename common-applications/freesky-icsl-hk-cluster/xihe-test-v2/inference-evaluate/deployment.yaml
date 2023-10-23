@@ -49,6 +49,13 @@ spec:
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/xihe/xihe:latest
         imagePullPolicy: IfNotPresent
         name: inference-evaluate
+        env:
+        - name: INFERENCE_IMAGE
+          value: "swr.cn-north-4.myhuaweicloud.com/opensourceway/mindspore/xihe-inference-evaluate:dev-b6ec8e"
+        - name: INFERENCE_INIT_IMAGE
+          value: "swr.cn-north-4.myhuaweicloud.com/opensourceway/mindspore/xihe-inference-evaluate-init:dev-676509"
+        - name: CLOUD_IMAGE
+          value: "swr.cn-north-4.myhuaweicloud.com/opensourceway/mindspore/mindspore-jupyter-cpu:dev-615d31"
         ports:
         - containerPort: 8000
           name: http
