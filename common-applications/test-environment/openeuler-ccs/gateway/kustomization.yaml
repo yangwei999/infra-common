@@ -16,4 +16,4 @@ resources:
 - service.yaml
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/ccs-gateway-test
-  newTag: master-1ff72a
+  newTag: master-90d3be
