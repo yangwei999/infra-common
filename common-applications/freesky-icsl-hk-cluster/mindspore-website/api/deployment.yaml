@@ -74,7 +74,13 @@ spec:
         volumeMounts:
         - mountPath: /mnt/share/file
           name: website-data-volume
+        volumeMounts:
+        - mountPath: /opt/sql
+          name: sql-config-volume
       volumes:
       - name: website-data-volume
         persistentVolumeClaim:
           claimName: website-data
+      - name: sql-config-volume
+        persistentVolumeClaim:
+          claimName: mindspore-api-sql-file
