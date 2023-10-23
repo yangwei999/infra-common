@@ -3,7 +3,6 @@ kind: Kustomization
 resources:
 - deployment.yaml
 - service.yaml
-- configmap.yaml
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/xihe/xihe-server
-  newTag: norm-65fc83
+  newTag: dev-9cf9b5

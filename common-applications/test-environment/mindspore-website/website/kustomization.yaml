@@ -16,4 +16,5 @@ resources:
 - autoscaler.yaml
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/mindspore/website
-  newTag: v1.0.20230920053006
+  newName: swr.ap-southeast-1.myhuaweicloud.com/infra-hk/mindspore/website
+  newTag: v1.0.20231011174536
