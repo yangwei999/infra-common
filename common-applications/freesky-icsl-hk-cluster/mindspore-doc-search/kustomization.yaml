@@ -13,6 +13,7 @@ resources:
 - doc-search-service.yaml
 - doc-search-secret.yaml
 - doc-search-deployment.yaml
+- pvc.yaml
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/icsl/mindspore-search
   newName: swr.ap-southeast-1.myhuaweicloud.com/infra-hk/icsl/mindspore-search

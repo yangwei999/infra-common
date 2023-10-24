@@ -68,7 +68,6 @@ spec:
         volumeMounts:
         - mountPath: /mnt/share/file
           name: website-data-volume
-        volumeMounts:
         - mountPath: /opt/sql
           name: sql-config-volume
       volumes:
