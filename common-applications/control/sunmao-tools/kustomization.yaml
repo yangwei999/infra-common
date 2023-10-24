@@ -17,7 +17,7 @@ images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/sunmao/event-retriever
   newTag: v1.0.20231024195130
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/sunmao/rabbitmq
-  newTag: 37297156aba98e94f77a231d4db61a8495a3f4ae
+  newTag: cc65de431e81e0542b32516af554a03c4ce36f7c
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/sunmao/rule-handler
   newTag: v1.0.20231024195455
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/sunmao/strategy-executor
