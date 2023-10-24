@@ -61,7 +61,6 @@ spec:
         args:
         - --port=8000
         - --config-file=/vault/secrets/application.yml
-        - --kafkamq-config-file=/vault/secrets/kafka
         - --enable_debug=false
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/xihe/xihe:latest
         imagePullPolicy: IfNotPresent

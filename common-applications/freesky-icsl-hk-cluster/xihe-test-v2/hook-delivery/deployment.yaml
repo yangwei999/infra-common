@@ -58,8 +58,6 @@ spec:
         args:
         - --port=8000
         - --config-file=/vault/secrets/application.yml
-        - --hmac-secret-file=/vault/secrets/hmac
-        - --kafkamq-config-file=/vault/secrets/kafka
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/xihe/xihe:latest
         imagePullPolicy: IfNotPresent
         ports:
