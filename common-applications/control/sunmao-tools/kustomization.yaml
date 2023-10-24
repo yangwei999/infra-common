@@ -19,6 +19,6 @@ images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/sunmao/rabbitmq
   newTag: 37297156aba98e94f77a231d4db61a8495a3f4ae
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/sunmao/rule-handler
-  newTag: v1.0.20231024155438
+  newTag: v1.0.20231024195455
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/sunmao/strategy-executor
   newTag: v1.0.20231024174511
