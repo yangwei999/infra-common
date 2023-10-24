@@ -36,8 +36,6 @@ spec:
         - /bin/sh
         - -c
         - |
-          cp /vault/secrets/xarmor_pyrasp.ini /work/app-meeting-server/xarmor_pyrasp.ini
-          rm -rf /vault/secrets/xarmor_pyrasp.ini
           python3 manage.py migrate
           exec uwsgi --ini /work/app-meeting-server/deploy/production/uwsgi.ini
         env:
