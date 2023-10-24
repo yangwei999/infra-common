@@ -5,7 +5,7 @@ metadata:
   labels:
     k8s-app: oauth2-proxy
   name: oauth2-proxy
-  namespace: mindspore-xihe
+  namespace: xihe-icsl-crd
 spec:
   ports:
   - name: http
@@ -22,7 +22,7 @@ metadata:
   labels:
     k8s-app: oauth2-proxy
   name: oauth2-proxy
-  namespace: mindspore-xihe
+  namespace: xihe-icsl-crd
 spec:
   replicas: 2
   selector:

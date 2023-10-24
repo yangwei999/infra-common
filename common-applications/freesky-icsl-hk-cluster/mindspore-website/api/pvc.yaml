@@ -33,7 +33,7 @@ metadata:
     volume.beta.kubernetes.io/storage-provisioner: everest-csi-provisioner
   finalizers:
   - kubernetes.io/pvc-protection
-  name: mindspore-api-sql-file
+  name: mindspore-api-sql-file-03
   namespace: mindspore-website
 spec:
   accessModes:
@@ -43,4 +43,4 @@ spec:
       storage: 1Gi
   storageClassName: csi-obs
   volumeMode: Filesystem
-  volumeName: pv-obs-mindspore-website-api
+  volumeName: pv-obs-mindspore-website-api-03
