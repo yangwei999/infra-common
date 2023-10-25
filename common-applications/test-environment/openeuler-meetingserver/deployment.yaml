@@ -14,8 +14,8 @@ spec:
       annotations:
         vault.hashicorp.com/agent-inject: 'true'
         vault.hashicorp.com/role: 'openeuler-meeting'
-        vault.hashicorp.com/agent-inject-perms-secrets.yaml: "0700"
-        vault.hashicorp.com/agent-inject-perms-xarmor_pyrasp.ini: "0700"
+        vault.hashicorp.com/agent-inject-perms-secrets.yaml: "0600"
+        vault.hashicorp.com/agent-inject-perms-ca.pem: "0600"
         vault.hashicorp.com/agent-run-as-user: "1000"
         vault.hashicorp.com/agent-inject-secret-secrets.yaml: 'internal/data/infra-test/openeuler-meeting'
         vault.hashicorp.com/agent-pre-populate-only: "true"
@@ -23,28 +23,22 @@ spec:
           {{- with secret "internal/data/infra-test/openeuler-meeting" -}}  
           {{ .Data.data.config }}
           {{- end }}
-        vault.hashicorp.com/agent-inject-secret-xarmor_pyrasp.ini: 'internal/data/infra-test/openeuler-meeting'
-        vault.hashicorp.com/agent-inject-template-xarmor_pyrasp.ini: |  
+        vault.hashicorp.com/agent-inject-secret-ca.pem: 'internal/data/infra-test/openeuler-meeting'
+        vault.hashicorp.com/agent-inject-template-ca.pem: |  
           {{- with secret "internal/data/infra-test/openeuler-meeting" -}}  
-          {{ .Data.data.rasp }}
+          {{ .Data.data.MysqlCA }}
           {{- end }}
       labels:
         app: meetingserver
     spec:
       containers:
-      - command:
-        - /bin/sh
-        - -c
-        - |
-          python3 manage.py migrate
-          exec uwsgi --ini /work/app-meeting-server/deploy/production/uwsgi.ini
-        env:
+      - env:
         - name: TZ
           value: Asia/Shanghai
         - name: CONFIG_PATH
           value: /vault/secrets/secrets.yaml
-        - name: XARMOR_CONF
-          value: /work/app-meeting-server/xarmor_pyrasp.ini
+        - name: MYSQL_TLS_PEM_PATH
+          value: /vault/secrets/ca.pem
         image: swr.ap-southeast-1.myhuaweicloud.com/infra-hk/openeuler/meetingserver:master-6148c8
         imagePullPolicy: IfNotPresent
         livenessProbe:
