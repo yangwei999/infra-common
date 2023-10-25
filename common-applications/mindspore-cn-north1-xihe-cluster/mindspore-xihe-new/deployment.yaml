@@ -41,7 +41,7 @@ spec:
           - --http-address=0.0.0.0:4180
           - --provider-display-name=authing
           - --cookie-expire=12h0m0s
-          - --oidc-issuer-url=https://xihe-test2-cz.authing.cn/oidc
+          - --oidc-issuer-url=https://xihes-ais.authing.cn/oidc
           - --pass-access-token=true
           - --pass-basic-auth=true
           - --set-xauthrequest=true
