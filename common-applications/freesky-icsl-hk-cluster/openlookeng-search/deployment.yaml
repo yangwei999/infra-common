@@ -34,6 +34,8 @@ spec:
       securityContext:
         seccompProfile:
           type: RuntimeDefault
+      nodeSelector:
+        icsl: "true"
       containers:
       - name: search
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/icsl/openlookeng-search:8281096ff3d69918a32941c541b57ea1e507fd89

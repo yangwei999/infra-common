@@ -18,6 +18,8 @@ spec:
       labels:
         app: mindsporewebsite
     spec:
+      nodeSelector:
+        icsl: "true"
       securityContext:
         seccompProfile:
           type: RuntimeDefault

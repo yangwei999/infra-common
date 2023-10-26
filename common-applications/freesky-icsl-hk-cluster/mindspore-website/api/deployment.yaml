@@ -35,6 +35,8 @@ spec:
       securityContext:
         seccompProfile:
           type: RuntimeDefault
+      nodeSelector:
+        icsl: "true"
       containers:
       - env:
         - name: APPLICATION_PATH

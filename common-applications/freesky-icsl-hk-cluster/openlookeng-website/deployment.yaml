@@ -21,6 +21,8 @@ spec:
       securityContext:
         seccompProfile:
           type: RuntimeDefault
+      nodeSelector:
+        icsl: "true"
       containers:
       - name: websitepod
         image: swr.ap-southeast-1.myhuaweicloud.com/infra-hk/icsl/openlookeng-website:b600b516e3b27628e53188a847bec8caf0aa6951

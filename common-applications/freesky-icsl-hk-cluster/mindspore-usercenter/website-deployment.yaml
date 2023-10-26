@@ -4,7 +4,7 @@ metadata:
   name: website-deployment
   namespace: mindspore-usercenter
 spec:
-  replicas: 2
+  replicas: 0
   selector:
     matchLabels:
       app: website

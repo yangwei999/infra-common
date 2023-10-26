@@ -5,6 +5,7 @@ metadata:
   name: oneid-server
   namespace: om-webserver
 spec:
+  replicas: 0
   selector:
     matchLabels:
       app: oneid-server
