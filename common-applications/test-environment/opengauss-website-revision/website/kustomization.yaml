@@ -3,6 +3,7 @@ resources:
 - service.yaml
 - deployment.yaml
 - autoscaler.yaml
+- secret.yaml
 namespace: opengauss-website-revision
 commonAnnotations:
   kubernetes.ops.cluster: test
