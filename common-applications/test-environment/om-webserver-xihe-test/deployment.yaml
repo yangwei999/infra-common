@@ -15,9 +15,9 @@ spec:
       annotations:
         vault.hashicorp.com/agent-inject: 'true'
         vault.hashicorp.com/role: 'xiheapi'
-        vault.hashicorp.com/agent-inject-secret-application.yml: 'internal/data/infra-test/xiheapi'
+        vault.hashicorp.com/agent-inject-secret-application.properties: 'internal/data/infra-test/xiheapi'
         vault.hashicorp.com/agent-pre-populate-only: "true"
-        vault.hashicorp.com/agent-inject-template-application.yml: |  
+        vault.hashicorp.com/agent-inject-template-application.properties: |  
           {{- with secret "internal/data/infra-test/xiheapi" -}}  
           {{ .Data.data.application }}
           {{- end }}
@@ -32,7 +32,7 @@ spec:
           image: swr.cn-north-4.myhuaweicloud.com/om/om-webserver:0.5.52
           env:
           - name: APPLICATION_PATH
-            value: "/vault/secrets/application.yml"
+            value: "/vault/secrets/application.properties"
           resources:
             limits:
               cpu: 1000m
