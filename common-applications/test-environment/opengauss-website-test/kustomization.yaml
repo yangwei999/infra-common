@@ -4,14 +4,13 @@ resources:
 - service.yaml
 - deployment.yaml
 - secret.yaml
-- configmap.yaml
 - autoscaler.yaml
 commonLabels:
   app: opengauss-website
 namespace: opengauss-website
 commonAnnotations:
   kubernetes.ops.cluster: test
-  kubernetes.ops.email: ilong8@qq.com
+  kubernetes.ops.email: ""
   kubernetes.ops.os.base: openeuler
   kubernetes.ops.owner: ailong
   kubernetes.ops.region: hk
