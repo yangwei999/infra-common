@@ -2,7 +2,6 @@ resources:
 - deployment.yaml
 - namespace.yaml
 - service.yaml
-- ingress.yaml
 commonAnnotations:
   kubernetes.ops.cluster: freesky-icsl-hk-cluster
   kubernetes.ops.email: ""
@@ -12,6 +11,3 @@ commonAnnotations:
 namespace: openlookeng-website
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-images:
-- name: swr.ap-southeast-1.myhuaweicloud.com/infra-hk/icsl/openlookeng-website
-  newTag: b600b516e3b27628e53188a847bec8caf0aa6951

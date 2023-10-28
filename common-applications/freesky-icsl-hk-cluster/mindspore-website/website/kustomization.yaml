@@ -1,5 +1,4 @@
 resources:
-- ingress.yaml
 - service.yaml
 - deployment.yaml
 namespace: mindspore-website
@@ -11,9 +10,3 @@ commonAnnotations:
   kubernetes.ops.owner: gongzhuangbang
   kubernetes.ops.region: hk
 kind: Kustomization
-images:
-- name: swr.ap-southeast-1.myhuaweicloud.com/infra-hk/icsl/mindspore-website
-  newTag: v1.0.20231011114059
-- name: swr.ap-southeast-1.myhuaweicloud.com/infra-hk/mindspore/website
-  newName: swr.ap-southeast-1.myhuaweicloud.com/infra-hk/icsl/mindspore-website
-  newTag: v1.0.20231011134149

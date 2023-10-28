@@ -1,7 +1,6 @@
 resources:
 - deployment.yaml
 - service.yaml
-- ingress.yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: opengauss-website
@@ -11,6 +10,3 @@ commonAnnotations:
   kubernetes.ops.os.base: openeuler
   kubernetes.ops.owner: gongzhuangbang
   kubernetes.ops.region: hk
-images:
-- name: swr.ap-southeast-1.myhuaweicloud.com/infra-hk/icsl/opengauss-website
-  newTag: bfc8cbc939984025f23f2783ca6e01505d42e7a3
