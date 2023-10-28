@@ -32,7 +32,7 @@ spec:
         icsl: "true"
       containers:
       - name: websiteinfod
-        image: swr.ap-southeast-1.myhuaweicloud.com/infra-hk/icsl/opengauss-website:d7605bb7e335c17d1c266a10f916a5cdf0fa72d9
+        image: swr.ap-southeast-1.myhuaweicloud.com/infra-hk/icsl/opengauss-website:bfc8cbc939984025f23f2783ca6e01505d42e7a3
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
