@@ -10,3 +10,6 @@ commonAnnotations:
   kubernetes.ops.os.base: openeuler
   kubernetes.ops.owner: gongzhuangbang
   kubernetes.ops.region: hk
+images:
+- name: swr.ap-southeast-1.myhuaweicloud.com/infra-hk/icsl/opengauss-website
+  newTag: e7e8833a228624ee5629063c794f190c236573e2
