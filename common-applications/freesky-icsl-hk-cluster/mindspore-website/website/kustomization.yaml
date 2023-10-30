@@ -10,3 +10,6 @@ commonAnnotations:
   kubernetes.ops.owner: gongzhuangbang
   kubernetes.ops.region: hk
 kind: Kustomization
+images:
+- name: swr.ap-southeast-1.myhuaweicloud.com/infra-hk/icsl/mindspore-website
+  newTag: v1.0.20231030113757
