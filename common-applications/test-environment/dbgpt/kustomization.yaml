@@ -16,4 +16,4 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: swr.ap-southeast-1.myhuaweicloud.com/infra-hk/dbgpt
-  newTag: 0d11fb7e05ece86ba6ee950ec3322c24d44b417e
+  newTag: 1ad710bc0b165f14df856c1e23c9dfe1c222635b
