@@ -16,4 +16,4 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/opengauss/meeting-server-test
-  newTag: c3f0e1c82626f18bb8009d747960437e4278e8c8
+  newTag: ae5bf274efff540fb25fc1cba8ec110e57e895b0
