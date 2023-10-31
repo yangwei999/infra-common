@@ -6,7 +6,6 @@ resources:
 - hook-delivery
 - sync-repo
 - training-center-huaweicloud
-- inference-evaluate
 - xihe-website
 - xihe-server
 - xihe-script
