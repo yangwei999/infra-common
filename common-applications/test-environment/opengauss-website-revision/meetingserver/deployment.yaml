@@ -43,6 +43,7 @@ spec:
           python manage.py makemigrations
           python manage.py migrate
           python manage.py sync_sigs
+          python manage.py upgrade_users
           exec uwsgi --ini /work/app-meeting-server/deploy/production/uwsgi.ini
         env:
         - name: TZ
