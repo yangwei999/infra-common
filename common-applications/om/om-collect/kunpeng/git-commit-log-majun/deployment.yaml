@@ -1,0 +1,31 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: majun-commit-log
+  namespace: om
+  labels:
+    app: majun-commit-log
+spec:
+  revisionHistoryLimit: 10
+  template:
+    metadata:
+      labels:
+        app: majun-commit-log
+    spec:
+      containers:
+        - name: majun-commit-log
+          image: swr.cn-north-4.myhuaweicloud.com/om/om-collection:0.5.48
+          volumeMounts:
+            - mountPath: /var/lib/om/config.ini
+              subPath: credentials_cfg
+              name: majun-commit-log-secrets-volume
+            - mountPath: /mnt
+              subPath: majuncommitlog
+              name: storage
+      volumes:
+        - name: majun-commit-log-secrets-volume
+          secret:
+            secretName: majun-commit-log-secrets
+        - name: storage
+          persistentVolumeClaim:
+            claimName: majuncommitlog
