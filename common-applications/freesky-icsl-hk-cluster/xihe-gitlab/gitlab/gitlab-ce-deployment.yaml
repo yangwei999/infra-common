@@ -1,0 +1,209 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: xihe-gitlab-ce-data-volume
+  namespace: source
+spec:
+  storageClassName: "csi-disk"
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Gi
+  
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: xihe-gitlab-ce-service
+  namespace: source
+  annotations:
+    kubernetes.io/elb.id: 892c4d36-9a96-498e-87a7-adcd40874fc2
+    kubernetes.io/elb.class: union
+    kubernetes.io/elb.lb-algorithm: ROUND_ROBIN
+spec:
+  ports:
+  - name: http
+    port: 8088
+    targetPort: 8088
+  selector:
+    app: xihe-gitlab-ce
+  type: LoadBalancer
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: xihe-gitlab-ce-deployment
+  namespace: source
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: xihe-gitlab-ce
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        vault.hashicorp.com/agent-inject: 'true'
+        vault.hashicorp.com/role: 'xihe-gitlab'
+        vault.hashicorp.com/agent-run-as-user: "1000"
+        vault.hashicorp.com/secret-volume-path: "/etc/gitlab"
+        vault.hashicorp.com/agent-inject-perms-gitlab.rb: "0600"
+        vault.hashicorp.com/agent-inject-secret-gitlab.rb: 'internal/data/infra-test/gitlab'
+        vault.hashicorp.com/agent-inject-template-gitlab.rb: |  
+          {{- with secret "internal/data/infra-test/gitlab" -}}  
+          {{ .Data.data.gitlabRb }}
+          {{- end }}
+        vault.hashicorp.com/agent-inject-perms-postgresql_ca.crt: "0644"
+        vault.hashicorp.com/agent-inject-secret-postgresql_ca.crt: 'internal/data/infra-test/gitlab'
+        vault.hashicorp.com/agent-inject-template-postgresql_ca.crt: |  
+          {{- with secret "internal/data/infra-test/gitlab" -}}  
+          {{ .Data.data.PostgreCA }}
+          {{- end }}
+        vault.hashicorp.com/agent-inject-perms-redis.crt: "0640"
+        vault.hashicorp.com/agent-inject-secret-redis.crt: 'internal/data/infra-test/gitlab'
+        vault.hashicorp.com/agent-inject-template-redis.crt: |  
+          {{- with secret "internal/data/infra-test/gitlab" -}}  
+          {{ .Data.data.RedisCA }}
+          {{- end }}
+        vault.hashicorp.com/agent-inject-perms-ssh_host_ecdsa_key: "0600"
+        vault.hashicorp.com/agent-inject-secret-ssh_host_ecdsa_key: 'internal/data/infra-test/gitlab'
+        vault.hashicorp.com/agent-inject-template-ssh_host_ecdsa_key: |  
+          {{- with secret "internal/data/infra-test/gitlab" -}}  
+          {{ .Data.data.sshHostEcdsaKey }}
+          {{- end }}
+        vault.hashicorp.com/agent-inject-perms-ssh_host_ecdsa_key.pub: "0644"
+        vault.hashicorp.com/agent-inject-secret-ssh_host_ecdsa_key.pub: 'internal/data/infra-test/gitlab'
+        vault.hashicorp.com/agent-inject-template-ssh_host_ecdsa_key.pub: |  
+          {{- with secret "internal/data/infra-test/gitlab" -}}  
+          {{ .Data.data.sshHostEcdsaKeyPub }}
+          {{- end }}
+        vault.hashicorp.com/agent-inject-perms-ssh_host_ed25519_key: "0600"
+        vault.hashicorp.com/agent-inject-secret-ssh_host_ed25519_key: 'internal/data/infra-test/gitlab'
+        vault.hashicorp.com/agent-inject-template-ssh_host_ed25519_key: |  
+          {{- with secret "internal/data/infra-test/gitlab" -}}  
+          {{ .Data.data.sshHostEd25519Key }}
+          {{- end }}
+        vault.hashicorp.com/agent-inject-perms-ssh_host_ed25519_key.pub: "0644"
+        vault.hashicorp.com/agent-inject-secret-ssh_host_ed25519_key.pub: 'internal/data/infra-test/gitlab'
+        vault.hashicorp.com/agent-inject-template-ssh_host_ed25519_key.pub: |  
+          {{- with secret "internal/data/infra-test/gitlab" -}}  
+          {{ .Data.data.sshHostEd25519KeyPub }}
+          {{- end }}
+        vault.hashicorp.com/agent-inject-perms-ssh_host_rsa_key: "0600"
+        vault.hashicorp.com/agent-inject-secret-ssh_host_rsa_key: 'internal/data/infra-test/gitlab'
+        vault.hashicorp.com/agent-inject-template-ssh_host_rsa_key: |  
+          {{- with secret "internal/data/infra-test/gitlab" -}}  
+          {{ .Data.data.sshHostRsaKey }}
+          {{- end }}
+        vault.hashicorp.com/agent-inject-perms-ssh_host_rsa_key.pub: "0644"
+        vault.hashicorp.com/agent-inject-secret-ssh_host_rsa_key.pub: 'internal/data/infra-test/gitlab'
+        vault.hashicorp.com/agent-inject-template-ssh_host_rsa_key.pub: |  
+          {{- with secret "internal/data/infra-test/gitlab" -}}  
+          {{ .Data.data.sshHostRsaKeyPub }}
+          {{- end }}
+        vault.hashicorp.com/agent-pre-populate-only: "true"
+      labels:
+        app: xihe-gitlab-ce
+    spec:
+      serviceAccount: xihe-gitlab
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
+      nodeSelector:
+        icsl: "true"
+      securityContext:
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+      - name: gitlab
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/xihe/gitlab-ce:15.11.13-ce.0
+        resources:
+          requests:
+            cpu: 5000m
+            memory: 15000Mi
+          limits:
+            cpu: 5000m
+            memory: 15000Mi
+        ports:
+        - containerPort: 8088
+          name: http
+          protocol: TCP
+        readinessProbe:
+          httpGet:
+            path: /users/sign_in
+            port: 8088
+          initialDelaySeconds: 60
+          failureThreshold: 3
+          successThreshold: 1
+          periodSeconds: 10
+          timeoutSeconds: 5
+        livenessProbe:
+          httpGet:
+            path: /users/sign_in
+            port: 8088
+          initialDelaySeconds: 60
+          periodSeconds: 10
+          successThreshold: 1
+          failureThreshold: 3
+          timeoutSeconds: 5
+        volumeMounts:
+        - mountPath: /var/log/gitlab
+          name: gitlab-data
+          subPath: logs
+        - mountPath: /var/opt/gitlab
+          name: gitlab-data
+          subPath: data
+        - mountPath: /dev/shm
+          name: gitlab-shm-data
+      - name: watcher
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/xihe/gitlab-watcher:master-75c5a4
+        command:
+        - /bin/bash
+        - -c
+        - |
+          /opt/workspace/start.sh http://xihe-gitlab-ce-service.source.svc.cluster.local:8088/users/sign_in /etc/gitlab;
+        env:
+        - name: TZ
+          value: "Asia/Shanghai"
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+          limits:
+            cpu: 100m
+            memory: 100Mi
+      restartPolicy: Always
+      volumes:
+      - name: gitlab-data
+        persistentVolumeClaim:
+          claimName: xihe-gitlab-ce-data-volume
+      - name: gitlab-shm-data
+        emptyDir:
+          sizeLimit: 256Mi
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: source-xihe-gitlab-cluster-role
+rules:
+  - apiGroups: [""]
+    resources: ["pods", "nodes"]
+    verbs: ["get", "list", "watch"]
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: source-xihe-gitlab-cluster-role-binding
+roleRef:
+  kind: ClusterRole
+  name: source-xihe-gitlab-cluster-role
+  apiGroup: rbac.authorization.k8s.io
+subjects:
+  - kind: ServiceAccount
+    name: xihe-gitlab
+    namespace: source
