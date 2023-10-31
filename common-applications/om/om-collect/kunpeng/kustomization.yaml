@@ -21,4 +21,5 @@ resources:
   - github_pytorch_pr_issue
   - github_tensorflow_pr_issue
   - gitee_enterprise
+  - git-commit-log-majun
 namespace: kunpeng-om
