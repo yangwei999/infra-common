@@ -18,8 +18,6 @@ spec:
       annotations:
         vault.hashicorp.com/agent-inject: "true"
         vault.hashicorp.com/agent-inject-perms-application.yml: "0600"
-        vault.hashicorp.com/agent-inject-perms-hmac: "0600"
-        vault.hashicorp.com/agent-inject-perms-kafka: "0600"
         vault.hashicorp.com/agent-inject-perms-mq.crt: "0600"
         vault.hashicorp.com/agent-run-as-user: "5000"
         vault.hashicorp.com/agent-inject-secret-mq.crt: xihe/data/conf/
@@ -27,16 +25,6 @@ spec:
         vault.hashicorp.com/agent-inject-template-application.yml: |
           {{- with secret "xihe/data/conf/" -}}
           {{ .Data.data.HookDelivery }}
-          {{- end }}
-        vault.hashicorp.com/agent-inject-secret-hmac: xihe/data/conf
-        vault.hashicorp.com/agent-inject-template-hmac: |
-          {{- with secret "xihe/data/conf/" -}}
-          {{ .Data.data.SystemHookHac }}
-          {{- end }}
-        vault.hashicorp.com/agent-inject-secret-kafka: xihe/data/conf
-        vault.hashicorp.com/agent-inject-template-kafka: |
-          {{- with secret "xihe/data/conf/" -}}
-          {{ .Data.data.kafka }}
           {{- end }}
         vault.hashicorp.com/agent-inject-template-mq.crt: |
           {{- with secret "xihe/data/conf/" -}}
