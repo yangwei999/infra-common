@@ -13,4 +13,4 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: swr.ap-southeast-1.myhuaweicloud.com/infra-hk/icsl/openlookeng-website
-  newTag: c100f28c22bda9d32e82034d450c8dc862f3c2ca
+  newTag: d6c4ed27499da23077433d9c280e91749881a6cc
