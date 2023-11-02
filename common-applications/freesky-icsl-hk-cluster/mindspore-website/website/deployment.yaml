@@ -18,8 +18,11 @@ spec:
       labels:
         app: mindsporewebsite
     spec:
-      nodeSelector:
-        icsl: "true"
+      tolerations:
+      - key: "icsl"
+        operator: "Equal"
+        value: "true"
+        effect: "NoSchedule"
       securityContext:
         seccompProfile:
           type: RuntimeDefault
