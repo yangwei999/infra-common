@@ -43,6 +43,11 @@ spec:
       securityContext:
         seccompProfile:
           type: RuntimeDefault
+      tolerations:
+      - key: "icsl"
+        operator: "Equal"
+        value: "true"
+        effect: "NoSchedule"
       containers:
       - name: xihe-script
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/mindspore/xihe-script:v1.0.20221122113307

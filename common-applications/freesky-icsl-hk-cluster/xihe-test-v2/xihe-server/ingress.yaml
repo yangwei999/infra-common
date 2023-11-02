@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: xihe-server-ingress
+  namespace: xihe-test-v2
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: xihe-server.test.osinfra.cn
+    http:
+      paths:
+      - backend:
+          service:
+            name: xihe-backend-service
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
+  tls:
+  - hosts:
+    - xihe-server.test.osinfra.cn
+    secretName: xihe-new-tls

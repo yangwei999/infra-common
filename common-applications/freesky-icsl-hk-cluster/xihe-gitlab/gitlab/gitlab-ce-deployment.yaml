@@ -112,11 +112,14 @@ spec:
       serviceAccount: xihe-gitlab
       imagePullSecrets:
       - name: huawei-swr-image-pull-secret
-      nodeSelector:
-        icsl: "true"
       securityContext:
         seccompProfile:
           type: RuntimeDefault
+      tolerations:
+      - key: "icsl"
+        operator: "Equal"
+        value: "true"
+        effect: "NoSchedule"
       containers:
       - name: gitlab
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/xihe/gitlab-ce:15.11.13-ce.0

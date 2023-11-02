@@ -46,6 +46,11 @@ spec:
       securityContext:
         seccompProfile:
           type: RuntimeDefault
+      tolerations:
+      - key: "icsl"
+        operator: "Equal"
+        value: "true"
+        effect: "NoSchedule"
       containers:
       - image: swr.cn-north-4.myhuaweicloud.com/opensourceway/xihe/xihe-async-server:v1.0.20230420194635
         imagePullPolicy: IfNotPresent
