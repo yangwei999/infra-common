@@ -1,0 +1,16 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- configmap.yaml
+- deployment.yaml
+- ingress.yaml
+- secrets.yaml
+- service.yaml
+- autoscaler.yaml
+namespace: sync-bot
+commonAnnotations:
+  kubernetes.ops.cluster: test
+  kubernetes.ops.email: ""
+  kubernetes.ops.os.base: Alpine
+  kubernetes.ops.owner: caozhi
+  kubernetes.ops.region: hk

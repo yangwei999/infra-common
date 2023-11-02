@@ -1,0 +1,19 @@
+resources:
+- deployment.yaml
+- service.yaml
+- secrets.yaml
+- pvc.yaml
+- autoscaler.yaml
+- ingress.yaml
+commonAnnotations:
+  kubernetes.ops.cluster: test
+  kubernetes.ops.email: ""
+  kubernetes.ops.os.base: openeuler
+  kubernetes.ops.owner: caozhi
+  kubernetes.ops.region: hk
+namespace: sync-bot
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+images:
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/sync-bot-test
+  newTag: 704150352e1c985c853a0bd0ed04b41ae08636e5
