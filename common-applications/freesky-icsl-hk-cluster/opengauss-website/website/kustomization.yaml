@@ -12,4 +12,4 @@ commonAnnotations:
   kubernetes.ops.region: hk
 images:
 - name: swr.ap-southeast-1.myhuaweicloud.com/infra-hk/icsl/opengauss-website
-  newTag: f4d690f012e76bcdbcb0829f632ca068f7910e74
+  newTag: 917acc88e1a9eed102d8308f30a31f616ca7e2a3
