@@ -47,11 +47,6 @@ spec:
       securityContext:
         seccompProfile:
           type: RuntimeDefault
-      tolerations:
-      - key: "icsl"
-        operator: "Equal"
-        value: "true"
-        effect: "NoSchedule"
       containers:
       - name: internal-server
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/xihe/xihe:latest

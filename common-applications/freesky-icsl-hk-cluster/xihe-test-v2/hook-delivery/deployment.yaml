@@ -41,11 +41,6 @@ spec:
       securityContext:
         seccompProfile:
           type: RuntimeDefault
-      tolerations:
-      - key: "icsl"
-        operator: "Equal"
-        value: "true"
-        effect: "NoSchedule"
       containers:
       - name: hook-delivery
         args:

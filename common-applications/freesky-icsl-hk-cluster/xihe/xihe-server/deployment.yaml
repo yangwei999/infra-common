@@ -3,7 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: xihe-server
-  namespace: xihe-test-v2
+  namespace: xihe
 spec:
   replicas: 1
   strategy:
@@ -50,11 +50,11 @@ spec:
           {{ .Data.data.MqCA }}
           {{- end }}
         vault.hashicorp.com/agent-pre-populate-only: "true"
-        vault.hashicorp.com/role: xihe-test
+        vault.hashicorp.com/role: xihe
       labels:
         app: xihe-server
     spec:
-      serviceAccount: xihe-test
+      serviceAccount: xihe
       securityContext:
         seccompProfile:
           type: RuntimeDefault

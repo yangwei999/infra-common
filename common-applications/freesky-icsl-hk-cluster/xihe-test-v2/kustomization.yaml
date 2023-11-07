@@ -6,8 +6,6 @@ resources:
 - hook-delivery
 - sync-repo
 - training-center-huaweicloud
-- xihe-website
-- xihe-server
 - xihe-script
 - big-model-finetune
 - finetune

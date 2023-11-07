@@ -3,7 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: xihe-website
-  namespace: xihe-test-v2
+  namespace: xihe
 spec:
   replicas: 1
   strategy:
