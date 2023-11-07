@@ -57,6 +57,11 @@ spec:
             secretKeyRef:
               key: poisonSalt
               name: anti-poisoning-secrets
+        - name: forwarding.call.anti.key
+          valueFrom:
+            secretKeyRef:
+              key: forwarding-call-anti-key
+              name: anti-poisoning-secrets
         volumeMounts:
         - mountPath: /var/log
           name: log-data
