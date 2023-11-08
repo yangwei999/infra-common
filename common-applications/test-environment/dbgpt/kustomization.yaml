@@ -1,0 +1,19 @@
+resources:
+- deployment.yaml
+- namespace.yaml
+- ingress.yaml
+- secrets.yaml
+- service.yaml
+- autoscaler.yaml
+commonAnnotations:
+  kubernetes.ops.cluster: test
+  kubernetes.ops.email: ""
+  kubernetes.ops.os.base: debian
+  kubernetes.ops.owner: wucaiping
+  kubernetes.ops.region: hk
+namespace: dbgpt
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+images:
+- name: swr.ap-southeast-1.myhuaweicloud.com/infra-hk/dbgpt
+  newTag: 84f03524cabe0e305d24de9058469fbe0a074f3d

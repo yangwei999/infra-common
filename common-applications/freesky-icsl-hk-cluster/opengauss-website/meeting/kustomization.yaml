@@ -1,8 +1,6 @@
 resources:
 - deployment.yaml
 - service.yaml
-- pvc.yaml
-- ingress.yaml
 commonAnnotations:
   kubernetes.ops.cluster: freesky-icsl-hk-cluster
   kubernetes.ops.email: ""

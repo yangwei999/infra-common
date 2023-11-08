@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-access
+  namespace: sync-bot
+spec:
+  selector:
+    app: access
+  ports:
+  - name: httpport
+    port: 8888
+    protocol: TCP
+    targetPort: 8888
+  type: ClusterIP

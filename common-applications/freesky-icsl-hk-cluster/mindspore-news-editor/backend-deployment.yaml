@@ -4,6 +4,7 @@ metadata:
   name: backend-deployment
   namespace: mindspore-news-editor
 spec:
+  replicas: 0
   selector:
     matchLabels:
       app: backend

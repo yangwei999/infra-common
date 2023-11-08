@@ -17,24 +17,18 @@ spec:
     metadata:
       annotations:
         vault.hashicorp.com/agent-inject: "true"
-        vault.hashicorp.com/agent-inject-perms-application.yml: "0700"
-        vault.hashicorp.com/agent-inject-perms-hmac: "0700"
-        vault.hashicorp.com/agent-inject-perms-kafka: "0700"
+        vault.hashicorp.com/agent-inject-perms-application.yml: "0600"
+        vault.hashicorp.com/agent-inject-perms-mq.crt: "0600"
         vault.hashicorp.com/agent-run-as-user: "5000"
+        vault.hashicorp.com/agent-inject-secret-mq.crt: xihe/data/conf/
         vault.hashicorp.com/agent-inject-secret-application.yml: xihe/data/conf
         vault.hashicorp.com/agent-inject-template-application.yml: |
           {{- with secret "xihe/data/conf/" -}}
           {{ .Data.data.HookDelivery }}
           {{- end }}
-        vault.hashicorp.com/agent-inject-secret-hmac: xihe/data/conf
-        vault.hashicorp.com/agent-inject-template-hmac: |
+        vault.hashicorp.com/agent-inject-template-mq.crt: |
           {{- with secret "xihe/data/conf/" -}}
-          {{ .Data.data.SystemHookHac }}
-          {{- end }}
-        vault.hashicorp.com/agent-inject-secret-kafka: xihe/data/conf
-        vault.hashicorp.com/agent-inject-template-kafka: |
-          {{- with secret "xihe/data/conf/" -}}
-          {{ .Data.data.kafka }}
+          {{ .Data.data.MqCA }}
           {{- end }}
         vault.hashicorp.com/agent-pre-populate-only: "true"
         vault.hashicorp.com/role: xihe-test
@@ -44,13 +38,14 @@ spec:
       serviceAccount: xihe-test
       imagePullSecrets:
       - name: huawei-swr-image-pull-secret
+      securityContext:
+        seccompProfile:
+          type: RuntimeDefault
       containers:
       - name: hook-delivery
         args:
         - --port=8000
         - --config-file=/vault/secrets/application.yml
-        - --hmac-secret-file=/vault/secrets/hmac
-        - --kafkamq-config-file=/vault/secrets/kafka
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/xihe/xihe:latest
         imagePullPolicy: IfNotPresent
         ports:

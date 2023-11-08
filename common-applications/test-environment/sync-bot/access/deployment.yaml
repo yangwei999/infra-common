@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: access-deployment
+  namespace: sync-bot
+spec:
+  selector:
+    matchLabels:
+      app: access
+  template:
+    metadata:
+      labels:
+        app: access
+    spec:
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
+      nodeSelector:
+        autoscaler: "true"
+      containers:
+      - name: access
+        args:
+        - --port=8888
+        - --plugin-config=/app/conf/robot-gitee/app_config/config.yaml
+        - --hmac-secret-file=/app/conf/robot-gitee/hmac
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/robot/robot-gitee-access:master-295f6ee
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8888
+          name: http
+          protocol: TCP
+        volumeMounts:
+        - mountPath: /app/conf/robot-gitee/hmac
+          subPath: webhook-hmac
+          name: secret-volume
+        - mountPath: /app/conf/robot-gitee/app_config/
+          name: app-config
+          readOnly: true
+      volumes:
+      - name: secret-volume
+        secret:
+          secretName: secret-access
+      - name: app-config
+        configMap:
+          name: configmap-access

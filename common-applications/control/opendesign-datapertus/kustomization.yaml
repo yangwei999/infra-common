@@ -1,8 +1,8 @@
 resources:
 - namespace.yaml
 - mindspore
-- opengauss
 - openlookeng
+- secret.yaml
 namespace: opendesign-datapertus
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization

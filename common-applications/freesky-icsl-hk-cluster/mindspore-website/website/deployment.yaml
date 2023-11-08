@@ -18,9 +18,17 @@ spec:
       labels:
         app: mindsporewebsite
     spec:
+      tolerations:
+      - key: "icsl"
+        operator: "Equal"
+        value: "true"
+        effect: "NoSchedule"
+      securityContext:
+        seccompProfile:
+          type: RuntimeDefault
       containers:
       - name: websiteinfod
-        image: swr.ap-southeast-1.myhuaweicloud.com/infra-hk/mindspore/website:v1.0.20231010191807
+        image: swr.ap-southeast-1.myhuaweicloud.com/infra-hk/icsl/mindspore-website:v1.0.20231011134149
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080

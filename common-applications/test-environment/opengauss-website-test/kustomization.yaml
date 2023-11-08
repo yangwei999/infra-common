@@ -4,14 +4,13 @@ resources:
 - service.yaml
 - deployment.yaml
 - secret.yaml
-- configmap.yaml
 - autoscaler.yaml
 commonLabels:
   app: opengauss-website
 namespace: opengauss-website
 commonAnnotations:
   kubernetes.ops.cluster: test
-  kubernetes.ops.email: ilong8@qq.com
+  kubernetes.ops.email: ""
   kubernetes.ops.os.base: openeuler
   kubernetes.ops.owner: ailong
   kubernetes.ops.region: hk
@@ -19,4 +18,4 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/opengauss/test_opengauss_website
-  newTag: v1.0.20230725180310
+  newTag: v2-fddcbc

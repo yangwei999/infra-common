@@ -1,5 +1,4 @@
 resources:
-- ingress.yaml
 - service.yaml
 - deployment.yaml
 namespace: mindspore-website
@@ -13,7 +12,4 @@ commonAnnotations:
 kind: Kustomization
 images:
 - name: swr.ap-southeast-1.myhuaweicloud.com/infra-hk/icsl/mindspore-website
-  newTag: v1.0.20231011114059
-- name: swr.ap-southeast-1.myhuaweicloud.com/infra-hk/mindspore/website
-  newName: swr.ap-southeast-1.myhuaweicloud.com/infra-hk/icsl/mindspore-website
-  newTag: v1.0.20231011134149
+  newTag: stable-a91817
