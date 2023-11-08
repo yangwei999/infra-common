@@ -1,16 +1,19 @@
-# Config web service
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: openlookeng-website-frontend-service
+  name: openlookeng-website-loadbalencer
   namespace: openlookeng-website
+  annotations:
+    kubernetes.io/elb.id: 7be20dac-a48d-456e-bbc5-3c9b48e3c5a7
+    kubernetes.io/elb.class: union
+    kubernetes.io/elb.lb-algorithm: ROUND_ROBIN
 spec:
   ports:
-    - name: httpport
-      protocol: TCP
-      port: 80
-      targetPort: 8080
+  - name: httpport
+    protocol: TCP
+    port: 8080
+    targetPort: 8080
   selector:
     app: websiteinfo
-  type: ClusterIP
+  type: LoadBalancer

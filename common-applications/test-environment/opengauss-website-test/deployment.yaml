@@ -27,13 +27,6 @@ spec:
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/opengauss/test_opengauss_website:v1.0.20220621112656
         imagePullPolicy: IfNotPresent
         ports:
-        - containerPort: 80
+        - containerPort: 8080
           name: http
           protocol: TCP
-        volumeMounts:
-        - mountPath: /etc/nginx/conf.d
-          name: configmap-volume
-      volumes:
-      - name: configmap-volume
-        configMap:
-          name: websitesvcconfigmap

@@ -6,15 +6,10 @@ resources:
 - hook-delivery
 - sync-repo
 - training-center-huaweicloud
-- inference-evaluate
-- xihe-website
-- xihe-server
 - xihe-script
 - big-model-finetune
-- xihe-statistics
 - finetune
 - async-server
-- aicc-finetune
 namespace: xihe-test-v2
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization

@@ -20,3 +20,25 @@ spec:
               serviceName: openlookeng-service
               servicePort: 80
             path: /
+
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: repo-nginx
+  name: opendesign-datapertus-openlookeng-osinfra-ingress
+  namespace: opendesign-datapertus
+spec:
+  tls:
+    - hosts:
+        - datastat-openlookeng.osinfra.cn
+      secretName: datastat-osinfra-tls
+  rules:
+    - host: datastat-openlookeng.osinfra.cn
+      http:
+        paths:
+          - backend:
+              serviceName: openlookeng-service
+              servicePort: 80
+            path: /

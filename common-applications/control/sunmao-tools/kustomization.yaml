@@ -13,12 +13,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/sunmao/data-cache
-  newTag: v1.0.20231007181544
+  newTag: v1.0.20231024195255
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/sunmao/event-retriever
-  newTag: v1.0.20230621143100
+  newTag: v1.0.20231024195130
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/sunmao/rabbitmq
-  newTag: 544504f3030ac31d922476618312fa86159e9e44
+  newTag: cc65de431e81e0542b32516af554a03c4ce36f7c
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/sunmao/rule-handler
-  newTag: v1.0.20230725115613
+  newTag: v1.0.20231025101412
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/sunmao/strategy-executor
-  newTag: v1.0.20230629093604
+  newTag: v1.0.20231024195517

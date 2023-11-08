@@ -12,14 +12,27 @@ spec:
       app: om-webserver
   template:
     metadata:
+      annotations:
+        vault.hashicorp.com/agent-inject: 'true'
+        vault.hashicorp.com/role: 'xiheapi'
+        vault.hashicorp.com/agent-inject-secret-application.properties: 'internal/data/infra-test/xiheapi'
+        vault.hashicorp.com/agent-pre-populate-only: "true"
+        vault.hashicorp.com/agent-inject-template-application.properties: |  
+          {{- with secret "internal/data/infra-test/xiheapi" -}}  
+          {{ .Data.data.application }}
+          {{- end }}
       labels:
         app: om-webserver
     spec:
       imagePullSecrets:
       - name: huawei-swr-image-pull-secret
+      serviceAccountName: xiheapi
       containers:
         - name: om-webserver
-          image: swr.cn-north-4.myhuaweicloud.com/om/om-webserver:0.4.11
+          image: swr.cn-north-4.myhuaweicloud.com/om/om-webserver:0.5.52
+          env:
+          - name: APPLICATION_PATH
+            value: "/vault/secrets/application.properties"
           resources:
             limits:
               cpu: 1000m
@@ -46,11 +59,4 @@ spec:
           ports:
           - containerPort: 8080
             name: om-webserver
-          volumeMounts:
-          - mountPath: /var/lib/om-webserver/application.properties
-            subPath: application_properties
-            name: om-webserver-secrets-volume
-      volumes:
-      - name: om-webserver-secrets-volume
-        secret:
-          secretName: om-webserver-secrets
+        

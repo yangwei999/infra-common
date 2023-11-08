@@ -3,10 +3,11 @@ kind: Kustomization
 resources:
 - deployment.yaml
 - service.yaml
+- ingress.yaml
 commonLabels:
   component: internal-server
 nameSuffix: -internal-server
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/xihe/xihe
   newName: swr.cn-north-4.myhuaweicloud.com/opensourceway/xihe/xihe-internal-server
-  newTag: dev-9cf9b5
+  newTag: sec-e5878e

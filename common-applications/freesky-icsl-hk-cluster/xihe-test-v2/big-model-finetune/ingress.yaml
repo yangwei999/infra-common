@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: xihe-big-model-finetune-ingress
+  namespace: xihe-test-v2
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: xihe-big-model-finetune.test.osinfra.cn
+    http:
+      paths:
+      - backend:
+          service:
+            name: big-model-finetune
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
+  tls:
+  - hosts:
+    - xihe-big-model-finetune.test.osinfra.cn
+    secretName: xihe-new-tls

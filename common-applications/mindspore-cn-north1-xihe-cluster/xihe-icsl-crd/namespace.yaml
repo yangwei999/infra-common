@@ -1,0 +1,7 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  labels:
+    app: xihe-icsl-crd
+  name: xihe-icsl-crd

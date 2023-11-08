@@ -1,6 +1,0 @@
-apiVersion: v1
-kind: Namespace
-metadata:
-  labels:
-    name: mindspore-doc-search
-  name: mindspore-doc-search

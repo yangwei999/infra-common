@@ -6,7 +6,7 @@ metadata:
   name: meeting-server
   namespace: opengauss-website
 spec:
-  replicas: 2
+  replicas: 0
   selector:
     matchLabels:
       app: meetingserver

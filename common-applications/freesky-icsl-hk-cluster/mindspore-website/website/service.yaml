@@ -2,14 +2,18 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: websiteservice
+  name: mindspore-website-loadbalencer
   namespace: mindspore-website
+  annotations:
+    kubernetes.io/elb.id: 16fd5e4c-9c49-49ef-9199-dbaa56619606
+    kubernetes.io/elb.class: union
+    kubernetes.io/elb.lb-algorithm: ROUND_ROBIN
 spec:
   ports:
-    - name: httpport
-      protocol: TCP
-      port: 80
-      targetPort: 8080
+  - name: httpport
+    protocol: TCP
+    port: 8080
+    targetPort: 8080
   selector:
     app: mindsporewebsite
-  type: ClusterIP
+  type: LoadBalancer

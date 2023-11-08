@@ -3,10 +3,11 @@ kind: Kustomization
 resources:
 - deployment.yaml
 - service.yaml
+- ingress.yaml
 commonLabels:
   component: finetune
 nameSuffix: -finetune
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/xihe/xihe
   newName: swr.cn-north-4.myhuaweicloud.com/opensourceway/xihe/xihe-finetune
-  newTag: sec-8412f0
+  newTag: sec-f95246
