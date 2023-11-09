@@ -4,7 +4,6 @@ metadata:
   name: xihe-ingress
   namespace: xihe-test-v2
   annotations:
-    nginx.ingress.kubernetes.io/ssl-redirect: "true"
     nginx.ingress.kubernetes.io/backend-protocol: "GRPC"
 spec:
   ingressClassName: nginx
