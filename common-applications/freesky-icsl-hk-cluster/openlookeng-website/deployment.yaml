@@ -18,18 +18,21 @@ spec:
       labels:
         app: websiteinfo
     spec:
-      securityContext:
-        seccompProfile:
-          type: RuntimeDefault
       tolerations:
       - key: "icsl"
         operator: "Equal"
         value: "true"
         effect: "NoSchedule"
+      securityContext:
+        seccompProfile:
+          type: RuntimeDefault
       containers:
       - name: websitepod
         image: swr.ap-southeast-1.myhuaweicloud.com/infra-hk/icsl/openlookeng-website:b600b516e3b27628e53188a847bec8caf0aa6951
         imagePullPolicy: IfNotPresent
+        env:
+        - name: DET_URL
+          value: https://openlookeng.myopeninfra.com
         ports:
         - containerPort: 8080
           name: http

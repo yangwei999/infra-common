@@ -37,6 +37,9 @@ spec:
       - name: websiteinfod
         image: swr.ap-southeast-1.myhuaweicloud.com/infra-hk/icsl/opengauss-website:bfc8cbc939984025f23f2783ca6e01505d42e7a3
         imagePullPolicy: IfNotPresent
+        env:
+        - name: DET_URL
+          value: https://opengauss.myopeninfra.com
         ports:
         - containerPort: 8080
           name: http

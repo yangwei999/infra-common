@@ -1,6 +1,5 @@
 resources:
 - namespace.yaml
-- secret.yaml
 - xihe-website
 - xihe-server
 namespace: xihe

@@ -30,6 +30,9 @@ spec:
       - name: websiteinfod
         image: swr.ap-southeast-1.myhuaweicloud.com/infra-hk/icsl/mindspore-website:v1.0.20231011134149
         imagePullPolicy: IfNotPresent
+        env:
+        - name: DET_URL
+          value: https://mindspore.myopeninfra.com
         ports:
         - containerPort: 8080
           name: http
