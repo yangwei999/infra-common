@@ -35,12 +35,7 @@ spec:
             cpu: 2000m
             memory: 4000Mi
         env:
-        - name: jasypt.encryptor.password
-          valueFrom:
-            secretKeyRef:
-              key: jasypt_encryptor_password
-              name: anti-poisoning-secrets
-        - name: spring.data.mongodb.uri
+        - name: mongodb.uri
           valueFrom:
             secretKeyRef:
               key: spring_data_mongodb_uri
@@ -55,39 +50,31 @@ spec:
             secretKeyRef:
               key: spring_data_mongodb_env
               name: anti-poisoning-secrets
-        - name: spring.security.user.name
+        - name: poisonSalt
           valueFrom:
             secretKeyRef:
-              key: spring_security_user_name
+              key: poisonSalt
               name: anti-poisoning-secrets
-        - name: spring.security.user.password
+        - name: forwarding.call.anti.key
           valueFrom:
             secretKeyRef:
-              key: spring_security_user_password
-              name: anti-poisoning-secrets
-        - name: XARMOR_BACKEND_URL
-          valueFrom:
-            secretKeyRef:
-              key: xarmor_backend_url
-              name: anti-poisoning-secrets
-        - name: XARMOR_APP_ID
-          valueFrom:
-            secretKeyRef:
-              key: xarmor_app_id
-              name: anti-poisoning-secrets
-        - name: XARMOR_APP_TOKEN
-          valueFrom:
-            secretKeyRef:
-              key: xarmor_app_token
-              name: anti-poisoning-secrets
-        - name: XARMOR_TENANT_ID
-          valueFrom:
-            secretKeyRef:
-              key: xarmor_tenant_id
+              key: forwarding-call-anti-key
               name: anti-poisoning-secrets
         volumeMounts:
         - mountPath: /var/log
           name: log-data
+        - mountPath: /usr/local/primary.ks
+          name: secret
+          subPath: primary-ks
+        - mountPath: /usr/local/standby.ks
+          name: secret
+          subPath: standby-ks
+        - mountPath: /usr/local/work.ks
+          name: secret
+          subPath: work-ks
+        - mountPath: /usr/local/configJson.json
+          name: secret
+          subPath: configjson-json
         readinessProbe:
           tcpSocket:
             port: 8086
@@ -108,4 +95,7 @@ spec:
       - name: log-data
         persistentVolumeClaim:
           claimName: log-data-volume
+      - name: secret
+        secret:
+          secretName: anti-poisoning-secrets
 
