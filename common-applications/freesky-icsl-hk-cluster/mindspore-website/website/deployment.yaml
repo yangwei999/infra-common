@@ -15,6 +15,37 @@ spec:
       app: mindsporewebsite
   template:
     metadata:
+      annotations:
+        vault.hashicorp.com/agent-inject: "true"
+        vault.hashicorp.com/agent-inject-perms-server.crt: "0400"
+        vault.hashicorp.com/agent-inject-perms-server.key: "0400"
+        vault.hashicorp.com/agent-inject-perms-abc.txt: "0400"
+        vault.hashicorp.com/agent-inject-perms-dhparam.pem: "0600"
+        vault.hashicorp.com/agent-run-as-user: "1000"
+        vault.hashicorp.com/agent-run-as-group: "1000"
+        vault.hashicorp.com/secret-volume-path: "/etc/nginx/cert/"
+        vault.hashicorp.com/agent-inject-secret-server.crt: "internal/data/mindspore/website"
+        vault.hashicorp.com/agent-inject-template-server.crt: |
+          {{- with secret "internal/data/mindspore/website" -}}
+          {{ .Data.data.ServerCrt }}
+          {{- end }}
+        vault.hashicorp.com/agent-inject-secret-server.key: "internal/data/mindspore/website"
+        vault.hashicorp.com/agent-inject-template-server.key: |
+          {{- with secret "internal/data/mindspore/website" -}}
+          {{ .Data.data.ServerKey }}
+          {{- end }}
+        vault.hashicorp.com/agent-inject-secret-abc.txt: "internal/data/mindspore/website"
+        vault.hashicorp.com/agent-inject-template-abc.txt: |
+          {{- with secret "internal/data/mindspore/website" -}}
+          {{ .Data.data.certificatePassword }}
+          {{- end }}
+        vault.hashicorp.com/agent-inject-secret-dhparam.pem: "internal/data/mindspore/website"
+        vault.hashicorp.com/agent-inject-template-dhparam.pem: |
+          {{- with secret "internal/data/mindspore/website" -}}
+          {{ .Data.data.dhparamPem }}
+          {{- end }}
+        vault.hashicorp.com/agent-pre-populate-only: "true"
+        vault.hashicorp.com/role: mindspore-website
       labels:
         app: mindsporewebsite
     spec:
@@ -26,6 +57,7 @@ spec:
       securityContext:
         seccompProfile:
           type: RuntimeDefault
+      serviceAccount: mindspore-website
       containers:
       - name: websiteinfod
         image: swr.ap-southeast-1.myhuaweicloud.com/infra-hk/icsl/mindspore-website:v1.0.20231011134149
