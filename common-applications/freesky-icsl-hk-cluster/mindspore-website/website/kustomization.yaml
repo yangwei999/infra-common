@@ -12,4 +12,4 @@ commonAnnotations:
 kind: Kustomization
 images:
 - name: swr.ap-southeast-1.myhuaweicloud.com/infra-hk/icsl/mindspore-website
-  newTag: stable-7588c6
+  newTag: stable-bb0aeb
