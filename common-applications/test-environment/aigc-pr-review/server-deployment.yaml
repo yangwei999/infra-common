@@ -16,7 +16,7 @@ spec:
       annotations:
         vault.hashicorp.com/agent-inject: 'true'
         vault.hashicorp.com/role: 'aigc-pr-review'
-        vault.hashicorp.com/secret-volume-path: "/pr_review"
+        vault.hashicorp.com/secret-volume-path: "/home/pr/pr_review/secrets"
         vault.hashicorp.com/agent-inject-secret-config.yaml: 'internal/data/infra-test/aigc-pr-review'
         vault.hashicorp.com/agent-pre-populate-only: "true"
         vault.hashicorp.com/agent-inject-perms-config.yaml: "0400"
@@ -37,6 +37,9 @@ spec:
       containers:
       - image: swr.cn-north-4.myhuaweicloud.com/opensourceway/aigc/pr-review-test:master-64388c
         imagePullPolicy: IfNotPresent
+        env:
+        - name: APPLICATION_PATH
+          value: "/home/pr/pr_review/secrets/config.yaml"
         livenessProbe:
           failureThreshold: 3
           initialDelaySeconds: 10
