@@ -9,7 +9,7 @@ spec:
   tls:
     - hosts:
       - gitea.test.osinfra.cn
-      secretName: gitea-repo-sec
+      secretName: gitea-repo-lts
   rules:
     - host: gitea.test.osinfra.cn
       http:
