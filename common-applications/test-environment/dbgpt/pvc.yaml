@@ -1,23 +1,6 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: search-data-volume
-  namespace: openeuler-doc-search
-  annotations:
-    everest.io/disk-volume-type: SSD
-spec:
-  accessModes:
-  - ReadWriteOnce
-  resources:
-    requests:
-      storage: 20Gi
-  storageClassName: csi-disk
-  volumeMode: Filesystem
-
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
   annotations:
     csi.storage.k8s.io/fstype: obsfs
     csi.storage.k8s.io/node-publish-secret-name: cce-obs-mount
@@ -26,8 +9,8 @@ metadata:
     everest.io/obs-volume-type: STANDARD
     pv.kubernetes.io/bind-completed: "yes"
     volume.beta.kubernetes.io/storage-provisioner: everest-csi-provisioner
-  name: openeuler-doc-search-obs
-  namespace: openeuler-doc-search
+  name: obs-dbgpt-data
+  namespace: dbgpt
 spec:
   accessModes:
   - ReadWriteMany
@@ -36,4 +19,4 @@ spec:
       storage: 1Gi
   storageClassName: csi-obs
   volumeMode: Filesystem
-  volumeName: pv-obs-search-test-environment
+  volumeName: pv-obs-dbgpt-test

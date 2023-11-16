@@ -5,6 +5,7 @@ resources:
 - secrets.yaml
 - service.yaml
 - autoscaler.yaml
+- pvc.yaml
 commonAnnotations:
   kubernetes.ops.cluster: test
   kubernetes.ops.email: ""

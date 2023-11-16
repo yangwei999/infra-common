@@ -64,3 +64,10 @@ spec:
           tcpSocket:
             port: 8000
           timeoutSeconds: 5
+        volumeMounts:
+        - mountPath: /opt/data
+          name: obs-mount-data
+      volumes:
+      - name: obs-mount-data
+        persistentVolumeClaim:
+          claimName: obs-dbgpt-data
