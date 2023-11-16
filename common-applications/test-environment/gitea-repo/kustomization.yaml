@@ -15,4 +15,5 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/gitea/gitea-build
-  newTag: 6b8591254cd6577c4114dc4140b79453515a6848811a1bfcc52519c6131a4f7a
+  newName: swr.ap-southeast-1.myhuaweicloud.com/infra-hk/gitea/gitea-build
+  newTag: feature_cdn-49520d
