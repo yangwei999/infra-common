@@ -68,7 +68,7 @@ spec:
           name: copr-resalloc
           subPath: pools.yaml
         - mountPath: /root/.ssh/id_rsa-ro
-          name: copr-secret
+          name: copr-secrets
           subPath: backend_id_rsa
         - mountPath: /etc/resallocserver/server.yaml
           name: copr-secrets
