@@ -13,3 +13,6 @@ resources:
 - secret.yaml
 - autoscaler.yaml
 - service.yaml
+images:
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/ccs-eureka-test
+  newTag: master-ea38da
