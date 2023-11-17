@@ -7,7 +7,7 @@ commonAnnotations:
   kubernetes.ops.region: hk
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/aigc/pr-review-test
-  newTag: master-1d94c2
+  newTag: master-79af05
 kind: Kustomization
 namespace: aigc-pr-review
 resources:
