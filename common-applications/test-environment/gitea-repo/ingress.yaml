@@ -16,5 +16,5 @@ spec:
         paths:
         - backend:
             serviceName: gitea-repo
-            servicePort: 8080
+            servicePort: 3000
           path: /

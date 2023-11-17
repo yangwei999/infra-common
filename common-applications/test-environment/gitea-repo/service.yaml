@@ -7,8 +7,8 @@ spec:
   ports:
   - name: https-port
     protocol: TCP
-    port: 8080
-    targetPort: 8080
+    port: 3000
+    targetPort: 3000
   selector:
     app: gitea-repo
   type: ClusterIP
