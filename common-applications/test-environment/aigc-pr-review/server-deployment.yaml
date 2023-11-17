@@ -31,9 +31,6 @@ spec:
       serviceAccount: aigc-pr-review
       imagePullSecrets:
       - name: huawei-swr-image-pull-secret
-      securityContext:
-        seccompProfile:
-          type: RuntimeDefault
       containers:
       - image: swr.cn-north-4.myhuaweicloud.com/opensourceway/aigc/pr-review-test:master-64388c
         imagePullPolicy: IfNotPresent
