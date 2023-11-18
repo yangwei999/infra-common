@@ -4,7 +4,7 @@ kind: Deployment
 metadata:
   name: moocstudio-website-frontend
 spec:
-  replicas: 2
+  replicas: 0
   selector:
     matchLabels:
       app: moocstudio-website-frontend
