@@ -30,6 +30,7 @@ spec:
       nodeSelector:
         autoscaler: "true"
       serviceAccountName: dbgpt
+      restartPolicy: Never
       containers:
       - image: swr.ap-southeast-1.myhuaweicloud.com/infra-hk/dbgpt:f8e44fa15dd084d84ee524c4dcbe80dd53e8408b
         imagePullPolicy: Always

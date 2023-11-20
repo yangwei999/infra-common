@@ -5,6 +5,8 @@ metadata:
   name: gitea-repo-deployment
   namespace: gitea-repo
 spec:
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
       app: gitea-repo
@@ -44,6 +46,13 @@ spec:
           tcpSocket:
             port: 3000
           timeoutSeconds: 5
+        volumeMounts:
+        - mountPath: /etc/gitea/
+          name: data-volume
+      volumes:
+      - name: data-volume
+        persistentVolumeClaim:
+          claimName: gitea-repo-data-volume
         # volumeMounts:
         # - mountPath: /etc/gitea/app.ini
         #   subPath: config
