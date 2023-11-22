@@ -43,8 +43,8 @@ spec:
               value: Asia/Shanghai
             - name: CONFIG_PATH
               value: /vault/secrets/secrets.yaml
-	    - name: MYSQL_TLS_PEM_PATH
-	      value: /vault/secrets/ca.pem
+            - name: MYSQL_TLS_PEM_PATH
+              value: /vault/secrets/ca.pem
             command:
               - /bin/sh
               - -c
