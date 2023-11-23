@@ -14,7 +14,7 @@ spec:
         app: website
     spec:
       nodeSelector:
-        autoscaler: "true"
+        kubernetes.ops.filesystem.plus: "true"
       imagePullSecrets:
       - name: huawei-swr-image-pull-secret
       containers:

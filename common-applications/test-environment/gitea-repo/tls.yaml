@@ -2,10 +2,10 @@
 apiVersion: secrets-manager.tuenti.io/v1alpha1
 kind: SecretDefinition
 metadata:
-  name: xihe-new-tls
-  namespace: xihe
+  name: gitea-repo-tls
+  namespace: gitea-repo
 spec:
-  name: xihe-new-tls
+  name: gitea-repo-tls
   keysMap:
     ca.crt:
       path: secrets/data/infra-test/domain-tls
@@ -16,3 +16,16 @@ spec:
     tls.key:
       path: secrets/data/infra-test/domain-tls
       key: tls.key
+
+---
+apiVersion: secrets-manager.tuenti.io/v1alpha1
+kind: SecretDefinition
+metadata:
+  name: gitea-repo-secret
+  namespace: gitea-repo
+spec:
+  name: gitea-repo-secret
+  keysMap:
+    config:
+      path: secrets/data/infra-test/gitea-repo
+      key: config

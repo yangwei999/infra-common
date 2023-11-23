@@ -2,13 +2,17 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: xihe-website-service
+  name: xihe-website-service-loadbalencer
   namespace: xihe
+  annotations:
+    kubernetes.io/elb.id: 3f9f9701-c3c2-4bbe-8a8e-a8350721cb54
+    kubernetes.io/elb.class: union
+    kubernetes.io/elb.lb-algorithm: ROUND_ROBIN
 spec:
   ports:
-    - name: httpport
-      port: 80
-      targetPort: 8080
+  - name: httpport
+    port: 8080
+    targetPort: 8080
   selector:
     app: xihe-website
-  type: ClusterIP
+  type: LoadBalancer

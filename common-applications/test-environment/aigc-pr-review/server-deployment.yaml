@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: server-deployment
+  namespace: aigc-pr-review
+spec:
+  selector:
+    matchLabels:
+      app: server
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        vault.hashicorp.com/agent-inject: 'true'
+        vault.hashicorp.com/role: 'aigc-pr-review'
+        vault.hashicorp.com/secret-volume-path: "/home/pr/pr_review/secrets"
+        vault.hashicorp.com/agent-inject-secret-config.yaml: 'internal/data/infra-test/aigc-pr-review'
+        vault.hashicorp.com/agent-pre-populate-only: "true"
+        vault.hashicorp.com/agent-inject-perms-config.yaml: "0400"
+        vault.hashicorp.com/agent-run-as-user: "1001"
+        vault.hashicorp.com/agent-inject-template-config.yaml: |  
+          {{- with secret "internal/data/infra-test/aigc-pr-review" -}}  
+          {{ .Data.data.application }}
+          {{- end }}
+      labels:
+        app: server
+    spec:
+      serviceAccount: aigc-pr-review
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
+      containers:
+      - image: swr.cn-north-4.myhuaweicloud.com/opensourceway/aigc/pr-review-test:master-64388c
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: APPLICATION_PATH
+          value: "/home/pr/pr_review/secrets/config.yaml"
+        livenessProbe:
+          failureThreshold: 3
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          successThreshold: 1
+          tcpSocket:
+            port: 8080
+          timeoutSeconds: 5
+        name: server
+        readinessProbe:
+          failureThreshold: 3
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          successThreshold: 1
+          tcpSocket:
+            port: 8080
+          timeoutSeconds: 5
+        resources:
+          limits:
+            cpu: 500m
+            memory: 500Mi
+          requests:
+            cpu: 500m
+            memory: 500Mi
