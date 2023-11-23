@@ -5,7 +5,7 @@ metadata:
   name: openlookeng-website-frontend-service-loadbalencer
   namespace: openlookeng-website
   annotations:
-    kubernetes.io/elb.id: 7be20dac-a48d-456e-bbc5-3c9b48e3c5a7
+    kubernetes.io/elb.id: fbb0058b-ce54-4e9e-9e7a-d9e347b47ac3
     kubernetes.io/elb.class: union
     kubernetes.io/elb.lb-algorithm: ROUND_ROBIN
 spec:
