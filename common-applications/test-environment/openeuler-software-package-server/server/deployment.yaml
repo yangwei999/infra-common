@@ -100,6 +100,31 @@ spec:
             secretKeyRef:
               name: software-pkg-secret
               key: encryption_key
+        - name: KAFKA_VERSION
+          valueFrom:
+            secretKeyRef:
+              name: software-pkg-secret
+              key: kafka_version
+        - name: MONGODB_CONN
+          valueFrom:
+            secretKeyRef:
+              name: software-pkg-secret
+              key: mongodb_conn
+        - name: MONGODB_DB_NAME
+          valueFrom:
+            secretKeyRef:
+              name: software-pkg-secret
+              key: mongodb_db_name
+        - name: OM_APP_ID
+          valueFrom:
+            secretKeyRef:
+              name: software-pkg-secret
+              key: om_app_id
+        - name: OM_APP_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: software-pkg-secret
+              key: om_app_secret
         volumeMounts:
         - mountPath: /opt/app/config/config.yaml
           name: server-configmap
