@@ -151,7 +151,6 @@ spec:
                 - /bin/sh
                 - -c
                 - |
-                  rm -f /home/patches/repositories_branches_map.yaml
                   python multi_patch2pr.py > /home/patches/patch2pr.log 2>&1
                   python backup_log.py
               imagePullPolicy: IfNotPresent
