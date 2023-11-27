@@ -18,4 +18,4 @@ kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/gitea/gitea-build
   newName: swr.ap-southeast-1.myhuaweicloud.com/infra-hk/gitea/gitea-build
-  newTag: v1.0.20231127105237
+  newTag: v1.0.20231127144316
