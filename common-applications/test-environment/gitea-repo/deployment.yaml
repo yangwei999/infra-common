@@ -12,9 +12,22 @@ spec:
       app: gitea-repo
   template:
     metadata:
+      annotations:
+        vault.hashicorp.com/agent-inject: 'true'
+        vault.hashicorp.com/role: 'gitea-repo'
+        vault.hashicorp.com/agent-inject-secret-app.ini: 'internal/data/infra-test/gitea'
+        vault.hashicorp.com/agent-pre-populate-only: "true"
+        vault.hashicorp.com/agent-inject-perms-app.ini: "0400"
+        vault.hashicorp.com/agent-run-as-user: "1000"
+        vault.hashicorp.com/agent-run-as-group: "1000"
+        vault.hashicorp.com/agent-inject-template-app.ini: |  
+          {{- with secret "internal/data/infra-test/gitea" -}}  
+          {{ .Data.data.app }}
+          {{- end }}
       labels:
         app: gitea-repo
     spec:
+      serviceAccount: gitea-repo
       imagePullSecrets:
       - name: huawei-swr-image-pull-secret
       nodeSelector:
@@ -23,6 +36,8 @@ spec:
       - name: gitea-build
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/gitea/gitea-build:6b8591254cd6577c4114dc4140b79453515a6848811a1bfcc52519c6131a4f7a
         imagePullPolicy: IfNotPresent
+        args:
+        - --config=/vault/secrets/app.ini
         resources:
           requests:
             cpu: 500m
@@ -58,12 +73,3 @@ spec:
       - name: obs
         persistentVolumeClaim:
           claimName: pvc-obs-gitea-test
-        # volumeMounts:
-        # - mountPath: /etc/gitea/app.ini
-        #   subPath: config
-        #   name: secret
-      # volumes:
-      # - name: secret
-      #   secret:
-      #     secretName: gitea-repo-secret
-
