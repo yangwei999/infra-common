@@ -6,17 +6,17 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: xihe-finetune.test.osinfra.cn
+  - host: finetune.test.osinfra.cn
     http:
       paths:
       - backend:
           service:
             name: service-finetune
             port:
-              number: 80
+              number: 8000
         path: /
         pathType: Prefix
   tls:
   - hosts:
-    - xihe-finetune.test.osinfra.cn
+    - finetune.test.osinfra.cn
     secretName: xihe-new-tls

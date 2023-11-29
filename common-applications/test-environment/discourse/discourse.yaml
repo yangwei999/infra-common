@@ -144,6 +144,22 @@ spec:
           limits:
             cpu: 2
             memory: 3000Mi
+        livenessProbe:
+          failureThreshold: 3
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          successThreshold: 1
+          tcpSocket:
+            port: 80
+          timeoutSeconds: 5
+        readinessProbe:
+          failureThreshold: 3
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          successThreshold: 1
+          tcpSocket:
+            port: 80
+          timeoutSeconds: 5
         imagePullPolicy: IfNotPresent
         volumeMounts:
         - name: discourse-storage

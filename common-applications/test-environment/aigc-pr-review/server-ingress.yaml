@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+  name: server-ingress
+  namespace: aigc-pr-review
+spec:
+  rules:
+  - host: pr-review.test.osinfra.cn
+    http:
+      paths:
+      - backend:
+          serviceName: server-service
+          servicePort: 8080
+        path: /
+  tls:
+  - hosts:
+    - pr-review.test.osinfra.cn
+    secretName: server-tls

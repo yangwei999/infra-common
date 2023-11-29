@@ -83,3 +83,10 @@ spec:
           value: "https://www.mindspore.cn"
         - name: SERVICE_URL
           value: "https://gitee.com/opensourceway/om-data/raw/master/src/openeuler/server.yaml"
+        volumeMounts:
+        - mountPath: /opt/sql
+          name: sql-config-volume
+      volumes:
+      - name: sql-config-volume
+        persistentVolumeClaim:
+          claimName: mindspore-search-es

@@ -3,10 +3,12 @@ kind: Ingress
 metadata:
   name: xihe-ingress
   namespace: xihe-test-v2
+  annotations:
+    nginx.ingress.kubernetes.io/backend-protocol: "GRPC"
 spec:
   ingressClassName: nginx
   rules:
-  - host: xihe-internal-server.test.osinfra.cn
+  - host: internal-server.test.osinfra.cn
     http:
       paths:
       - backend:
@@ -18,5 +20,5 @@ spec:
         pathType: Prefix
   tls:
   - hosts:
-    - xihe-internal-server.test.osinfra.cn
+    - internal-server.test.osinfra.cn
     secretName: xihe-new-tls

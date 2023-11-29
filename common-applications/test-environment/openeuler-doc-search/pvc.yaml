@@ -13,3 +13,27 @@ spec:
       storage: 20Gi
   storageClassName: csi-disk
   volumeMode: Filesystem
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  annotations:
+    csi.storage.k8s.io/fstype: obsfs
+    csi.storage.k8s.io/node-publish-secret-name: cce-obs-mount
+    csi.storage.k8s.io/node-publish-secret-namespace: openeuler-doc-search
+    everest.io/enterprise-project-id: "0"
+    everest.io/obs-volume-type: STANDARD
+    pv.kubernetes.io/bind-completed: "yes"
+    volume.beta.kubernetes.io/storage-provisioner: everest-csi-provisioner
+  name: openeuler-doc-search-obs
+  namespace: openeuler-doc-search
+spec:
+  accessModes:
+  - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: csi-obs
+  volumeMode: Filesystem
+  volumeName: pv-obs-search-test-environment
