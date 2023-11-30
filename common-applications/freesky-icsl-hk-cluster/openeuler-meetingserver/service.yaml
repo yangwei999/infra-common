@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: meeting-service
+  namespace: openeuler-meetingserver
+  annotations:
+    kubernetes.io/elb.id: 6957c464-25fc-4dd1-ad0a-b9f5069599ba
+    kubernetes.io/elb.class: union
+    kubernetes.io/elb.lb-algorithm: ROUND_ROBIN
+spec:
+  ports:
+  - name: http-port
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: meetingserver
+  sessionAffinity: None
+  type: LoadBalancer
