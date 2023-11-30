@@ -47,11 +47,11 @@ spec:
               secretKeyRef:
                 name: sca-secret
                 key: majun_access_token
-          - name: scaSalt
+          - name: rootSalt
             valueFrom:
               secretKeyRef:
                 name: sca-secret
-                key: scaSalt
+                key: rootSalt
         resources:
           requests:
             cpu: 200m
