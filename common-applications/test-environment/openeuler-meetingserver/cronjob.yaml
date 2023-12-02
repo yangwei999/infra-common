@@ -58,7 +58,7 @@ spec:
                 value: /vault/secrets/secrets.yaml
               - name: MYSQL_TLS_PEM_PATH
                 value: /vault/secrets/ca.pem
-              - name: TLS_CERT_PATH
+              - name: TLS_CRT_PATH
                 value: /vault/secrets/server.crt
               - name: TLS_KEY_PATH
                 value: /vault/secrets/server.key
@@ -127,7 +127,7 @@ spec:
                 value: /vault/secrets/secrets.yaml
               - name: MYSQL_TLS_PEM_PATH
                 value: /vault/secrets/ca.pem
-              - name: TLS_CERT_PATH
+              - name: TLS_CRT_PATH
                 value: /vault/secrets/server.crt
               - name: TLS_KEY_PATH
                 value: /vault/secrets/server.key
@@ -196,7 +196,7 @@ spec:
                 value: /vault/secrets/secrets.yaml
               - name: MYSQL_TLS_PEM_PATH
                 value: /vault/secrets/ca.pem
-              - name: TLS_CERT_PATH
+              - name: TLS_CRT_PATH
                 value: /vault/secrets/server.crt
               - name: TLS_KEY_PATH
                 value: /vault/secrets/server.key
@@ -265,7 +265,7 @@ spec:
                 value: /vault/secrets/secrets.yaml
               - name: MYSQL_TLS_PEM_PATH
                 value: /vault/secrets/ca.pem
-              - name: TLS_CERT_PATH
+              - name: TLS_CRT_PATH
                 value: /vault/secrets/server.crt
               - name: TLS_KEY_PATH
                 value: /vault/secrets/server.key
@@ -334,7 +334,7 @@ spec:
                 value: /vault/secrets/secrets.yaml
               - name: MYSQL_TLS_PEM_PATH
                 value: /vault/secrets/ca.pem
-              - name: TLS_CERT_PATH
+              - name: TLS_CRT_PATH
                 value: /vault/secrets/server.crt
               - name: TLS_KEY_PATH
                 value: /vault/secrets/server.key
@@ -404,7 +404,7 @@ spec:
               value: /vault/secrets/secrets.yaml
             - name: MYSQL_TLS_PEM_PATH
               value: /vault/secrets/ca.pem
-            - name: TLS_CERT_PATH
+            - name: TLS_CRT_PATH
               value: /vault/secrets/server.crt
             - name: TLS_KEY_PATH
               value: /vault/secrets/server.key
@@ -474,7 +474,7 @@ spec:
               value: /vault/secrets/secrets.yaml
             - name: MYSQL_TLS_PEM_PATH
               value: /vault/secrets/ca.pem
-            - name: TLS_CERT_PATH
+            - name: TLS_CRT_PATH
               value: /vault/secrets/server.crt
             - name: TLS_KEY_PATH
               value: /vault/secrets/server.key
@@ -544,7 +544,7 @@ spec:
               value: /vault/secrets/secrets.yaml
             - name: MYSQL_TLS_PEM_PATH
               value: /vault/secrets/ca.pem
-            - name: TLS_CERT_PATH
+            - name: TLS_CRT_PATH
               value: /vault/secrets/server.crt
             - name: TLS_KEY_PATH
               value: /vault/secrets/server.key
