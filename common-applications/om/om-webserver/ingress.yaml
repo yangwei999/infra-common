@@ -6,7 +6,7 @@ metadata:
     nginx.ingress.kubernetes.io/limit-connections: "400"
     nginx.ingress.kubernetes.io/limit-rps: "400"
     nginx.ingress.kubernetes.io/server-snippet: |
-      rewrite ^/query/company/(.*)      https://dsapi.osinfra.cn/query/company/$1 redirect;
+      rewrite ^/query/(.*)      https://dsapi.osinfra.cn/query/$1 redirect;
   name: om-webserver-ingress
 spec:
   tls:
