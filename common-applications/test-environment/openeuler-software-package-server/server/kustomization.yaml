@@ -15,4 +15,4 @@ kind: Kustomization
 namespace: openeuler-software-pkg
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/software-package-server-test
-  newTag: 38fb201c7b4239c582d92c71ef0408fa92a9f121
+  newTag: 89c832cb264d8007081cc5504d3932bf7e5efcfa
