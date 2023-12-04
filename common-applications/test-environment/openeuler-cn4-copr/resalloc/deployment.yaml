@@ -43,6 +43,8 @@ spec:
           value: /var/lib/mock
         - name: BUILDER_PVC_LABEL0
           value: failure-domain.beta.kubernetes.io/zone=cn-north-4a
+        - name: KUBECONFIG
+          value: /etc/resallocserver/.kubeconfig
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/copr/resalloc-test:v1.0.20230310170217
         imagePullPolicy: IfNotPresent
         livenessProbe:
@@ -73,6 +75,9 @@ spec:
         - mountPath: /etc/resallocserver/server.yaml
           name: copr-secrets
           subPath: resalloc_server.yaml
+        - mountPath: /etc/resallocserver/.kubeconfig
+          name: copr-secrets
+          subPath: kubeconfig
         - mountPath: /root/.ssh/builder_config
           name: copr-resalloc
           subPath: builder_config
