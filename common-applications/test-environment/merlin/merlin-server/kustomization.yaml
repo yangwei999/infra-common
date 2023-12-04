@@ -8,6 +8,8 @@ commonAnnotations:
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/gitea
   newTag: main-e31c6c
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/gitea/merlin-server-test
+  newTag: main-3c12cb
 kind: Kustomization
 namespace: merlin
 resources:
