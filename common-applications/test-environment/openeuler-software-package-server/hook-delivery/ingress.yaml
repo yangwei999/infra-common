@@ -3,19 +3,19 @@ kind: Ingress
 metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
-    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
   name: hook-delivery-ingress
   namespace: openeuler-software-pkg
 spec:
   tls:
     - hosts:
-        - software-pkg-hook.test.osinfra.cn
-      secretName: hook-delivery-tls
+        - software-pkg.test.osinfra.cn
+      secretName: openeuler-software-pkg-tls
   rules:
-    - host: software-pkg-hook.test.osinfra.cn
+    - host: software-pkg.test.osinfra.cn
       http:
         paths:
         - backend:
             serviceName: hook-delivery-service
             servicePort: 80
-          path: /
+          path: /hook-delivery(/|$)(.*)

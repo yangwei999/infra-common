@@ -3,6 +3,7 @@ resources:
 - service.yaml
 - deployment.yaml
 - autoscaler.yaml
+- tls.yaml
 commonAnnotations:
   kubernetes.ops.cluster: test
   kubernetes.ops.email: ""

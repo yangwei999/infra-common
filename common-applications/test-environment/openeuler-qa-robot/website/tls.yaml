@@ -1,0 +1,18 @@
+---
+apiVersion: secrets-manager.tuenti.io/v1alpha1
+kind: SecretDefinition
+metadata:
+  name: qa-robot-openeuler-tls
+  namespace: qa-robot
+spec:
+  name: qa-robot-openeuler-tls
+  keysMap:
+    ca.crt:
+      path: secrets/data/infra-test/domain-tls
+      key: tls.cert
+    tls.crt:
+      path: secrets/data/infra-test/domain-tls
+      key: tls.cert
+    tls.key:
+      path: secrets/data/infra-test/domain-tls
+      key: tls.key
