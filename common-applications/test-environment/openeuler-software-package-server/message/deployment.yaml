@@ -99,14 +99,14 @@ spec:
             secretKeyRef:
               name: software-pkg-secret
               key: mongodb_db_name
-          ports:
-          - containerPort: 8000
-            name: http
-            protocol: TCP
-          volumeMounts:
-          - mountPath: /opt/app/config/config.yaml
-            name: message-server-configmap
-            subPath: config.yaml
+        ports:
+        - containerPort: 8000
+          name: http
+          protocol: TCP
+        volumeMounts:
+        - mountPath: /opt/app/config/config.yaml
+          name: message-server-configmap
+          subPath: config.yaml
       volumes:
       - configMap:
           defaultMode: 420
