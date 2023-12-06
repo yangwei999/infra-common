@@ -92,6 +92,31 @@ spec:
             secretKeyRef:
               name: software-pkg-secret
               key: robot_token
+        - name: ROBOT_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: software-pkg-secret
+              key: robot_username
+        - name: ROBOT_EMAIL
+          valueFrom:
+            secretKeyRef:
+              name: software-pkg-secret
+              key: robot_email
+        - name: EMAIL_AUTH_CODE
+          valueFrom:
+            secretKeyRef:
+              name: software-pkg-secret
+              key: email_auth_code
+        - name: EMAIL_FROM
+          valueFrom:
+            secretKeyRef:
+              name: software-pkg-secret
+              key: email_from
+        - name: EMAIL_HOST
+          valueFrom:
+            secretKeyRef:
+              name: software-pkg-secret
+              key: email_host
         volumeMounts:
         - mountPath: /opt/app/config/config.yaml
           name: watch-configmap
