@@ -7,7 +7,7 @@ commonAnnotations:
   kubernetes.ops.region: hk
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/software-package-watch-test
-  newTag: dev_watch-1b5090
+  newTag: dev_watch-61d8aa
 kind: Kustomization
 namespace: openeuler-software-pkg
 resources:
