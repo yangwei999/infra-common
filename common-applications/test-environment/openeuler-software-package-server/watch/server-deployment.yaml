@@ -87,6 +87,11 @@ spec:
             secretKeyRef:
               name: software-pkg-secret
               key: om_app_secret
+        - name: ROBOT_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: software-pkg-secret
+              key: robot_token
         volumeMounts:
         - mountPath: /opt/app/config/config.yaml
           name: watch-configmap
