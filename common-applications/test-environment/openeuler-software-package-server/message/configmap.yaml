@@ -12,7 +12,7 @@ data:
         email: "${ROBOT_EMAIL}"
         token: "${ROBOT_TOKEN}"
       ci_repo:
-        org: src-openEuler
+        org: src-openeuler
         repo: software-package-server
         link: https://gitee.com/weiwei123444/software-package-server.git
         file_addr: "https://gitee.com/weiwei123444/software-package-server/raw/%s/%s"
