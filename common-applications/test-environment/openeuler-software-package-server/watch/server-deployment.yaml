@@ -117,6 +117,11 @@ spec:
             secretKeyRef:
               name: software-pkg-secret
               key: email_host
+        - name: EMAIL_PORT
+          valueFrom:
+            secretKeyRef:
+              name: software-pkg-secret
+              key: email_port
         volumeMounts:
         - mountPath: /opt/app/config/config.yaml
           name: watch-configmap
