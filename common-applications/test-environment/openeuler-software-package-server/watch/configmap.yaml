@@ -67,7 +67,7 @@ data:
           importer_email: software-pkg-robot@openeuler.org
           purpose_to_import: "add software package to openeuler"
     topics:
-      software_pkg_initialized: software_pkg_initialized
+      software_pkg_initialized: software_pkg_initialized_test
     user:
       read_url: https://omapi.osinfra.cn/query/sig/info?community=openeuler
       interval: 1
