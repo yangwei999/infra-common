@@ -58,6 +58,11 @@ spec:
             secretKeyRef:
               name: software-pkg-secret
               key: kafka_address
+        - name: KAFKA_VERSION
+          valueFrom:
+            secretKeyRef:
+              name: software-pkg-secret
+              key: kafka_version
         - name: MAINTAINER_EMAIL
           valueFrom:
             secretKeyRef:
