@@ -26,6 +26,7 @@ data:
       address: "${KAFKA_ADDRESS}"
       version: "${KAFKA_VERSION}"
     topics:
+      software_pkg_closed: software_pkg_closed_test
       software_pkg_ci_done: software_pkg_ci_checked_test
       software_pkg_applied: software_pkg_applied_test
       software_pkg_retested: software_pkg_retested_test

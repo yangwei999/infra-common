@@ -19,11 +19,9 @@ data:
       address: "${KAFKA_ADDRESS}"
       version: "${KAFKA_VERSION}"
       topics:
+        software_pkg_closed: software_pkg_closed_test
         software_pkg_applied: software_pkg_applied_test
         software_pkg_retested: software_pkg_retested_test
-        software_pkg_approved: software_pkg_approved_test
-        software_pkg_rejected: software_pkg_rejected_test
-        software_pkg_abandoned: software_pkg_abandoned_test
         software_pkg_code_updated: software_pkg_code_updated_test
         software_pkg_already_existed: software_pkg_already_existed_test
     middleware:
