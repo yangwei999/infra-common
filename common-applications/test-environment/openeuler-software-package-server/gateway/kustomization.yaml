@@ -11,4 +11,4 @@ commonAnnotations:
 namespace: openeuler-software-pkg
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/software-package-gateway-test
-  newTag: add_log-7307e4
+  newTag: add_log-b221a9
