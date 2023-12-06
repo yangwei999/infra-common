@@ -15,7 +15,7 @@ data:
         link: https://gitee.com/weiwei123444/software-package-server
     kafka:
       address: "${KAFKA_ADDRESS}"
-      version: 2.3.0
+      version: "${KAFKA_VERSION}"
     message_server:
       user_agent: software-pkg
       group_name: software-package
