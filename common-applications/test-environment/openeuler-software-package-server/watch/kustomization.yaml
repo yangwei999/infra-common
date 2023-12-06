@@ -13,3 +13,4 @@ namespace: openeuler-software-pkg
 resources:
 - server-deployment.yaml
 - autoscaler.yaml
+- configmap.yaml
