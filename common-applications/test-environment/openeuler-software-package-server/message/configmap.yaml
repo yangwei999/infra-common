@@ -7,13 +7,12 @@ data:
   config.yaml: |
     ci:
       work_dir: /opt/app/software
-      git_user:
-        user: "${ROBOT_USERNAME}"
-        email: "${ROBOT_EMAIL}"
-        token: "${ROBOT_TOKEN}"
       ci_repo:
         org: src-openeuler
         repo: software-package-server
+        owner: "weiwei123444"
+        email: "${ROBOT_EMAIL}"
+        token: "${ROBOT_TOKEN}"
         link: https://gitee.com/weiwei123444/software-package-server.git
         file_addr: "https://gitee.com/weiwei123444/software-package-server/raw/%s/%s"
         lfs_file_addr: "https://gitee.com/weiwei123444/software-package-server/raw/%s/%s?lfs=1"
