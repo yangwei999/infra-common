@@ -6,7 +6,7 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: server
+      app: gateway
   strategy:
     rollingUpdate:
       maxUnavailable: 1
@@ -26,7 +26,7 @@ spec:
           {{ .Data.data.config }}
           {{- end }}
       labels:
-        app: server
+        app: gateway
     spec:
       serviceAccount: openeuler-software-pkg
       imagePullSecrets:
@@ -36,7 +36,7 @@ spec:
         imagePullPolicy: IfNotPresent
         args:
         - --config-file=/vault/secrets/config.yml
-        name: server
+        name: gateway
         resources:
           limits:
             cpu: 500m

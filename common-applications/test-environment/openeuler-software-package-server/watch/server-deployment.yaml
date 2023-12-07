@@ -6,7 +6,7 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: server
+      app: watch
   strategy:
     rollingUpdate:
       maxUnavailable: 1
@@ -14,7 +14,7 @@ spec:
   template:
     metadata:
       labels:
-        app: server
+        app: watch
     spec:      
       imagePullSecrets:
       - name: huawei-swr-image-pull-secret
@@ -23,7 +23,7 @@ spec:
         imagePullPolicy: IfNotPresent        
         args:
         - --config-file=/opt/app/config/config.yaml
-        name: server        
+        name: watch        
         resources:
           limits:
             cpu: 500m
