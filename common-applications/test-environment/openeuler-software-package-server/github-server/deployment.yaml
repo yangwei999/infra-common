@@ -24,7 +24,6 @@ spec:
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/software-package-github-server-test:1ff44243ce5364d6d5068e1db6c236d47508582b
         args:
         - --config-file=/opt/app/config/config.yaml
-        - --github-token-path=/opt/app/config/oauth
         resources:
           requests:
             cpu: 200m
