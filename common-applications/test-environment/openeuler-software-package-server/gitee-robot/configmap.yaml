@@ -20,10 +20,10 @@ data:
       user_agent: software-pkg
       group_name: software-package
       topics:
-        push_code: software_pkg_push_code_test
+        push_code: software_pkg_initialized_test
       message:
         topics_to_notify:
-          pushed_code: software_pkg_code_saved_test
+          pushed_code: software_pkg_repo_code_pushed_test
       om_api:
         app_id: "${APP_ID}"
         app_secret: "${APP_SECRET}"
