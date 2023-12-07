@@ -11,10 +11,10 @@ data:
     message_server:
       group: software-package-github-server
       topics:
-        push_code: software_pkg_push_code_test
+        push_code: software_pkg_initialized_test
       message:
         topics_to_notify:
-          pushed_code: software_pkg_code_saved_test
+          pushed_code: software_pkg_repo_code_pushed_test
     code:
       robot:
         username: "${GITHUB_ROBOT_USERNAME}"
