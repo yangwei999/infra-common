@@ -24,8 +24,8 @@ data:
       message:
         topics_to_notify:
           pushed_code: software_pkg_repo_code_pushed_test
-      om_api:
-        app_id: "${APP_ID}"
-        app_secret: "${APP_SECRET}"
-        token_endpoint: https://omapi.osinfra.cn/oneid/manager/token
-        user_endpoint: https://omapi.osinfra.cn/oneid/manager/getuserinfo?username=
+    om_api:
+      app_id: "${APP_ID}"
+      app_secret: "${APP_SECRET}"
+      token_endpoint: https://omapi.osinfra.cn/oneid/manager/token
+      user_endpoint: https://omapi.osinfra.cn/oneid/manager/getuserinfo?username=
