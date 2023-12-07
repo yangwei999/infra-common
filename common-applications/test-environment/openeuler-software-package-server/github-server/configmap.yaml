@@ -23,8 +23,8 @@ data:
       ci_repo:
         repo: software-package-server
         link: https://gitee.com/weiwei123444/software-package-server
-      om_api:
-        app_id: "${APP_ID}"
-        app_secret: "${APP_SECRET}"
-        token_endpoint: https://omapi.osinfra.cn/oneid/manager/token
-        user_endpoint: https://omapi.osinfra.cn/oneid/manager/getuserinfo?username=
+    om_api:
+      app_id: "${APP_ID}"
+      app_secret: "${APP_SECRET}"
+      token_endpoint: https://omapi.osinfra.cn/oneid/manager/token
+      user_endpoint: https://omapi.osinfra.cn/oneid/manager/getuserinfo?username=
