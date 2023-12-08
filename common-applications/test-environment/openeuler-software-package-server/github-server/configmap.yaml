@@ -19,7 +19,7 @@ data:
       robot:
         username: "${GITHUB_ROBOT_USERNAME}"
         token: "${GITHUB_ROBOT_TOKEN}"
-      org: orgfsdfsd123
+      org: src-openeuler
       ci_repo:
         repo: software-package-server
         link: https://gitee.com/weiwei123444/software-package-server
