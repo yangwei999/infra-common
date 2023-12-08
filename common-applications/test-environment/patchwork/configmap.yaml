@@ -4,7 +4,7 @@ metadata:
   name: patchwork-configmap
   namespace: patchwork
 data:
-  config.yaml: |
+  repositories_branches_map.yaml: |
     mapping:
       cooperopen/kernel:
         mailing-list: "patch2pr@openeuler.org"

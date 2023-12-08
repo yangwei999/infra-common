@@ -26,9 +26,9 @@ spec:
           volumeMounts:
             - mountPath: /home/patches
               name: patchwork-file-volume
-            - mountPath: /home/patchwork/patchwork/config.yaml
+            - mountPath: /home/patchwork/patchwork/repositories_branches_map.yaml
               name: patchwork-configmap
-              subPath: config.yaml
+              subPath: repositories_branches_map.yaml
           resources:
             requests:
               cpu: 2000m
