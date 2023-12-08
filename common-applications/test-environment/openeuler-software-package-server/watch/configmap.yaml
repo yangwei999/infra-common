@@ -84,63 +84,83 @@ data:
           github: https://github.com/src-openeuler/
         max_length_of_review_comment: 1500
       check_items:
-        - id: "1"
-          name: "软件包名称"
-          desc: "软件包名称必须和上游官网/社区保持一致，不可随意命名。不允许以子模块的名称作为软件包的名称。当软件是某个语言的开发库时，可以使用前缀予以规范化管理（如 python-，perl-等）"
-          owner: "tc"
-          modifications:
-            - pkg_name
-        - id: "2"
-          name: "软件包简介"
-          desc: "软件包简介描述正确、清晰"
-          owner: "tc"
-          modifications:
-            - pkg_desc
-        - id: "3"
-          name: "引入目的"
-          desc: "软件包引入目的描述正确、清晰"
-          owner: "tc"
-          modifications:
-            - purpose
-        - id: "4"
-          name: "上游信息"
-          desc: "使用软件社区的正式官方网址，或者无单独正式官网的情况下，提供主流代码托管商上面对应的项目网址（如github）。不可使用maven等托管库作为官方网址"
-          owner: "tc"
-          modifications:
-            - upstream
-        - id: "5"
-          name: "上游软件的生命周期"
-          desc: "已经衰退的软件，生命周期结束，社区停运，或超过5年没有任何更新的软件，原则上不引入openEuler。如果提交者认为非常有必要，可以考虑在 openeuler 中 fork 以后独立维护"
-          owner: "tc"
-          modifications:
-            - upstream
-        - id: "6"
-          name: "正确性"
-          desc: "Spec 和 SRPM 的内容正确，且符合即将引入的软件包"
-          owner: "repo_member"
-          modifications:
-            - code
-        - id: "7"
-          name: "兼容性"
-          desc: "软件包的 License 授权与 openEuler 兼容。openEuler只能接纳可以被允许集成的软件"
-          owner: "repo_member"
-          modifications:
-            - code
-        - id: "8"
-          name: "规范性"
-          desc: "代码文件开头需要有Copyright和License信息"
-          owner: "repo_member"
-          modifications:
-            - code
-        - id: "9"
-          name: "敏感数据"
-          desc: "提交的代码不应包含密码、口令、token、密钥等敏感数据"
-          owner: "repo_member"
-          modifications:
-            - code
-        - id: "10"
-          name: "临时文件"
-          desc: "不能包含临时或无用文件"
-          owner: "repo_member"
-          modifications:
-            - code
+      - id: "1"
+        name: "软件包名称"
+        name_en: "Software Package Name"
+        desc: "软件包名称必须和上游官网/社区保持一致，不可随意命名。不允许以子模块的名称作为软件包的名称。当软件是某个语言的开发库时，可以使用前缀予以规范化管理（如 python-，perl-等）"
+        desc_en: "Naming of the software package must be consistent with that of the upstream official website or community. The name of any sub-module in the software package cannot be used as the package name. If the software is developed using a certain language, a prefix (such as python- or perl-) can be used for standardized management"
+        owner: "tc"
+        modifications:
+        - pkg_name
+      - id: "2"
+        name: "软件包简介"
+        name_en: "Software Pakcage Introduction"
+        desc: "软件包简介描述正确、清晰"
+        desc_en: "The software package introduction is correct and clear"
+        owner: "tc"
+        modifications:
+        - pkg_desc
+      - id: "3"
+        name: "引入目的"
+        name_en: "Purpose"
+        desc: "软件包引入目的描述正确、清晰"
+        desc_en: "The description of the purpose is correct and clear"
+        owner: "tc"
+        modifications:
+        - purpose
+      - id: "4"
+        name: "上游信息"
+        name_en: "Upstream Information"
+        desc: "使用软件社区的正式官方网址，或者无单独正式官网的情况下，提供主流代码托管商上面对应的项目网址（如github）。不可使用maven等托管库作为官方网址"
+        desc_en: "Use the official website of the software community or provide the project website (such as GitHub) of the mainstream code hosting provider if no dedicated official website is available. Hosted repositories such as Maven repositories are not allowed to be used as official websites"
+        owner: "tc"
+        modifications:
+        - upstream
+      - id: "5"
+        name: "上游软件的生命周期"
+        name_en: "Upstream Software Lifecycle"
+        desc: "已经衰退的软件，生命周期结束，社区停运，或超过5年没有任何更新的软件，原则上不引入openEuler。如果提交者认为非常有必要，可以考虑在 openeuler 中 fork 以后独立维护"
+        desc_en: "In principle, software that has declined, reached the lifecycle end, or not been updated for more than five years should not be introduced to openEuler. If it is necessary, fork the repository and maintain it independently in the openEuler community"
+        owner: "tc"
+        modifications:
+        - upstream
+      - id: "6"
+        name: "正确性"
+        name_en: "Correctness"
+        desc: "Spec 和 SRPM 的内容正确，且符合即将引入的软件包"
+        desc_en: "Spec and SRPM contents are correct and consistent with upcoming package"
+        owner: "repo_member"
+        modifications:
+        - code
+      - id: "7"
+        name: "兼容性"
+        name_en: "Compatibility"
+        desc: "软件包的 License 授权与 openEuler 兼容。openEuler只能接纳可以被允许集成的软件"
+        desc_en: "License of the newly introduced software package is compatible with openEuler. openEuler accepts only software that can be integrated"
+        owner: "repo_member"
+        modifications:
+        - code
+      - id: "8"
+        name: "规范性"
+        name_en: "Standardability"
+        desc: "代码文件开头需要有Copyright和License信息"
+        desc_en: "A code file must start with the information of copyright and license"
+        owner: "repo_member"
+        modifications:
+        - code
+      - id: "9"
+        name: "敏感数据"
+        name_en: "Sensitive Information"
+        desc: "提交的代码不应包含密码、口令、token、密钥等敏感数据"
+        desc_en: "No passwords, tokens, keys, and other sensitive information contained in the new code"
+        owner: "repo_member"
+        modifications:
+        - code
+      - id: "10"
+        name: "临时文件"
+        name_en: "Temporary Files"
+        desc: "不能包含临时或无用文件"
+        desc_en: "Temporary files or unnecessary files are not allowed in code."
+        owner: "repo_member"
+        modifications:
+        - code
