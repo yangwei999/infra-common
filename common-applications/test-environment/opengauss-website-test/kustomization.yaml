@@ -1,12 +1,9 @@
 resources:
 - namespace.yaml
-- ingress.yaml
 - service.yaml
 - deployment.yaml
-- secret.yaml
 - autoscaler.yaml
-commonLabels:
-  app: opengauss-website
+- sa.yaml
 namespace: opengauss-website
 commonAnnotations:
   kubernetes.ops.cluster: test
