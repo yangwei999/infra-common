@@ -25,7 +25,7 @@ images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/app-mailman/clean-pending-subscription
   newTag: 5156d5f4021ab5f557761ebfee5009e710e2133c1702027885
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/app-mailman/mailman-core-new-build
-  newTag: db31b10b7215955430952e1e266a681007ba5d951702024373
+  newTag: 5156d5f4021ab5f557761ebfee5009e710e2133c1702027898
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/app-mailman/mailman-exim-new-build
   newTag: 5156d5f4021ab5f557761ebfee5009e710e2133c1702027883
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/app-mailman/mailman-web-new-build
