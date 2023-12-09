@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: workflow-template-handler-deployment
+  namespace: openeuler-devops
+spec:
+  selector:
+    matchLabels:
+      app: workflow-template-handler
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: workflow-template-handler
+    spec:
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
+      containers:
+      - image: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openeuler-devops/workflow_template_handler:master-e9f1e3
+        imagePullPolicy: IfNotPresent        
+        volumeMounts:
+        - mountPath: /etc/ods/secret.yaml
+          name: openeuler-devops-secret
+          subPath: secret.yaml
+        - mountPath: /srv/log
+          name: workflow-template-handler-data-volume
+        env:
+        - name: LOG_ROOT_DIR
+          value: "/srv/log"        
+        - name: NODE_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.name        
+        name: workflow-template-handler
+        resources:
+          limits:
+            cpu: 500m
+            memory: 500Mi
+          requests:
+            cpu: 500m
+            memory: 500Mi
+      volumes:
+        - name: openeuler-devops-secret
+          secret:
+            secretName: openeuler-devops-secret
+        - name: workflow-template-handler-data-volume
+          persistentVolumeClaim:
+            claimName: workflow-template-handler-data-volume

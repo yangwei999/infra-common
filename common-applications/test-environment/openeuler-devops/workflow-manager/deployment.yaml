@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: workflow-manager-deployment
+  namespace: openeuler-devops
+spec:
+  selector:
+    matchLabels:
+      app: workflow-manager
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: workflow-manager
+    spec:
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
+      containers:
+      - image: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openeuler-devops/workflow_manager:master-b67be6
+        imagePullPolicy: IfNotPresent 
+        args:
+        - --enable_debug=true        
+        volumeMounts:
+        - mountPath: /etc/ods/secret.yaml
+          name: openeuler-devops-secret
+          subPath: secret.yaml
+        - mountPath: /srv/log
+          name: workflow-manager-data-volume
+        env:
+        - name: LOG_ROOT_DIR
+          value: "/srv/log"
+        name: workflow-manager
+        resources:
+          limits:
+            cpu: 500m
+            memory: 500Mi
+          requests:
+            cpu: 500m
+            memory: 500Mi
+      volumes:
+        - name: openeuler-devops-secret
+          secret:
+            secretName: openeuler-devops-secret
+        - name: workflow-manager-data-volume
+          persistentVolumeClaim:
+            claimName: workflow-manager-data-volume
