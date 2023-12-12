@@ -6,10 +6,9 @@ commonAnnotations:
   kubernetes.ops.owner: zhangyizheng
   kubernetes.ops.region: shanghai
 images:
-- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openeuler-devops/workflow_manager
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openeuler-devops/exec_updator
   newTag: master-c3caa5
 kind: Kustomization
 namespace: openeuler-devops
 resources:
-- service.yaml
 - deployment.yaml

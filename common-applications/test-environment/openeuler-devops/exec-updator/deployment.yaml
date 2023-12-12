@@ -1,17 +1,17 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: job-status-handler-deployment
+  name: exec-updator-deployment
   namespace: openeuler-devops
 spec:
   selector:
     matchLabels:
-      app: job-status-handler
+      app: exec-updator
   strategy:
     rollingUpdate:
       maxUnavailable: 1
     type: RollingUpdate
-  template:
+  template:    
     metadata:
       annotations:
         vault.hashicorp.com/agent-inject: 'true'
@@ -39,26 +39,27 @@ spec:
           {{ .Data.data.esCA }}
           {{- end }}
       labels:
-        app: job-status-handler
+        app: exec-updator
     spec:
       serviceAccount: openeuler-devops
       imagePullSecrets:
       - name: huawei-swr-image-pull-secret
       containers:
-      - image: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openeuler-devops/job_status_handler:master-e9f1e3
-        imagePullPolicy: IfNotPresent      
+      - image: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openeuler-devops/exec_updator:master-c3caa5
+        imagePullPolicy: IfNotPresent 
+        args:     
         volumeMounts:
         - mountPath: /srv/log
-          name: job-status-handler-data-volume
+          name: exec-updator-data-volume
         env:
         - name: LOG_ROOT_DIR
-          value: "/srv/log"
-        - name: NODE_NAME
+          value: "/srv/log" 
+        - name: WORKER_NAME
           valueFrom:
             fieldRef:
               apiVersion: v1
-              fieldPath: metadata.name   
-        name: job-status-handler
+              fieldPath: metadata.name
+        name: exec-updator
         resources:
           limits:
             cpu: 500m
@@ -67,6 +68,6 @@ spec:
             cpu: 500m
             memory: 500Mi
       volumes:
-        - name: job-status-handler-data-volume
+        - name: exec-updator-data-volume
           persistentVolumeClaim:
-            claimName: job-status-handler-data-volume
+            claimName: exec-updator-data-volume

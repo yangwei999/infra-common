@@ -32,6 +32,12 @@ spec:
           {{- with secret "internal/data/infra-test/openeuler-devops" -}}  
           {{ .Data.data.redisCA }}
           {{- end }}
+        vault.hashicorp.com/agent-inject-secret-esca: 'internal/data/infra-test/openeuler-devops'
+        vault.hashicorp.com/agent-inject-perms-esca: "0400"        
+        vault.hashicorp.com/agent-inject-template-esca: |  
+          {{- with secret "internal/data/infra-test/openeuler-devops" -}}  
+          {{ .Data.data.esCA }}
+          {{- end }}
       labels:
         app: workflow-manager
     spec:

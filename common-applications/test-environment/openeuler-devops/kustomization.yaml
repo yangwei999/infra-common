@@ -10,6 +10,12 @@ resources:
 - workflow-template-handler
 - job-event-handler
 - job-status-handler
+- user-management
+- exec-watcher
+- exec-updator
+- workflow-webhook
+- workflow-schedule
+- website
 - etcd
 namespace: openeuler-devops
 commonAnnotations:

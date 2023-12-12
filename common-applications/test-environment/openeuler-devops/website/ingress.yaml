@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: website-ingress
+  namespace: openeuler-devops
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: eulerpipeline.test.test.osinfra.cn
+    http:
+      paths:
+      - backend:
+          service:
+            name: website-service
+            port:
+              number: 443
+        path: /
+        pathType: Prefix
+  tls:
+  - hosts:
+    - eulerpipeline.test.test.osinfra.cn
+    secretName: openeuler-devops-tls
