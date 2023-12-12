@@ -1,12 +1,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: workflow-event-handler-deployment
+  name: workflow-runner-deployment
   namespace: openeuler-devops
 spec:
   selector:
     matchLabels:
-      app: workflow-event-handler
+      app: workflow-runner
   strategy:
     rollingUpdate:
       maxUnavailable: 1
@@ -14,30 +14,32 @@ spec:
   template:
     metadata:
       labels:
-        app: workflow-event-handler
+        app: workflow-runner
     spec:
       imagePullSecrets:
       - name: huawei-swr-image-pull-secret
       containers:
-      - image: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openeuler-devops/workflow_event_handler:master-e9f1e3
+      - image: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openeuler-devops/workflow_runner:master-118a1e
         imagePullPolicy: IfNotPresent 
         args:
         - --enable_debug=true        
         volumeMounts:
-        - mountPath: /etc/ods/secret.yaml
+        - mountPath: /etc/ods/secrets.yaml
           name: openeuler-devops-secret
-          subPath: secret.yaml
+          subPath: secrets.yaml
         - mountPath: /srv/log
-          name: workflow-event-handler-data-volume
+          name: workflow-runner-data-volume
         env:
         - name: LOG_ROOT_DIR
           value: "/srv/log"
-        - name: NODE_NAME
+        - name: DEFAULT_ODS
+          value: "/opt/ods"
+        - name: WORKFLOW_RUNNER_NAME
           valueFrom:
             fieldRef:
               apiVersion: v1
-              fieldPath: metadata.name   
-        name: workflow-event-handler
+              fieldPath: metadata.name
+        name: workflow-runner
         resources:
           limits:
             cpu: 500m
@@ -49,6 +51,6 @@ spec:
         - name: openeuler-devops-secret
           secret:
             secretName: openeuler-devops-secret
-        - name: workflow-event-handler-data-volume
+        - name: workflow-runner-data-volume
           persistentVolumeClaim:
-            claimName: workflow-event-handler-data-volume
+            claimName: workflow-runner-data-volume

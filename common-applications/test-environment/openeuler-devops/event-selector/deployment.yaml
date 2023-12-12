@@ -1,12 +1,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: job-event-handler-deployment
+  name: event-selector-deployment
   namespace: openeuler-devops
 spec:
   selector:
     matchLabels:
-      app: job-event-handler
+      app: event-selector
   strategy:
     rollingUpdate:
       maxUnavailable: 1
@@ -14,28 +14,30 @@ spec:
   template:
     metadata:
       labels:
-        app: job-event-handler
+        app: event-selector
     spec:
       imagePullSecrets:
       - name: huawei-swr-image-pull-secret
       containers:
-      - image: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openeuler-devops/job_event_handler:master-e9f1e3
-        imagePullPolicy: IfNotPresent        
+      - image: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openeuler-devops/event_selector:master-e9f1e3
+        imagePullPolicy: IfNotPresent 
+        args:
+        - --enable_debug=true        
         volumeMounts:
-        - mountPath: /etc/ods/secret.yaml
+        - mountPath: /etc/ods/secrets.yaml
           name: openeuler-devops-secret
-          subPath: secret.yaml
+          subPath: secrets.yaml
         - mountPath: /srv/log
-          name: job-event-handler-data-volume
+          name: event-selector-data-volume
         env:
         - name: LOG_ROOT_DIR
-          value: "/srv/log"
-        - name: NODE_NAME
+          value: "/srv/log"        
+        - name: EVENT_SELECTOR_NAME
           valueFrom:
             fieldRef:
               apiVersion: v1
-              fieldPath: metadata.name   
-        name: job-event-handler
+              fieldPath: metadata.name        
+        name: event-selector
         resources:
           limits:
             cpu: 500m
@@ -47,6 +49,6 @@ spec:
         - name: openeuler-devops-secret
           secret:
             secretName: openeuler-devops-secret
-        - name: job-event-handler-data-volume
+        - name: event-selector-data-volume
           persistentVolumeClaim:
-            claimName: job-event-handler-data-volume
+            claimName: event-selector-data-volume

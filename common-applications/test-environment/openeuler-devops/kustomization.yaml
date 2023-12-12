@@ -2,14 +2,15 @@ resources:
 - namespace.yaml
 - secret.yaml
 - pvc.yaml
-- workflow-runner-deployment.yaml
-- workflow-event-handler-deployment.yaml
-- workflow-template-handler-deployment.yaml
-- event-selector-deployment.yaml
-- job-event-handler.yaml
-- job-status-handler.yaml
-- etcd
+- sa.yaml
 - workflow-manager
+- workflow-runner
+- event-selector
+- workflow-event-handler
+- workflow-template-handler
+- job-event-handler
+- job-status-handler
+- etcd
 namespace: openeuler-devops
 commonAnnotations:
   kubernetes.ops.cluster: shanghai-test-cluster

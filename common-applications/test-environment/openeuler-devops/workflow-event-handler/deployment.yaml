@@ -1,12 +1,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: workflow-runner-deployment
+  name: workflow-event-handler-deployment
   namespace: openeuler-devops
 spec:
   selector:
     matchLabels:
-      app: workflow-runner
+      app: workflow-event-handler
   strategy:
     rollingUpdate:
       maxUnavailable: 1
@@ -14,34 +14,29 @@ spec:
   template:
     metadata:
       labels:
-        app: workflow-runner
+        app: workflow-event-handler
     spec:
       imagePullSecrets:
       - name: huawei-swr-image-pull-secret
       containers:
-      - image: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openeuler-devops/workflow_runner:master-e9f1e3
+      - image: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openeuler-devops/workflow_event_handler:master-e9f1e3
         imagePullPolicy: IfNotPresent 
-        args:
-        - --enable_debug=true        
+        args:     
         volumeMounts:
-        - mountPath: /etc/ods/secret.yaml
+        - mountPath: /etc/ods/secrets.yaml
           name: openeuler-devops-secret
-          subPath: secret.yaml
+          subPath: secrets.yaml
         - mountPath: /srv/log
-          name: workflow-runner-data-volume
+          name: workflow-event-handler-data-volume
         env:
         - name: LOG_ROOT_DIR
           value: "/srv/log"
-        - name: DEFAULT_ODS
-          value: "/opt/ods"
-        - name: WORKFLOW_RUNNER_NAME
+        - name: NODE_NAME
           valueFrom:
             fieldRef:
               apiVersion: v1
-              fieldPath: metadata.name
-        - name: PUB_QUEUES 
-          value: "Array['init_workflow_exec/', 'events/']"
-        name: workflow-runner
+              fieldPath: metadata.name   
+        name: workflow-event-handler
         resources:
           limits:
             cpu: 500m
@@ -53,6 +48,6 @@ spec:
         - name: openeuler-devops-secret
           secret:
             secretName: openeuler-devops-secret
-        - name: workflow-runner-data-volume
+        - name: workflow-event-handler-data-volume
           persistentVolumeClaim:
-            claimName: workflow-runner-data-volume
+            claimName: workflow-event-handler-data-volume
