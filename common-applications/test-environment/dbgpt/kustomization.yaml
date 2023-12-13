@@ -4,7 +4,6 @@ resources:
 - ingress.yaml
 - secrets.yaml
 - service.yaml
-- autoscaler.yaml
 commonAnnotations:
   kubernetes.ops.cluster: test
   kubernetes.ops.email: ""
