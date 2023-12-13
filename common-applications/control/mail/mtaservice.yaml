@@ -28,7 +28,7 @@ spec:
 # StatefulSet for exim4 services
 ---
 kind: StatefulSet
-apiVersion: apps/v1beta1
+apiVersion: apps/v1
 metadata:
   name: mailman-exim4
   namespace: mail
@@ -38,6 +38,8 @@ metadata:
 spec:
   serviceName: mail-suit-service
   replicas: 1
+  updateStrategy:
+    type: RollingUpdate
   selector:
     matchLabels:
       app: mail-suit-service
@@ -56,22 +58,22 @@ spec:
             - mountPath: /opt/mailman/
               name: mailman-core-data
             - name: mailman-secrets
-              mountPath: /etc/exim/passwd.ro
+              mountPath: /etc/exim/passwd
               subPath: exim4_credential
             - name: mailman-cert-secrets
-              mountPath: /etc/exim/osinfra.exim.crt.ro
+              mountPath: /etc/exim/ssl_pool/lists.osinfra.cn.crt
               subPath: server_crt
             - name: mailman-cert-secrets
-              mountPath: /etc/exim/osinfra.exim.key.ro
+              mountPath: /etc/exim/ssl_pool/lists.osinfra.cn.key
               subPath: server_key
             - name: mailman-cert-secrets-foropenhetu-volume
-              mountPath: /etc/exim/openhetuengine.exim.crt.ro
+              mountPath: /etc/exim/ssl_pool/lists.openhetuengine.org.crt
               subPath: server_crt
             - name: mailman-cert-secrets-foropenhetu-volume
-              mountPath: /etc/exim/openhetuengine.exim.key.ro
+              mountPath: /etc/exim/ssl_pool/lists.openhetuengine.org.key
               subPath: server_key
             - name: mailman-secrets
-              mountPath: /etc/exim/dkim/dkim.key.ro
+              mountPath: /etc/exim/dkim/dkim.key
               subPath: dkim_key
             - name: exim-config
               mountPath: /etc/exim/exim.conf
@@ -84,26 +86,6 @@ spec:
             - /bin/sh
             - -c
             - |
-              # copy exim password
-              cp /etc/exim/passwd.ro /etc/exim/passwd
-
-              mkdir -p /etc/exim/ssl_pool
-              # copy lists.osinfra.cn cert and key file and dkim key file
-              cp /etc/exim/osinfra.exim.crt.ro /etc/exim/ssl_pool/lists.osinfra.cn.crt
-              cp /etc/exim/osinfra.exim.key.ro /etc/exim/ssl_pool/lists.osinfra.cn.key
-
-              # copy lists.openhetuengine.org cert and key file and dkim key file
-              cp /etc/exim/openhetuengine.exim.crt.ro /etc/exim/ssl_pool/lists.openhetuengine.org.crt
-              cp /etc/exim/openhetuengine.exim.key.ro /etc/exim/ssl_pool/lists.openhetuengine.org.key
-
-              # copy dkim key file to different hosts(use the same key file)
-              cp /etc/exim/dkim/dkim.key.ro /etc/exim/dkim/dkim.key
-              chown root:exim /etc/exim/passwd /etc/exim/ssl_pool/lists.osinfra.cn.crt /etc/exim/ssl_pool/lists.osinfra.cn.key  /etc/exim/dkim/dkim.key
-              chmod 755 /etc/exim/passwd /etc/exim/ssl_pool/lists.osinfra.cn.crt /etc/exim/ssl_pool/lists.osinfra.cn.key  /etc/exim/dkim/dkim.key
-              # prepare log folder
-              mkdir -p /var/log/exim
-
-              # start exim
               exec tini -- exim -bd -v;
       #NOTE: Empty dir can't be used in a production dir. Please upgrade it before using.
       volumes:
