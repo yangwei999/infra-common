@@ -2,43 +2,44 @@
 kind: Deployment
 apiVersion: apps/v1
 metadata:
-  annotations:
-    vault.hashicorp.com/agent-inject: "true"
-    vault.hashicorp.com/agent-pre-populate-only: "true"
-    vault.hashicorp.com/role: openeuler-devops
-    vault.hashicorp.com/agent-run-as-user: "1000"
-    vault.hashicorp.com/agent-run-as-group: "1000"
-    vault.hashicorp.com/agent-inject-perms-server.crt: "0400"
-    vault.hashicorp.com/agent-inject-perms-server.key: "0400"
-    vault.hashicorp.com/secret-volume-path: "/etc/nginx/cert/"
-    vault.hashicorp.com/agent-inject-secret-server.crt: "internal/data/infra-test/openeuler-devops"
-    vault.hashicorp.com/agent-inject-template-server.crt: |
-      {{- with secret "internal/data/infra-test/openeuler-devops" -}}
-      {{ .Data.data.ServerCrt }}
-      {{- end }}
-    vault.hashicorp.com/agent-inject-secret-server.key: "internal/data/infra-test/openeuler-devops"
-    vault.hashicorp.com/agent-inject-template-server.key: |
-      {{- with secret "internal/data/infra-test/openeuler-devops" -}}
-      {{ .Data.data.ServerKey }}
-      {{- end }}
   name: website
   namespace: openeuler-devops
+  labels:
+    name: website
 spec:
-  strategy:
-    type: Recreate
   selector:
     matchLabels:
-      app: website
+      name: website
   template:
     metadata:
+      annotations:
+        vault.hashicorp.com/agent-inject: "true"
+        vault.hashicorp.com/agent-pre-populate-only: "true"
+        vault.hashicorp.com/role: openeuler-devops
+        vault.hashicorp.com/agent-run-as-user: "998"
+        vault.hashicorp.com/agent-run-as-group: "998"
+        vault.hashicorp.com/agent-inject-perms-server.crt: "0400"
+        vault.hashicorp.com/agent-inject-perms-server.key: "0400"
+        vault.hashicorp.com/secret-volume-path: "/etc/nginx/cert/"
+        vault.hashicorp.com/agent-inject-secret-server.crt: "internal/data/infra-test/openeuler-devops"
+        vault.hashicorp.com/agent-inject-template-server.crt: |
+          {{- with secret "internal/data/infra-test/openeuler-devops" -}}
+          {{ .Data.data.ServerCrt }}
+          {{- end }}
+        vault.hashicorp.com/agent-inject-secret-server.key: "internal/data/infra-test/openeuler-devops"
+        vault.hashicorp.com/agent-inject-template-server.key: |
+          {{- with secret "internal/data/infra-test/openeuler-devops" -}}
+          {{ .Data.data.ServerKey }}
+          {{- end }}
       labels:
-        app: website
+        name: website
     spec:
+      serviceAccount: openeuler-devops
       imagePullSecrets:
       - name: huawei-swr-image-pull-secret
       containers:
       - name: website
-        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openeuler-devops/website:master-e9f1e3
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openeuler-devops/website:master-646b94
         resources:
           requests:
             cpu: 200m
@@ -52,7 +53,7 @@ spec:
           periodSeconds: 10
           successThreshold: 1
           tcpSocket:
-            port: 443
+            port: 8080
           timeoutSeconds: 5
         readinessProbe:
           failureThreshold: 3
@@ -60,7 +61,7 @@ spec:
           periodSeconds: 10
           successThreshold: 1
           tcpSocket:
-            port: 443
+            port: 8080
           timeoutSeconds: 5
         
       
