@@ -1,13 +1,19 @@
+---
 apiVersion: v1
 kind: Service
 metadata:
-  name: frontend-service
+  name: openeuler-devops-frontend-service-loadbalencer
   namespace: openeuler-devops
+  annotations:
+    kubernetes.io/elb.id: 3a75e6bc-4680-43fb-b446-e7c957c91002
+    kubernetes.io/elb.class: union
+    kubernetes.io/elb.lb-algorithm: ROUND_ROBIN
 spec:
   ports:
-  - name: http
-    port: 443
-    targetPort: 443
+  - name: httpport
+    protocol: TCP
+    port: 8080
+    targetPort: 8080
   selector:
-    app: website
-  type: ClusterIP
+    name: website
+  type: LoadBalancer

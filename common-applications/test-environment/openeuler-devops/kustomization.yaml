@@ -1,6 +1,5 @@
 resources:
 - namespace.yaml
-- secret.yaml
 - pvc.yaml
 - sa.yaml
 - workflow-manager
