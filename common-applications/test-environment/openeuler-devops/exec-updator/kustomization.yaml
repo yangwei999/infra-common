@@ -6,6 +6,8 @@ commonAnnotations:
   kubernetes.ops.owner: zhangyizheng
   kubernetes.ops.region: shanghai
 images:
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openeuler-devops/exec_updator
+  newTag: master-82e96f
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openeuler-devops/exec_watcher
   newTag: master-c3caa5
 kind: Kustomization
