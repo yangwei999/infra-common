@@ -8,6 +8,8 @@ commonAnnotations:
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openeuler-devops/exec_updator
   newTag: master-c3caa5
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openeuler-devops/exec_watcher
+  newTag: master-82e96f
 kind: Kustomization
 namespace: openeuler-devops
 resources:
