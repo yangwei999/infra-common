@@ -7,7 +7,7 @@ commonAnnotations:
   kubernetes.ops.region: shanghai
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openeuler-devops/workflow_webhook
-  newTag: master-c3caa5
+  newTag: master-82e96f
 kind: Kustomization
 namespace: openeuler-devops
 resources:
