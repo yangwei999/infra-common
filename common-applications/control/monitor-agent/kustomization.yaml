@@ -15,3 +15,5 @@ images:
   newTag: v2.38.0
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/monitor/promtheus_arm
   newTag: v1.0.3
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/monitor/promtheus_x86
+  newTag: v1.0.3
