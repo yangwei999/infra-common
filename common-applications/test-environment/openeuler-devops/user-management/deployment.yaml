@@ -38,6 +38,12 @@ spec:
           {{- with secret "internal/data/infra-test/openeuler-devops" -}}  
           {{ .Data.data.esCA }}
           {{- end }}
+        vault.hashicorp.com/agent-inject-secret-user-management-secrets.yaml: 'internal/data/infra-test/openeuler-devops'
+        vault.hashicorp.com/agent-inject-perms-user-management-secrets.yaml: "0400"        
+        vault.hashicorp.com/agent-inject-template-user-management-secrets.yaml: |  
+          {{- with secret "internal/data/infra-test/openeuler-devops" -}}  
+          {{ .Data.data.UserManagementSecret }}
+          {{- end }}
       labels:
         app: user-management
     spec:

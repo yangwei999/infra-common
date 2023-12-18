@@ -16,6 +16,7 @@ resources:
 - workflow-schedule
 - website
 - etcd
+- kibana
 namespace: openeuler-devops
 commonAnnotations:
   kubernetes.ops.cluster: shanghai-test-cluster

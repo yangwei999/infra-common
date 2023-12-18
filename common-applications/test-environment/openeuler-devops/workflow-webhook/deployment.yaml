@@ -38,6 +38,12 @@ spec:
           {{- with secret "internal/data/infra-test/openeuler-devops" -}}  
           {{ .Data.data.esCA }}
           {{- end }}
+        vault.hashicorp.com/agent-inject-secret-webhook-secrets.yaml: 'internal/data/infra-test/openeuler-devops'
+        vault.hashicorp.com/agent-inject-perms-webhook-secrets.yaml: "0400"        
+        vault.hashicorp.com/agent-inject-template-webhook-secrets.yaml: |  
+          {{- with secret "internal/data/infra-test/openeuler-devops" -}}  
+          {{ .Data.data.WebhookSecret }}
+          {{- end }}
       labels:
         app: workflow-webhook
     spec:
