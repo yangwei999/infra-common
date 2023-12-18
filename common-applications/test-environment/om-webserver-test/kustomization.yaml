@@ -12,6 +12,6 @@ kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/om/om-webserver
   newName: swr.cn-north-4.myhuaweicloud.com/om/om-webserver-test
-  newTag: oneid-webserver-0b6361
+  newTag: oneid-webserver-41f8dc
 - name: swr.cn-north-4.myhuaweicloud.com/om/om-webserver-test
   newTag: oneid-webserver-5e4ec4
