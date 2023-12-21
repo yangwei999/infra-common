@@ -37,10 +37,10 @@ metadata:
 spec:
   tls:
     - hosts:
-      - id.opengauss.test.osinfra.cn
+      - id-opengauss.test.osinfra.cn
       secretName: opengauss-usercenter-new-tls
   rules:
-    - host: id.opengauss.test.osinfra.cn
+    - host: id-opengauss.test.osinfra.cn
       http:
         paths:
         - backend:
