@@ -14,7 +14,7 @@ kind: Kustomization
 namespace: community-summary
 resources:
 - namespace.yaml
-- openeuler
+- sa.yaml
 - mindspore
 - opengauss
 - openlookeng

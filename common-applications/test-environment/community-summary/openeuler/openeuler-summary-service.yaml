@@ -1,14 +1,20 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: openeuler-summary-service
+  annotations:
+    kubernetes.io/elb.class: union
+    kubernetes.io/elb.id: 015c6fe2-3dea-4e65-a508-83dbe5592d1a
+    kubernetes.io/elb.lb-algorithm: ROUND_ROBIN
+  name: openeuler-summary-service-loadbalencer
   namespace: community-summary
 spec:
+  externalTrafficPolicy: Cluster
   ports:
-  - name: http-port
-    port: 80
+  - name: httpport
+    port: 8080
     protocol: TCP
     targetPort: 8080
   selector:
     app: openeuler-summary
-  type: ClusterIP
+  type: LoadBalancer
+  
