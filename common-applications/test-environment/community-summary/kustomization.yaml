@@ -5,7 +5,7 @@ images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/mindspore/summary-test
   newTag: v1.0.20231222140632
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/summary-test
-  newTag: v1.0.20231222104848
+  newTag: v1.0.20231222162407
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/opengauss/summary-test
   newTag: v1.0.20231222142332
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openlookeng/summary-test
