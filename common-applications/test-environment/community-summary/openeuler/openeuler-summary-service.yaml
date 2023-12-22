@@ -3,7 +3,7 @@ kind: Service
 metadata:
   annotations:
     kubernetes.io/elb.class: union
-    kubernetes.io/elb.id: 015c6fe2-3dea-4e65-a508-83dbe5592d1a
+    kubernetes.io/elb.id: 689c4158-2d48-4168-853b-7be633488978
     kubernetes.io/elb.lb-algorithm: ROUND_ROBIN
   name: openeuler-summary-service-loadbalencer
   namespace: community-summary
@@ -11,10 +11,25 @@ spec:
   externalTrafficPolicy: Cluster
   ports:
   - name: httpport
+    port: 4180
+    protocol: TCP
+    targetPort: 4180
+  selector:
+    k8s-app: openeuler-oauth2-proxy
+  type: LoadBalancer
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: openeuler-summary-service
+  namespace: community-summary
+spec:
+  ports:
+  - name: http-port
     port: 8080
     protocol: TCP
     targetPort: 8080
   selector:
     app: openeuler-summary
-  type: LoadBalancer
-  
+  type: ClusterIP

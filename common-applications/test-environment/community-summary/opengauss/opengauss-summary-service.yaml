@@ -3,7 +3,7 @@ kind: Service
 metadata:
   annotations:
     kubernetes.io/elb.class: union
-    kubernetes.io/elb.id: d4e48126-be2f-46cb-b1af-bdba37cb3de0
+    kubernetes.io/elb.id: a8e7beec-023f-4fbb-aad4-b49a05b3b6b8
     kubernetes.io/elb.lb-algorithm: ROUND_ROBIN
   name: opengauss-summary-service-loadbalencer
   namespace: community-summary
@@ -11,9 +11,25 @@ spec:
   externalTrafficPolicy: Cluster
   ports:
   - name: httpport
+    port: 4180
+    protocol: TCP
+    targetPort: 4180
+  selector:
+    k8s-app: opengauss-oauth2-proxy
+  type: LoadBalancer
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: opengauss-summary-service
+  namespace: community-summary
+spec:
+  ports:
+  - name: http-port
     port: 8080
     protocol: TCP
     targetPort: 8080
   selector:
-    app: opengauss-summary
-  type: LoadBalancer
+    app: openeuler-summary
+  type: ClusterIP

@@ -3,7 +3,7 @@ kind: Service
 metadata:
   annotations:
     kubernetes.io/elb.class: union
-    kubernetes.io/elb.id: bc0d33e4-356f-4fb8-874d-6d8bd36aba7c
+    kubernetes.io/elb.id: 910b65c3-ee09-4fc7-a692-0a1a3108b5b3
     kubernetes.io/elb.lb-algorithm: ROUND_ROBIN
   name: mindspore-summary-service-loadbalencer
   namespace: community-summary
@@ -11,10 +11,25 @@ spec:
   externalTrafficPolicy: Cluster
   ports:
   - name: httpport
+    port: 4180
+    protocol: TCP
+    targetPort: 4180
+  selector:
+    k8s-app: mindspore-oauth2-proxy
+  type: LoadBalancer
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mindspore-summary-service
+  namespace: community-summary
+spec:
+  ports:
+  - name: http-port
     port: 8080
     protocol: TCP
     targetPort: 8080
   selector:
-    app: mindspore-summary
-  type: LoadBalancer
-  
+    app: openeuler-summary
+  type: ClusterIP  
