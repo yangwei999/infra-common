@@ -3,6 +3,8 @@ resources:
 - sa.yaml
 - merlin-server
 - merlin-website
+- hook-delivery
+- label
 namespace: merlin
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
