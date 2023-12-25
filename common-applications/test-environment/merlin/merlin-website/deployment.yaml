@@ -55,7 +55,7 @@ spec:
         imagePullPolicy: IfNotPresent
         env:
         - name: DET_URL
-          value: https://merlin.test.osinfra.cn
+          value: https://modelfoundry.test.osinfra.cn
         ports:
         - containerPort: 8080
           name: http
