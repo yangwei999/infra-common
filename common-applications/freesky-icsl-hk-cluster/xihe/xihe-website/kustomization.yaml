@@ -6,4 +6,4 @@ resources:
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/xihe/xihe-website-test
   newName: swr.cn-north-4.myhuaweicloud.com/opensourceway/icsl/xihe-website
-  newTag: stable-6ec176
+  newTag: stable-e0b276
