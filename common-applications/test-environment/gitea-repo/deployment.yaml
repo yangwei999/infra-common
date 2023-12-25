@@ -40,11 +40,11 @@ spec:
         - --config=/vault/secrets/app.ini
         resources:
           requests:
-            cpu: 500m
-            memory: 500Mi
+            cpu: "6"
+            memory: 10000Mi
           limits:
-            cpu: 500m
-            memory: 500Mi
+            cpu: "6"
+            memory: 10000Mi
         livenessProbe:
           failureThreshold: 3
           initialDelaySeconds: 10
