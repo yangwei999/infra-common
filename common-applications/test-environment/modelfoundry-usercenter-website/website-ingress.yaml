@@ -1,0 +1,23 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: website-ingress
+  namespace: modelfoundry-usercenter-website
+spec:
+  tls:
+  - hosts:
+    - modelfoundry-usercenter.test.osinfra.cn
+    secretName: website-tls
+  rules:
+  - host: modelfoundry-usercenter.test.osinfra.cn
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: website-service
+            port:
+              number: 8080
+  ingressClassName: nginx
