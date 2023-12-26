@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: om-webserver
-  namespace: om-webserver-test
+  name: om-webserver-sh
+  namespace: om-webserver-test-sh
   labels:
-    app: om-webserver
+    app: om-webserver-sh
 spec:
-  replicas: 1
+  replicas: 2
   revisionHistoryLimit: 10
   template:
     metadata:
       labels:
-        app: om-webserver
+        app: om-webserver-sh
     spec:
       imagePullSecrets:
       - name: huawei-swr-image-pull-secret
       containers:
-        - name: om-webserver
-          image: swr.cn-north-4.myhuaweicloud.com/om/om-webserver-test:oneid-webserver-5e4ec4
+        - name: om-webserver-sh
+          image: swr.cn-north-4.myhuaweicloud.com/om/om-webserver-test:test-pwd-8a3648
           env:
           - name: APPLICATION_PATH
             value: "/var/lib/om-webserver/application.properties"
@@ -46,7 +46,7 @@ spec:
             timeoutSeconds: 5
           ports:
             - containerPort: 8080
-              name: om-webserver
+              name: om-webserver-sh
           volumeMounts:
             - mountPath: /var/lib/om-webserver/application.properties
               subPath: application_properties
