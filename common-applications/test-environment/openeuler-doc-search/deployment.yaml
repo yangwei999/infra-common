@@ -89,4 +89,4 @@ spec:
       volumes:
       - name: sql-config-volume
         persistentVolumeClaim:
-          claimName: mindspore-search-es
+          claimName: openeuler-doc-search-obs
