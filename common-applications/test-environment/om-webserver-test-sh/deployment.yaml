@@ -8,6 +8,11 @@ metadata:
 spec:
   replicas: 2
   revisionHistoryLimit: 10
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: om-webserver-sh
   template:
     metadata:
       labels:
