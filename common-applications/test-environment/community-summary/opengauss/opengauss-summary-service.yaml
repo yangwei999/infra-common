@@ -31,5 +31,5 @@ spec:
     protocol: TCP
     targetPort: 8080
   selector:
-    app: openeuler-summary
+    app: opengauss-summary
   type: ClusterIP
