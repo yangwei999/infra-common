@@ -9,10 +9,10 @@ metadata:
 spec:
   tls:
     - hosts:
-      - gitea.test.osinfra.cn
+      - giteash.test.osinfra.cn
       secretName: gitea-repo-lts
   rules:
-    - host: gitea.test.osinfra.cn
+    - host: giteash.test.osinfra.cn
       http:
         paths:
         - backend:
