@@ -14,3 +14,22 @@ spec:
       storage: 100Gi
   storageClassName: csi-disk
   volumeMode: Filesystem
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  annotations:
+    everest.io/disk-volume-type: ssd
+  labels:
+    failure-domain.beta.kubernetes.io/zone: cn-east-3a
+  name: tmp-gitea-data-volume
+  namespace: gitea-repo
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Gi
+  storageClassName: csi-disk
+  volumeMode: Filesystem
