@@ -3,7 +3,7 @@ images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/oauth2-proxy
   newTag: ec9eff9d30b6e08fc50256c2c690daa897e858ad
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/mindspore/summary-test
-  newTag: v1.0.20231227170513
+  newTag: v1.0.20231228142539
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/summary-test
   newTag: v1.0.20231228142502
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/opengauss/summary-test
