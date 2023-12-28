@@ -1,12 +1,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: workflow-template-handler-deployment
+  name: post-extract-handler-deployment
   namespace: openeuler-devops
 spec:
   selector:
     matchLabels:
-      app: workflow-template-handler
+      app: post-extract-handler
   strategy:
     rollingUpdate:
       maxUnavailable: 1
@@ -33,17 +33,17 @@ spec:
           {{ .Data.data.esCA }}
           {{- end }}
       labels:
-        app: workflow-template-handler
+        app: post-extract-handler
     spec:
       serviceAccount: openeuler-devops
       imagePullSecrets:
       - name: huawei-swr-image-pull-secret
       containers:
-      - image: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openeuler-devops/workflow_template_handler:master-e9f1e3
+      - image: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openeuler-devops/post_extract_handler:master-4aaaa3
         imagePullPolicy: IfNotPresent        
         volumeMounts:
         - mountPath: /srv/log
-          name: workflow-template-handler-data-volume
+          name: post-extract-handler-data-volume
         env:
         - name: LOG_ROOT_DIR
           value: "/srv/log"        
@@ -52,7 +52,7 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: metadata.name        
-        name: workflow-template-handler
+        name: post-extract-handler
         resources:
           limits:
             cpu: 500m
@@ -61,6 +61,6 @@ spec:
             cpu: 500m
             memory: 500Mi
       volumes:
-        - name: workflow-template-handler-data-volume
+        - name: post-extract-handler-data-volume
           persistentVolumeClaim:
-            claimName: workflow-template-handler-data-volume
+            claimName: post-extract-handler-data-volume

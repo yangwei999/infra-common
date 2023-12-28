@@ -68,7 +68,7 @@ kind: PersistentVolumeClaim
 metadata:
   annotations:
     everest.io/disk-volume-type: ssd
-  name: workflow-template-handler-data-volume
+  name: post-extract-handler-data-volume
   namespace: openeuler-devops
 spec:
   accessModes:
