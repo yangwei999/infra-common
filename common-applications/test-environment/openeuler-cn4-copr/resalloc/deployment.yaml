@@ -75,12 +75,12 @@ spec:
         - mountPath: /etc/resallocserver/server.yaml
           name: copr-secrets
           subPath: resalloc_server.yaml
-        - mountPath: /etc/resallocserver/.kubeconfig
-          name: copr-secrets
-          subPath: kubeconfig
         - mountPath: /root/.ssh/builder_config
           name: copr-resalloc
           subPath: builder_config
+        - mountPath: /home/resalloc/provision/ecs_servers.yaml
+          name: copr-resalloc
+          subPath: ecs_servers.yaml
         - mountPath: /var/lib/resallocserver
           name: resalloc-data
         - mountPath: /var/log/resallocserver
