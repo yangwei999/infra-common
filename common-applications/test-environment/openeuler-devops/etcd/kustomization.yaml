@@ -8,6 +8,8 @@ commonAnnotations:
 images:
 - name: marketplace.azurecr.io/bitnami/etcd
   newTag: 3.5.5-debian-11-r1
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openeuler-devops/etcd
+  newTag: master-a4a8e7
 kind: Kustomization
 namespace: openeuler-devops
 resources:
