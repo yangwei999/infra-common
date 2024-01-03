@@ -7,7 +7,7 @@ commonAnnotations:
   kubernetes.ops.region: beijing
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/uptime-kuma
-  newTag: master-d7c06c
+  newTag: master-57a6f8
 kind: Kustomization
 namespace: uptime-kuma
 resources:
