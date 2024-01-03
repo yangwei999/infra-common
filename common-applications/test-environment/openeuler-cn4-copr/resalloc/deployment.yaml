@@ -45,6 +45,21 @@ spec:
           value: failure-domain.beta.kubernetes.io/zone=cn-north-4a
         - name: KUBECONFIG
           value: /etc/resallocserver/.kubeconfig
+        - name: IAM_DOMAIN
+          valueFrom:
+            secretKeyRef:
+              key: IAM_DOMAIN
+              name: copr-secrets
+        - name: IAM_USER
+          valueFrom:
+            secretKeyRef:
+              key: IAM_USER
+              name: copr-secrets
+        - name: IAM_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: IAM_PASSWORD
+              name: copr-secrets
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/copr/resalloc-test:v1.0.20230310170217
         imagePullPolicy: IfNotPresent
         livenessProbe:
