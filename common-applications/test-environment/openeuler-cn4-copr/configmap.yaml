@@ -116,7 +116,7 @@ data:
         - arch_i686_native
         cmd_new: "/home/resalloc/provision/local-new-x86"
         cmd_delete: "/home/resalloc/provision/local-delete"
-        cmd_livecheck: "/usr/bin/resalloc-check-vm-ip"
+        cmd_livecheck: "/home/resalloc/provision/check-pod"
         livecheck_period: 180
         reuse_opportunity_time: 0
         reuse_max_count: 0
