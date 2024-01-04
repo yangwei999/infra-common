@@ -11,7 +11,7 @@ metadata:
     app.kubernetes.io/instance: release-name
     app.kubernetes.io/managed-by: Helm
 spec:
-  replicas: 1
+  replicas: 0
   selector:
     matchLabels:
       app.kubernetes.io/name: etcd
@@ -52,7 +52,7 @@ spec:
       serviceAccountName: openeuler-devops
       containers:
         - name: etcd
-          image: marketplace.azurecr.io/bitnami/etcd:3.5.5-debian-11-r1
+          image: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openeuler-devops/etcd:new
           imagePullPolicy: "IfNotPresent"
           securityContext:
             allowPrivilegeEscalation: false
@@ -148,7 +148,6 @@ spec:
     - metadata:
         name: data
       spec:
-        
         accessModes:
           - "ReadWriteOnce"
         resources:

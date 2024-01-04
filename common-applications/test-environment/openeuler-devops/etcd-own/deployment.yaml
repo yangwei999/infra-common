@@ -1,12 +1,13 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: workflow-runner-deployment
+  name: etcd-deployment
   namespace: openeuler-devops
 spec:
+  replicas: 1
   selector:
     matchLabels:
-      app: workflow-runner
+      app: etcd-own
   strategy:
     rollingUpdate:
       maxUnavailable: 1
@@ -20,18 +21,6 @@ spec:
         vault.hashicorp.com/agent-run-as-user: "1000"
         vault.hashicorp.com/agent-run-as-group: "1000"
         vault.hashicorp.com/secret-volume-path: "/etc/ods/"
-        vault.hashicorp.com/agent-inject-secret-secrets.yaml: 'internal/data/infra-test/openeuler-devops'
-        vault.hashicorp.com/agent-inject-perms-secrets.yaml: "0400"        
-        vault.hashicorp.com/agent-inject-template-secrets.yaml: |  
-          {{- with secret "internal/data/infra-test/openeuler-devops" -}}  
-          {{ .Data.data.config }}
-          {{- end }}
-        vault.hashicorp.com/agent-inject-secret-esca: 'internal/data/infra-test/openeuler-devops'
-        vault.hashicorp.com/agent-inject-perms-esca: "0400"        
-        vault.hashicorp.com/agent-inject-template-esca: |  
-          {{- with secret "internal/data/infra-test/openeuler-devops" -}}  
-          {{ .Data.data.esCA }}
-          {{- end }}
         vault.hashicorp.com/agent-inject-secret-etcd_server.crt: 'internal/data/infra-test/openeuler-devops'
         vault.hashicorp.com/agent-inject-perms-etcd_server.crt: "0400"
         vault.hashicorp.com/agent-inject-template-etcd_server.crt: |  
@@ -51,30 +40,18 @@ spec:
           {{ .Data.data.etcdCA }}
           {{- end }}
       labels:
-        app: workflow-runner
+        app: etcd-own
     spec:
       serviceAccount: openeuler-devops
       imagePullSecrets:
       - name: huawei-swr-image-pull-secret
       containers:
-      - image: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openeuler-devops/workflow_runner:master-118a1e
+      - image: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openeuler-devops/etcd:new
         imagePullPolicy: IfNotPresent 
-        args:
-        - --enable_debug=true        
-        volumeMounts:
-        - mountPath: /srv/log
-          name: workflow-runner-data-volume
+        name: etcd-own
         env:
-        - name: LOG_ROOT_DIR
-          value: "/srv/log"
-        - name: DEFAULT_ODS
-          value: "/opt/ods"
-        - name: WORKFLOW_RUNNER_NAME
-          valueFrom:
-            fieldRef:
-              apiVersion: v1
-              fieldPath: metadata.name
-        name: workflow-runner
+        - name: ETCD_UNSUPPORTED_ARCH
+          value: arm64
         resources:
           limits:
             cpu: 500m
@@ -82,7 +59,33 @@ spec:
           requests:
             cpu: 500m
             memory: 500Mi
+        ports:
+          - name: client
+            containerPort: 2379
+            protocol: TCP
+          - name: peer
+            containerPort: 2380
+            protocol: TCP
+        livenessProbe:
+          failureThreshold: 3
+          initialDelaySeconds: 20
+          periodSeconds: 10
+          successThreshold: 1
+          tcpSocket:
+            port: 2379
+          timeoutSeconds: 5
+        readinessProbe:
+          failureThreshold: 3
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          successThreshold: 1
+          tcpSocket:
+            port: 2379
+          timeoutSeconds: 5
+        volumeMounts:
+        - mountPath: /data
+          name: data-volume
       volumes:
-        - name: workflow-runner-data-volume
-          persistentVolumeClaim:
-            claimName: workflow-runner-data-volume
+      - name: data-volume
+        persistentVolumeClaim:
+          claimName: etcd-data-volume

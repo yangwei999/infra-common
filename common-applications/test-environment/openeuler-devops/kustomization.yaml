@@ -16,7 +16,9 @@ resources:
 - workflow-schedule
 - website
 - etcd
+- etcd-own
 - kibana
+- pods-monitor
 namespace: openeuler-devops
 commonAnnotations:
   kubernetes.ops.cluster: shanghai-test-cluster
