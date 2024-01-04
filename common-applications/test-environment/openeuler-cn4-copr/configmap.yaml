@@ -152,7 +152,7 @@ data:
       vpcId: 0144e89a-dde3-4a09-9680-4293cc914785
 
       # 待创建云服务器所在的子网信息,需要指定vpcid对应VPC下的子网ID
-      subnetId: 941aec-dd59-4565-93f5-75ae1140c4aa
+      subnetId: 2a941aec-dd59-4565-93f5-75ae1140c4aa
 
       # 安全组ID
       security_group_id: e6bb91ad-0c9a-4795-8ee1-3d9b9f6b6c8e
