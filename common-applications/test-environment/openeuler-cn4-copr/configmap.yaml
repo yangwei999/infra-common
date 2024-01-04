@@ -140,22 +140,22 @@ data:
 
   ecs_servers.yaml: |
       # 地区
-      region: cn-north-1
+      region: cn-east-3
 
       # 服务器名称前缀
       name_prefix: eur-worker
 
       # 项目的唯一标识,和地区相关
-      projectId: 060601024b8026b22f32c017164a0ef6
+      projectId: 0612bdc78f80251f2fcac017ebad7ad7
 
       # 待创建云服务器所属虚拟私有云的ID
-      vpcId: df8d73e5-62b0-4c66-ae84-f85641b5d28b
+      vpcId: 0144e89a-dde3-4a09-9680-4293cc914785
 
       # 待创建云服务器所在的子网信息,需要指定vpcid对应VPC下的子网ID
-      subnetId: a9c40773-65d9-4b1d-8d65-9776f46d1806
+      subnetId: 941aec-dd59-4565-93f5-75ae1140c4aa
 
       # 安全组ID
-      security_group_id: b176aa58-cf9d-4ebf-a7a1-008e325ea356
+      security_group_id: e6bb91ad-0c9a-4795-8ee1-3d9b9f6b6c8e
 
       # 云服务器系统盘对应的磁盘类型, [SATA(普通IO磁盘类型), SAS(高IO磁盘类型), SSD(超高IO磁盘类型)]
       volumetype: SSD
@@ -181,15 +181,15 @@ data:
       # 规格映射
       flavorMapping:
         x86:
-            imageRef: ca43f747-8856-4557-acf2-d9e3f185a0fe
+            imageRef: 257f1b09-8138-47ea-b6f0-01387c9045fb
             l1: c3.xlarge.2
             l2: c3ne.xlarge.2
             l3: hc2.xlarge.2
         aarch64:
-            imageRef: 484d6510-cf68-459a-9b48-095c2e1f57df
-            l1: c3.xlarge.2
-            l2: c3ne.xlarge.2
-            l3: hc2.xlarge.2
+            imageRef: 4ca2bf4c-f912-4cec-9879-f5e5d9ed32d1
+            l1: kc1.xlarge.2
+            l2: kc1.xlarge.2
+            l3: kc1.xlarge.2
 
       # 架构映射
       archMapping:
