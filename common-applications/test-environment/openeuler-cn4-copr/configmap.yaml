@@ -178,6 +178,8 @@ data:
       # sshkey name
       key_name: eur-test
 
+      user_data: IyEvYmluL2Jhc2gKCnNlZCAtaSAncy8uKmNvcHItZnJvbnRlbmQvMTcyLjE2LjIuMTEzIGNvcHItZnJvbnRlbmQvZycgL2V0Yy9ob3N0cwpzZWQgLWkgJ3MvLipjb3ByLWRpc3RnaXQvMTcyLjE2LjIuMTkgIGNvcHItZGlzdGdpdC9nJyAvZXRjL2hvc3RzCg==
+
       # 规格映射
       flavorMapping:
         x86:
