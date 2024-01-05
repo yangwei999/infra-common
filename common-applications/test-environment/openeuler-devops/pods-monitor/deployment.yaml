@@ -32,15 +32,15 @@ spec:
           {{- with secret "internal/data/infra-test/openeuler-devops" -}}  
           {{ .Data.data.kubeconfig }}
           {{- end }}
-        vault.hashicorp.com/agent-inject-secret-etcd_server.crt: 'internal/data/infra-test/openeuler-devops'
-        vault.hashicorp.com/agent-inject-perms-etcd_server.crt: "0400"
-        vault.hashicorp.com/agent-inject-template-etcd_server.crt: |  
+        vault.hashicorp.com/agent-inject-secret-etcd_client.crt: 'internal/data/infra-test/openeuler-devops'
+        vault.hashicorp.com/agent-inject-perms-etcd_client.crt: "0400"
+        vault.hashicorp.com/agent-inject-template-etcd_client.crt: |  
           {{- with secret "internal/data/infra-test/openeuler-devops" -}}  
           {{ .Data.data.etcdCrt }}
           {{- end }}
-        vault.hashicorp.com/agent-inject-secret-etcd_server.key: 'internal/data/infra-test/openeuler-devops'
-        vault.hashicorp.com/agent-inject-perms-etcd_server.key: "0400"
-        vault.hashicorp.com/agent-inject-template-etcd_server.key: |  
+        vault.hashicorp.com/agent-inject-secret-etcd_client.key: 'internal/data/infra-test/openeuler-devops'
+        vault.hashicorp.com/agent-inject-perms-etcd_client.key: "0400"
+        vault.hashicorp.com/agent-inject-template-etcd_client.key: |  
           {{- with secret "internal/data/infra-test/openeuler-devops" -}}  
           {{ .Data.data.etcdKey }}
           {{- end }}
@@ -57,13 +57,16 @@ spec:
       imagePullSecrets:
       - name: huawei-swr-image-pull-secret
       containers:
-      - args:
-        - --SECRETS_CONFIG=/etc/ods/secrets.yaml
-        - --KUBE_CONFIG=/etc/ods/openeuler-devops.conf
-        - --KUBE_NAMESPACE=openeuler-devops
-        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openeuler-devops/pods_monitor:new
+      - image: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openeuler-devops/pods_monitor:new
         imagePullPolicy: IfNotPresent
         name: pods-monitor
+        env:
+        - name: SECRETS_CONFIG
+          value: "/etc/ods/secrets.yaml"
+        - name: KUBE_CONFIG
+          value: "/etc/ods/openeuler-devops.conf"
+        - name: KUBE_NAMESPACE
+          value: "openeuler-devops"
         resources:
           limits:
             cpu: 500m
