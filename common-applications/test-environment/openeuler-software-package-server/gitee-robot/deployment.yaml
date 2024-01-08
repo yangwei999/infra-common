@@ -58,6 +58,11 @@ spec:
             secretKeyRef:
               name: software-pkg-secret
               key: kafka_address
+        - name: KAFKA_VERSION
+          valueFrom:
+            secretKeyRef:
+              name: software-pkg-secret
+              key: kafka_version
         - name: MAINTAINER_EMAIL
           valueFrom:
             secretKeyRef:
@@ -108,6 +113,16 @@ spec:
             secretKeyRef:
               name: software-pkg-secret
               key: robot_merge_pr_token
+        - name: APP_ID
+          valueFrom:
+            secretKeyRef:
+              name: software-pkg-secret
+              key: app_id
+        - name: APP_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: software-pkg-secret
+              key: app_secret
         volumeMounts:
         - mountPath: /opt/app/config/config.yaml
           name: robot-configmap

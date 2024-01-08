@@ -1,7 +1,7 @@
 # StatefulSet for mail core service
 ---
 kind: StatefulSet
-apiVersion: apps/v1beta1
+apiVersion: apps/v1
 metadata:
   name: mailman-core
   namespace: mail
@@ -11,6 +11,8 @@ metadata:
 spec:
   serviceName: mail-suit-service
   replicas: 1
+  updateStrategy:
+    type: RollingUpdate
   selector:
     matchLabels:
       app: mail-suit-service

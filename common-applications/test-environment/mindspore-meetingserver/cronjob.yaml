@@ -14,8 +14,10 @@ spec:
           annotations:
             vault.hashicorp.com/agent-inject: 'true'
             vault.hashicorp.com/role: 'mindspore-meeting'
-            vault.hashicorp.com/agent-inject-perms-secrets.yaml: "0600"
-            vault.hashicorp.com/agent-inject-perms-ca.pem: "0600"
+            vault.hashicorp.com/agent-inject-perms-secrets.yaml: "0400"
+            vault.hashicorp.com/agent-inject-perms-ca.pem: "0400"
+            vault.hashicorp.com/agent-inject-perms-server.crt: "0400"
+            vault.hashicorp.com/agent-inject-perms-server.key: "0400"
             vault.hashicorp.com/agent-run-as-user: "1000"
             vault.hashicorp.com/agent-inject-secret-secrets.yaml: 'internal/data/infra-test/mindspore-meeting'
             vault.hashicorp.com/agent-pre-populate-only: "true"
@@ -27,6 +29,16 @@ spec:
             vault.hashicorp.com/agent-inject-template-ca.pem: |  
               {{- with secret "internal/data/infra-test/mindspore-meeting" -}}  
               {{ .Data.data.MysqlCA }}
+              {{- end }}
+            vault.hashicorp.com/agent-inject-secret-server.crt: 'internal/data/infra-test/mindspore-meeting'
+            vault.hashicorp.com/agent-inject-template-server.crt: |  
+              {{- with secret "internal/data/infra-test/mindspore-meeting" -}}  
+              {{ .Data.data.servercrt }}
+              {{- end }}
+            vault.hashicorp.com/agent-inject-secret-server.key: 'internal/data/infra-test/mindspore-meeting'
+            vault.hashicorp.com/agent-inject-template-server.key: |  
+              {{- with secret "internal/data/infra-test/mindspore-meeting" -}}  
+              {{ .Data.data.serverkey }}
               {{- end }}
         spec:
           imagePullSecrets:
@@ -45,6 +57,10 @@ spec:
               value: /vault/secrets/secrets.yaml
             - name: MYSQL_TLS_PEM_PATH
               value: /vault/secrets/ca.pem
+            - name: TLS_CRT_PATH
+              value: /vault/secrets/server.crt
+            - name: TLS_KEY_PATH
+              value: /vault/secrets/server.key
             command:
               - /bin/sh
               - -c
@@ -65,8 +81,10 @@ spec:
           annotations:
             vault.hashicorp.com/agent-inject: 'true'
             vault.hashicorp.com/role: 'mindspore-meeting'
-            vault.hashicorp.com/agent-inject-perms-secrets.yaml: "0600"
-            vault.hashicorp.com/agent-inject-perms-ca.pem: "0600"
+            vault.hashicorp.com/agent-inject-perms-secrets.yaml: "0400"
+            vault.hashicorp.com/agent-inject-perms-ca.pem: "0400"
+            vault.hashicorp.com/agent-inject-perms-server.crt: "0400"
+            vault.hashicorp.com/agent-inject-perms-server.key: "0400"
             vault.hashicorp.com/agent-run-as-user: "1000"
             vault.hashicorp.com/agent-inject-secret-secrets.yaml: 'internal/data/infra-test/mindspore-meeting'
             vault.hashicorp.com/agent-pre-populate-only: "true"
@@ -78,6 +96,16 @@ spec:
             vault.hashicorp.com/agent-inject-template-ca.pem: |  
               {{- with secret "internal/data/infra-test/mindspore-meeting" -}}  
               {{ .Data.data.MysqlCA }}
+              {{- end }}
+            vault.hashicorp.com/agent-inject-secret-server.crt: 'internal/data/infra-test/mindspore-meeting'
+            vault.hashicorp.com/agent-inject-template-server.crt: |  
+              {{- with secret "internal/data/infra-test/mindspore-meeting" -}}  
+              {{ .Data.data.servercrt }}
+              {{- end }}
+            vault.hashicorp.com/agent-inject-secret-server.key: 'internal/data/infra-test/mindspore-meeting'
+            vault.hashicorp.com/agent-inject-template-server.key: |  
+              {{- with secret "internal/data/infra-test/mindspore-meeting" -}}  
+              {{ .Data.data.serverkey }}
               {{- end }}
         spec:
           imagePullSecrets:
@@ -96,6 +124,10 @@ spec:
               value: /vault/secrets/secrets.yaml
             - name: MYSQL_TLS_PEM_PATH
               value: /vault/secrets/ca.pem
+            - name: TLS_CRT_PATH
+              value: /vault/secrets/server.crt
+            - name: TLS_KEY_PATH
+              value: /vault/secrets/server.key
             command:
               - /bin/sh
               - -c
@@ -117,8 +149,10 @@ spec:
           annotations:
             vault.hashicorp.com/agent-inject: 'true'
             vault.hashicorp.com/role: 'mindspore-meeting'
-            vault.hashicorp.com/agent-inject-perms-secrets.yaml: "0600"
-            vault.hashicorp.com/agent-inject-perms-ca.pem: "0600"
+            vault.hashicorp.com/agent-inject-perms-secrets.yaml: "0400"
+            vault.hashicorp.com/agent-inject-perms-ca.pem: "0400"
+            vault.hashicorp.com/agent-inject-perms-server.crt: "0400"
+            vault.hashicorp.com/agent-inject-perms-server.key: "0400"
             vault.hashicorp.com/agent-run-as-user: "1000"
             vault.hashicorp.com/agent-inject-secret-secrets.yaml: 'internal/data/infra-test/mindspore-meeting'
             vault.hashicorp.com/agent-pre-populate-only: "true"
@@ -130,6 +164,16 @@ spec:
             vault.hashicorp.com/agent-inject-template-ca.pem: |  
               {{- with secret "internal/data/infra-test/mindspore-meeting" -}}  
               {{ .Data.data.MysqlCA }}
+              {{- end }}
+            vault.hashicorp.com/agent-inject-secret-server.crt: 'internal/data/infra-test/mindspore-meeting'
+            vault.hashicorp.com/agent-inject-template-server.crt: |  
+              {{- with secret "internal/data/infra-test/mindspore-meeting" -}}  
+              {{ .Data.data.servercrt }}
+              {{- end }}
+            vault.hashicorp.com/agent-inject-secret-server.key: 'internal/data/infra-test/mindspore-meeting'
+            vault.hashicorp.com/agent-inject-template-server.key: |  
+              {{- with secret "internal/data/infra-test/mindspore-meeting" -}}  
+              {{ .Data.data.serverkey }}
               {{- end }}
         spec:
           imagePullSecrets:
@@ -148,6 +192,10 @@ spec:
               value: /vault/secrets/secrets.yaml
             - name: MYSQL_TLS_PEM_PATH
               value: /vault/secrets/ca.pem
+            - name: TLS_CRT_PATH
+              value: /vault/secrets/server.crt
+            - name: TLS_KEY_PATH
+              value: /vault/secrets/server.key
             command:
               - /bin/sh
               - -c

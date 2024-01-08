@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: etcd-own-service
+  namespace: openeuler-devops
+spec:
+  ports:
+    - name: client
+      port: 2379
+      targetPort: client
+    - name: peer
+      port: 2380
+      targetPort: peer
+  selector:
+    app: etcd-own
+  type: ClusterIP

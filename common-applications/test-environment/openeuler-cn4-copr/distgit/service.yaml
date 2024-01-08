@@ -12,3 +12,23 @@ spec:
   selector:
     component: copr-distgit
   type: ClusterIP
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: copr-distgit-loadbalencer
+  namespace: fedora-copr
+  annotations:
+    kubernetes.io/elb.id: cf263846-8adc-4b11-acf2-6108d1a5247d
+    kubernetes.io/elb.class: union
+    kubernetes.io/elb.lb-algorithm: ROUND_ROBIN
+spec:
+  ports:
+  - name: http
+    port: 5001
+    protocol: TCP
+    targetPort: 5001
+  selector:
+    component: copr-distgit
+  type: LoadBalancer

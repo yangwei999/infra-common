@@ -1,0 +1,111 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: etcd-deployment
+  namespace: openeuler-devops
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: etcd-own
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        vault.hashicorp.com/agent-inject: 'true'
+        vault.hashicorp.com/agent-pre-populate-only: "true"
+        vault.hashicorp.com/role: 'openeuler-devops'
+        vault.hashicorp.com/agent-run-as-user: "1000"
+        vault.hashicorp.com/agent-run-as-group: "1000"
+        vault.hashicorp.com/secret-volume-path: "/etc/ods/"
+        vault.hashicorp.com/agent-inject-secret-etcd_client.crt: 'internal/data/infra-test/openeuler-devops'
+        vault.hashicorp.com/agent-inject-perms-etcd_client.crt: "0400"
+        vault.hashicorp.com/agent-inject-template-etcd_client.crt: |  
+          {{- with secret "internal/data/infra-test/openeuler-devops" -}}  
+          {{ .Data.data.etcdCrt }}
+          {{- end }}
+        vault.hashicorp.com/agent-inject-secret-etcd_client.key: 'internal/data/infra-test/openeuler-devops'
+        vault.hashicorp.com/agent-inject-perms-etcd_client.key: "0400"
+        vault.hashicorp.com/agent-inject-template-etcd_client.key: |  
+          {{- with secret "internal/data/infra-test/openeuler-devops" -}}  
+          {{ .Data.data.etcdKey }}
+          {{- end }}
+        vault.hashicorp.com/agent-inject-secret-etcd_ca.crt: 'internal/data/infra-test/openeuler-devops'
+        vault.hashicorp.com/agent-inject-perms-etcd_ca.crt: "0400"
+        vault.hashicorp.com/agent-inject-template-etcd_ca.crt: |  
+          {{- with secret "internal/data/infra-test/openeuler-devops" -}}  
+          {{ .Data.data.etcdCA }}
+          {{- end }}
+        vault.hashicorp.com/agent-inject-secret-etcd_peer.crt: 'internal/data/infra-test/openeuler-devops'
+        vault.hashicorp.com/agent-inject-perms-etcd_peer.crt: "0400"
+        vault.hashicorp.com/agent-inject-template-etcd_peer.crt: |  
+          {{- with secret "internal/data/infra-test/openeuler-devops" -}}  
+          {{ .Data.data.etcdPeerCrt }}
+          {{- end }}
+        vault.hashicorp.com/agent-inject-secret-etcd_peer.key: 'internal/data/infra-test/openeuler-devops'
+        vault.hashicorp.com/agent-inject-perms-etcd_peer.key: "0400"
+        vault.hashicorp.com/agent-inject-template-etcd_peer.key: |  
+          {{- with secret "internal/data/infra-test/openeuler-devops" -}}  
+          {{ .Data.data.etcdPeerKey }}
+          {{- end }}
+        vault.hashicorp.com/agent-inject-secret-etcd.yaml: 'internal/data/infra-test/openeuler-devops'
+        vault.hashicorp.com/agent-inject-perms-etcd.yaml: "0400"
+        vault.hashicorp.com/agent-inject-template-etcd.yaml: |  
+          {{- with secret "internal/data/infra-test/openeuler-devops" -}}  
+          {{ .Data.data.etcdConfig }}
+          {{- end }}
+      labels:
+        app: etcd-own
+    spec:
+      serviceAccount: openeuler-devops
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
+      containers:
+      - image: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openeuler-devops/etcd:new
+        imagePullPolicy: IfNotPresent 
+        name: etcd-own
+        env:
+        - name: ETCD_UNSUPPORTED_ARCH
+          value: arm64
+        - name: ETCD_CONFIG_FILE
+          value: "/etc/ods/etcd.yaml"
+        resources:
+          limits:
+            cpu: 500m
+            memory: 500Mi
+          requests:
+            cpu: 500m
+            memory: 500Mi
+        ports:
+          - name: client
+            containerPort: 2379
+            protocol: TCP
+          - name: peer
+            containerPort: 2380
+            protocol: TCP
+        livenessProbe:
+          failureThreshold: 3
+          initialDelaySeconds: 20
+          periodSeconds: 10
+          successThreshold: 1
+          tcpSocket:
+            port: 2379
+          timeoutSeconds: 5
+        readinessProbe:
+          failureThreshold: 3
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          successThreshold: 1
+          tcpSocket:
+            port: 2379
+          timeoutSeconds: 5
+        volumeMounts:
+        - mountPath: /data
+          name: data-volume
+      volumes:
+      - name: data-volume
+        persistentVolumeClaim:
+          claimName: etcd-data-volume

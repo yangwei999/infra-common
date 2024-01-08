@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gateway-deployment
+  namespace: openeuler-software-pkg
+spec:
+  selector:
+    matchLabels:
+      app: gateway
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        vault.hashicorp.com/agent-inject: 'true'
+        vault.hashicorp.com/agent-pre-populate-only: "true"
+        vault.hashicorp.com/agent-run-as-user: "1000"
+        vault.hashicorp.com/agent-run-as-group: "1000"
+        vault.hashicorp.com/role: 'openeuler-software-pkg-gateway'
+        vault.hashicorp.com/agent-inject-secret-config.yml: 'internal/data/infra-test/openeuler-software-pkg-gateway'
+        vault.hashicorp.com/agent-inject-perms-config.yml: "0400"
+        vault.hashicorp.com/agent-inject-template-config.yml: |  
+          {{- with secret "internal/data/infra-test/openeuler-software-pkg-gateway" -}}  
+          {{ .Data.data.config }}
+          {{- end }}
+      labels:
+        app: gateway
+    spec:
+      serviceAccount: openeuler-software-pkg
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
+      containers:
+      - image: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/software-package-gateway-test:main-7d3dc0
+        imagePullPolicy: IfNotPresent
+        args:
+        - --config-file=/vault/secrets/config.yml
+        name: gateway
+        resources:
+          limits:
+            cpu: 500m
+            memory: 500Mi
+          requests:
+            cpu: 500m
+            memory: 500Mi

@@ -1,12 +1,9 @@
 resources:
 - namespace.yaml
-- ingress.yaml
 - service.yaml
 - deployment.yaml
-- secret.yaml
 - autoscaler.yaml
-commonLabels:
-  app: opengauss-website
+- sa.yaml
 namespace: opengauss-website
 commonAnnotations:
   kubernetes.ops.cluster: test
@@ -18,4 +15,5 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/opengauss/test_opengauss_website
-  newTag: v2-fddcbc
+  newName: swr.ap-southeast-1.myhuaweicloud.com/infra-hk/opengauss/test_opengauss_website
+  newTag: v2_meeting_test-cc869c

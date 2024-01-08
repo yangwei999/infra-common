@@ -1,13 +1,11 @@
 resources:
-- ingress.yaml
 - service.yaml
 - deployment.yaml
 - autoscaler.yaml
-- secret.yaml
 namespace: opengauss-website-revision
 commonAnnotations:
   kubernetes.ops.cluster: test
-  kubernetes.ops.email: ilong8@qq.com
+  kubernetes.ops.email: ""
   kubernetes.ops.os.base: openeuler
   kubernetes.ops.owner: ailong
   kubernetes.ops.region: hk
@@ -15,4 +13,4 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/opengauss/website-revision-test
-  newTag: v1.0.20231114181819
+  newTag: v1.0.20231208183241

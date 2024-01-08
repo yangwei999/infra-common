@@ -1,0 +1,17 @@
+resources:
+- deployment.yaml
+- secrets.yaml
+- ingress.yaml
+- service.yaml
+- namespace.yaml
+namespace: om-webserver-test
+commonLabels:
+  common-app: om-webserver
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+images:
+- name: swr.cn-north-4.myhuaweicloud.com/om/om-webserver
+  newName: swr.cn-north-4.myhuaweicloud.com/om/om-webserver-test
+  newTag: oneid-webserver-41f8dc
+- name: swr.cn-north-4.myhuaweicloud.com/om/om-webserver-test
+  newTag: test-pwd-72d14c

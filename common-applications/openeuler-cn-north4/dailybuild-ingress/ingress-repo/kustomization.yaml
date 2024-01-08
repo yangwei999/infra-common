@@ -1,0 +1,15 @@
+resources:
+  - ../ingress-repo-base
+commonLabels:
+  app: openeuler-cn4-ingress-dailybuild
+namespace: ingress-nginx-dailybuild
+commonAnnotations:
+  kubernetes.ops.cluster: openeuler-x86-cn4-cluster
+  kubernetes.ops.email: ""
+  kubernetes.ops.os.base: Alpine
+  kubernetes.ops.owner: liuyang
+  kubernetes.ops.region: beijing
+patchesStrategicMerge:
+  - service.yaml
+  - deployment.yaml
+  - tcp_configmap.yaml

@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: om-webserver-sh
+  namespace: om-webserver-test-sh
+  labels:
+    app: om-webserver-sh
+spec:
+  replicas: 2
+  revisionHistoryLimit: 10
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: om-webserver-sh
+  template:
+    metadata:
+      labels:
+        app: om-webserver-sh
+    spec:
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
+      containers:
+        - name: om-webserver-sh
+          image: swr.cn-north-4.myhuaweicloud.com/om/om-webserver-test:test-pwd-8a3648
+          env:
+          - name: APPLICATION_PATH
+            value: "/var/lib/om-webserver/application.properties"
+          resources:
+            limits:
+              cpu: 1000m
+              memory: 2000Mi
+            requests:
+              cpu: 500m
+              memory: 1000Mi
+          livenessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 20
+            periodSeconds: 10
+            successThreshold: 1
+            tcpSocket:
+              port: 8080
+            timeoutSeconds: 5
+          readinessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            successThreshold: 1
+            tcpSocket:
+              port: 8080
+            timeoutSeconds: 5
+          ports:
+            - containerPort: 8080
+              name: om-webserver-sh
+          volumeMounts:
+            - mountPath: /var/lib/om-webserver/application.properties
+              subPath: application_properties
+              name: om-webserver-secrets-volume
+      volumes:
+        - name: om-webserver-secrets-volume
+          secret:
+            secretName: om-webserver-secrets

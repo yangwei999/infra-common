@@ -5,7 +5,7 @@ metadata:
   name: dbgpt-deployment
   namespace: dbgpt
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: dbgpt
@@ -30,7 +30,6 @@ spec:
       nodeSelector:
         autoscaler: "true"
       serviceAccountName: dbgpt
-      restartPolicy: Never
       containers:
       - image: swr.ap-southeast-1.myhuaweicloud.com/infra-hk/dbgpt:f8e44fa15dd084d84ee524c4dcbe80dd53e8408b
         imagePullPolicy: Always
@@ -38,16 +37,14 @@ spec:
         env:
         - name: APPLICATION_PATH
           value: /vault/secrets/config.ini
-        - name: LLM_MODEL
-          value: baichuan-13b
         ports:
         - containerPort: 8000
           name: http
           protocol: TCP
         resources:
           requests:
-            cpu: 1000m
-            memory: 1000Mi
+            cpu: 2000m
+            memory: 2000Mi
           limits:
             cpu: 2000m
             memory: 2000Mi

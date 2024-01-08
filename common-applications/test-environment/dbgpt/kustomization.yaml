@@ -4,7 +4,6 @@ resources:
 - ingress.yaml
 - secrets.yaml
 - service.yaml
-- autoscaler.yaml
 commonAnnotations:
   kubernetes.ops.cluster: test
   kubernetes.ops.email: ""
@@ -16,4 +15,4 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: swr.ap-southeast-1.myhuaweicloud.com/infra-hk/dbgpt
-  newTag: 74c69bb0daae8ed450825a7ecdd9438135c4a538
+  newTag: ea965c15d6a7d386c080b5522d3fc402ec9a9171

@@ -18,8 +18,8 @@ spec:
       - command:
         - /bin/sh
         - -c
-        - 'chmod 550 /home/resalloc/provision/local-delete /home/resalloc/provision/local-new-x86
-          /home/resalloc/provision/local-new-aarch64 /home/resalloc/provision/check-pod; install -m 400 /root/.ssh/id_rsa-ro
+        - 'chmod 550 /home/resalloc/provision/local-* /home/resalloc/provision/check-pod;
+          install -m 400 /root/.ssh/id_rsa-ro
           /root/.ssh/id_rsa; ln -sf /dev/stdout /var/log/resallocserver/main.log;
           exec /usr/bin/resalloc-server; '
         env:
@@ -43,6 +43,23 @@ spec:
           value: /var/lib/mock
         - name: BUILDER_PVC_LABEL0
           value: failure-domain.beta.kubernetes.io/zone=cn-north-4a
+        - name: KUBECONFIG
+          value: /etc/resallocserver/.kubeconfig
+        - name: IAM_DOMAIN
+          valueFrom:
+            secretKeyRef:
+              key: IAM_DOMAIN
+              name: copr-secrets
+        - name: IAM_USER
+          valueFrom:
+            secretKeyRef:
+              key: IAM_USER
+              name: copr-secrets
+        - name: IAM_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: IAM_PASSWORD
+              name: copr-secrets
         image: swr.cn-north-4.myhuaweicloud.com/opensourceway/copr/resalloc-test:v1.0.20230310170217
         imagePullPolicy: IfNotPresent
         livenessProbe:
@@ -76,6 +93,9 @@ spec:
         - mountPath: /root/.ssh/builder_config
           name: copr-resalloc
           subPath: builder_config
+        - mountPath: /home/resalloc/provision/ecs_servers.yaml
+          name: copr-resalloc
+          subPath: ecs_servers.yaml
         - mountPath: /var/lib/resallocserver
           name: resalloc-data
         - mountPath: /var/log/resallocserver

@@ -13,3 +13,23 @@ spec:
     app: meetingserver
   sessionAffinity: None
   type: ClusterIP
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: meeting-service-loadbalencer
+  namespace: mindspore-meetingserver
+  annotations:
+    kubernetes.io/elb.id: 7d0b9a1f-dfb6-407c-92be-9d0427df6709
+    kubernetes.io/elb.class: union
+    kubernetes.io/elb.lb-algorithm: ROUND_ROBIN
+spec:
+  ports:
+  - name: httpsport
+    protocol: TCP
+    port: 8080
+    targetPort: 8080
+  selector:
+    app: meetingserver
+  type: LoadBalancer

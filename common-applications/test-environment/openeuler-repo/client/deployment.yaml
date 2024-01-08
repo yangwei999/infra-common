@@ -1,0 +1,75 @@
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: repo-client
+  namespace: openeuler-repo-mirror
+spec:
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: repo
+  template:
+    metadata:
+      labels:
+        app: repo
+    spec:
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
+      nodeSelector:
+        autoscaler: "true"
+      containers:
+      - name: nginx
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/nginx-extras:1.24.0-22.03-lts-sp1-fancy-test
+        volumeMounts:
+        - mountPath: /repo/openeuler
+          name: data-volume
+        resources:
+          requests:
+            cpu: 500m
+            memory: 1000Mi
+          limits:
+            cpu: 500m
+            memory: 1000Mi
+        readinessProbe:
+          tcpSocket:
+            port: 8080
+          initialDelaySeconds: 10
+          failureThreshold: 3
+          successThreshold: 1
+          periodSeconds: 10
+          timeoutSeconds: 5
+        livenessProbe:
+          tcpSocket:
+            port: 8080
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          successThreshold: 1
+          failureThreshold: 3
+          timeoutSeconds: 5
+      - name: rsync-client
+        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/repo-client:rsync-22.03-lts-sp1-20240104
+        volumeMounts:
+        - mountPath: /repo/openeuler
+          name: data-volume
+        env:
+          - name: TARGET_DIR
+            value: "/repo/openeuler/openEuler-22.09/"
+          - name: RSYNC_INTERNAL
+            value: "600"
+          - name: SYNC_HOST
+            value: "rsync://root@mirrors.nju.edu.cn/openeuler/openEuler-22.09/"
+          - name: ADDITIONAL_PARAMETERS
+            value: "--delete"
+        resources:
+          requests:
+            cpu: 500m
+            memory: 1000Mi
+          limits:
+            cpu: 500m
+            memory: 1000Mi
+      volumes:
+      - name: data-volume
+        persistentVolumeClaim:
+          claimName: openeuler-repo-mirror-data-volume
