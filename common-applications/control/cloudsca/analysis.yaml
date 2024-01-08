@@ -58,7 +58,7 @@ spec:
             memory: 2G
           limits:
             cpu: 1000m
-            memory: 4G
+            memory: 2G
         volumeMounts:
         - mountPath: /work/work.ks
           name: secret-volume
