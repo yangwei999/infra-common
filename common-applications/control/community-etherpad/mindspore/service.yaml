@@ -13,3 +13,23 @@ spec:
     app: control-etherpad
   sessionAffinity: None
   type: ClusterIP
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: etherpad-lite-loadbalencer
+  namespace: mindspore-etherpad
+  annotations:
+    kubernetes.io/elb.id: 80487e4f-bb81-4629-950b-3218542189f3
+    kubernetes.io/elb.class: union
+    kubernetes.io/elb.lb-algorithm: ROUND_ROBIN
+spec:
+  ports:
+  - name: ether-http
+    port: 9001
+    protocol: TCP
+    targetPort: 9001
+  selector:
+    app: control-etherpad-v2
+  type: LoadBalancer
