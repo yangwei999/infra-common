@@ -1,9 +1,9 @@
+---
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   annotations:
     kubernetes.io/ingress.class: repo-nginx
-    cert-manager.io/cluster-issuer: letsencrypt-prod
     nginx.ingress.kubernetes.io/cors-allow-credentials: "false"
     nginx.ingress.kubernetes.io/server-snippet: |
       location ^~ /admin {
@@ -12,7 +12,7 @@ metadata:
       location ^~ /stats {
         deny all;
       }
-  name: mindspore-ingress
+  name: mindspore-etherpad-v2-ingress
   namespace: mindspore-etherpad
 spec:
   rules:
@@ -20,10 +20,10 @@ spec:
     http:
       paths:
       - backend:
-          serviceName: etherpad-lite
-          servicePort: 80
+          serviceName: etherpad-lite-loadbalencer
+          servicePort: 9001
         path: /
   tls:
   - hosts:
     - etherpad.mindspore.cn
-    secretName: etherpad-mindspore-tls
+    secretName: etherpad-mindspore-v2-tls

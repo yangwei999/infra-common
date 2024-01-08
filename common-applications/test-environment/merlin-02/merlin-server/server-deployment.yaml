@@ -1,0 +1,83 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: server-deployment
+  namespace: merlin-02
+spec:
+  selector:
+    matchLabels:
+      app: server
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        vault.hashicorp.com/agent-inject: 'true'
+        vault.hashicorp.com/role: 'merlin-sh'
+        vault.hashicorp.com/agent-inject-secret-compose-config.yml: 'internal/data/infra-test/merlin-sh'
+        vault.hashicorp.com/agent-inject-secret-redis.crt: 'internal/data/infra-test/merlin-sh'
+        vault.hashicorp.com/agent-inject-secret-mongodb.crt: 'internal/data/infra-test/merlin-sh'
+        vault.hashicorp.com/agent-inject-secret-pqsql.crt: 'internal/data/infra-test/merlin-sh'
+        vault.hashicorp.com/agent-pre-populate-only: "true"
+        vault.hashicorp.com/agent-inject-perms-compose-config.yml: "0400"
+        vault.hashicorp.com/agent-inject-perms-redis.crt: "0400"
+        vault.hashicorp.com/agent-inject-perms-mongodb.crt: "0400"
+        vault.hashicorp.com/agent-inject-perms-pqsql.crt: "0400"
+        vault.hashicorp.com/agent-run-as-user: "1000"
+        vault.hashicorp.com/agent-run-as-group: "1000"
+        vault.hashicorp.com/agent-inject-template-compose-config.yml: |  
+          {{- with secret "internal/data/infra-test/merlin-sh" -}}  
+          {{ .Data.data.application }}
+          {{- end }}
+        vault.hashicorp.com/agent-inject-template-redis.crt: |  
+          {{- with secret "internal/data/infra-test/merlin-sh" -}}  
+          {{ .Data.data.redisCA }}
+          {{- end }}
+        vault.hashicorp.com/agent-inject-template-mongodb.crt: |  
+          {{- with secret "internal/data/infra-test/merlin-sh" -}}  
+          {{ .Data.data.mongodb }}
+          {{- end }}
+        vault.hashicorp.com/agent-inject-template-pqsql.crt: |  
+          {{- with secret "internal/data/infra-test/merlin-sh" -}}  
+          {{ .Data.data.pqsqlCA }}
+          {{- end }}
+      labels:
+        app: server
+    spec:
+      serviceAccount: merlin
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
+      containers:
+      - image: swr.cn-north-4.myhuaweicloud.com/opensourceway/gitea/merlin-server-test:main-1a1436
+        imagePullPolicy: IfNotPresent        
+        args:
+        - --port=8080
+        - --config-file=/vault/secrets/compose-config.yml
+        - --enable_debug=true
+        - --rm-cfg=false
+        livenessProbe:
+          failureThreshold: 3
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          successThreshold: 1
+          tcpSocket:
+            port: 8080
+          timeoutSeconds: 5
+        name: server
+        readinessProbe:
+          failureThreshold: 3
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          successThreshold: 1
+          tcpSocket:
+            port: 8080
+          timeoutSeconds: 5
+        resources:
+          limits:
+            cpu: 500m
+            memory: 500Mi
+          requests:
+            cpu: 500m
+            memory: 500Mi

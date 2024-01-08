@@ -1,0 +1,18 @@
+resources:
+- service.yaml
+- deployment.yaml
+- autoscaler.yaml
+commonLabels:
+  app: merlin-website
+namespace: merlin
+commonAnnotations:
+  kubernetes.ops.cluster: test
+  kubernetes.ops.email: ""
+  kubernetes.ops.os.base: openeuler
+  kubernetes.ops.owner: gongzhuangbang
+  kubernetes.ops.region: shanghai
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+images:
+- name: swr.cn-north-4.myhuaweicloud.com/opensourceway/gitea/merlin-website-test
+  newTag: main-8e6965

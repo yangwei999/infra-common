@@ -26,6 +26,9 @@ spec:
           volumeMounts:
             - mountPath: /home/patches
               name: patchwork-file-volume
+            - mountPath: /home/patchwork/patchwork/repositories_branches_map.yaml
+              name: patchwork-configmap
+              subPath: repositories_branches_map.yaml
           resources:
             requests:
               cpu: 2000m
@@ -159,6 +162,16 @@ spec:
                 secretKeyRef:
                   key: OPENEULER_KERNEL_PASS
                   name: patchwork-secrets
+            - name: IMAP_SERVER
+              valueFrom:
+                secretKeyRef:
+                  key: IMAP_SERVER
+                  name: patchwork-secrets
+            - name: IMAP_PORT
+              valueFrom:
+                secretKeyRef:
+                  key: IMAP_PORT
+                  name: patchwork-secrets
           command:
             - /bin/sh
             - -c
@@ -191,3 +204,7 @@ spec:
         - name: patchwork-file-volume
           persistentVolumeClaim:
             claimName: patchwork-file-data
+        - configMap:
+            defaultMode: 420
+            name: patchwork-configmap
+          name: patchwork-configmap

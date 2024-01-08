@@ -7,7 +7,7 @@ commonAnnotations:
   kubernetes.ops.region: hk
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/certificate-center-test
-  newTag: master-b18c7c
+  newTag: master-05dc93
 kind: Kustomization
 namespace: openeuler-ccs
 resources:

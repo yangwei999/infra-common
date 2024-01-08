@@ -12,3 +12,23 @@ spec:
   selector:
     component: copr-frontend
   type: ClusterIP
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: copr-frontend-loadbalencer
+  namespace: fedora-copr
+  annotations:
+    kubernetes.io/elb.id: a9b4803a-007a-41ec-a8a7-242de0d78692
+    kubernetes.io/elb.class: union
+    kubernetes.io/elb.lb-algorithm: ROUND_ROBIN
+spec:
+  ports:
+  - name: http
+    port: 5000
+    protocol: TCP
+    targetPort: 5000
+  selector:
+    component: copr-frontend
+  type: LoadBalancer

@@ -5,37 +5,26 @@ metadata:
   namespace: openeuler-software-pkg
 data:
   config.yaml: |
-    mq:
+    kafka:
       address: "${KAFKA_ADDRESS}"
+      version: "${KAFKA_VERSION}"
     message_server:
       group: software-package-github-server
       topics:
-        new_pkg: software_pkg_indirectly_approved_test
+        push_code: software_pkg_initialized_test
       message:
         topics_to_notify:
-          created_repo: software_pkg_repo_created_test
-          pushed_code: software_pkg_code_saved_test
-    encryption:
-      encryption_key: "${ENCRYPTION_KEY}"
-    repo:
-      org: orgfsdfsd123
+          pushed_code: software_pkg_repo_code_pushed_test
     code:
       robot:
         username: "${GITHUB_ROBOT_USERNAME}"
         token: "${GITHUB_ROBOT_TOKEN}"
-      org: orgfsdfsd123
+      org: src-openeuler
       ci_repo:
-        repo: test
-        link: https://gitee.com/weiwei123444/test.git
-    postgresql:
-      table:
-        software_pkg_pr: software_pkg_watch_github
-      db:
-        host: "${DB_HOST}"
-        port: 5432
-        user: "${DB_USER}"
-        pwd: "${DB_PWD}"
-        name: "${DB_NAME}"
-        life: 2
-        max_conn: 500
-        max_idle: 250
+        repo: software-package-server
+        link: https://gitee.com/weiwei123444/software-package-server
+    om_api:
+      app_id: "${APP_ID}"
+      app_secret: "${APP_SECRET}"
+      token_endpoint: https://omapi.osinfra.cn/oneid/manager/token
+      user_endpoint: https://omapi.osinfra.cn/oneid/manager/getuserinfo?username=

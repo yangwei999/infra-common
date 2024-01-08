@@ -9,7 +9,6 @@ commonAnnotations:
 namespace: community-summary
 resources:
 - openeuler-summary-deployment.yaml
-- openeuler-summary-ingress.yaml
 - openeuler-summary-service.yaml
 - oauth-proxy.yaml
 - autoscaler.yaml

@@ -2,9 +2,7 @@ resources:
 - deployment.yaml
 - namespace.yaml
 - service.yaml
-- ingress.yaml
 - autoscaler.yaml
-- secret.yaml
 commonAnnotations:
   kubernetes.ops.cluster: test
   kubernetes.ops.email: ""
@@ -16,4 +14,4 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: swr.ap-southeast-1.myhuaweicloud.com/infra-hk/mindspore-website-test
-  newTag: v1.0.20231028182141
+  newTag: v1.0.20231211161054

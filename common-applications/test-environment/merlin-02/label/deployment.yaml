@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: label
+  namespace: merlin-02
+spec:
+  selector:
+    matchLabels:
+      app: label
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        vault.hashicorp.com/agent-inject: 'true'
+        vault.hashicorp.com/role: 'merlin-sh'
+        vault.hashicorp.com/agent-inject-secret-label.yml: 'internal/data/infra-test/merlin-sh'
+        vault.hashicorp.com/agent-inject-secret-pqsql.crt: 'internal/data/infra-test/merlin-sh'
+        vault.hashicorp.com/agent-pre-populate-only: "true"
+        vault.hashicorp.com/agent-inject-perms-label.yml: "0400"
+        vault.hashicorp.com/agent-inject-perms-pqsql.crt: "0400"
+        vault.hashicorp.com/agent-run-as-user: "1000"
+        vault.hashicorp.com/agent-run-as-group: "1000"
+        vault.hashicorp.com/agent-inject-template-label.yml: |  
+          {{- with secret "internal/data/infra-test/merlin-sh" -}}  
+          {{ .Data.data.label }}
+          {{- end }}
+        vault.hashicorp.com/agent-inject-template-pqsql.crt: |  
+          {{- with secret "internal/data/infra-test/merlin-sh" -}}  
+          {{ .Data.data.pqsqlCA }}
+          {{- end }}
+      labels:
+        app: label
+    spec:
+      serviceAccount: merlin
+      imagePullSecrets:
+      - name: huawei-swr-image-pull-secret
+      containers:
+      - image: swr.cn-north-4.myhuaweicloud.com/opensourceway/gitea/merlin-label-test:main-c0cf46
+        imagePullPolicy: IfNotPresent        
+        args:
+        - --config-file=/vault/secrets/label.yml
+        name: server
+        resources:
+          limits:
+            cpu: 500m
+            memory: 500Mi
+          requests:
+            cpu: 500m
+            memory: 500Mi

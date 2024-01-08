@@ -7,7 +7,7 @@ commonAnnotations:
   kubernetes.ops.region: hk
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/aigc/pr-review-test
-  newTag: master-eb1807
+  newTag: master-cba359
 kind: Kustomization
 namespace: aigc-pr-review
 resources:
@@ -15,5 +15,4 @@ resources:
 - server-ingress.yaml
 - server-service.yaml
 - server-deployment.yaml
-- autoscaler.yaml
 - secret.yaml

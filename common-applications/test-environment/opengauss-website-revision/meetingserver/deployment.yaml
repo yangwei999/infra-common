@@ -52,7 +52,7 @@ spec:
           value: /vault/secrets/secrets.yaml
         - name: XARMOR_CONF
           value: /work/app-meeting-server/xarmor_pyrasp.ini
-        image: swr.cn-north-4.myhuaweicloud.com/opensourceway/opengauss/meeting-server-test:v1.0.20221027152017
+        image: swr.ap-southeast-1.myhuaweicloud.com/infra-hk/openeuler/meetingserver:dev_merge_opengauss-3eec9a
         imagePullPolicy: IfNotPresent
         livenessProbe:
           failureThreshold: 3

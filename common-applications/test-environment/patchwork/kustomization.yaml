@@ -9,6 +9,7 @@ resources:
 - pvc.yaml
 - cronjob.yaml
 - autoscaler.yaml
+- configmap.yaml
 commonAnnotations:
   kubernetes.ops.cluster: test
   kubernetes.ops.email: shalldows@163.com
@@ -18,4 +19,4 @@ commonAnnotations:
 namespace: patchwork
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/patchwork/patchwork
-  newTag: test-adf44b9
+  newTag: test-7a6cfe6

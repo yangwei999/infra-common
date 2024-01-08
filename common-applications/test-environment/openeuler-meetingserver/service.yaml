@@ -13,3 +13,23 @@ spec:
     app: meetingserver
   sessionAffinity: None
   type: ClusterIP
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: meeting-service-loadbalencer
+  namespace: openeuler-meetingserver
+  annotations:
+    kubernetes.io/elb.id: f1b4106c-a3c4-4a0f-8a0f-1eb7eaf4c89f
+    kubernetes.io/elb.class: union
+    kubernetes.io/elb.lb-algorithm: ROUND_ROBIN
+spec:
+  ports:
+  - name: httpsport
+    protocol: TCP
+    port: 8080
+    targetPort: 8080
+  selector:
+    app: meetingserver
+  type: LoadBalancer

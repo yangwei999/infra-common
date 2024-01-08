@@ -47,11 +47,11 @@ spec:
               secretKeyRef:
                 name: sca-secret
                 key: majun_access_token
-          - name: scaSalt
+          - name: rootSalt
             valueFrom:
               secretKeyRef:
                 name: sca-secret
-                key: scaSalt
+                key: rootSalt
         resources:
           requests:
             cpu: 200m
@@ -60,13 +60,13 @@ spec:
             cpu: 2000m
             memory: 6G
         volumeMounts:
-        - mountPath: /work.ks
+        - mountPath: /work/work.ks
           name: secret-volume
           subPath: work_ks
-        - mountPath: /primary.ks
+        - mountPath: /primary/primary.ks
           name: secret-volume
           subPath: primary_ks
-        - mountPath: /standby.ks
+        - mountPath: /standby/standby.ks
           name: secret-volume
           subPath: standby_ks
       volumes:
