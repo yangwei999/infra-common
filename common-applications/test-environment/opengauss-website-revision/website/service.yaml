@@ -13,4 +13,25 @@ spec:
     app: website
   type: ClusterIP
 
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kubernetes.io/elb.class: union
+    kubernetes.io/elb.id: ba0ff4c6-2605-41c9-aaca-bf3795a695ee
+    kubernetes.io/elb.lb-algorithm: ROUND_ROBIN
+  name: website-loadbalencer
+  namespace: opengauss-website-revision
+spec:
+  externalTrafficPolicy: Cluster
+  ports:
+  - name: httpport
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: website
+  type: LoadBalancer
+
   
