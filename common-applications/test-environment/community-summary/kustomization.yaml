@@ -1,7 +1,7 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/common/oauth2-proxy
-  newTag: c94419415051abe9cf2988b22758fdc76cc8e750
+  newTag: 68d4f9665be4c4e88b42ee5950342184b27c4ee7
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/mindspore/summary-test
   newTag: v1.0.20231228142539
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/summary-test
