@@ -28,6 +28,24 @@ spec:
           {{- with secret "internal/data/infra-test/opengauss-meeting" -}}  
           {{ .Data.data.rasp }}
           {{- end }}
+        vault.hashicorp.com/agent-inject-perms-ca.pem: "0400"
+        vault.hashicorp.com/agent-inject-secret-ca.pem: 'internal/data/infra-test/opengauss-meeting'
+        vault.hashicorp.com/agent-inject-template-ca.pem: |  
+          {{- with secret "internal/data/infra-test/opengauss-meeting" -}}  
+          {{ .Data.data.MysqlCA }}
+          {{- end }}
+        vault.hashicorp.com/agent-inject-perms-server.crt: "0400"
+        vault.hashicorp.com/agent-inject-secret-server.crt: 'internal/data/infra-test/opengauss-meeting'
+        vault.hashicorp.com/agent-inject-template-server.crt: |  
+          {{- with secret "internal/data/infra-test/opengauss-meeting" -}}  
+          {{ .Data.data.serverCrt  }}
+          {{- end }}
+        vault.hashicorp.com/agent-inject-perms-server.key: "0400"
+        vault.hashicorp.com/agent-inject-secret-server.key: 'internal/data/infra-test/opengauss-meeting'
+        vault.hashicorp.com/agent-inject-template-server.key: |  
+          {{- with secret "internal/data/infra-test/opengauss-meeting" -}}  
+          {{ .Data.data.serverKey }}
+          {{- end }}
       labels:
         app: meetingserver
     spec:
@@ -52,6 +70,12 @@ spec:
           value: /vault/secrets/secrets.yaml
         - name: XARMOR_CONF
           value: /work/app-meeting-server/xarmor_pyrasp.ini
+        - name: MYSQL_TLS_PEM_PATH
+          value: /vault/secrets/ca.pem
+        - name: TLS_CRT_PATH
+          value: /vault/secrets/server.crt
+        - name: TLS_KEY_PATH
+          value: /vault/secrets/server.key
         image: swr.ap-southeast-1.myhuaweicloud.com/infra-hk/openeuler/meetingserver:dev_merge_opengauss-3eec9a
         imagePullPolicy: IfNotPresent
         livenessProbe:
