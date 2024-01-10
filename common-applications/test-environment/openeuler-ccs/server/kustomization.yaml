@@ -15,4 +15,4 @@ resources:
 - service.yaml
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/ccs-server-test
-  newTag: master-f6b076
+  newTag: master-cfd549
