@@ -8,7 +8,7 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
     nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
   name: gitea-repo-ingress
-  namespace: gitea-repo
+  namespace: gitea-repo-sh
 spec:
   tls:
     - hosts:
