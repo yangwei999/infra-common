@@ -12,10 +12,10 @@ metadata:
 spec:
   tls:
     - hosts:
-      - space.modelfoundry.test.osinfra.cn
+      - space-modelfoundry.test.osinfra.cn
       secretName: gitea-repo-sh-02-tls
   rules:
-    - host: space.modelfoundry.test.osinfra.cn
+    - host: space-modelfoundry.test.osinfra.cn
       http:
         paths:
         - path: /
