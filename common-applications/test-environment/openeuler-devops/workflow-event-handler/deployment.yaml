@@ -4,6 +4,7 @@ metadata:
   name: workflow-event-handler-deployment
   namespace: openeuler-devops
 spec:
+  replicas: 3
   selector:
     matchLabels:
       app: workflow-event-handler
@@ -53,6 +54,16 @@ spec:
       labels:
         app: workflow-event-handler
     spec:
+      affinity:
+        podAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - workflow-event-handler
+            topologyKey: kubernetes.io/hostname
       serviceAccount: openeuler-devops
       imagePullSecrets:
       - name: huawei-swr-image-pull-secret

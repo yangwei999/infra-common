@@ -75,7 +75,7 @@ spec:
   - ReadWriteOnce
   resources:
     requests:
-      storage: 1Gi
+      storage: 100Gi
   storageClassName: csi-disk
   volumeMode: Filesystem
 ---

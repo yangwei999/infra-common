@@ -4,6 +4,7 @@ metadata:
   name: event-selector-deployment
   namespace: openeuler-devops
 spec:
+  replicas: 3
   selector:
     matchLabels:
       app: event-selector
@@ -59,6 +60,16 @@ spec:
       labels:
         app: event-selector
     spec:
+      affinity:
+        podAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - event-selector
+            topologyKey: kubernetes.io/hostname
       serviceAccount: openeuler-devops
       imagePullSecrets:
       - name: huawei-swr-image-pull-secret

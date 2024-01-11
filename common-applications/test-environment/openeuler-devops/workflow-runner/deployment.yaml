@@ -4,6 +4,7 @@ metadata:
   name: workflow-runner-deployment
   namespace: openeuler-devops
 spec:
+  replicas: 3
   selector:
     matchLabels:
       app: workflow-runner
@@ -53,6 +54,16 @@ spec:
       labels:
         app: workflow-runner
     spec:
+      affinity:
+        podAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - workflow-runner
+            topologyKey: kubernetes.io/hostname
       serviceAccount: openeuler-devops
       imagePullSecrets:
       - name: huawei-swr-image-pull-secret

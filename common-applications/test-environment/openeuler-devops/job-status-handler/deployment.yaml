@@ -4,6 +4,7 @@ metadata:
   name: job-status-handler-deployment
   namespace: openeuler-devops
 spec:
+  replicas: 3
   selector:
     matchLabels:
       app: job-status-handler
@@ -59,6 +60,16 @@ spec:
       labels:
         app: job-status-handler
     spec:
+      affinity:
+        podAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - job-status-handler
+            topologyKey: kubernetes.io/hostname
       serviceAccount: openeuler-devops
       imagePullSecrets:
       - name: huawei-swr-image-pull-secret
