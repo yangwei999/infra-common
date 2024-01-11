@@ -19,4 +19,4 @@ commonAnnotations:
 namespace: patchwork
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/patchwork/patchwork
-  newTag: test-22c68b7
+  newTag: test-f8fe5a3
