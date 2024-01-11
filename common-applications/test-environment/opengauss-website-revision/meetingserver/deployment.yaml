@@ -50,20 +50,7 @@ spec:
         app: meetingserver
     spec:
       containers:
-      - command:
-        - /bin/bash
-        - -c
-        - |
-          strip -R .note.ABI-tag /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.11.3
-          cp /vault/secrets/xarmor_pyrasp.ini /work/app-meeting-server/xarmor_pyrasp.ini
-          rm -rf /vault/secrets/xarmor_pyrasp.ini
-          python manage.py collectstatic
-          python manage.py makemigrations
-          python manage.py migrate
-          python manage.py sync_sigs
-          python manage.py upgrade_users
-          exec uwsgi --ini /work/app-meeting-server/deploy/production/uwsgi.ini
-        env:
+      - env:
         - name: TZ
           value: Asia/Shanghai
         - name: CONFIG_PATH
@@ -76,7 +63,7 @@ spec:
           value: /vault/secrets/server.crt
         - name: TLS_KEY_PATH
           value: /vault/secrets/server.key
-        image: swr.ap-southeast-1.myhuaweicloud.com/infra-hk/openeuler/meetingserver:dev_merge_opengauss-3eec9a
+        image: swr.ap-southeast-1.myhuaweicloud.com/infra-hk/openeuler/meetingserver:dev_merge_opengauss-651918
         imagePullPolicy: IfNotPresent
         livenessProbe:
           failureThreshold: 3
