@@ -7,7 +7,7 @@ commonAnnotations:
   kubernetes.ops.region: shanghai
 images:
 - name: swr.cn-north-4.myhuaweicloud.com/opensourceway/openeuler/openeuler-devops/etcd
-  newTag: master-eb0dff
+  newTag: master-63bdd9
 kind: Kustomization
 namespace: openeuler-devops
 resources:
