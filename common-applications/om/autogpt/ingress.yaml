@@ -1,0 +1,18 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: autogpt-ingress
+  namespace: autogpt
+spec:
+  tls:
+    - hosts:
+      - autogpt.test.osinfra.cn
+      secretName: autogpt-reverse-tls
+  rules:
+    - host: autogpt.test.osinfra.cn
+      http:
+        paths:
+        - backend:
+            serviceName: autogpt
+            servicePort: 8000
+          path: /
